@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.hieuhien.vn" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]" version="1.0" provider-name="Hieuhien.vn">
+	<extension point="xbmc.addon.repository" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]">
+		<info compressed="false">http://github.com/CHANGEME/My-Repo/raw/master/addons.xml</info>
+		<checksum>http://github.com/CHANGEME/My-Repo/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://github.com/CHANGEME/My-Repo/raw/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>[COLOR pink][B]Cài đặt các addon giải trí dành cho người Việt từ Hieuhien.vn repository[/B][/COLOR]</summary>
+		<description>[COLOR lime][B]- Hieuhien.vn repository tổng hợp những addon giải trí hay nhất dành cho người Việt.[/B][/COLOR]
+		[COLOR violet][B]- Các add-on được Hieuhien.vn cập nhật và thêm mới thường xuyên.[/B][/COLOR] 
+		[COLOR yellow][B]- Hãy thường xuyên truy cập website: www.hieuhien.vn để biết thêm thông tin chi tiết[/B][/COLOR]</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
