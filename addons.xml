@@ -1,32 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.video.myfirstplugin"
-       name="My First Plugin...XBMCHUB.COM"
-       version="1.0"
-       provider-name="Mikey1234">
-  <requires>
-    <import addon="xbmc.python" version="2.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">My First Plugin</summary>
-    <description lang="en">my first plugin description</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="repository.YourRepo" name="HELLO REPO" version="1.0" provider-name="HELLO Your Name">
-	<extension point="xbmc.addon.repository" name="HELLO Addon Repository">
-		<info compressed="false">http://github.com/CHANGEME/My-Repo/raw/master/addons.xml</info>
-		<checksum>http://github.com/CHANGEME/My-Repo/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://github.com/CHANGEME/My-Repo/raw/master/zips</datadir>
+<addon
+	id="plugin.video.HieuHienTV"
+	version="1.0"
+	name="[COLOR lime][B]HieuHienTV[/B][/COLOR]"
+	provider-name="Hieuhien.vn">
+	<requires>
+		<import addon="script.module.simplejson" />
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="tvchannel.py">
+		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Install MY Addons</summary>
-		<description>Download and install addons from HELLO.......For OFFICIAL !! Support Visit XBMCHUB.COM</description>
+		<summary>[COLOR lime][B]Hieuhien.vn[/B][/COLOR]</summary>
+		<description>[COLOR green]Add-on Xem truyền hình Online được Hieuhien.vn viết lại dựa trên addon ITV Plus của tác giả itv member[/COLOR]</description>
+		<disclaimer>[COLOR red][B]Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình[/B][/COLOR]</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.hieuhien.vn" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]" version="1.0" provider-name="Hieuhien.vn">
+	<extension point="xbmc.addon.repository" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]">
+		<info compressed="false">https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml</info>
+		<checksum>https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/hieuhienvn/hieuhien.vn/raw/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>[COLOR pink][B]Cài đặt các addon giải trí dành cho người Việt từ Hieuhien.vn repository.[/B][/COLOR]</summary>
+		<description>[COLOR lime][B]- Hieuhien.vn repository tổng hợp những addon giải trí hay nhất dành cho người Việt.[/B][/COLOR]
+		[COLOR violet][B]- Các add-on được Hieuhien.vn cập nhật và thêm mới thường xuyên.[/B][/COLOR]
+		[COLOR yellow][B]- Hãy thường xuyên truy cập website: www.hieuhien.vn để biết thêm thông tin chi tiết.[/B][/COLOR]</description>
+		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định chương trình.</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
