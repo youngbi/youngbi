@@ -3,7 +3,7 @@
 	<extension point="xbmc.addon.repository" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]">
 		<info compressed="true">https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml</info>
 		<checksum>https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/hieuhienvn/hieuhien.vn/raw/master/zips</datadir>
+		<datadir zip="true">https://github.com/hieuhienvn/hieuhien.vn/raw/master/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>[COLOR pink][B]Cài đặt các addon giải trí dành cho người Việt từ Hieuhien.vn repository.[/B][/COLOR]</summary>
