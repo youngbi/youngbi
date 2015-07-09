@@ -18,6 +18,9 @@
 </addon>
 
 <addon id="repository.hieuhien.vn" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]" version="1.0" provider-name="Hieuhien.vn">
+	<requires>
+		<import addon="xbmc.addon" version="12.0.0"/>
+	</requires>
 	<extension point="xbmc.addon.repository" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]">
 		<info compressed="true">https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml</info>
 		<checksum>https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml.md5</checksum>
