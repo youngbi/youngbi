@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.hieuhien.vn" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]" version="1.0" provider-name="Hieuhien.vn">
+
+<addon 
+	id="repository.hieuhien.vn" 
+	version="1.0" 
+	name="[COLOR lime][B]Hieuhien.vn Repository[/B][/COLOR]" 
+	provider-name="Hieuhien.vn">
 	<requires>
 		<import addon="xbmc.addon" version="12.0.0"/>
 	</requires>
-	<extension point="xbmc.addon.repository" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]">
-		<info compressed="true">https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml</info>
+	<extension point="xbmc.addon.repository"
+		name="[COLOR lime][B]Hieuhien.vn Repository[/B][/COLOR]">
+		<info compressed="false">https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml</info>
 		<checksum>https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://github.com/hieuhienvn/hieuhien.vn/raw/master/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR pink][B]Cài đặt các addon giải trí dành cho người Việt từ Hieuhien.vn repository.[/B][/COLOR]</summary>
-		<description>[COLOR lime][B]- Hieuhien.vn repository tổng hợp những addon giải trí hay nhất dành cho người Việt.[/B][/COLOR]
-		[COLOR violet][B]- Các add-on được Hieuhien.vn cập nhật và thêm mới thường xuyên.[/B][/COLOR] 
-		[COLOR yellow][B]- Hãy thường xuyên truy cập website: www.hieuhien.vn để biết thêm thông tin chi tiết.[/B][/COLOR]</description>
-		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định chương trình.</disclaimer>
+		<summary lang="en">Install addon from Hieuhien.vn's repository</summary>
+		<description lang="en">Repository tập hợp các addons giải trí giành cho người Việt</description>
+		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
-
