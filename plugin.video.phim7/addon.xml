@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon 
+	id="plugin.video.phim7"
+	version="1.0.0"
+	name="[COLOR lime][B]Phim 7[/B][/COLOR]"
+	provider-name="daveln">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" optional="true" />
+		<import addon="script.module.simplejson" />
+		<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Movies</summary>
+		<description>[COLOR lime][B]]Xem phim online từ website: phim7.com [/B][/COLOR]</description>
+		<disclaimer lang="en">
+			[COLOR lime]Copyright © lsvvn.
+			[COLOR red]Nguồn phát trên Internet. Chúng tôi không không kiểm soát bất kỳ nguồn phim nào, cũng như không chịu trách nhiệm bản quyền nội dung trên các phim. Người xem đồng ý và cân nhắc nội dung mà mình muốn xem.[/COLOR]</disclaimer>
+		<platform>all</platform>
+		<license>http://www.gnu.org/licenses/</license>
+		<forum></forum>
+		<website></website>  
+		<email></email>
+		<source></source>
+	</extension>
+</addon>
