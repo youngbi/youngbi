@@ -1,0 +1,18 @@
+#else:mess(u'Login Fshare.vn không thành công');f=''
+
+#mess(u"Đã cập nhật được %d phim"%len(items_new))
+
+#mess(u'Đang kiểm tra dữ liệu cập nhật của Vaphim...')
+
+#else:mess(u'Không có phim mới...')
+
+#mess(u'Đang download danh mục Vaphim.com, ifile.tv,...');data1='data-3.2.0.zip';data2='data_hot-3.2.0.zip'
+
+#mess(u'Đang kiểm tra dữ liệu cập nhật của ifile.tv...')
+
+#else:mess(u'Không có phim mới...')
+
+#mess('PhimFshare.com data Auto update completed')
+
+#mess(u'Đã cập nhật danh mục phim từ các dữ liệu RSS')
+
