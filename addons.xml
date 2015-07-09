@@ -17,6 +17,26 @@
 	</extension>
 </addon>
 
+<addon
+	id="plugin.video.moviHD"
+	version="0.0.9"
+	name="[COLOR lime][B]Phim moviHD.net[/B][/COLOR]"
+	provider-name="traitravinh">
+	<requires>
+		<import addon="script.module.requests" version="2.4.3" />
+		<import addon="script.common.plugin.cache" version="2.5.2" />
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="movihd.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Watch Movies</summary>
+		<description>Watch Movies on movihd.net</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 
 <addon
 	id="repository.hieuhien.vn"
