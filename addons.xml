@@ -43,7 +43,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
-		<description>[COLOR lime][B]Add-on Xem truyền hình Online được Hieuhien.vn viết lại dựa trên addon ITV Plus của tác giả itv member[B][/COLOR]</description>
+		<description>[COLOR lime][B]Add-on Xem truyền hình Online được Hieuhien.vn viết lại dựa trên addon ITV Plus của tác giả itv member[/B][/COLOR]</description>
 		<disclaimer>Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
 		<platform>all</platform>
 	</extension>
