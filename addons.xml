@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.video.HieuHienTV" version="1.0" name="[COLOR lime][B]HieuHienTV[/B][/COLOR]" provider-name="Hieuhien.vn">
+<addon
+	id="plugin.video.HieuHienTV"
+	version="1.0"
+	name="[COLOR lime][B]HieuHienTV[/B][/COLOR]"
+	provider-name="Hieuhien.vn">
 	<requires>
 		<import addon="script.module.simplejson" />
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -10,9 +14,9 @@
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR lime][B]Hieuhien.vn[/B][/COLOR]</summary>
+		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
 		<description>[COLOR green]Add-on Xem truyền hình Online được Hieuhien.vn viết lại dựa trên addon ITV Plus của tác giả itv member[/COLOR]</description>
-		<disclaimer>[COLOR red][B]Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình[/B][/COLOR]</disclaimer>
+		<disclaimer>Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
