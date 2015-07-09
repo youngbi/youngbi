@@ -122,7 +122,7 @@
 	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">The origins of streaming</summary>
-		<description lang="en">[COLOR lime][B]Xem phim HD tiếng Anh[/B][/COLOR]</description>
+		<description lang="en">[COLOR lime][B]Watching movies[/B][/COLOR]</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<forum>http://forums.tvaddons.ag/forums/148-lambda-s-xbmc-addons</forum>
 		<source>https://offshoregit.com/lambda81/</source>
