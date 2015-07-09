@@ -15,7 +15,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Movies</summary>
-		<description>[COLOR orange]Add-on xem phim từ website Anhtrang.org của tác giả [/COLOR][COLOR red]DaveLN[/COLOR][COLOR orange] và được edit bởi[/COLOR] [COLOR red]HieuHien.vn[/COLOR] - [COLOR FF00FF00]Nhà phân phối thiết bị công nghệ hàng đầu Việt Nam - Hỗ trợ cài đặt đầy đủ ứng dụng, chép phim, tặng tài khoản vip cùng nhiều quà tặng hấp dẫn khác cho khách hàng khi mua Android TV Box tại[/COLOR][COLOR red] HieuHien.vn[/COLOR]</description>
+		<description>[COLOR lime][B]Xem phim từ website anhtrang.org[/B][/COLOR]</description>
 		<disclaimer lang="en">
 			[COLOR lime]The streaming media are pulled from online provider(s).
 			[COLOR red]These streams do not represent my views or opinions in any way.[/COLOR]</disclaimer>
@@ -43,7 +43,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
-		<description>[COLOR green]Add-on Xem truyền hình Online được Hieuhien.vn viết lại dựa trên addon ITV Plus của tác giả itv member[/COLOR]</description>
+		<description>[COLOR lime][B]Add-on Xem truyền hình Online được Hieuhien.vn viết lại dựa trên addon ITV Plus của tác giả itv member[B][/COLOR]</description>
 		<disclaimer>Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
 		<platform>all</platform>
 	</extension>
@@ -64,7 +64,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Watch Movies</summary>
-		<description>Watch Movies on movihd.net</description>
+		<description>[COLOR lime][B]Xem phim Online từ website: moviHD.net[/B][/COLOR]</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -72,7 +72,7 @@
 
 <addon
 	id="repository.hieuhien.vn"
-	version="1.0"
+	version="1.0.0"
 	name="[COLOR lime][B]Hieuhien.vn Repository[/B][/COLOR]"
 	provider-name="Hieuhien.vn">
 	<requires>
@@ -86,7 +86,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Install addon from Hieuhien.vn's repository</summary>
-		<description lang="en">Repository tập hợp các addons giải trí giành cho người Việt</description>
+		<description lang="en">[COLOR lime][B]Repository tập hợp các addons giải trí giành cho người Việt[/B][/COLOR]</description>
 		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định</disclaimer>
 		<platform>all</platform>
 	</extension>

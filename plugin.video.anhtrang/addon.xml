@@ -14,7 +14,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Movies</summary>
-		<description>[COLOR orange]Add-on xem phim từ website Anhtrang.org của tác giả [/COLOR][COLOR red]DaveLN[/COLOR][COLOR orange] và được edit bởi[/COLOR] [COLOR red]HieuHien.vn[/COLOR] - [COLOR FF00FF00]Nhà phân phối thiết bị công nghệ hàng đầu Việt Nam - Hỗ trợ cài đặt đầy đủ ứng dụng, chép phim, tặng tài khoản vip cùng nhiều quà tặng hấp dẫn khác cho khách hàng khi mua Android TV Box tại[/COLOR][COLOR red] HieuHien.vn[/COLOR]</description>
+		<description>[COLOR lime][B]Xem phim từ website anhtrang.org[/B][/COLOR]</description>
 		<disclaimer lang="en">
 			[COLOR lime]The streaming media are pulled from online provider(s). 
 			[COLOR red]These streams do not represent my views or opinions in any way.[/COLOR]</disclaimer>
