@@ -196,6 +196,28 @@
 </addon>
 
 <addon
+	id="plugin.video.megabox"
+	version="1.0.0"
+	name="[COLOR lime][B]Phim MegaBox[/B][/COLOR]"
+	provider-name="thaitni">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="megabox.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Xshare - XBMC HD Video</summary>
+		<description lang="en">[COLOR lime][B]Tìm và Xem HD Video trên XBMC từ website: http://megabox.vn[/B][/COLOR]</description>
+		<platform>all</platform>
+		<language>en</language>
+		<license>GNU General Public License - v2</license>
+		<source>https://github.com/thaitni/xbmc.repo.xshare</source>
+		<email>thai@thanhthai.net</email>
+    </extension>
+</addon>
+
+<addon
 	id="plugin.video.moviHD"
 	version="0.0.9"
 	name="[COLOR lime][B]Phim moviHD.net[/B][/COLOR]"
