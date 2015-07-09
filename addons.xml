@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
 <addon id="plugin.video.HieuHienTV" version="1.0" name="[COLOR lime][B]HieuHienTV[/B][/COLOR]" provider-name="Hieuhien.vn">
 	<requires>
