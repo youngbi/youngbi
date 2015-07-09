@@ -72,6 +72,29 @@
 </addon>
 
 <addon
+  id="plugin.video.dramago"
+  version="1.0.5"
+  name="[COLOR yellow][B]DramaGo[/B][/COLOR]"
+  provider-name="Dknight">
+  <requires>
+        <import addon="xbmc.python" version="2.1.0" optional="true" />
+		<import addon="script.module.simplejson" />
+		<import addon="script.module.beautifulsoup" version="3.0.8"/>
+		<import addon="script.module.urlresolver"  version="0.0.1"/>
+		<import addon="script.module.t0mm0.common" version="1.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>DramaGo</summary>
+    <description>[COLOR lim][B]Addon xem phim Hàn Quốc nguyên bản tiếng Hàn[/B][/COLOR]</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon
 	id="plugin.video.HieuHienTV"
 	version="1.0.0"
 	name="[COLOR lime][B]HieuHienTV[/B][/COLOR]"
