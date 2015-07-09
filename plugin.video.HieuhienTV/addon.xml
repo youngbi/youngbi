@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon 
-	id="plugin.video.HieuHienTV" 
-	version="1.0" 
-	name="[COLOR lime][B]HieuHienTV[/B][/COLOR]" 
-	provider-name="Hieuhien.vn">
+<addon id="plugin.video.HieuHienTV" version="1.0" name="[COLOR lime][B]HieuHienTV[/B][/COLOR]" provider-name="Hieuhien.vn">
 	<requires> 
 		<import addon="script.module.simplejson" />	
 		<import addon="xbmc.python" version="2.1.0"/>

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon
-	id="plugin.video.HieuHienTV"
-	version="1.0"
-	name="[COLOR lime][B]HieuHienTV[/B][/COLOR]"
-	provider-name="Hieuhien.vn">
+<addon id="plugin.video.HieuHienTV" version="1.0" name="[COLOR lime][B]HieuHienTV[/B][/COLOR]" provider-name="Hieuhien.vn">
 	<requires>
 		<import addon="script.module.simplejson" />
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -25,7 +21,7 @@
 	<extension point="xbmc.addon.repository" name="[COLOR lime][B]Hieuhien.vn repository[/B][/COLOR]">
 		<info compressed="true">https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml</info>
 		<checksum>https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/hieuhienvn/hieuhien.vn/raw/master/zips</datadir>
+		<datadir zip="true">https://github.com/hieuhienvn/hieuhien.vn/raw/master/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>[COLOR pink][B]Cài đặt các addon giải trí dành cho người Việt từ Hieuhien.vn repository.[/B][/COLOR]</summary>
