@@ -17,7 +17,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>DramaGo</summary>
-    <description>[COLOR lim][B]Addon xem phim Hàn Quốc nguyên bản tiếng Hàn[/B][/COLOR]</description>
+    <description>[COLOR lime][B]Addon xem phim Hàn Quốc nguyên bản tiếng Hàn[/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
