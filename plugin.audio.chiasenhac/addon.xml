@@ -15,6 +15,6 @@
         <platform>all</platform>
         <language>en</language>
 		<summary lang="en">Add-on play Vietnamese Music online</summary>
-		<description lang="en">Nghe nhạc từ website: Chiasenhac.com</description>
+		<description lang="en">Nghe nhạc online từ website: Chiasenhac.com</description>
     </extension>
 </addon>
