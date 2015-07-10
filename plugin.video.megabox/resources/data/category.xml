@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8">
-<a server="FRE" category="MGB" mode="17" color="orangered" icon="megabox.png">Kho phim trên megabox.vn (free)</a>
-<a server="MGB" category="megabox.vn" mode="17" color="lime" icon="megabox.png">Search trên megabox.vn</a>
-<a server="MGB" category="MGP" mode="10" color="orangered" icon="megabox.png">Danh mục phân loại phim</a>
-<a server="MGB" category="MG0" mode="17" color="orangered" icon="megabox.png">Trang chủ megabox.vn</a>
-<a server="MGP" category="MGL" mode="17" color="orangered" icon="megabox.png">Phim lẻ</a>
-<a server="MGP" category="MGS" mode="17" color="orangered" icon="megabox.png">Phim bộ</a>
-
