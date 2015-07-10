@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
 <addon id="plugin.audio.chiasenhac"
-       name="[COLOR lime][B]Chiasenhac[[/B]/COLOR]"
+       name="[COLOR lime][B]Chiasenhac[/B]/COLOR]"
        version="1.9"
        provider-name="VietMusic">
 	<requires>
