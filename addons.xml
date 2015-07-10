@@ -593,6 +593,19 @@
 	</extension>
 </addon>
 
+<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.0.6" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+	<extension point="xbmc.addon.repository" name="Mikey1234 Addon Repository">
+		<info compressed="false">http://xty.me/xunitytalk/addons/addons.xml</info>
+		<checksum>http://xty.me/xunitytalk/addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://xty.me/xunitytalk/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</summary>
+		<description>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.zeus" name="[COLOR black]..[/COLOR][COLOR yellow]ZEUS VIDEO [/COLOR][COLOR white]Repository[/COLOR]" version="1.0.0" provider-name="ZEUS VIDEO">
 	<extension point="xbmc.addon.repository" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS [/COLOR][COLOR white]Repository[/COLOR]">
         <info compressed="false">http://repo.zeusrepo.com/addons.xml</info>
