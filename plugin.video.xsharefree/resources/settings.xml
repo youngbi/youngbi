@@ -1,0 +1,22 @@
+﻿<settings>
+	<category label="Thông tin Account">
+		<setting id="userhdviet" type="text" label="User name [COLOR darkorange]hdviet.com[/COLOR] (email/Số ĐT)"/>
+		<setting id="passhdviet" type="text" option="hidden" label="Password [COLOR darkorange]hdviet.com[/COLOR]"/>
+		<setting id="userhayhay" type="text" label="User name [COLOR tomato]hayhaytv.vn[/COLOR] (email/Số ĐT)"/>
+		<setting id="passhayhay" type="text" option="hidden" label="Password [COLOR tomato]hayhaytv.vn[/COLOR]"/>
+	</category>
+	<category label="Thông tin khác">
+		<setting id="googlesearch" type="labelenum" label="[COLOR blue]Sử dụng phương thức Google search[/COLOR]" values="API|Web" default="API"/>
+		<setting id="hdvietresolution" type="labelenum" label="[COLOR blue]Chọn độ phân giải tối đa trên[/COLOR] [COLOR darkorange]hdviet.com[/COLOR]" values="720|1080" default="720"/>
+		<setting id="sodonghienthi" type="labelenum" label="[COLOR blue]Số dòng hiển thị cho 1 trang[/COLOR]" values="20|30|50" default="30"/>
+		<setting id="cookie" type="text" label="cookiestring" default="" visible="false"/>
+	</category>
+	<category label="Các tùy chọn riêng">
+		<setting id="autoload_sub" type="bool" label="[COLOR green]Tự động load sub trong [COLOR green]SubsFolder[/COLOR][/COLOR] (y/n)" default="true"/>
+		<setting id="autotrans_sub" type="bool" label="[COLOR green]Tự động dịch sau khi download sub tiếng Anh[/COLOR] (y/n)" default="true"/>
+		<setting id="autodel_sub" type="bool" label="[COLOR green]Tự động xóa thư mục SubsFolder[/COLOR] (y/n)" default="true"/>
+		<setting id="hdvietaudio" type="bool" label="[COLOR green]Tự động chọn Audio thuyết minh trên[/COLOR] [COLOR darkorange]hdviet.com[/COLOR] (y/n)" default="true"/>
+		<setting id="history" type="bool" label="[COLOR green]Cho phép hiển thị lịch sử tìm kiếm[/COLOR] (y/n)" default="true"/>
+		<setting id="phim18" type="bool" label="[COLOR red]Kích hoạt xem phim 18+[/COLOR] (y/n)" default="true"/>
+	</category>
+</settings>

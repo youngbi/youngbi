@@ -255,28 +255,6 @@
 </addon>
 
 <addon
-	id="plugin.video.megabox"
-	version="1.0.0"
-	name="[COLOR lime][B]Phim MegaBox[/B][/COLOR]"
-	provider-name="thaitni">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="megabox.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Xshare - XBMC HD Video</summary>
-		<description lang="en">[COLOR lime][B]Tìm và Xem HD Video trên XBMC từ website: http://megabox.vn[/B][/COLOR]</description>
-		<platform>all</platform>
-		<language>en</language>
-		<license>GNU General Public License - v2</license>
-		<source>https://github.com/thaitni/xbmc.repo.xshare</source>
-		<email>thai@thanhthai.net</email>
-    </extension>
-</addon>
-
-<addon
 	id="plugin.video.megafun.vn"
 	version="1.0.19"
 	name="[COLOR violet][B]Truyền hình Xem lại[/B][/COLOR]"
@@ -526,28 +504,6 @@
 </addon>
 
 <addon
-	id="plugin.video.phimfptplay"
-	version="1.0.0"
-	name="[COLOR lime][B]Phim FPT Play[/B][/COLOR]"
-	provider-name="thaitni">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" optional="true" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="phimfptplay.py">
-		<provides>video</provides>
-	</extension>
-    <extension point="xbmc.addon.metadata">
-		<summary>Xshare - XBMC HD Video</summary>
-		<description lang="en">[COLOR lime][B]Tìm và Xem HD Video trên XBMC từ website: http://fptplay.net [/B][/COLOR]</description>
-		<platform>all</platform>
-		<language>en</language>
-		<license>GNU General Public License - v2</license>
-		<source>https://github.com/thaitni/xbmc.repo.xshare</source>
-		<email>thai@thanhthai.net</email>
-	</extension>
-</addon>
-
-<addon
 	id="plugin.video.phimvang"
 	version="1.1.1"
 	name="[COLOR lime][B]Phim Vàng[/B][/COLOR]"
@@ -651,6 +607,24 @@
 		<description>[COLOR lime][COLOR]Xem phim online từ website: vkool.net[/B][/COLOR]</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="plugin.video.xsharefree" name="[COLOR lime][B]Kho Phim[/COLOR] [COLOR red]Xshare Free[/COLOR][/B]" version="3.2.10" provider-name="thaitni">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" optional="true" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="xsharefree.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Xshare - XBMC HD Video</summary>
+		<description lang="en">Tìm và Xem HD Video trên XBMC từ: fptplay.net, megabox.vn, hayhaytv.vn, hdviet.com</description>
+		<platform>all</platform>
+		<language>en</language>
+		<license>GNU General Public License - v2</license>
+		<source>https://github.com/thaitni/xbmc.repo.xshare</source>
+		<email>thai@thanhthai.net</email>
+    </extension>
 </addon>
 
 <addon
