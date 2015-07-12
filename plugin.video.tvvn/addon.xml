@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon
 	id="plugin.video.tvvn"
-	version="0.9.7"
+	version="1.9.7"
 	name="[COLOR violet][B]TV Viet Nam[/B][/COLOR]"
 	provider-name="Binh Nguyen">
 	<requires>
