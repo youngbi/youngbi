@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
 <addon id="plugin.audio.chiasenhac"
-       name="Chiasenhac"
+       name="[B]Chia [COLOR red]Sẻ [/COLOR]Nhạc[/B]"
        version="1.9"
        provider-name="VietMusic">
 	<requires>
@@ -17,26 +17,6 @@
         <language>en</language>
 		<summary lang="en">Add-on play Vietnamese Music online</summary>
 		<description lang="en">Nghe nhạc online từ website: Chiasenhac.com</description>
-    </extension>
-</addon>
-
-<addon id="plugin.audio.vietmusic"
-       name="VietMusic"
-       version="1.8.1"
-       provider-name="VietMusic">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>audio</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <language>en</language>
-		<summary lang="en">Viet Music online</summary>
-		<description lang="en">Add-on play Vietnamese Music online</description>
     </extension>
 </addon>
 
@@ -763,7 +743,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Install addon from Hieuhien.vn's repository</summary>
-		<description lang="en">[COLOR lime][B]Repository tập hợp các addons giải trí giành cho người Việt[/B][/COLOR]</description>
+		<description lang="en">[COLOR red][B]Hieuhien.vn[/COLOR]-[COLOR lime]Repository tập hợp các addons và repository giải trí online trên XBMC - Kodi[/B][/COLOR]</description>
 		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định</disclaimer>
 		<platform>all</platform>
 	</extension>

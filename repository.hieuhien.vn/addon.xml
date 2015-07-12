@@ -16,7 +16,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Install addon from Hieuhien.vn's repository</summary>
-		<description lang="en">[COLOR lime][B]Repository tập hợp các addons giải trí giành cho người Việt[/B][/COLOR]</description>
+		<description lang="en">[COLOR red][B]Hieuhien.vn[/COLOR]-[COLOR lime]Repository tập hợp các addons và repository giải trí online trên XBMC - Kodi[/B][/COLOR]</description>
 		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định</disclaimer>
 		<platform>all</platform>
 	</extension>
