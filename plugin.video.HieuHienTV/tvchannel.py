@@ -52,7 +52,7 @@ def resolveUrl(url):
 		url = re.compile('var responseText = "(.+?)";').findall(content)[0]		
 	elif 'htvonline' in url:
 		content = Get_Url(url)	
-		url = re.compile("file: \"([^\"]*)\"").findall(content)[0]
+		url = re.compile('data\-source=\"([^\"]*)\"').findall(content)[0]
 	elif 'hplus' in url:
 		content = Get_Url(url)	
 		url = re.compile('iosUrl = "(.+?)";').findall(content)[0]		
