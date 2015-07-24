@@ -7,6 +7,6 @@
     <setting type="sep" />	
     <setting type="sep" />
     <setting type="sep" />	
-    <setting label="[B]SELECT TV MODE[/B][COLOR red] (REQUIRED - BẮT BUỘC)[/COLOR]"  type="select" id="tv_mode" values="Menu Selection Mode|Direct Link Mode" default="" /> 	
+    <setting label="[B]SELECT TV MODE[/B][COLOR red] (REQUIRED - BẮT BUỘC)[/COLOR]"  type="select" id="tv_mode" values="Menu Selection Mode|Direct Link Mode" default="Menu Selection Mode" /> 	
   </category>
 </settings>

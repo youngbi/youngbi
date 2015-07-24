@@ -19,7 +19,7 @@
 <item>
 <title>[COLOR orange]TV[COLOR magenta] + [COLOR orange]Âm Nhạc[COLOR magenta] + [COLOR orange]Radio Tổng Hợp[/COLOR]</title>
 <link>https://raw.githubusercontent.com/daveln/repository.daveln/master/playlists/my_tv.xml</link>
-<thumbnail>tv.png</thumbnail>
+<thumbnail>mytv.png</thumbnail>
 <mode>1</mode>
 </item>
 
@@ -38,23 +38,37 @@
 </item>
 
 <item>
+<title>[COLOR magenta]TV Hải Ngoại (YouTube)[/COLOR]</title>
+<link>https://raw.githubusercontent.com/daveln/repository.daveln/master/playlists/menulist.xml</link>
+<thumbnail>haingoaitube.png</thumbnail>
+<mode>40</mode>
+</item>
+
+<item>
+<title>[COLOR white]TV Trong Nước (YouTube)[/COLOR]</title>
+<link>https://raw.githubusercontent.com/daveln/repository.daveln/master/playlists/menulist.xml</link>
+<thumbnail>vntube.png</thumbnail>
+<mode>40</mode>
+</item>
+
+<item>
 <title>[COLOR yellow]Replay[COLOR magenta] - [COLOR yellow]TV chiếu lại[/COLOR]</title>
 <link>http://113.160.49.39/tvcatchup</link>
-<thumbnail>tv.png</thumbnail>
+<thumbnail>tvreplay.png</thumbnail>
 <mode>3</mode>
 </item>
 
 <item>
 <title>[COLOR lime]HTVOnline[/COLOR]</title>
 <link>http://www.htvonline.com.vn/livetv</link>
-<thumbnail>tv.png</thumbnail>
+<thumbnail>htvonline.png</thumbnail>
 <mode>3</mode>
 </item>
 
 <item>
 <title>TV Việt</title>
 <link>http://tv.vnn.vn/</link>
-<thumbnail>tv.png</thumbnail>
+<thumbnail>tvviet.png</thumbnail>
 <mode>3</mode>
 </item>
 

@@ -1,14 +1,16 @@
+v 1.1.12
+Fixed Megabox's pagination
+
+v 1.1.11
+Added phimhd3s
+Fixed phim.megabox.vn
+Removed phim14.net
+
+v 1.1.10
+Emptied settings.xml
+
 v 1.1.9
 Show View List
-
-v 1.1.8
-Updated megabox.vn
-Updated phim14.net
-xbmc.python version 2.1.0
-
-v 1.1.7
-Changed fanart
-xbmc.python version 2.14.0
 
 v 1.0.0
 Initial release
