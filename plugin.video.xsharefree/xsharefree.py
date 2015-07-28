@@ -163,36 +163,6 @@ def searchContext(name,link,img,fanart,mode):
 	command.append((makeContext(name,link,img,fanart,9,'Remove item')))
 	return command
 
-def favouritesContext(name,link,img,fanart,mode):
-	command=[];
-	if type(link)==unicode:link=link.encode('utf-8')
-	if link in makerequest(joinpath(datapath,"favourites.xml")):
-		command.append((makeContext(name,link,img,fanart,98,'Rename in MyFavourites')))
-		command.append((makeContext(name,link,img,fanart,98,'Remove from MyFavourites')))
-	else:
-		command.append((makeContext(name,link,img,fanart,98,'Add to MyFavourites')))
-	if 'www.fshare.vn' in link:
-		if query=='MyFshare':
-			command.append((makeContext(name,link,img,fanart,11,'Remove from MyFshare')))
-			command.append((makeContext(name,link,img,fanart,11,'Rename from MyFshare')))
-		else:
-			command.append((makeContext(name,link,img,fanart,11,'Add to MyFshare')))
-	if link in makerequest(joinpath(myfolder,'mylist.xml')):
-		command.append((makeContext(name,link,img,fanart,12,'Rename in Mylist.xml')))
-		command.append((makeContext(name,link,img,fanart,12,'Remove from Mylist.xml')))
-	else:
-		command.append((makeContext(name,link,img,fanart,12,'Add to Mylist.xml')))
-	command.append((makeContext(name,'addstring.xshare.vn',img,fanart,13,'Add item name to string search')))
-	return command
-
-def make_myFile(name,link,img,fanart,mode,query):
-	name=re.sub('\[COLOR.{,12}\]|\[/COLOR\]|Fshare|4share|TenLua|List xml|-|:|"','',name).strip();command=[]
-	if os.path.isfile(str2u(link)):
-		command.append((makeContext(name,link,img,fanart,11,'Upload to MyFshare')));temp='file'
-	else:temp='folder'
-	command.append((makeContext(name,link,img,fanart,96,'Rename this %s'%temp)))
-	command.append((makeContext(name,link,img,fanart,96,'Remove this %s'%temp)))
-	return command
 
 def make_mySearch(name,url,img,fanart,mode,query):
 	attr='w';body=makerequest(search_file);r='<a href="%s">.+?</a>\n'%url
@@ -298,6 +268,7 @@ def get_input(title=u"", default=u""):
 		result = keyboard.getText()
 	return result
 
+
 def trangtiep(query,items):
 	if 'Trang' in query.split('?')[0]:
 		trang=int(query.split('?')[0].split('Trang')[1])
@@ -402,13 +373,13 @@ def main_menu(category,page,mode,query): #Doc list tu vaphim.xml hoac ifiletv.xm
 		addir(name,category,icon['icon'],mode=mode,page=page,query=query,isFolder=True)
 
 
+
 def trangtiep_google_custom(url,results,string,mode,trang,start,apiary):
 	if 'cursor' in results and 'pages' in results['cursor']:
 		if str(int(start)+20) in ' '.join(s['start'] for s in results['cursor']['pages']):
 			trang=str(int(trang)+1)
 			name=color['trangtiep']+'Trang tiep theo...trang %s[/COLOR]'%trang
 			addir(name,url,icon[url.split('.')[0]],mode=mode,page=4,query='%s?%s?%s'%(string,trang,apiary),isFolder=True)
-
 
 def trang_search(string):
 	if len(string.split('?'))==3:p=string.split('?')[2];trang=string.split('?')[1];string=string.split('?')[0]
@@ -417,120 +388,6 @@ def trang_search(string):
 	return string,trang,p
 
 
-def data_download():
-	delete_files(tempfolder);init_file();download=downloadresult=''
-	#Kiểm tra database
-	files=['hdvietnam.xml','ifiletv.xml','phimfshare.xml','vaphim.xml']
-	file_now=os.listdir(datapath)
-	for file in files:
-		if file not in file_now:download='download';break
-	if not download:
-		for file in file_now:
-			size=os.path.getsize(joinpath(datapath,file))
-			if file.lower()=='vaphim.xml' and size<4218000:download='download';break
-			if file.lower()=='ifiletv.xml' and size<2611000:download='download';break
-			if file.lower()=='hdvietnam.xml' and size<630000:download='download';break
-			if file.lower()=='phimfshare.xml' and size<629000:download='download';break
-	if download=='download':
-		mess(u'Đang download database cho xshare')
-		if data_download_fromFshare('data.zip','data-hot.zip'):downloadresult='yes'
-	if 'fpt.xml' not in file_now or os.path.getsize(joinpath(datapath,'fpt.xml'))<22345000:
-		if data_download_fromFshare('fpt.zip','fpt-hot.zip'):downloadresult='yes'
-	#Kiểm tra file fanart
-	file=joinpath(home,'fanart.jpg')
-	if (os.path.isfile(file) and os.path.getsize(file)<613860) or not os.path.isfile(file):
-		if data_download_fromFshare('fanart.jpg','fanart-hot.jpg'):downloadresult='yes'
-	#Kiểm tra bộ icon
-	files=['4share.png','dangcaphd.png','downsub.png','favorite.png','fptplay.png','fshare.png','gsearch.png','hdvietnam.png','icon.png','id.png','ifiletv.png','isearch.png','khophim.png','maxspeed.png','megabox.png','movie.png','msearch.png','myfolder.png','myfshare.png','phimfs.png','serverphimkhac.png','setting.png','tenlua.png','vaphim.png','xshare.png']
-	file_now=os.listdir(iconpath);download=''
-	for file in files:
-		if file not in file_now:download='download';break
-	if download=='download':
-		mess(u'Đang download bộ icon của LUC QUYET CHIEN cho xshare')
-		if data_download_fromFshare('icon.zip','icon-hot.zip'):downloadresult='yes'
-	
-	kq='ok'
-	if downloadresult:
-		mess(u'Đang unzip......')
-		for f in os.listdir(tempfolder):
-			file=joinpath(tempfolder,f);ext=os.path.splitext(file)[1][1:].lower()
-			if ext=='xml':dest_path=datapath
-			elif ext=='png':dest_path=iconpath
-			elif ext=='jpg':dest_path=home
-			else:continue
-			size=os.path.getsize(file);dest_file=joinpath(dest_path,f)
-			if not os.path.isfile(dest_file) or os.path.getsize(dest_file)<size:
-				if not rename_file(file,dest_file):kq=''
-	if downloadresult and kq:mess(u'Download database cho xshare thành công!',10000)
-	elif downloadresult:mess(u'Download database cho xshare thất bại!',10000)
-	else:mess(u'Đã kiểm tra database cho xshare thành công!',10000)
-	if kq:
-		myaddon.setSetting('thank2xshare','true');myaddon.setSetting('checkdatabase','false')
-		if os.path.isfile(joinpath(data_path,'checkdatabase.txt')):os.remove(joinpath(data_path,'checkdatabase.txt'))
-		delete_files(tempfolder)
-	return
-
-def data_update():
-	ngay=datetime.date.today().strftime("%Y%m%d");gio=datetime.datetime.now().strftime("%H")
-	file=joinpath(datapath,"last_update.dat")
-	last_update=datetime.datetime.fromtimestamp(os.path.getmtime(file) if os.path.isfile(file) else 0)
-	if ngay>last_update.strftime("%Y%m%d"):
-		makerequest(joinpath(datapath,"last_update.dat"),'','w');delete_files(tempfolder)
-		try:vp_update();ifile_update();pfs_update();vp_make_datanew()
-		except:mess('Data update error');pass
-	if abs(int(gio)-int(last_update.strftime("%H")))>2:
-		makerequest(joinpath(datapath,"last_update.dat"),'','w')
-		try:hdvn_update()#;vp_update_rss()
-		except:mess('RSS update error');pass
-
-def subscene(name,url,query):#,img='',fanart='',query=''
-	if query=='subscene.com':
-		href = get_input('Hãy nhập link của sub trên subscene.com','http://subscene.com/subtitles/')
-		if href is None or href=='' or href=='http://subscene.com/subtitles/':return 'no'
-	else:href=url
-	if not re.search('\d{5,10}',href):
-		if not os.path.basename(href):href=os.path.dirname(href)
-		pattern='<a href="(/subtitles/.+?)">\s+<span class=".+?">\s*(.+?)\s+</span>\s+<span>\s+(.+?)\s+</span>'
-		subs=re.findall(pattern,make_request(href,headers={'Cookie':'LanguageFilter=13,45'}))
-		mess(u'Tên phim: %s'%str2u(name).replace('[COLOR green]Subscene[/COLOR]-',''),30000)
-		for url,lang,name in sorted(subs,key=lambda l:l[1], reverse=True):
-			name='Eng '+name if '/english/' in url else '[COLOR red]Vie[/COLOR]-'+name
-			addirs(name,'http://subscene.com'+url,query='download')
-		return ''
-	pattern='<a href="(.+?)" rel="nofollow" onclick="DownloadSubtitle.+">'
-	downloadlink='http://subscene.com' + xshare_group(re.search(pattern,make_request(href)),1)
-	if len(downloadlink)<20:mess(u'Không tìm được maxspeed link sub');return
-		
-	if myaddon.getSetting('autodel_sub')=='true':delete_files(subsfolder)
-	body=make_request(downloadlink);tempfile=joinpath(tempfolder,"subtitle.sub");delete_files(tempfolder)
-	body=makerequest(tempfile,string=body,attr='wb')
-	if body[0]=='R':typeid="rar"
-	elif body[0]=='P':typeid="zip"
-	else:typeid="srt"
-	
-	folder=tempfolder if typeid in "rar-zip" else subsfolder
-	subfile=joinpath(folder,"subtitle."+typeid);rename_file(tempfile,subfile)
-	
-	if typeid in "rar-zip":
-		f1=subfile.encode('utf-8');f2=tempfolder.encode('utf-8')
-		xbmc.sleep(500)
-		xbmc.executebuiltin('XBMC.Extract("%s","%s")'%(f1,f2),True);os.remove(subfile)
-		exts = [".srt", ".sub", ".txt", ".smi", ".ssa", ".ass"];sub_list=[]
-		for file in os.listdir(tempfolder):
-			tempfile=joinpath(tempfolder,file)
-			if os.path.isfile(tempfile) and os.path.splitext(tempfile)[1] in exts:
-				if 'Eng' in name and myaddon.getSetting('autotrans_sub')=='true':
-					mess(u'Google đang dịch sub từ tiếng Anh sang tiếng Việt', timeShown=20000)
-					subfile=xshare_trans(tempfile)
-					if rename_file(subfile,joinpath(subsfolder,'Vie.%s'%re.sub(',|"|\'','',file))):
-						mess(u'Đã dịch xong sub từ tiếng Anh sang tiếng Việt');os.remove(tempfile)
-					elif rename_file(tempfile,joinpath(subsfolder,'Eng.%s'%re.sub(',|"|\'','',file))):
-						mess(u'Không dịch được sub, giữ nguyên bản tiếng Anh') 
-				elif 'Eng' in name and rename_file(tempfile,joinpath(subsfolder,'Eng.%s'%re.sub(',|"|\'','',file))):
-					mess(u'Đã download sub vào Subsfolder') 
-				elif rename_file(tempfile,joinpath(subsfolder,'Vie.%s'%re.sub(',|"|\'','',file))):
-					mess(u'Đã download sub vào Subsfolder') 
-	return 'ok'
 
 def xshare_trans(sourcefile):
 	tempfile = joinpath(tempfolder,"temp"+os.path.splitext(sourcefile)[1])
@@ -586,11 +443,10 @@ def fptplay(name,url,img,mode,page,query):
 			response=post('https://moid.fptplay.net/oauth2/authorize',data=urllib.urlencode(data),headers=hd)
 			response=get(response.headers['location'],headers=hd)
 			if 'laravel_value' in response.cookiestring:
-				#mess(u'[COLOR green]Login fptplay.net thành công[/COLOR]');
-				f=response.cookiestring
+				mess(u'[COLOR green]Login fptplay.net thành công[/COLOR]');f=response.cookiestring
 				makerequest(joinpath(data_path,'fptplay.cookie'),f,'w')
 		except:pass
-		#if not f:mess(u'[COLOR red]Login fptplay.net không thành công[/COLOR]')
+		if not f:mess(u'[COLOR red]Login fptplay.net không thành công[/COLOR]')
 		#get('https://fptplay.net/user/logout',headers=hd) status=302
 		return f
 	def colors(name,title):
@@ -633,8 +489,8 @@ def fptplay(name,url,img,mode,page,query):
 		pattern='<div id="(.+?)" name="(.+?)">(.+?)</div>'
 		hrefs=[s for s in re.findall(pattern,makerequest(joinpath(datapath,'fpt.xml')),re.DOTALL) if s[0] in ids]
 		ids=list(set([s[0] for s in hrefs]));string='';list_update=[]
-		#if any(s for s in items if s[0] not in ids):
-			#mess(u'%s [COLOR green]Updating ...[/COLOR]'%str2u(name),2000,'[COLOR orange]FPTPlay database Update[/COLOR]')
+		if any(s for s in items if s[0] not in ids):
+			mess(u'%s [COLOR green]Updating ...[/COLOR]'%str2u(name),2000,'[COLOR orange]FPTPlay database Update[/COLOR]')
 		for iD,img,name in items:
 			name=fpt2s(name)
 			if iD not in ids:
@@ -912,6 +768,7 @@ def megabox(name,url,mode,page,query):
 			href=query+'/%s-%s.html'%(item['cat_id'],item['content_id'])
 			addir(name,href,img,img,mode=mode,query='MBP')
 	return ''
+
 
 def hdviet(name,url,img,mode,page,query):
 	color['hdviet']='[COLOR darkorange]';icon['hdviet']=os.path.join(iconpath,'hdviet.png')
