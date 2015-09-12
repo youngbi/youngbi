@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon
-	id="plugin.video.hdcaphe"
-	version="1.0.0"
-	name="[B][COLOR lime]Phim HDcaphe[/COLOR][/B]"
-	provider-name="daveln">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" optional="true" />
-		<import addon="script.module.simplejson" />
-		<import addon="script.module.t0mm0.common" version="1.1.0"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
+  id="plugin.video.hdcaphe"
+  version="1.0.1"
+  name="[B][COLOR FF00FF00]HDViet[/COLOR][/B]"
+  provider-name="Anphunl">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Movies</summary>
-		<description>[COLOR lime][B]Xem phim HDcaphe[/B][/COLOR]</description>
-		<disclaimer lang="en">
-			[COLOR lime]Nguồn phim lấy từ Internet.
-			[COLOR red]Chúng tôi hoàn toàn không chịu trách nhiệm về chất lượng cũng như sự ổn định[/COLOR]</disclaimer>
-		<platform>all</platform>
-		<license>http://www.gnu.org/licenses/</license>
-		<forum>hieuhien.vn</forum>
-		<website>hieuhien.vn</website>  
-		<email>lienhe@hieuhien.vn</email>
-		<source>hieuhien.vn</source>         
-	</extension>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>HDViet</summary>
+    <description>Watch free videos from hdviet.com</description>
+    <platform>all</platform>
+  </extension>
 </addon>

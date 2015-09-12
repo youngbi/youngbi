@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-	<category label="General Settings">		
-		<setting id="Mode_Number" type="select" label="Chọn số, nhấn OK (Số 7 = Nhanh, làm nhiều. Số 16 = Chậm, làm ít)" values="7|16" default="7"/>	
-	</category>	
+	<category label="Video Setting">
+	    <setting label="Chất lượng phim" type="labelenum" id="video_quality" default="Full HD" values="SD|HD|Full HD|Chọn khi xem"/>
+	    <setting label="Phụ đề" type="labelenum" id="subtitle" default="VIE" values="VIE|ENG|Tắt"/>
+		<setting label="Bật thuyết minh (nếu có)" type="bool" id="useViAudio" default="true"/>
+		<setting label="Bật âm thanh 5.1 (nếu có, đang thử nghiệm)" type="bool" id="useDolbyAudio" default="true"/>
+	</category>
 </settings>
