@@ -9,10 +9,11 @@ args = urlparse.parse_qs(sys.argv[2][1:])
 xbmcplugin.setContent(addon_handle, 'movies')
 
 my_addon = xbmcaddon.Addon()
-mysettings=xbmcaddon.Addon(id='plugin.video.hdcaphe')
+mysettings=xbmcaddon.Addon(id='plugin.video.F.T.V')
 profile=mysettings.getAddonInfo('profile')
 home=mysettings.getAddonInfo('path')
 icon=xbmc.translatePath(os.path.join(home, 'icon.png'))
+
 npp = str(my_addon.getSetting('npp'))
 hi_res_thumb = my_addon.getSetting('hiresthumb') == 'true'
 reload(sys);
@@ -43,7 +44,7 @@ def login():
 	password = "hayhaytv.vn"
 	if len(username) < 5 or len(password) < 1:
 		my_addon.setSetting("token", "none")
-		xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HayhayTV','[COLOR red]Chưa nhập email/password[/COLOR]',3000)).encode("utf-8"))
+		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HayhayTV','[COLOR red]Chưa nhập email/password[/COLOR]',3000)).encode("utf-8"))
 		return "fail"
 	h = hashlib.md5()
 	h.update(password)
@@ -150,14 +151,17 @@ def movie_detail(movie_id):
 	except:ismovie = True
 	thumbnail = movie_info['image']
 	if hi_res_thumb:thumbnail = thumbnail.replace('/crop/','/')
+	pd = 'donthave'
 	if ismovie:
 		# single ep
-		try:pd = str(movie_info['vn_subtitle'])
+		try:
+			if movie_info['vn_subtitle'] != '':pd = str(movie_info['vn_subtitle'])
 		except: pd = 'donthave'
 		addMovie('%s - %s' % (movie_info['name'], movie_info['extension']), {'mode':'play', 'movie_id' : movie_info['id'], 'ep' : '2', 'subtitle': pd}, thumbnail, movie_info['intro_text'], movie_info['banner_image'])
 	else:
 		for eps_info in movie_info['list_episode']:
-			try:pd = str(eps_info['vn_subtitle'])
+			try:
+				if eps_info['vn_subtitle'] != '':pd = str(eps_info['vn_subtitle'])
 			except: pd = 'donthave'
 			addMovie(u'[COLOR green][B]%s.[/B][/COLOR] %s - %s' % (eps_info['name'], movie_info['name'], movie_info['extension']), {'mode':'play', 'movie_id' : eps_info['id'], 'ep' : '2', 'subtitle': pd}, thumbnail, movie_info['intro_text'], movie_info['banner_image'])
 
@@ -176,7 +180,8 @@ def play(movie_id, ep = 1,subtitle = False):
 	if movie:
 		if subtitle == 'none':
 			movie_info = get_movie_info(movie_id)
-			try:subtitle = str(movie_info['vn_subtitle'])
+			try:
+				if movie_info['vn_subtitle'] != '':subtitle = str(movie_info['vn_subtitle'])
 			except: subtitle = 'donthave'
 
 		try:links = movie['link_play']
