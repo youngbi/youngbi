@@ -9,6 +9,10 @@ args = urlparse.parse_qs(sys.argv[2][1:])
 xbmcplugin.setContent(addon_handle, 'movies')
 
 my_addon = xbmcaddon.Addon()
+mysettings=xbmcaddon.Addon(id='plugin.video.hdcaphe')
+profile=mysettings.getAddonInfo('profile')
+home=mysettings.getAddonInfo('path')
+icon=xbmc.translatePath(os.path.join(home, 'icon.png'))
 npp = str(my_addon.getSetting('npp'))
 hi_res_thumb = my_addon.getSetting('hiresthumb') == 'true'
 reload(sys);
