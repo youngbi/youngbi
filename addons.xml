@@ -210,7 +210,7 @@
 
 <addon
   id="plugin.video.hdcaphe"
-  version="1.0.1"
+  version="1.0.2"
   name="[B][COLOR FF00FF00]HDViet[/COLOR][/B]"
   provider-name="Anphunl">
   <requires>

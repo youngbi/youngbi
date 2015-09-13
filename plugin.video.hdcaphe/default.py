@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import urllib, urllib2, json, re, urlparse, sys, time, os, hashlib
+import urllib, urllib2, json, re, urlparse, sys, time, os
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 from BeautifulSoup import BeautifulSoup
 
@@ -11,6 +11,10 @@ args = urlparse.parse_qs(sys.argv[2][1:])
 xbmcplugin.setContent(addon_handle, 'movies')
 
 my_addon = xbmcaddon.Addon()
+mysettings=xbmcaddon.Addon(id='plugin.video.hdcaphe')
+profile=mysettings.getAddonInfo('profile')
+home=mysettings.getAddonInfo('path')
+icon=xbmc.translatePath(os.path.join(home, 'icon.png'))
 subtitle_lang = my_addon.getSetting('subtitle')
 video_quality = my_addon.getSetting('video_quality')
 use_vi_audio = my_addon.getSetting('useViAudio') == 'true'
@@ -40,29 +44,7 @@ def make_request(url, params=None, headers=None):
 		return body
 	except:
 		pass
-def login():
-	#username = my_addon.getSetting('userhdviet')
-	username = "tk.hdviet.com@gmail.com"
-	#password = my_addon.getSetting('passhdviet')
-	password = "hdviet.com"
-	if len(username) < 5 or len(password) < 1:
-		my_addon.setSetting("token", "none")
-		xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR red]Log in Failed ![/COLOR]',2000)).encode("utf-8"))
-		return "fail"
-	h = hashlib.md5()
-	h.update(password)
-	passwordhash = h.hexdigest()
-	result = make_request('https://api-v2.hdviet.com/user/login?email=%s&password=%s' % (username,passwordhash), None, header_app)
-	if "AccessTokenKey" in result:
-		res = json.loads(result)["r"]
-		my_addon.setSetting("token", res["AccessTokenKey"])
-		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR green]Logged in ![/COLOR]',2000)).encode("utf-8"))
-		return res["AccessTokenKey"];
-	else:
-		#xbmcgui.Dialog().ok("HDViet", passwordhash)
-		my_addon.setSetting("token", "none")
-		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR red]Log in Failed ![/COLOR]',2000)).encode("utf-8"))
-		return "fail"
+
 def convert_vi_to_en(str):
 	try:
 		if str == '': return
@@ -209,16 +191,10 @@ def movie_detail(movie_id):
 
 
 def play(movie_id, ep = 0):
-	token = my_addon.getSetting('token')
+
 	# get link to play and subtitle
-	if token == 'none': token = login()
-	if token == 'fail': return
-	res = make_request('https://api-v2.hdviet.com/movie/play?movieid=%s&accesstokenkey=%s&ep=%s' % (movie_id, token, ep), None, header_app)
-	if "0000000000" in res:
-		token = login()
-		if token != 'fail': res = make_request('https://api-v2.hdviet.com/movie/play?movieid=%s&accesstokenkey=%s&ep=%s' % (movie_id, token, ep), None, header_app)
-		
-	movie = json.loads(res)["r"]
+	movie = json.loads(make_request('https://api-v2.hdviet.com/movie/play?movieid=%s&sign=sign&ep=%s' % (movie_id, ep), None, header_app))['r']
+	
 	if movie:
 		subtitle_url = ''
 		if subtitle_lang != 'Tắt':
@@ -232,8 +208,7 @@ def play(movie_id, ep = 0):
 				pass
 
 		# get link and resolution
-		#link_to_play = re.sub(r'_\d+_\d+_', '_320_4096_', movie['LinkPlay'])
-		link_to_play = movie['LinkPlay']
+		link_to_play = re.sub(r'_\d+_\d+_', '_320_4096_', movie['LinkPlay'])
 		result = make_request(link_to_play, None, header_app)
 
 		# audioindex
