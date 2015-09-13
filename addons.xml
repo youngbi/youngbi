@@ -134,7 +134,7 @@
 
 <addon
   id="plugin.video.plugin.video.F.T.V"
-  version="2.0.0"
+  version="1.3.6"
   name="[B][COLOR FF00FF00]HayHayTV[/COLOR][/B]"
   provider-name="lnt900">
   <requires>
