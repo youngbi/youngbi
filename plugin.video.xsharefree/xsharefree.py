@@ -963,7 +963,7 @@ def hdviet(name,url,img,mode,page,query):
 	elif query=='play':
 		links=getResolvedUrl(url);linksub='';maxspeedlink=''
 		if not links:mess(u'[COLOR red]HDViet.com: Get link thất bại[/COLOR]');return
-		link=re.sub('_320_480_','_320_1920_vip_',links['LinkPlay'])
+		link=re.sub('_320_480_','_320_1920_',links['LinkPlay'])
 		epi=xshare_group(re.search('/(\d{1,6}_e\d{1,4})_',link),1)
 		if epi:link=link.replace(epi,url)
 		href=link+'?audioindex=1' if myaddon.getSetting('hdvietaudio')=='true' else link
