@@ -133,7 +133,7 @@
 </addon>
 
 <addon
-  id="plugin.video.plugin.video.F.T.V"
+  id="plugin.video.F.T.V"
   version="1.3.6"
   name="[B][COLOR FF00FF00]HayHayTV[/COLOR][/B]"
   provider-name="lnt900">
