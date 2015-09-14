@@ -730,6 +730,19 @@
   </extension>
 </addon>
 
+<addon id="repository.BlackBox247" name="BlackBox247 REPO" version="1.0.3" provider-name="BlackBox247">
+	<extension point="xbmc.addon.repository" name="BlackBox247 Addon Repository">
+		<info compressed="false">http://blackbox247.com/BlackBox247_Repo/BlackBox247-Repo.xml</info>
+		<checksum>http://blackbox247.com/BlackBox247_Repo/BlackBox247-Repo.md5</checksum>
+		<datadir zip="true">http://blackbox247.com/BlackBox247_Repo/Zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install BlackBox247 REPO</summary>
+		<description>Download and install addons from BlackBox247 REPO: Watch free Movies and TV shows from many different sources</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.daveln" name="DaveLN's Repository" version="1.0.0" provider-name="DaveLN">
 	<extension point="xbmc.addon.repository" name="DaveLN Addon Repository">
 		<info compressed="false">https://github.com/daveln/repository.daveln/raw/master/addons.xml</info>
@@ -781,6 +794,19 @@
 	</extension>
 </addon>
 
+<addon id="repository.HopDenTV" name="HopDenTV REPO" version="1.0.3" provider-name="HopDenTV">
+	<extension point="xbmc.addon.repository" name="HopDenTV Addon Repository">
+		<info compressed="false">http://hdtvblackbox.com/HopDenTV_REPO/HopDenTV-Repo.xml</info>
+		<checksum>http://hdtvblackbox.com/HopDenTV_REPO/HopDenTV-Repo.md5</checksum>
+		<datadir zip="true">http://hdtvblackbox.com/HopDenTV_REPO/Zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install HopDenTV REPO</summary>
+		<description>Download and install addons from HopDenTV REPO: Watch free Movies and TV shows from many different sources</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.kodipopcorntime" name="KODI Popcorn Time Repository" version="1.0.2" provider-name="Diblo">
      <extension point="xbmc.addon.repository" name="KODI Popcorn Time Repository">
         <info compressed="false">http://raw.githubusercontent.com/Diblo/KODI-Popcorn-Time/Repository/addons.xml</info>
@@ -818,6 +844,20 @@
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Install Add-ons from lambda</summary>
 		<description lang="en">Download and install add-ons from lambda repository.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.otherguysstuff" name="The other Viet Addons" version="1.0.0" provider-name="dk">
+	<extension point="xbmc.addon.repository" name="The other Viet Addons">
+		<info compressed="false">https://bitbucket.org/dknlght/dk-xbmc-repaddon-rep/raw/master/addons.xml</info>
+		<checksum>https://bitbucket.org/dknlght/dk-xbmc-repaddon-rep/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://bitbucket.org/dknlght/dk-xbmc-repaddon-rep/raw/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The other Viet Addons</summary>
+		<description>Video plug-ins for XBMC</description>
+		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
