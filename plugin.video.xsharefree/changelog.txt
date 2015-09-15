@@ -1,3 +1,23 @@
+[B]Version 3.2.15[/B] <14/09/2015>:
+ Update HDViet.com, hayhaytv.vn, FPTplay.net, Megabox.vn
+ Fix một số lỗi nhỏ
+ Thử nghiệm ViewMode Movie detail cho hayhaytv.vn
+
+[B]Version 3.2.14[/B] <14/08/2015>:
+ Update Megabox.vn
+ Fix một số lỗi nhỏ
+
+[B]Version 3.2.13[/B] <02/08/2015>:
+ fix lỗi không tương thích AB
+ Bổ sung get ID Fsend.vn
+
+[B]Version 3.2.12[/B] <31/07/2015>:
+ fix 18+ filter.
+ fix phimmoi.net nhieu part 
+ và một số hiệu chỉnh nhỏ khác
+ Thêm ContextMenu mục "Add to My Fshare favorite" và "Remove from My Fshare favorite"
+ 
+
 [B]Version 3.2.11[/B] <26/07/2015>:
 - Bổ sung: cụm server phimmoi.net
 - Update fptplay,vaphim,hdvietnam
