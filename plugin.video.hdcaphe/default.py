@@ -1,6 +1,6 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
-import urllib, urllib2, json, re, urlparse, sys, time, os
+import urllib, urllib2, json, re, urlparse, sys, time, os, hashlib
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 from BeautifulSoup import BeautifulSoup
 
@@ -15,10 +15,17 @@ mysettings=xbmcaddon.Addon(id='plugin.video.hdcaphe')
 profile=mysettings.getAddonInfo('profile')
 home=mysettings.getAddonInfo('path')
 icon=xbmc.translatePath(os.path.join(home, 'icon.png'))
+
 subtitle_lang = my_addon.getSetting('subtitle')
+npp = str(my_addon.getSetting('npp'))
 video_quality = my_addon.getSetting('video_quality')
-use_vi_audio = my_addon.getSetting('useViAudio') == 'true'
-use_dolby_audio = my_addon.getSetting('useDolbyAudio') == 'true'
+use_api = my_addon.getSetting('info_method') == 'API'
+use_vi_audio = my_addon.getSetting('sound') != '2.0'
+use_dolby_audio = my_addon.getSetting('sound') == '5.1'
+try_fullhd = my_addon.getSetting('tryfullhd') == 'true'
+fullhd_free = my_addon.getSetting('fullhdfree') == 'true'
+apitoken = my_addon.getSetting('token')
+if apitoken == 'none': apitoken = '22bb07a59d184383a3c0cd5e3db671fc'
 reload(sys);
 
 fixed_quality = (video_quality != 'Chọn khi xem')
@@ -26,9 +33,9 @@ fixed_quality = (video_quality != 'Chọn khi xem')
 min_width = {'SD' : 0, 'HD' : 1024, 'Full HD' : 1366}
 max_width = {'SD' : 1024, 'HD' : 1366, 'Full HD' : 10000}
 
-header_web = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20100101 Firefox/15.0.1',
-			'Content-type': 'application/x-www-form-urlencoded',
-			'Referer' : 'http://www.google.com'}
+header_web = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20100101 Firefox/15.0.1'}
+header_api = {'User-Agent' : 'Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; AndyWin Build/JDQ39E) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30',
+			'Access-Token' : apitoken}
 header_app = {'User-agent' : 'com.hdviet.app.ios.HDViet/2.0.1 (unknown, iPhone OS 8.2, iPad, Scale/2.000000)'}
 
 def make_request(url, params=None, headers=None):
@@ -37,14 +44,44 @@ def make_request(url, params=None, headers=None):
 	try:
 		if params is not None:
 			params = urllib.urlencode(params)
-		req = urllib2.Request(url,params,headers)
+			req = urllib2.Request(url,params,headers)
+		else:req = urllib2.Request(url,headers=headers)
 		f = urllib2.urlopen(req)
 		body=f.read()
 		f.close()
 		return body
 	except:
-		pass
-
+		return False
+def login():
+	username = my_addon.getSetting('userhdviet')
+	password = my_addon.getSetting('passhdviet')
+	if len(username) < 5 or len(password) < 1:
+		my_addon.setSetting("token", "none")
+		xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR red]Chưa nhập user/password HDViet[/COLOR]',3000)).encode("utf-8"))
+		return "fail"
+	h = hashlib.md5()
+	h.update(password)
+	passwordhash = h.hexdigest()
+	result = make_request('https://api-v2.hdviet.com/user/login?email=%s&password=%s' % (username,passwordhash), None, header_app)
+	if "AccessTokenKey" in result:
+		res = json.loads(result)["r"]
+		try:
+			if int(res['Vip']) == 1:
+				my_addon.setSetting("vip", 'true')
+		except:my_addon.setSetting("vip", 'false')
+		my_addon.setSetting("token", res["AccessTokenKey"])
+		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR green]Logged in ![/COLOR]',2000)).encode("utf-8"))
+		return res["AccessTokenKey"];
+	else:
+		#xbmcgui.Dialog().ok("HDViet", passwordhash)
+		my_addon.setSetting("token", "none")
+		my_addon.setSetting("vip", 'false')
+		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR red]Log in Failed ![/COLOR]',2000)).encode("utf-8"))
+		return "fail"
+def logout():
+	my_addon.setSetting("token", "none")
+	my_addon.setSetting("vip", 'false')
+	xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR red]Logged out ![/COLOR]',2000)).encode("utf-8"))
 def convert_vi_to_en(str):
 	try:
 		if str == '': return
@@ -103,6 +140,13 @@ def main_menu():
 	addDir('Phim hot trong tháng', {'mode':'movies_from_url', 'url':'http://movies.hdviet.com/phim-hot-trong-thang/trang-1.html', 'page':'1'}, '', '')
 	addDir('Phim Lẻ', {'mode':'sub_menu', 'type': '0'}, '', '')
 	addDir('Phim Bộ', {'mode':'sub_menu', 'type': '1'}, '', '')
+	addDir('Đăng xuất tài khoản', {'mode':'logout'}, '', '')
+def main_menu_api():
+	addDir('Tìm Kiếm', {'mode':'search'}, '', '')
+	addDir('Phim hot trong tháng', {'mode':'movies_from_api', 'cat':'hot-trong-thang', 'genre':'0','page':'1'}, '', '')
+	addDir('Phim Lẻ', {'mode':'sub_menu_api', 'type': '1'}, '', '')
+	addDir('Phim Bộ', {'mode':'sub_menu_api', 'type': '2'}, '', '')
+	#addDir('Đăng xuất tài khoản', {'mode':'logout'}, '', '')
 
 def sub_menu(movie_type):
 	soup = BeautifulSoup(make_request('http://movies.hdviet.com/'))
@@ -128,8 +172,12 @@ def sub_menu(movie_type):
 			else:
 				addDir(group_name, {'mode':'movies_from_url', 'url':item.get('href').replace('.html', '/trang-1.html'), 'page':'1'}, '', '')
 				parrent_group = group_name
-
+def sub_menu_api(movie_type):
+	cats = json.loads(make_request('http://pastebin.com/raw.php?i=idQ4kMFt', None, header_web))
+	for cat in cats[movie_type]:
+		addDir(cat['name'], {'mode':'movies_from_api', 'cat': cat['slug'], 'genre': movie_type,'page':'1'}, '', '')
 def search():
+	global use_api
 	query = ''
 	try:
 		keyboard = xbmc.Keyboard('', '')
@@ -138,10 +186,14 @@ def search():
 			query = keyboard.getText()
 	except:
 		pass
-
+	
 	if query != '':
-		movies_from_url('http://movies.hdviet.com/tim-kiem.html?keyword=%s&page=1' % urllib.quote(query, ''), '1')
-
+		if use_api:
+			if not is_ascii(query):query = convert_vi_to_en(query)
+			movies_from_search_api(query, '1')
+		else:movies_from_url('http://movies.hdviet.com/tim-kiem.html?keyword=%s&page=1' % urllib.quote(query, ''), '1')
+def is_ascii(s):
+    return all(ord(c) < 128 for c in s)
 def get_movie_info(movie_id):
 	result = json.loads(make_request('https://api-v2.hdviet.com/movie?ep=1&movieid=%s&sign=sign&sequence=0' % movie_id, None, header_app))
 	return result['r']
@@ -162,40 +214,121 @@ def movies_from_url(url, page):
 	for movie in movies:
 		if (movie['eps'] == 0):
 			if fixed_quality:
-				addMovie(movie['title'], {'mode':'play', 'movie_id' : movie['id'], 'ep' : '1'}, movie['thumbnail'], movie['plot'])
+				addMovie(movie['title'], {'mode':'play', 'movie_id' : movie['id'], 'ep' : '0'}, movie['thumbnail'], movie['plot'])
 			else:
-				addDir(movie['title'], {'mode':'play', 'movie_id' : movie['id'], 'ep' : '1'}, movie['thumbnail'], movie['plot'])
+				addDir(movie['title'], {'mode':'play', 'movie_id' : movie['id'], 'ep' : '0'}, movie['thumbnail'], movie['plot'])
 		else:
 			addDir(movie['title'], {'mode':'movie_detail', 'movie_id' : movie['id']}, movie['thumbnail'], movie['plot'])
 
 	if page < number_of_pages:
 		addDir('Trang Sau', {'mode':'movies_from_url', 'url':url, 'page':page + 1}, '', '')
 
-
+def movies_from_api(mcat,mgenre,mpage):
+	result = make_request('http://rest.hdviet.com/api/v3/movie/filter?genre=%s&tag=%s&page=%s&limit=%s' % (mgenre, mcat, mpage, npp), None, header_api)
+	if not result:
+		newtoken = login()
+		header_api['Access-Token'] = newtoken
+		result = make_request('http://rest.hdviet.com/api/v3/movie/filter?genre=%s&tag=%s&page=%s&limit=%s' % (mgenre, mcat, mpage, npp), None, header_api)
+	res = json.loads(result)['data']
+	movies = res['lists']
+	for movie in movies:
+		fanart = 'http://t.hdviet.com/backdrops/origins/' + movie['Backdrop']
+		thumbnail = 'http://t.hdviet.com/thumbs/origins/' + movie['NewPoster']
+		#name = movie['MovieName'] + ' - ' + movie['KnownAs']
+		name = movie['MovieName']
+		if movie['KnownAs'] and len(movie['KnownAs'])>0: name += ' - %s' %movie['KnownAs']
+		rdate = str(movie['ReleaseDate']) 
+		if len(rdate) > 3:year = rdate[:4]
+		cast = []
+		casts = movie['Cast'].split('/')
+		for c in casts:cast.append(c.strip())
+		extinfo = {"year" : year, "rating" : movie['ImdbRating'], "cast" : cast, "director" : movie['Director']}
+		if (movie['Sequence'] == 0 and movie['Episode'] == 0):
+			if fixed_quality:
+				addMovie(name, {'mode':'play', 'movie_id' : movie['MovieID'], 'ep' : '0'}, thumbnail, movie['PlotVI'], fanart, extinfo)
+			else:
+				addDir(name, {'mode':'play', 'movie_id' : movie['MovieID'], 'ep' : '0'}, thumbnail, movie['PlotVI'], fanart, extinfo)
+		else:
+			addDir(name, {'mode':'movie_detail', 'movie_id' : movie['MovieID']}, thumbnail, movie['PlotVI'], fanart, extinfo)
+	page = int(mpage)
+	recordcount = page*int(npp)
+	totalrecord = int(res['metadata']['totalRecord'])
+	if recordcount < totalrecord:addDir('Trang Sau', {'mode':'movies_from_api', 'cat': mcat, 'genre': mgenre,'page': page+1}, '', '')
+def movies_from_search_api(mkw,mpage):
+	result = make_request('http://rest.hdviet.com/api/v3/search?keyword=%s&page=%s&limit=%s' % (mkw, mpage, npp), None, header_api)
+	if not result:
+		newtoken = login()
+		header_api['Access-Token'] = newtoken
+		result = make_request('http://rest.hdviet.com/api/v3/search?keyword=%s&page=%s&limit=%s' % (mkw, mpage, npp), None, header_api)
+	#xbmcgui.Dialog().ok("hdviet", result)
+	res = json.loads(result)['data']['response']
+	movies = res['docs']
+	for movie in movies:
+		fanart = 'http://t.hdviet.com/backdrops/origins/' + movie['mo_backdrop']
+		thumbnail = 'http://t.hdviet.com/thumbs/origins/' + movie['mo_new_poster']
+		#name = movie['mo_name'] + ' - ' + movie['mo_known_as']
+		name = movie['mo_name']
+		if movie['mo_known_as'] and len(movie['mo_known_as'])>0: name += ' - %s' %movie['mo_known_as']
+		rdate = str(movie['mo_release_date'])
+		if len(rdate) > 3:year = rdate[:4]
+		cast = []
+		casts = movie['mo_cast'].split('/')
+		for c in casts:cast.append(c.strip())
+		extinfo = {"year" : year, "rating" : movie['mo_imdb_rating'], "cast" : cast, "director" : movie['mo_director'], "genre" :movie['category']}
+		if (str(movie['mo_sequence']) == '0'):
+			if fixed_quality:
+				addMovie(name, {'mode':'play', 'movie_id' : movie['id'], 'ep' : '0'}, thumbnail, movie['mo_plot_vi'], fanart, extinfo)
+			else:
+				addDir(name, {'mode':'play', 'movie_id' : movie['id'], 'ep' : '0'}, thumbnail, movie['mo_plot_vi'], fanart, extinfo)
+		else:
+			addDir(name, {'mode':'movie_detail', 'movie_id' : movie['id']}, thumbnail, movie['mo_plot_vi'], fanart, extinfo)
+	page = int(mpage)
+	recordcount = page*int(npp)
+	totalrecord = int(res['numFound'])
+	if recordcount < totalrecord:addDir('Trang Sau', {'mode':'movies_from_search_api', 'keyword': mkw, 'page': page+1}, '', '')
 def movie_detail(movie_id):
 	movie_info = get_movie_info(movie_id)
-
+	name = movie_info['MovieName']
+	if movie_info['KnownAs'] and len(movie_info['KnownAs'])>0: name += ' - %s' %movie_info['KnownAs']
 	if movie_info['Episode'] == '0':
 		# single ep
 		if fixed_quality:
-			addMovie('%s - %s' % (movie_info['KnownAs'], movie_info['MovieName']), {'mode':'play', 'movie_id' : movie_id, 'ep' : '1'}, movie_info['Poster'], movie_info['PlotVI'])
+			addMovie(name, {'mode':'play', 'movie_id' : movie_id, 'ep' : '1'}, movie_info['Poster'], movie_info['PlotVI'])
 		else:
-			addDir('%s - %s' % (movie_info['KnownAs'], movie_info['MovieName']), {'mode':'play', 'movie_id' : movie_id, 'ep' : '1'}, movie_info['Poster'], movie_info['PlotVI'])
+			addDir(name, {'mode':'play', 'movie_id' : movie_id, 'ep' : '1'}, movie_info['Poster'], movie_info['PlotVI'])
 	else:
 		for  i in range (1, int(movie_info['Sequence']) + 1):
 			if fixed_quality:
-				addMovie(u'%s - %s - Tập %d' % (movie_info['KnownAs'], movie_info['MovieName'], i), {'mode':'play', 'movie_id' : movie_id, 'ep' : i}, movie_info['Poster'], movie_info['PlotVI'])
+				addMovie(u'[COLOR green][B]%d.[/B][/COLOR] %s' % (i, name), {'mode':'play', 'movie_id' : movie_id, 'ep' : i}, movie_info['Poster'], movie_info['PlotVI'])
 			else:
-				addDir(u'%s - %s - Tập %d' % (movie_info['KnownAs'], movie_info['MovieName'], i), {'mode':'play', 'movie_id' : movie_id, 'ep' : i}, movie_info['Poster'], movie_info['PlotVI'])
+				addDir(u'[COLOR green][B]%d.[/B][/COLOR] %s' % (i, name), {'mode':'play', 'movie_id' : movie_id, 'ep' : i}, movie_info['Poster'], movie_info['PlotVI'])
 	
 
 
 def play(movie_id, ep = 0):
-
+	global header_api
+	token = my_addon.getSetting('token')
 	# get link to play and subtitle
-	movie = json.loads(make_request('https://api-v2.hdviet.com/movie/play?movieid=%s&sign=sign&ep=%s' % (movie_id, ep), None, header_app))['r']
-	
-	if movie:
+	if token == 'none':
+		token = login()
+		header_api['Access-Token'] = token
+	if token == 'fail': return
+	url = 'http://rest.hdviet.com/api/v3/playlist/%s?w=1920&platform=AndroidBox&sequence=%s'
+	urlx = 'https://api-v2.hdviet.com/movie/play?movieid=%s&accesstokenkey=%s&ep=%s'
+	res = make_request(urlx % (movie_id, token, ep), None, header_app)
+	if "0000000000" in res:
+		token = login()
+		header_api['Access-Token'] = token
+		if token != 'fail':
+			res = make_request(urlx % (movie_id, token, ep), None, header_app)
+		else: return
+	movie = json.loads(res)["r"]
+	vip = my_addon.getSetting('vip') == 'true'
+	if vip:
+		resvip = make_request(url %(movie_id,ep), None, header_api)
+		lp = json.loads(resvip)["data"]["playList"]
+	else:lp = movie['LinkPlay']
+	if lp and movie:
 		subtitle_url = ''
 		if subtitle_lang != 'Tắt':
 			try:
@@ -207,14 +340,46 @@ def play(movie_id, ep = 0):
 			except:
 				pass
 
-		# get link and resolution
-		link_to_play = re.sub(r'_\d+_\d+_', '_320_4096_', movie['LinkPlay'])
-		result = make_request(link_to_play, None, header_app)
-
 		# audioindex
 		audio_index = 0
-		if (use_vi_audio and movie['Audio'] > 0) or (movie['Audio'] == 0 and use_dolby_audio):
-			audio_index = 1
+		if use_vi_audio and movie['Audio'] > 0:
+			if use_dolby_audio:
+				audio_index = 2
+			else:audio_index = 1
+		elif movie['Audio'] == 0 and use_dolby_audio:audio_index = 1
+		
+		# get link and resolution
+		got = False
+		if try_fullhd and not vip:
+			link_to_play = re.sub(r'_\d+_\d+_', '_320_4096_', lp)
+			result = make_request(link_to_play, None, header_app)
+			if 'RESOLUTION=' in result: got = True
+		if fullhd_free and not vip and not got:
+			rs = make_request(lp, None, header_app)
+			ln = rs.splitlines()
+			i = 0
+			while (i < len(ln)):
+				if 'RESOLUTION=' in ln[i]:
+					i += 1
+					break
+				i += 1
+			rs = make_request('%s?audioindex=%d' %(ln[i],audio_index), None, header_app)
+			ln = rs.splitlines()
+			i = 0
+			while (i < len(ln)):
+				if '.ts' in ln[i] and '/' in ln[i]:
+					break
+				i += 1
+			arlk = ln[i].split('/')
+			rx = ln[i].replace(arlk[len(arlk)-1],'')
+			rq = rx + 'playlist.m3u8'
+			rs = make_request(rq, None, header_app)
+			result= rs.replace('chunklist','%schunklist'%rx)
+			got = True
+		if not got:
+			link_to_play = lp
+			result = make_request(link_to_play, None, header_app)
+		
 		
 		playable_items = []
 		lines = result.splitlines()
@@ -232,11 +397,11 @@ def play(movie_id, ep = 0):
 			if lines[i + 1].startswith('http'):
 				playable_item['url'] = lines[i + 1]
 			else:
-				playable_item['url'] = movie['LinkPlay'].replace('playlist.m3u8', lines[i + 1])
+				playable_item['url'] = lp.replace('playlist.m3u8', lines[i + 1])
 
 			playable_items.append(playable_item)
 			i += 2
-
+		
 		if not fixed_quality:
 			for item in playable_items:
 				addMovie(item['res'], {'mode':'play_url', 'stream_url' : '%s?audioindex=%d' % (item['url'], audio_index), 'subtitle_url' : subtitle_url}, '', '')
@@ -286,17 +451,20 @@ def build_url(query):
 	return base_url + '?' + urllib.urlencode(query)
 
 
-def addDir(name,query,iconimage, plot):
-	addItem(name, query, iconimage, plot, True)
+def addDir(name,query,iconimage, plot, fanart = False, extendinfo = False):
+	addItem(name, query, iconimage, plot, True, fanart, extendinfo)
 	
-def addMovie(name,query,iconimage, plot):
-	addItem(name, query, iconimage, plot, False)
+def addMovie(name,query,iconimage, plot, fanart = False, extendinfo = False):
+	addItem(name, query, iconimage, plot, False, fanart, extendinfo)
 	
-def addItem(name,query,iconimage, plot, isFolder):
+def addItem(name,query,iconimage, plot, isFolder, fanart = False, extendinfo = False):
 	u=build_url(query)
 	ok=True
 	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-	liz.setInfo( type="Video", infoLabels={"Title": name, "Plot" : plot} )
+	if fanart:liz.setProperty('Fanart_Image',fanart)
+	mediainfo = {"Title": name, "Plot" : plot}
+	if extendinfo:mediainfo.update(extendinfo)
+	liz.setInfo( type="Video", infoLabels=mediainfo)
 	if not isFolder:
 		liz.setProperty('IsPlayable', 'true')
 	ok=xbmcplugin.addDirectoryItem(handle=addon_handle,url=u,listitem=liz,isFolder=isFolder)
@@ -305,14 +473,27 @@ def addItem(name,query,iconimage, plot, isFolder):
 mode = args.get('mode', None)
 
 if mode is None:
-	main_menu()
+	if use_api:main_menu_api()
+	else:main_menu()
 elif mode[0] == 'sub_menu':
 	type = args.get('type', None)
 	sub_menu(type[0])
+elif mode[0] == 'sub_menu_api':
+	type = args.get('type', None)
+	sub_menu_api(type[0])
 elif mode[0] == 'movies_from_url':
 	url = args.get('url', None)
 	page = args.get('page', None)
 	movies_from_url(url[0], page[0])
+elif mode[0] == 'movies_from_api':
+	cat = args.get('cat', None)
+	page = args.get('page', None)
+	genre = args.get('genre', None)
+	movies_from_api(cat[0], genre[0],page[0])
+elif mode[0] == 'movies_from_search_api':
+	keyword = args.get('keyword', None)
+	page = args.get('page', None)
+	movies_from_search_api(keyword[0], page[0])
 elif mode[0] == 'movie_detail':
 	movie_detail(args.get('movie_id', None)[0])
 elif mode[0] == 'play':
@@ -321,5 +502,7 @@ elif mode[0] == 'play_url':
 	set_resolved_url(args.get('stream_url', None)[0], args.get('subtitle_url', None)[0])
 elif mode[0] == 'search':
 	search()
+elif mode[0] == 'logout':
+	logout()
 	
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

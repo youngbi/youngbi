@@ -208,9 +208,9 @@
 
 <addon
   id="plugin.video.hdcaphe"
-  version="1.0.2"
+  version="1.0.3"
   name="[B][COLOR FF00FF00]HDViet[/COLOR][/B]"
-  provider-name="Anphunl">
+  provider-name="lnt900">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
