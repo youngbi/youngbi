@@ -1,12 +1,13 @@
 ﻿<settings>
 	<category label="Thông tin Account">
-		<setting id="mail_fptplay" type="text" label="User name [COLOR orange]fptplay.net[/COLOR] (email)"/>
-		<setting id="pass_fptplay" type="text" option="hidden" label="Password [COLOR orange]fptplay.net[/COLOR]"/>
-		<setting id="userphimmoi" default="tk.phimmoi.net@gmail.com" type="text" option="hidden" label="User name [COLOR ghostwhite]phimmoi.net[/COLOR]"/>
-		<setting id="passphimmoi" default="phimmoi.net" type="text" option="hidden" label="Password [COLOR ghostwhite]phimmoi.net[/COLOR]"/>
-		
-		<setting id="userhdviet" default="tk.hdviet.com@gmail.com" type="text" option="hidden" label="Email [COLOR orange]hdviet.com[/COLOR]"/>
-		<setting id="passhdviet" default="hdviet.com" type="text" option="hidden" label="Password [COLOR orange]hdviet.com[/COLOR]"/>
+		<setting id="userhdviet" type="text" label="User name [COLOR darkorange]hdviet.com[/COLOR] (email/Số ĐT)" default="hoanganhstore.com@gmail.com"/>
+		<setting id="passhdviet" type="text" option="hidden" label="Password [COLOR darkorange]hdviet.com[/COLOR]" default="vthoanganh"/>
+		<setting id="userhayhay" type="text" label="User name [COLOR tomato]hayhaytv.vn[/COLOR] (email/Số ĐT)" default="tk.hayhaytv.vn@gmail.com"/>
+		<setting id="passhayhay" type="text" option="hidden" label="Password [COLOR tomato]hayhaytv.vn[/COLOR]" default="hayhaytv.vn"/>
+		<setting id="mail_fptplay" type="text" label="User name [COLOR orange]fptplay.net[/COLOR] (email)" default="tk.fptplay.net@gmail.com"/>
+		<setting id="pass_fptplay" type="text" option="hidden" label="Password [COLOR orange]fptplay.net[/COLOR]" default="fptplay.net"/>
+		<setting id="userphimmoi" type="text" label="User name [COLOR ghostwhite]phimmoi.net[/COLOR]" default="tk.phimmoi.net"/>
+		<setting id="passphimmoi" type="text" option="hidden" label="Password [COLOR ghostwhite]phimmoi.net[/COLOR]" default="phimmoi.net"/>
 	</category>
 	<category label="Thông tin khác">
 		<setting id="googlesearch" type="labelenum" label="[COLOR blue]Sử dụng phương thức Google search[/COLOR]" values="API|Web" default="API"/>
