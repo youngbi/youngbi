@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon 
 	id="plugin.video.HieuHienLiveShow" 
-	version="1.0.0" 
+	version="1.0.1" 
 	name="[COLOR lime][B]HieuHienLiveShow[/B][/COLOR]" 
 	provider-name="Hieuhien.vn">
 	<requires> 

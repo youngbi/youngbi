@@ -234,7 +234,7 @@
 
 <addon
 	id="plugin.video.HieuHienLiveShow"
-	version="1.0.0"
+	version="1.0.1"
 	name="[COLOR lime][B]HieuHienLiveShow[/B][/COLOR]"
 	provider-name="Hieuhien.vn">
 	<requires>

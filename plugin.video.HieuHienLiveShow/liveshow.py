@@ -26,7 +26,7 @@ def TVChannel(url):
             if "/thumbnail" in item:
                 thumb = re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
             add_Link(title, link, thumb)
-        #xbmc.executebuiltin('Container.SetViewMode(%d)' % 500)		
+        xbmc.executebuiltin('Container.SetViewMode(%d)' % 500)		
     else:
         for name in names:
             addDir('' + name + '', url+"?n="+name, 'index', '')
