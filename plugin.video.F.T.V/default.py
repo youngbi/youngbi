@@ -41,10 +41,10 @@ suffixURL = '|' + urllib.urlencode(browsers)
 mediaKindList = [('phim-le/', 'Phim lẻ'), ('phim-bo/', 'Phim bộ'), ('show/', 'Show'), ('clip/', 'Clip')]
 
 # TODO: Uncomment!
-mysettings=xbmcaddon.Addon(id='plugin.video.hcmlike-filmonline')
+mysettings=xbmcaddon.Addon(id='plugin.video.F.T.V')
 home=mysettings.getAddonInfo('path')
 fanart=xbmc.translatePath(os.path.join(home, 'fanart.jpg'))
-icon=xbmc.translatePath(os.path.join(home, 'icon.png'))
+icon=xbmc.translatePath(os.path.join(home, 'logo.png'))
 resources=os.path.join(home, 'resources')
 tempFilepath=xbmc.translatePath(os.path.join(resources, 'tempfile.txt'))
 
