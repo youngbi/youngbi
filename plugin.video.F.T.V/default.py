@@ -1,272 +1,547 @@
 # -*- coding: utf-8 -*-
-import urllib, urllib2, json, re, urlparse, sys, time, os, hashlib
-import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 
-base_url = sys.argv[0]
-addon_handle = int(sys.argv[1])
-args = urlparse.parse_qs(sys.argv[2][1:])
+# Standard libs
+import urllib,urllib2,unicodedata,string,re,os
 
-xbmcplugin.setContent(addon_handle, 'movies')
+# TODO: Uncomment!
+import xbmcplugin,xbmcgui,xbmc,xbmcaddon
 
-my_addon = xbmcaddon.Addon()
-mysettings=xbmcaddon.Addon(id='plugin.video.F.T.V')
-profile=mysettings.getAddonInfo('profile')
+# TODO: XBMC - Fake APIs!
+# ================================================
+
+# def addDir(name,url,mode,iconimage):
+#   print('------------------------')
+#   print(name)
+#   print('- URL: ' + url)
+#   print('- MODE: ' + str(mode))
+#   print('- Icon: ' + iconimage)
+#   print('------------------------ \n')
+
+# def playMedia(name,url,iconimage):
+#   ok=True
+#   print('------------Play Media (Mock) ------------')
+#   print(name)
+#   print('- URL: ' + url)
+#   print('- Icon: ' + iconimage)
+#   print('------------------------ \n')
+#   return ok
+
+# def endOfItemList(isThumbnail=True):
+#   if isThumbnail == True:
+#     print('endOfItemList(isThumbnail=True)\n')
+#   return True
+
+# ================================================
+
+
+rootURL = "http://phim.megabox.vn/"
+browsers = {'User-Agent' : 'Mozilla/5.0 Chrome/39.0.2171.71 Firefox/33.0'}
+suffixURL = '|' + urllib.urlencode(browsers)
+# TODO: Hard code
+mediaKindList = [('phim-le/', 'Phim lẻ'), ('phim-bo/', 'Phim bộ'), ('show/', 'Show'), ('clip/', 'Clip')]
+
+# TODO: Uncomment!
+mysettings=xbmcaddon.Addon(id='plugin.video.hcmlike-filmonline')
 home=mysettings.getAddonInfo('path')
+fanart=xbmc.translatePath(os.path.join(home, 'fanart.jpg'))
 icon=xbmc.translatePath(os.path.join(home, 'icon.png'))
+resources=os.path.join(home, 'resources')
+tempFilepath=xbmc.translatePath(os.path.join(resources, 'tempfile.txt'))
 
-npp = str(my_addon.getSetting('npp'))
-hi_res_thumb = my_addon.getSetting('hiresthumb') == 'true'
-reload(sys);
+# ------------------- Utils ----------------------
+def encodeURL(url):
+  return unicodedata.normalize('NFKD', url.decode('UTF-8')).encode('ascii', 'ignore')
 
-header_web = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20100101 Firefox/15.0.1'}
-header_api = {'User-Agent' : 'Apache-HttpClient/UNAVAILABLE (java 1.4)',
-			'Authorization': 'Basic YXBpaGF5OmFzb2tzYXBySkRMSVVSbzJ1MDF1cndqcQ==',
-			'Content-Type' : 'application/x-www-form-urlencoded'}
+def normalYoutubeLink(url):
+  normal = 'https://www.youtube.com/watch?v='
+  plugin = 'plugin://plugin.video.youtube/?action=play_video&videoid='
+  return url.replace(normal, plugin)
 
-def make_request(url, params=None, headers=None):
-	if headers is None:
-		headers = header_web
-	try:
-		if params is not None:
-			#params = urllib.urlencode(params)
-			req = urllib2.Request(url,params,headers)
-		else:req = urllib2.Request(url,headers=headers)
-		f = urllib2.urlopen(req)
-		body=f.read()
-		f.close()
-		return body
-	except:
-		pass
-def login():
-	#username = my_addon.getSetting('username')
-	username = "tk.hayhaytv.vn@gmail.com"
-	#password = my_addon.getSetting('password')
-	password = "hayhaytv.vn"
-	if len(username) < 5 or len(password) < 1:
-		my_addon.setSetting("token", "none")
-		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HayhayTV','[COLOR red]Chưa nhập email/password[/COLOR]',3000)).encode("utf-8"))
-		return "fail"
-	h = hashlib.md5()
-	h.update(password)
-	passwordhash = h.hexdigest()
-	result = make_request('http://services.hayhaytv.vn/user/login', 'request={"data":[{"email":"%s","password":"%s"}]}&device=androidbox&secure_token=1.0' %(username,password), header_api)
-	if "token_app" in result:
-		res = json.loads(result)["data"]
-		my_addon.setSetting("token", res["token_app"])
-		my_addon.setSetting("user_id", res["user_id"])
-		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HayhayTV','[COLOR green]Logged in ![/COLOR]',2000)).encode("utf-8"))
-		return res["token_app"];
-	else:
-		#xbmcgui.Dialog().ok("hayhaytv", result)
-		my_addon.setSetting("token", "none")
-		my_addon.setSetting("user_id", "none")
-		#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HayhayTV','[COLOR red]Log in Failed ![/COLOR]',2000)).encode("utf-8"))
-		return "fail"
-def logout():
-	my_addon.setSetting("token", "none")
-	my_addon.setSetting("user_id", "none")
-	#xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HayhayTV','[COLOR red]Logged out ![/COLOR]',2000)).encode("utf-8"))
-def make_rq_string(input):
-	st = "request=%s&device=androidbox&secure_token=1.0" % str(input)
-	return st
-def main_menu_api():
-	a = {"startIndex":"0","pageCount": npp}
-	b = {"tag_id":"263","startIndex":"0","pageCount": npp}
-	addDir('Tìm Kiếm', {'mode':'search'}, '', '')
-	addDir('Phim Lẻ', {'mode':'sub_menu_api', 'type': '1'}, '', '')
-	addDir('Phim Bộ', {'mode':'sub_menu_api', 'type': '2'}, '', '')
-	addDir('Phim lẻ mới', {'mode':'movies_from_api', 'cat':'hot/newest_single_movies', 'request': json.dumps(a)}, '', '')
-	addDir('Phim bộ mới', {'mode':'movies_from_api', 'cat':'hot/newest_bundle_movies', 'request': json.dumps(a)}, '', '')
-	addDir('Phim chiếu rạp', {'mode':'movies_from_api', 'cat':'hot/cinema_movies', 'request': json.dumps(a)}, '', '')
-	addDir('Phim Full HD', {'mode':'movies_from_api', 'cat':'movie/movie_tags', 'request': json.dumps(b)}, '', '')
-	addDir('Phim xem nhiều', {'mode':'movies_from_api', 'cat':'hot/hot_movies', 'request':'{"startIndex":"0","pageCount":"-1"}'}, '', '')
-	#addDir('Đăng xuất tài khoản', {'mode':'logout'}, '', '')
+# TODO: Uncomment!
+def endOfItemList(showThumbnail=True):
+  # Display channels as thumbnail as default.
+  if showThumbnail == True:
+    xbmc.executebuiltin('Container.SetViewMode(%d)' % 500)
+  # End of directory.
+  xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-def sub_menu_api(movie_type):
-	if movie_type == "1":
-		c = 'category'
-		d = 'category_id'
-	elif movie_type == "2":
-		c = 'countries'
-		d = 'country_id'
-	cats = json.loads(make_request('http://services.hayhaytv.vn/%s&device=androidbox&secure_token=1.0' % c, '', header_api))["data"]
-	for cat in cats:
-		e = {"startIndex":"0","pageCount":npp,"order_id":"1","country_id":"-1","category_id":"-1","type_film":movie_type}
-		e[d] = cat['id']
-		addDir(cat['name'], {'mode':'movies_from_api', 'cat':'search/filter', 'request': json.dumps(e)}, '', '')
-		
-def search():
-	query = ''
-	try:
-		keyboard = xbmc.Keyboard('', '')
-		keyboard.doModal()
-		if (keyboard.isConfirmed()):
-			query = keyboard.getText()
-	except:
-		pass
+def readTempfile():
+  if os.path.isfile(tempFilepath):
+    with open(tempFilepath, "r") as f:
+      for line in f:
+        # print('----->' + line + '<-----')
+        if line != '' and line != '\n':
+          # Read just first line (not empty)
+          # print('-----> Return: ' + str(line))
+          return line
+  return 'hcmlike'
 
-	if query != '':
-		j = {"key": query,"startIndex":"0","pageCount": npp}
-		movies_from_api('search', json.dumps(j))
+def writeTempfile(content='hcmlike'):
+  text_file = open(tempFilepath, "w")
+  text_file.write(content)
+  text_file.close()
 
-def get_movie_info(movie_id):
-	j = {"movie_id": movie_id}
-	result = json.loads(make_request('http://services.hayhaytv.vn/movie/movie_detail', make_rq_string(json.dumps(j)), header_api))
-	return result['data']
+# ------------------- FUNCTIONs -----------------------
 
-def movies_from_api(mcat,mrequest):
-	request = make_rq_string(mrequest)
-	rjson = json.loads(mrequest)
-	result = make_request('http://services.hayhaytv.vn/%s' % mcat, request, header_api)
-	#xbmcgui.Dialog().ok("hayhaytv", result)
-	res = json.loads(result)
-	movies = res['data']
-	try:total = int(res['total'])
-	except:total = False
-	
-	for movie in movies:
-		fanart = movie['banner_image']
-		thumbnail = movie['image']
-		if hi_res_thumb:thumbnail = thumbnail.replace('/crop/','/')
-		name = movie['name'] + ' - ' + movie['extension']
-		extinfo = {"year" : movie['year'], "rating" : movie['imdb'], "genre" : movie['category']}
-		ismovie = True
-		try:
-			if movie['last_episode'] != '' or '- season ' in movie['name'].lower():ismovie = False
-		except:ismovie = True
-		if ismovie: 
-			addMovie(name, {'mode':'play', 'movie_id' : movie['id'], 'ep' : '1', 'subtitle':'none'}, thumbnail, movie['intro_text'], fanart, extinfo)
-		else:
-			addDir(name, {'mode':'movie_detail', 'movie_id' : movie['id']}, thumbnail, movie['intro_text'], fanart, extinfo)
-	if total and rjson['startIndex']:
-		nextstartindex = int(rjson['startIndex'])+int(npp)
-		if nextstartindex < total:
-			rjson['startIndex'] = nextstartindex
-			addDir('Trang Sau', {'mode':'movies_from_api','cat': mcat, 'request': json.dumps(rjson)}, '', '')
-def movie_detail(movie_id):
-	movie_info = get_movie_info(movie_id)
-	ismovie = False
-	try:
-		if movie_info['list_episode']:ismovie = False
-	except:ismovie = True
-	thumbnail = movie_info['image']
-	if hi_res_thumb:thumbnail = thumbnail.replace('/crop/','/')
-	pd = 'donthave'
-	if ismovie:
-		# single ep
-		try:
-			if movie_info['vn_subtitle'] != '':pd = str(movie_info['vn_subtitle'])
-		except: pd = 'donthave'
-		addMovie('%s - %s' % (movie_info['name'], movie_info['extension']), {'mode':'play', 'movie_id' : movie_info['id'], 'ep' : '2', 'subtitle': pd}, thumbnail, movie_info['intro_text'], movie_info['banner_image'])
-	else:
-		for eps_info in movie_info['list_episode']:
-			try:
-				if eps_info['vn_subtitle'] != '':pd = str(eps_info['vn_subtitle'])
-			except: pd = 'donthave'
-			addMovie(u'[COLOR green][B]%s.[/B][/COLOR] %s - %s' % (eps_info['name'], movie_info['name'], movie_info['extension']), {'mode':'play', 'movie_id' : eps_info['id'], 'ep' : '2', 'subtitle': pd}, thumbnail, movie_info['intro_text'], movie_info['banner_image'])
+def getPageContent(url, json=False):
+  req = urllib2.Request(url)
+  req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:33.0) Gecko/20100101 Firefox/33.0')
+  response = urllib2.urlopen(req)
+  if json == True:
+    import json
+    content = json.load(response)
+  else:
+    content = response.read()
+  response.close()
+  return content
 
-def play(movie_id, ep = 1,subtitle = False):
-	token = my_addon.getSetting('token')
-	if token == 'none': token = login()
-	if token == 'fail': return
-	user_id = my_addon.getSetting('user_id')
-	if int(ep) == 2:c = 'getlink/movie_episode'
-	else:c = 'getlink/movie'
-	j1 = {"user_id":user_id,"token":token}
-	check = json.loads(make_request('http://services.hayhaytv.vn/user/check_valid_token' , make_rq_string(json.dumps(j1)), header_api))['data']
-	if int(check['user_status']) == 0: token = login()
-	j = {"show_id": movie_id, "movie_id": movie_id,"user_id": user_id,"token": token}
-	movie = json.loads(make_request('http://services.hayhaytv.vn/%s' % c, make_rq_string(json.dumps(j)), header_api))['data']
-	if movie:
-		if subtitle == 'none':
-			movie_info = get_movie_info(movie_id)
-			try:
-				if movie_info['vn_subtitle'] != '':subtitle = str(movie_info['vn_subtitle'])
-			except: subtitle = 'donthave'
+def getFilmTypeList(url):
+  content = getPageContent(url)
+  pattern = '<li><a href="(.+?)" title="">(.+?)</a></li>'
+  pageLinks = re.compile(pattern).findall(str(content))
+  filmTypeList = []
+  for (relativeLink, name) in pageLinks:
+    link = url + relativeLink + '/'
+    filmTypeList.append((name, link))
+  return filmTypeList
 
-		try:links = movie['link_play']
-		except:return
-		linkplay = False
-		for link in links:
-			if '1080' in link['resolution']:
-				linkplay = link['mp3u8_link']
-				break
-			elif '720' in link['resolution']: linkplay = link['mp3u8_link']
-		if not linkplay:
-			try:linkplay = links[0]['mp3u8_link']
-			except:return
-		if linkplay:
-			set_resolved_url(linkplay, subtitle)
+# Note: Not include media link now. It will get when user selects a link of film.
+def getFilmInfoList(url, isGetPaging=False):
+  # print("--------- getFilmInfoList: " + url)
+  content = getPageContent(url)
+  pattern ='a class=".+?" href="(.+?)".*<h3 class=.H3title.>(.+?)</h3>.*\s.*src="(.+?)"'
+  pageLinks = re.compile(pattern).findall(str(content))
+  filmInfoList = []
+  for (link, title, thumb) in pageLinks:
+    # print('- Title : ' + title)
+    # print('- URL : ' + link)
+    # print('- Thumb: ' + thumb)
+    filmInfoList.append((title, link, thumb))
+  
+  # Paging
+  if isGetPaging == True:
+    paging = (1, 1)
+    pattern = '<span></span>Trang (.+?)/(.+?)</div>'
+    pagings = re.compile(pattern).findall(str(content))
+    if len(pagings) > 0:
+      (startPage, endPage) = pagings[0]
+      paging = (int(startPage), int(endPage))
+    return (filmInfoList, paging)
+  return filmInfoList
 
-def set_resolved_url(stream_url, subtitle_url):
-	h1 = '|User-Agent=' + urllib.quote_plus('HayhayTV/2.0.1 CFNetwork/711.2.23 Darwin/14.0.0')
-	h2 = '&Accept=' + urllib.quote_plus('*/*')
-	h3 = '&Accept-Language=' + urllib.quote_plus('en-us')
-	h4 = '&Connection=' + urllib.quote_plus('Keep-Alive')
-	h5 = '&Accept-Encoding=' + urllib.quote_plus('gzip, deflate')
-	xbmcplugin.setResolvedUrl(addon_handle, succeeded=True, listitem=xbmcgui.ListItem(label = '', path = stream_url + h1 + h2 + h3 + h5))
-	player = xbmc.Player()
-	if subtitle_url != 'donthave':
-		subtitlePath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
-		subfile = xbmc.translatePath(os.path.join(subtitlePath, "temp.sub"))
-		try:
-			if os.path.exists(subfile):
-				os.remove(subfile)
-			f = urllib2.urlopen(subtitle_url)
-			with open(subfile, "wb") as code:
-				code.write(f.read())
-			xbmc.sleep(3000)
-			xbmc.Player().setSubtitles(subfile)
-		except:
-			pass
-	
-	for _ in xrange(30):
-		if player.isPlaying():
-			break
-		time.sleep(1)
-	else:
-		raise Exception('No video playing. Aborted after 30 seconds.')
+def getEpisodeInfoList(pageURL):
+  content = getPageContent(pageURL)
+  # <li><a id=eps-ID href='PAGE' >TAP-PHIM</a></li>
+  pattern = "<li><a id=eps-(.+?) href='(.+?)' >(.+?)</a></li>"
+  pageLinks = re.compile(pattern).findall(str(content))
+  epsInfoList = []
+  for (epsId, link, eps) in pageLinks:
+    epsInfoList.append((eps, link))
+  return epsInfoList
 
-def build_url(query):
-	return base_url + '?' + urllib.urlencode(query)
+def getTitle(link, content):
+  pattern = '<a href="' + link + '">(.+?)</a>'
+  pageLinks = re.compile(pattern).findall(str(content))
+  return pageLinks[0]
+
+def getMediaLink(url):
+  content = getPageContent(url)
+  pattern = 'var iosUrl = "(.+?)";'
+  links = re.compile(pattern).findall(str(content))
+  mediaLink = ''
+  if len(links) > 0:
+    mediaLink = links[0]
+    if 'youtube' in mediaLink:
+      mediaLink = normalYoutubeLink(mediaLink)
+    else:
+      mediaLink = mediaLink + suffixURL
+  return mediaLink
+
+def convertVNChars2NoAccent(str):
+  try:
+    if str == '': return
+    if type(str).__name__ == 'unicode': str = str.encode('utf-8')
+    list_pat = ["á|à|ả|ạ|ã|â|ấ|ầ|ẩ|ậ|ẫ|ă|ắ|ằ|ẳ|ặ|ẵ", "Á|À|Ả|Ạ|Ã|Â|Ấ|Ầ|Ẩ|Ậ|Ẫ|Ă|Ắ|Ằ|Ẳ|Ặ|Ẵ",
+      "đ", "Đ", "í|ì|ỉ|ị|ĩ", "Í|Ì|Ỉ|Ị|Ĩ", "é|è|ẻ|ẹ|ẽ|ê|ế|ề|ể|ệ|ễ", "É|È|Ẻ|Ẹ|Ẽ|Ê|Ế|Ề|Ể|Ệ|Ễ",
+      "ó|ò|ỏ|ọ|õ|ô|ố|ồ|ổ|ộ|ỗ|ơ|ớ|ờ|ở|ợ|ỡ", "Ó|Ò|Ỏ|Ọ|Õ|Ô|Ố|Ồ|Ổ|Ộ|Ỗ|Ơ|Ớ|Ờ|Ở|Ợ|Ỡ",
+      "ú|ù|ủ|ụ|ũ|ư|ứ|ừ|ử|ự|ữ", "Ú|Ù|Ủ|Ụ|Ũ|Ư|Ứ|Ừ|Ử|Ự|Ữ", "ý|ỳ|ỷ|ỵ|ỹ", "Ý|Ỳ|Ỷ|Ỵ|Ỹ"]
+    list_re = ['a', 'A', 'd', 'D', 'i', 'I', 'e', 'E', 'o', 'O', 'u', 'U', 'y', 'Y']
+    for i in range(len(list_pat)):
+      str = re.sub(list_pat[i], list_re[i], str)
+    return str
+  except:
+    traceback.print_exc()
+  return str
+
+def normalKeyword(keyword):
+  keyword = convertVNChars2NoAccent(keyword)
+  return re.sub("\s+","-",keyword)
+
+def genTitleByPageNum(currentPageNum, endPageNum):
+  return 'Trang ' + str(currentPageNum) + '/' + str(endPageNum)
+
+def getPageNumByTitle(title):
+  pattern = 'Trang (\d{,4})/(\d{,4})'
+  pagings = re.compile(pattern).findall(str(title))
+  (strCurrentPage, strEndPage) = pagings[0]
+  return (int(strCurrentPage), int(strEndPage))
+
+def buildPageByPageNum(url, title=''):
+  mode = 1 # for both Phim bo & Phim le
+  if title == '':
+    (filmInfoList, (currentPage, endPage)) = getFilmInfoList(url, True)
+  else:
+    (currentPage, endPage) = getPageNumByTitle(title)
+    pageUrl = url + 'trang-' + str(currentPage)
+    filmInfoList = getFilmInfoList(pageUrl)
+
+  # get more pages for a screen.
+  # TODO: setting variable
+  morePage = 1
+  pagesLinkList = []
+  pagesLinkList.append(filmInfoList)
+  
+  if endPage - currentPage >= morePage:
+    upperPage = currentPage + morePage
+  else:
+    upperPage = endPage
+  pageIndex = currentPage
+  for pageIndex in range(currentPage + 1, upperPage + 1): # skip currentPage
+    pageUrl = url + 'trang-' + str(pageIndex)
+    filmInfoList = getFilmInfoList(pageUrl)
+    pagesLinkList.append(filmInfoList)
+  currentPage = pageIndex
+
+  for filmInfoList in pagesLinkList:
+    if len(filmInfoList) > 0:
+      for (title, link, thumbnail) in filmInfoList:
+        addDir(title, link, mode, thumbnail)
+
+  # Add paging
+  if currentPage < endPage:
+    nextPage = currentPage + 1
+    title = genTitleByPageNum(nextPage, endPage)
+    mode = 5
+    addDir(title, url, mode)
+  return True
+
+def buildMediaDir(url):
+  mode = 1 # Support all video type.
+  filmInfoList = getFilmInfoList(url)
+  if len(filmInfoList) <= 0:
+    return False
+  for (title, link, thumbnail) in filmInfoList:
+    addDir(title, link, mode, thumbnail)
+  return True
+
+def buildMedia4Eps(dirnameURL, ajaxEpsURL, thumbnail):
+  # ajaxEpsURL = 'http://phim.megabox.vn/content/ajax_episode?id=8228&start=631'
+  mode = 1
+  content = getPageContent(ajaxEpsURL, json=True)
+  for item in content:
+    name = item['name'].encode('utf-8')
+    # bannerImg = 'http://img.phim.megabox.vn/728x409' + item['image_banner']
+    url = dirnameURL + '/%s-%s.html' % (item['cat_id'], item['content_id'])
+    addDir(name, url, mode, thumbnail)
+
+def buildCategory(url, mediaKind):
+  mode = 2
+  # print("================================= Category for %s =============================" % mediaKind)
+  pattern = "<li><a  title='.+?'.+? href='(%s.+?)'>(.+?)</a></li>" % mediaKind
+  content = getPageContent(url)
+  infoList = re.compile(pattern).findall(content)
+  # flist = []
+  tmplinks = []
+  for (relativeLink, title) in infoList:
+    link = url + relativeLink + '/'
+    if link not in tmplinks:
+      tmplinks.append(link)
+      # flist.append((title, link))
+      addDir(title, link, mode)
+  # return flist
+  return True
+
+# ============================================ SCREENs ===================================================
+
+# mode = 0
+def homeScreen(url):
+  ok=True
+  labels = []
+  filmTypeList = getFilmTypeList(url)
+  if len(filmTypeList) > 0:
+    mode = 2
+    for (filmType, filmLink) in filmTypeList:
+      labels.append((filmType, filmLink, mode))
+
+    # Tìm phim
+    mode = 4
+    filmType = "Tìm Phim"
+    filmLink = url + "tim-kiem/"
+    labels.append((filmType, filmLink, mode))
+
+    # Tìm phim trên Youtube
+    #mode = 6
+    #filmType = "Tìm phim trên HCMLIKE Youtube"
+    #filmLink = 'https://www.youtube.com/results?search_query='
+    #labels.append((filmType, filmLink, mode))
+
+  # For labels
+  for (title, link, mode) in labels:
+    addDir(title, link, mode)
+
+  # For films
+  for (title, link, mode) in labels:
+    if 'phim-le' in link or 'phim-bo' in link:
+      buildMediaDir(link)
+
+  endOfItemList()
+  return ok
+
+# mode = 1: Handle all video types: Phim bo, Phim le, Show & Clip
+def handleMedia(title, filmLink, thumbnail):
+  mediaLink = getMediaLink(filmLink)
+  if mediaLink == '':
+    return episodesScreen(title, filmLink, thumbnail)
+  else:
+    return playMedia(title, mediaLink, thumbnail)
+
+# mode = 2
+def displayMediaScreen(url):
+  # print('----------> ' + url)
+  ok = buildPageByPageNum(url)
+  for (mediaKind, name) in mediaKindList:
+    if mediaKind in url:
+      buildCategory(rootURL, mediaKind)
+  endOfItemList()
+  return ok
 
 
-def addDir(name,query,iconimage, plot, fanart = False, extendinfo = False):
-	addItem(name, query, iconimage, plot, True, fanart, extendinfo)
-	
-def addMovie(name,query,iconimage, plot, fanart = False, extendinfo = False):
-	addItem(name, query, iconimage, plot, False, fanart, extendinfo)
-	
-def addItem(name,query,iconimage, plot, isFolder, fanart = False, extendinfo = False):
-	u=build_url(query)
-	ok=True
-	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-	if fanart:liz.setProperty('Fanart_Image',fanart)
-	mediainfo = {"Title": name, "Plot" : plot}
-	if extendinfo:mediainfo.update(extendinfo)
-	liz.setInfo( type="Video", infoLabels=mediainfo)
-	if not isFolder:
-		liz.setProperty('IsPlayable', 'true')
-	ok=xbmcplugin.addDirectoryItem(handle=addon_handle,url=u,listitem=liz,isFolder=isFolder)
-	return ok
+# mode = 5
+def pagingScreen(url, title=''):
+  ok = buildPageByPageNum(url, title)
+  endOfItemList()
+  return ok
 
-mode = args.get('mode', None)
+# mode = 3
+def episodesScreen(title, url, thumbnail):
+  dirnameURL = os.path.dirname(url)
+  content = getPageContent(url)
+  # <a onclick="getListEps(8228,1, 30,this);" class="active" href='javascript:void(0);'>1-30</a>
+  pattern = '<a onclick=.getListEps\((.+?)\).{,25} href=.{,25}>(.+?)</a>'
+  links = re.compile(pattern).findall(content)
+  showThumbnail = True
+  count = 0
+  for (epsInfo, currEps) in links:
+    count = count + 1
+    tmps = epsInfo.split(',')
+    epsId = tmps[0].strip()
+    epsStart = tmps[1].strip()
+    ajaxEpsURL = 'http://phim.megabox.vn/content/ajax_episode?id=%s&start=%s' % (epsId, epsStart)
+    buildMedia4Eps(dirnameURL, ajaxEpsURL, thumbnail)
+  if count > 1:
+    showThumbnail = False
+  endOfItemList(showThumbnail)
+  return True
 
-if mode is None:
-	main_menu_api()
-elif mode[0] == 'sub_menu_api':
-	type = args.get('type', None)
-	sub_menu_api(type[0])
-elif mode[0] == 'movies_from_api':
-	cat = args.get('cat', None)
-	request = args.get('request', None)
-	movies_from_api(cat[0], request[0])
-elif mode[0] == 'movie_detail':
-	movie_detail(args.get('movie_id', None)[0])
-elif mode[0] == 'play':
-	play(args.get('movie_id', None)[0], args.get('ep', None)[0], args.get('subtitle', None)[0])
-elif mode[0] == 'search':
-	search()
-#elif mode[0] == 'logout':
-	#logout()
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
+# mode = 4
+def searchFilm(url):
+  ok = True
+  searchText = ''
+  # TODO: Uncomment!
+  try:
+    keyb=xbmc.Keyboard('', '[COLOR lime]NHẬP TÊN PHIM CẦN TÌM KIẾM[/COLOR]')
+    keyb.doModal()
+    if (keyb.isConfirmed()):
+      searchText = normalKeyword(keyb.getText())
+  except: pass
+  url = url + searchText + '/'
+  buildMediaDir(url)
+
+  # For more search
+  for (kind, name) in mediaKindList:
+    link = url + kind
+    mode = 2
+    title = 'Tìm kiếm theo ' + name
+    addDir(title, link, mode)
+
+  endOfItemList()
+  return ok
+
+# mode = 6
+def searchFilmOnYoutube(url):
+  ok = True
+  mode = 7
+  keyword = readTempfile()
+  searchText = 'hcmlike'
+  # TODO: Uncomment!
+  try:
+    keyb=xbmc.Keyboard(keyword, '[COLOR lime]NHẬP TÊN PHIM CẦN TÌM KIẾM[/COLOR]')
+    keyb.doModal()
+    if (keyb.isConfirmed()):
+      searchText = keyb.getText()
+      writeTempfile(searchText)
+      searchText = urllib.quote_plus(searchText)
+  except: pass
+  url = url + searchText
+  base = 'https://www.youtube.com'
+  infoList = []
+  while len(infoList) <= 0:
+    content = getPageContent(url)
+    pattern = '<div class=".+"><a .+ href="(.+?)" class=".+".+<img src="(.+?jpg)" .*width="196" height="110"/></div>.+\n.+\n.+\n\n\n.+\n.+\n.+data-sessionlink=".+" title=".+" rel=".+" aria-describedby=".+" dir="ltr">(.+?)</a><span'
+    infoList = re.compile(pattern).findall(str(content))
+  for (href, img, title) in infoList:
+    link = base + href
+    data_thumb = '" data-thumb="'
+    if data_thumb in img:
+      img = img.split(data_thumb)[1]
+    thumbnail = 'http:' + img
+    addDir(title, link, mode, thumbnail)
+  endOfItemList()
+  return ok
+
+# mode = 7
+def build4SelectedVideo(title, url, thumbnail):
+  mode = 8
+  addDir(title, url, mode, thumbnail)
+  addRelatedVideos(url)
+  endOfItemList()
+  return True
+
+# support for mode = 7
+def addRelatedVideos(url):
+  mode = 8
+  base = 'https://www.youtube.com'
+  content = getPageContent(url)  
+  pattern = '<a href="(.+?)" class=".+" title=".+" data-sessionlink=".+" >  <span dir="ltr" class="title" aria-describedby=".+">\n(.+?)\n.*</span>'
+  for i in range(17):
+    pattern = pattern + '.*\n'
+  pattern = pattern + '.*data-thumb="(.+?)"'
+
+  infoList = re.compile(pattern).findall(str(content))
+  for (href, title, img) in infoList:
+    title = title.strip()
+    link = base + href
+    thumbnail = 'http:' + img
+    addDir(title, link, mode, thumbnail)
+
+# mode = 8
+def playYoutubeVideo(title, url, thumbnail):
+  mediaLink = normalYoutubeLink(url)
+  return playMedia(title, mediaLink, thumbnail)
+
+def get_params():
+  param=[]
+  paramstring=sys.argv[2]
+  if len(paramstring)>=2:
+    params=sys.argv[2]
+    cleanedparams=params.replace('?','')
+    if (params[len(params)-1]=='/'):
+      params=params[0:len(params)-2]
+    pairsofparams=cleanedparams.split('&')
+    param={}
+    for i in range(len(pairsofparams)):
+      splitparams={}
+      splitparams=pairsofparams[i].split('=')
+      if (len(splitparams))==2:
+        param[splitparams[0]]=splitparams[1]
+  return param
+
+def setResolvedUrl(url):
+  item=xbmcgui.ListItem(path=url)
+  xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
+
+# TODO: Uncomment!
+def playMedia(name,url,iconimage):
+  # print('----- playMedia: ' + url)
+  url = url.replace('media21.megabox.vn', '113.164.28.47')
+  url = url.replace('media22.megabox.vn', '113.164.28.48')
+  liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+  liz.setInfo( type="Video", infoLabels={ "Title": name } )
+  # setResolvedUrl(url)
+  xbmc.Player().play(url, liz)
+  return True
+
+def addLink(name,url,iconimage,mode=0):
+  u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&thumbnail="+urllib.quote_plus(iconimage)
+  ok=True
+  liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+  liz.setInfo( type="Video", infoLabels={ "Title": name } )
+  liz.setProperty('IsPlayable', 'true')
+  ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+  return ok
+
+# TODO: Uncomment!
+def addDir(name,url,mode,iconimage=icon):
+  # print('------------------------')
+  # print(name)
+  # print('- URL: ' + url)
+  # print('- MODE: ' + str(mode))
+  # print('- Icon: ' + iconimage)
+  # print('------------------------ \n')
+  u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&thumbnail="+urllib.quote_plus(iconimage)
+  ok=True
+  liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+  liz.setInfo( type="Video", infoLabels={ "Title": name } )
+  liz.setProperty('Fanart_Image',fanart)
+  ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+  return ok
+
+# TODO: Uncomment!
+params = get_params()
+
+url = None
+name = None
+mode = None
+thumbnail = ''
+
+# TODO: Uncomment!
+try:
+  url = urllib.unquote_plus(params["url"])
+except:
+  pass
+try:
+  name = urllib.unquote_plus(params["name"])
+except:
+  pass
+try:
+  mode = int(params["mode"])
+except:
+  pass
+try:
+  thumbnail = urllib.unquote_plus(params["thumbnail"])
+except:
+  pass
+
+# ------------------------------- MODE SELECTION -----------------------------------
+
+# mode = 0
+if mode == None or url == None or len(url) < 1:
+  homeScreen(rootURL)
+
+elif mode == 1:
+  handleMedia(name, url, thumbnail)
+
+# Display media screen for all video types
+elif mode == 2:
+  displayMediaScreen(url)
+
+# Display all episodes of a "Phim Bo"
+elif mode == 3:
+  episodesScreen(name, url, thumbnail)
+
+# For searching film
+elif mode == 4:
+  searchFilm(url)
+
+elif mode == 5:
+  pagingScreen(url, name)
+
+# For searching film on Youtube
+elif mode == 6:
+  searchFilmOnYoutube(url)
+
+elif mode == 7:
+  build4SelectedVideo(name, url, thumbnail)
+
+elif mode == 8:
+  playYoutubeVideo(name, url, thumbnail)
