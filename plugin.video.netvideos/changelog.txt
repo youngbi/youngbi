@@ -1,11 +1,23 @@
-﻿1.0.9 (25/09/2015)
-New Update
+v 1.0.5
+Fixed Truyen Hinh Cali
+Removed unused logos
 
-1.0.7 (05/10/2015)
-New Update
+v 1.0.4
+Updated Truyen Hinh Cali
+Removed Nguoi Viet
 
-1.0.5 (18/09/2015)
-New Update
+v 1.0.3
+Updated
+xbmc.python version 2.1.0
+Show View List
 
-1.0.0 (01/09/2015)
+v 1.0.2
+Updated NguoiViet's url and playlist
+
+v 1.0.1
+Removed cailuong us
+Changed fanart
+xbmc.python version 2.14.0
+
+v 1.0.0
 Initial release
