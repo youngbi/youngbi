@@ -1,2 +1,30 @@
-<settings>
+﻿<settings>
+	<category label="Thông tin Account">
+		<setting id="userhdviet" type="text" label="User name [COLOR darkorange]hdviet.com[/COLOR] (email/Số ĐT)" default="tk.hdviet.com@gmail.com"/>
+		<setting id="passhdviet" type="text" option="hidden" label="Password [COLOR darkorange]hdviet.com[/COLOR]" default="hdviet.com"/>
+		<setting id="tokenhdviet" type="text" visible="false" default="none" label="Token"/>
+	
+		<setting id="npp" default="25" type="number" visible="false"  label="Số lượng phim trong 1 trang"/>
+		<setting label="Lấy thumbnail chất lượng cao" visible="false"  type="bool" id="hiresthumb" default="false"/>
+		<setting id="token" type="text" visible="false" default="none" label="Token"/>
+		<setting id="user_id" type="text" visible="false" default="none" label="UserID"/>
+		<setting id="userphimmoi" type="text" label="User name [COLOR ghostwhite]phimmoi.net[/COLOR]" default="tk.phimmoi.net"/>
+		<setting id="passphimmoi" type="text" option="hidden" label="Password [COLOR ghostwhite]phimmoi.net[/COLOR]" default="phimmoi.net"/>
+		
+	</category>
+	<category label="Thông tin khác">
+		<setting id="danhmucphim" type="labelenum" label="[COLOR blue]Hiển thị danh mục phim theo server:[/COLOR]" values="HDOnline|HDViet|PhimMoi|Tất cả" default="Tất cả"/>
+		<setting id="note" type="text" label="[COLOR red]Danh mục phim: Tất cả -> Không tìm kiếm phim liên quan từ server khác ở dưới.[/COLOR]" />		
+		<setting id="hdonline_view" type="bool" label="Tự động tìm kiếm thêm phim từ server HDOnline (y/n)" default="true"/>		
+		<setting id="hdviet_view" type="bool" label="Tự động tìm kiếm thêm phim từ server HDViet (y/n)" default="true"/>
+		<setting id="phimmoi_view" type="bool" label="Tự động tìm kiếm thêm phim từ server PhimMoi (y/n)" default="true"/>		
+		<setting label="Chất lượng phim" type="labelenum" id="video_quality" default="Full HD" values="SD|HD|Full HD" visible="false"/>
+		<setting id="hdvietresolution" type="labelenum" label="[COLOR blue]Chọn độ phân giải tối đa trên[/COLOR] [COLOR darkorange]hdviet.com[/COLOR]" values="720|1080" default="1080"/>
+		<setting id="phimmoiresolution" type="labelenum" label="[COLOR blue]Chọn độ phân giải tối đa trên[/COLOR] [COLOR ghostwhite]phimmoi.net[/COLOR]" values="720|1080" default="1080"/>
+		<setting id="sodonghienthi" type="labelenum" label="[COLOR blue]Số dòng hiển thị cho 1 trang[/COLOR]" values="20|30|50" default="30" visible="false"/>
+		<setting id="cookie" type="text" label="cookiestring" default="" visible="false"/>
+		
+		<setting id="hdvietaudio" type="bool" label="[COLOR green]Tự động chọn Audio thuyết minh trên[/COLOR] [COLOR darkorange]hdviet.com[/COLOR] (y/n)" default="true"/>
+		<setting id="phimmoiaudio" type="bool" label="[COLOR green]Tự động chọn Audio thuyết minh trên[/COLOR] [COLOR ghostwhite]phimmoi.net[/COLOR] (y/n)" default="true"/>	
+	</category>
 </settings>
