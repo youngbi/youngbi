@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.bsbsmartrelax"
+		name="BSB Smart Relax Repository 2.0"
+		version="2.0"
+		provider-name="BSB Smart Relax">
+  <requires>
+    <import addon="xbmc.addon" version="12.0.0"/>
+  </requires>
+	<extension point="xbmc.addon.repository"
+		name="BSB Smart Relax Repository">
+		<info compressed="true">http://smartrelax.4all.vn/kodi/addons/android/addons.xml</info>
+		<checksum>http://smartrelax.4all.vn/kodi/addons/android/addons.xml.md5</checksum>
+		<datadir zip="true">http://smartrelax.4all.vn/kodi/addons/android</datadir>
+		<hashes>true</hashes>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">BSB Smart Relax Repository</summary>
+		<description lang="en"></description>
+		<disclaimer lang="en"></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
