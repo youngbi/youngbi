@@ -20,6 +20,24 @@
     </extension>
 </addon>
 
+<addon
+	id="plugin.video.hieuhien.vn.chantube"
+	version="1.0.2"
+	name="[COLOR violet][B]ChanTube[/B][/COLOR]"
+	provider-name="chanmodoi">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+	<summary>ChanTube</summary>
+	<description>Tổng hợp các kênh Youtube hay</description>
+	<platform>all</platform>
+</extension>
+</addon>
+
 <addon id="repository.AznKodi" name="AznKodi" version="1.0.0" provider-name="AznKodi">
 	<extension point="xbmc.addon.repository" name="VietKodi Addon Repository">
 		<info compressed="false">https://github.com/AznKodi/repository.AznKodi/raw/master/addons.xml</info>
