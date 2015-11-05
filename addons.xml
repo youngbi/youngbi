@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
+<addon id="plugin.audio.chiasenhac"
+       name="[B][COLOR lime]Chia[/COLOR] [COLOR red]Sẻ [/COLOR][COLOR yellow]Nhạc[/COLOR][/B]"
+       version="1.9"
+       provider-name="VietMusic">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>audio</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <language>en</language>
+		<summary lang="en">Add-on play Vietnamese Music online</summary>
+		<description lang="en">Nghe nhạc online từ website: Chiasenhac.com</description>
+    </extension>
+</addon>
+
 <addon id="repository.AznKodi" name="AznKodi" version="1.0.0" provider-name="AznKodi">
 	<extension point="xbmc.addon.repository" name="VietKodi Addon Repository">
 		<info compressed="false">https://github.com/AznKodi/repository.AznKodi/raw/master/addons.xml</info>
@@ -72,19 +92,6 @@
 		<summary>Cantobu Media Entertainment</summary>
 		<description>Giải trí trên XBMC/Kodi</description>
 		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.daveln" name="DaveLN's Repository" version="1.0.0" provider-name="DaveLN">
-	<extension point="xbmc.addon.repository" name="DaveLN Addon Repository">
-		<info compressed="false">https://github.com/daveln/repository.daveln/raw/master/addons.xml</info>
-		<checksum>https://github.com/daveln/repository.daveln/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/daveln/repository.daveln/raw/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>XBMC add-ons</summary>
-		<description>Go through the add-ons and see what you like</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -237,11 +244,11 @@
 	</extension>
 </addon>
 
-<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.5.1" provider-name="MetalKettle">
+<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.6.2" provider-name="MetalKettle">
 	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
-		<info compressed="false">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml</info>
-		<checksum>http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/metalkettle/MetalKettles-Addon-Repository/master/zips</datadir>
+		<info compressed="false">http://offshoregit.com/metalkettle/addons.xml</info>
+		<checksum>http://offshoregit.com/metalkettle/addons.xml.md5</checksum>
+		<datadir zip="true">http://offshoregit.com/metalkettle/zips</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install my Addons</summary>
@@ -407,7 +414,7 @@
 	</extension>
 </addon>
 
-<addon id="repository.zeus" name="[COLOR black]..[/COLOR][COLOR yellow]ZEUS VIDEO [/COLOR][COLOR white]Repository[/COLOR]" version="1.0.0" provider-name="ZEUS VIDEO">
+<addon id="repository.zeus" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS [/COLOR][COLOR white]Repository[/COLOR]" version="1.1.0" provider-name="ZEUS">
 	<extension point="xbmc.addon.repository" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS [/COLOR][COLOR white]Repository[/COLOR]">
         <info compressed="false">http://repo.zeusrepo.com/addons.xml</info>
 		<checksum>http://repo.zeusrepo.com/addons.xml.md5</checksum>
@@ -415,7 +422,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>ZEUS KODI XBMC ADDON From Hakamac</summary>
-		<description>Live Streams, Sport, TV Shows, Movies News, the list goes on... For Support and news go to http://zeus.video</description>
+		<description>For Support and news go to http://zeus.video</description>
 		<platform>all</platform>
 	</extension>
 </addon>
