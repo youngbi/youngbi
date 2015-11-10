@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<addon id="plugin.video.HieuHien.vn" name="[COLOR lime][B]Hieuhien.vn Media[/B][/COLOR]" version="1.0.0" provider-name="phuoclv">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" optional="true" />
+		<import addon="script.module.simplejson" />
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Cantobu Media Entertainment</summary>
+		<description>Addon này được viết lại dựa trên addon cantobumedia của tác giả phuoclv, ITV Plus của tác giả itv member, XShare của tác giả thaitni, VietMedia của tác giả tinhyeu44, ...</description>
+		<disclaimer>Tất cả nội dung được lấy từ Internet - Tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
+		<platform>all</platform>
+    </extension>
+</addon>
