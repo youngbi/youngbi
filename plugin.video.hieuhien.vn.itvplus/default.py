@@ -826,7 +826,7 @@ def I11111iII11i(url):
 		    try:
 		        mediaUrl = 'https://redirector' + re.compile('file: "https://redirector(.+?)", label:".+?", type: "video/mp4"').findall(content)[-1]
 		    except:
-		        mediaUrl = re.compile('file: "(.+?)", label:"", type: "video/mp4"').findall(content)[-1]
+		        mediaUrl = re.compile('file: "(.+?)", label:".+?", type: "video/mp4"').findall(content)[-1]
 		except:
 		    mediaUrl = re.compile('source src="(.+?)"').findall(content)[0]
 	else:	
@@ -1121,5 +1121,7 @@ elif mode==101:
     I11111iIi11i(url)
     O0OO0O.close()
     del O0OO0O	
+
+elif mode==500:addon.openSettings();end='ok'
 	
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

@@ -1,2 +1,6 @@
-﻿2.0.0 (10/11/2015)
+﻿2.0.1 (11/11/2015)
+- Fix "Kho Phim"
+- Update Menu Setting in main
+
+2.0.0 (10/11/2015)
 New version
