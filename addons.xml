@@ -160,7 +160,7 @@
 
 <addon
   id="plugin.video.hieuhien.vn.azdrama"
-  version="1.0.23"
+  version="1.0.25"
   name="[COLOR yellow][B]azdrama.net[/B][/COLOR]"
   provider-name="Dknight">
   <requires>
@@ -766,9 +766,9 @@
 
 <addon
   id="plugin.video.hieuhien.vn.viettv24free"
-  version="1.0.4"
+  version="1.0.8"
   name="[COLOR violet][B]viettv24free[/B][/COLOR]"
-  provider-name="Dknight">
+  provider-name="Dknight - modified by bacha">
   <requires>
 		<import addon="script.module.beautifulsoup" version="3.0.8"/>
 		<import addon="script.module.simplejson" />
@@ -779,7 +779,7 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>viettv24free</summary>
+    <summary>viettv24free+</summary>
     <description>viettv24 for free</description>
     <platform>all</platform>
   </extension>
@@ -803,6 +803,24 @@
   <extension point="xbmc.addon.metadata">
     <summary>Watch Movies</summary>
     <description>Watch Movies on vkool.net</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon
+  id="plugin.video.hieuhien.vn.xomgiaitri"
+  version="1.1.13"
+  name="[COLOR lime][B]Xóm Giải Trí[/B][/COLOR]"
+  provider-name="thongld">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>xomiaitri.com</summary>
+    <description>Watch free xomiaitri.com (Vietnamese) Videos</description>
     <platform>all</platform>
   </extension>
 </addon>

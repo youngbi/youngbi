@@ -279,9 +279,31 @@ def vidbugresolver2(inputstring):
 	for i in range(len(newstring)):
 		t=t+chr(ord(newstring[i])-int(inputstring[-1:]))
 	return t
+
+def vidbugresolver(inputstringorig):
+	attempts=0
+	inputstring=""
+	t=""
+	result=None
+	while attempts < 10:
+		#if True:
+		print "attempts =" + str(attempts)
+		try:
+			if(attempts!=0):
+				t=vidbugresolver1(inputstringorig,str(attempts))
+			else:
+				t=vidbugresolver1(inputstringorig,"")
+			result= re.compile('json_allupload.php",{vidID:\s*"(.+?)",vidKey:\s*"(.+?)",').findall(t)[0]
+			break
+		except:
+			attempts += 1
+		
+	return result
 	
-def vidbugresolver(inputstring):
+def vidbugresolver1(inputstring,strcat):
+
 	try:
+		inputstring=inputstring+strcat
 		newstring = urllib.unquote_plus(inputstring[1:len(inputstring)-1])
 		t=""
 		for i in range(len(newstring)):
@@ -370,9 +392,7 @@ def Videosresolve(url,name):
 						link=jsunpack.unpack(paccked[0].replace('"','\''))
                 encstring= re.compile("dF\('(.+?)'\)").findall(link.replace("\\'","'"))
                 if(len(encstring)>0):
-					link= vidbugresolver(encstring[0])
-					link=''.join(link.splitlines()).replace('\'','"')
-					(vidid,vidkey)= re.compile('json_allupload.php",{vidID:\s*"(.+?)",vidKey:\s*"(.+?)",').findall(link)[0]
+					(vidid,vidkey)= vidbugresolver(encstring[0])
 					newcontent=postContent("http://videobug.se/json_allupload.php","vidID="+vidid+"&vidKey="+vidkey+"&vidCap=",newlink)
 					viddata=json.loads(newcontent)
 					for item in viddata:

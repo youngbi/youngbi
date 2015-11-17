@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon
   id="plugin.video.hieuhien.vn.azdrama"
-  version="1.0.23"
+  version="1.0.25"
   name="[COLOR yellow][B]azdrama.net[/B][/COLOR]"
   provider-name="Dknight">
   <requires>
