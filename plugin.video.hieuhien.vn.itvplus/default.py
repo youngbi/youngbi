@@ -19,13 +19,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 import urllib,urllib2,re,os,sys,json,base64
 import xbmcplugin,xbmcgui,xbmcaddon,xbmc
-import autorun
+import autorun, visitor
 
 addon = xbmcaddon.Addon(id='plugin.video.hieuhien.vn.itvplus')
 profile = addon.getAddonInfo('profile')
 home = addon.getAddonInfo('path')
 icon = xbmc.translatePath( os.path.join( home, 'icon.png' ))
-dataPatch = xbmc.translatePath(os.path.join(home, 'resources'))
+dataPatch = xbmc.translatePath(os.path.join(home, 'resources')) 
 logos = xbmc.translatePath(os.path.join(dataPatch, 'logos\\'))
 fanart = xbmc.translatePath(os.path.join(dataPatch, 'art\\'))
 OO0OO0O0O0 = addon.getSetting('name_account')
@@ -61,6 +61,9 @@ def alert(message,title="Thông báo!"):
 def notification(message, timeout=10000):
     xbmc.executebuiltin((u'XBMC.Notification("%s", "%s", %s, %s)' % ('Super Movies', message, icon, timeout)).encode("utf-8"))
 
+def I1iI1(object,group):
+	return object.group(group) if object else ''	
+	
 def OOo000():
     url = IIiIiII11i
     content = makeRequest(I1IiiI(url))
@@ -95,7 +98,7 @@ def Ii11I(name):
     III()	
     if 16 - 16: iIIIiI11 % OooO0o0Oo . O00 % iII111ii
 	
-def iii1II11ii(name,url):	
+def iii1Ii11ii(name,url):	
     name = name
     content = makeRequest(I1IiiI(url))
     match = re.findall('<server>\s*<name>' + name + '</name>((?s).+?)</server>',I1IiiI(content))
@@ -158,7 +161,12 @@ def iI1Ii11111iIi(name,url):
         content = makeRequest(tvreplay)
         match = re.compile('href="(\d+)/">(\d+)/<').findall(content)
         for url,name in match:
-            addDir( name, tvreplay+url, 10, iconimage, fanart+'cat2.jpg')
+            namey = name[:4]
+            namet1 = name[4:]
+            namet = namet1[:2]
+            namen = name[6:]
+            time = '[COLOR blue]'+ namen + '[/COLOR]' + ' - ' + '[COLOR gold]'+ namet + '[/COLOR]' + ' - ' + '[COLOR red]'+ namey + '[/COLOR]'
+            addDir( time, tvreplay+url, 10, iconimage, fanart+'cat2.jpg')
     elif 'woim' in url:
         content = makeRequest(url)
         match=re.compile('<li>\s*<a href="([^"]*)" title="([^"]+)".+?src="(.+?)&w').findall(content)
@@ -327,7 +335,7 @@ def Ii1ii11111IIi(url,name,iconimage):
             url.close()
             link = urllib.unquote (link)
             link = link[40:len(link)-23]
-            content = makeRequest(url)
+            content = makeRequest(link)
             match = re.compile('location="(.+?)"').findall(content)[-1]  
             addLink( name.upper(), match, 100, thumb)
     elif 'chiasenhac' in url:		
@@ -434,6 +442,10 @@ def Ii1ii11111IIi(url,name,iconimage):
 	            title=title.split('online tập')
 	            title = title[0].replace('Xem phim ','')
 	            addLink('[[COLOR gold]'+epi+'[/COLOR]] ' + title, phim7 + url,100, iconimage)
+    elif 'hdonline' in url:
+	    match = re.compile('<a href="(.+?)" .+?"><span>(.+?)</span></a>').findall(content)
+	    for url, epi in match:						
+		    addir('[[COLOR lime]'+str(epi)+'[/COLOR]] '+name,url,img,'',mode=102,isFolder=False)
     III()
     if 98 - 98: i11iII1iiI
 	
@@ -589,8 +601,8 @@ def oOiIi1IIIi1(url):
             url = 'http://kephim.com/tim-kiem/' + searchText
             oOiii1IiIi1(url)
         elif 'timphim7' in url:
-            url = 'http://phimtienganh.vn/movie/search?key=' + searchText
-            oOiii1IiIi1(url)
+            url = 'http://hdonline.vn/tim-kiem/'+searchText.replace('+', '-')+'.html'
+            Ii1ii11111Iii(url, query='', mode='')
         elif 'timphim8' in url:
             url = phim7 + '/tim-kiem/tat-ca/' + searchText.replace('+', '-') + '.html'
             oOiii1IiIi1(url)	  
@@ -704,11 +716,97 @@ def oOiii1IiIi1(url):
 	    thumbnail = thumbnail.replace(' ','%20')
 	    addDir('[COLOR deeppink]Server 10 [/COLOR]' + name, url, 10, thumbnail, thumbnail)
 	  
-    III()	  
+    III()
+
+def Ii1Ii11111Iii(url, mode=''):
+    Ii1ii11111Iii(url, query='', mode='')	
+
+def Ii11i1Ii(url):
+	link = visitor.GetContent("http://hdonline.vn/")
+	link = ''.join(link.splitlines()).replace('\'','"')
+	try:
+		link =link.encode("UTF-8")
+	except: pass
+	vidcontent=re.compile('<nav class="tn-gnav">(.+?)</nav> ').findall(link)
+	vidcontentlist=[]
+	if(len(vidcontent)>0):
+		addDir('[COLOR red]Tìm Kiếm[/COLOR]','timphim7',50,logos+'timkiem.png','')
+		vidcontentlist=re.compile('<li>(.+?)</div>\s*</div>\s*</li>').findall(vidcontent[0])
+		for vidcontent in vidcontentlist:
+			mainpart=re.compile('<a href="(.+?)"> <span class="tnico-(.+?)"></span>(.+?)</a>').findall(vidcontent)
+			mainname=mainpart[0][2]
+			href=mainpart[0][0]
+			if 'hdonline.vn' not in href:href='http://hdonline.vn'+mainpart[0][0]
+			vidlist=re.compile('<li><a [^>]*href=["\']?([^>^"^\']+)["\']?[^>]*>(.+?)</a></li>').findall(vidcontent)
+			if 'TIN' in mainname : mainname = "MORE";href='http://hdonline.vn/danh-sach/phim-moi.html'
+			addDir('[COLOR lime][B]'+mainname+'[/B][/COLOR]',href,41,logos+'All.png','')	
+			for vurl,vname in vidlist:
+				if 'Mỹ' in vname : vname = vname.replace('Phim Mỹ','Phim Âu - Mỹ')
+				if mainname == "MORE" : vurl = 'http://hdonline.vn'+vurl
+				if(vurl.find("javascript:") ==-1 and len(vurl) > 3):
+					addDir(vname,vurl,41,logos+'TheLoai.png','')	
+	III()	
+
+def Ii1ii11111Iii(url, query='', mode=''):
+	search_string = iii1II11ii(query)
+	if search_string=='-':search_string=''	
+	if 'hdonline.vn' in url:
+		content = visitor.GetContent(url)
+		content = ''.join(content.splitlines()).replace('\'','"')
+		try:
+			content = content.encode("UTF-8")
+		except: pass
+		movielist=re.compile('<li>\s*<div class="tn-bxitem">(.+?)</li>').findall(content)
+		for idx in range(len(movielist)):
+			vcontent = movielist[idx]				
+			items=re.compile('<a href="(.+?)"(.+?)<img src="(.+?)".+?<p class="name-vi">(.+?)</p>\s*<p class="name-en">(.+?)</p>').findall(vcontent)
+			for url, episodes, img, nameen, namevn in items :
+				name = namevn + ' - ' + nameen							
+				if iiI1II11ii(search_string) in iiI1II11ii(name) or search_string == '' :
+					isFolder=True;v_query=nameen
+					if 'episodes' in episodes :														
+						v_mode='bo'
+						name = '[HDOnline] ' + name if query!='' else name
+					else :						
+						v_mode='le'
+						if query!='':name = '[HDOnline] ' + name
+					if v_mode == 'le' :
+						v_mode = 102;isFolder = False						
+					else :
+						v_mode = 10;url = 'http://m.hdonline.vn' + url
+					addir(name,url,img,fanart='fanart',mode=v_mode,page=1,query=v_query,isFolder=isFolder)
+		if query=='':
+			pagecontent=re.compile('<ul class="pagination">(.+?)</ul>').findall(content)
+			if(len(pagecontent)>0):
+				pagelist=re.compile('<li><a [^>]*href=["\']?([^>^"^\']+)["\']?[^>]*>(.+?)</a></li>').findall(pagecontent[0])
+				for vurl,vpage in pagelist:
+					if 'Trang Sau' in vpage:
+					    addDir('[COLOR red]Trang Tiếp Theo >>>[/COLOR]',vurl,42,logos+'NEXT.png','')
+	III()
+						
+def iii1II11ii(string):
+	string = string.replace('+','-').replace(' ','-')	
+	string = string.replace('?','').replace('!','').replace('.','').replace(':','').replace('"','')
+	string = string.replace('&amp;','and').replace('&','and').replace("&#39;","")
+	i = 1
+	while i < 10:
+		string = string.replace('(Season '+str(i)+'','Season '+str(i))
+		i += 1
+	string = string.replace('- Season','Season')	
+	string = string.strip()
+	return string	
+	
+def iiI1II11ii(string):
+	string = string.replace('+','-').replace(' ','-')	
+	string = string.replace('?','').replace('!','').replace('.','').replace(':','')	
+	string = string.replace('&amp;','and').replace('&','and').replace("&#39;","")
+	string = string.upper()
+	string = string.strip()
+	return string
 
 def I1ii1(url):
-    alert(u'Đang xây dựng!'); return
-
+    alert(u'Đang xây dựng!'); return	
+	
 def I1Ii1():
 	if len(OO0OO0O0O0) < 1:
 			d = xbmcgui.Dialog().yesno('Thông báo!', '', 'Bạn chưa đăng nhập tài khoản!\nHãy vào menu cài đặt nhập [COLOR gold]Tên đăng nhập[/COLOR] và [COLOR red]Password[/COLOR] để không hiện thông báo này nữa.\nNhấn [COLOR lime]OK[/COLOR] để vào menu cài đặt', '', 'Exit', 'OK')
@@ -862,7 +960,44 @@ def I11111iIi11i(url):
 	        pass
 	return	
 	if 71 - 71: i11iII1iiI - iiIIIII1i1iI . O0Oooo00 . ooooo00000OOOO / iii1II11ii + O0Oooo00
-	
+
+def I11111IIi11i(url):
+	fid = I1iI1(re.search('-(\d{1,5}).html',url),1)
+	url = 'http://hdonline.vn/frontend/episode/loadxmlconfigorder?ep=1&fid='+str(fid)
+	content = visitor.GetContent(url)
+	vurl=re.compile('<jwplayer:file>(.+?)</jwplayer:file>').findall(content)[0]
+	if(vurl.find("http") == -1):
+		vurl = visitor.decodevplug(vurl)
+	vsubtitle=re.compile('<jwplayer:vplugin.subfile>(.+?)</jwplayer:vplugin.subfile>').findall(content)
+	suburl=""
+	if(len(vsubtitle)>0 and vsubtitle[0].find("http")>-1):
+		suburl=vsubtitle[0]
+	elif(len(vsubtitle)>0):
+		suburl=decodevplug(vsubtitle[0])
+	for item in suburl.split(','):
+		if 'VIE' in item:suburl=item
+	link=vurl
+	subtitle=suburl
+	listitem = xbmcgui.ListItem(path=link)
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
+	if len(subtitle) > 0:
+	    subtitlePath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
+	    subfile = xbmc.translatePath(os.path.join(subtitlePath, "temp.sub"))
+	    try:
+		    if os.path.exists(subfile):
+		        os.remove(subfile)
+		    f = urllib2.urlopen(subtitle)
+		    with open(subfile, "wb") as code:
+		        code.write(f.read())
+		    xbmc.sleep(5000)
+		    xbmc.Player().setSubtitles(subfile);notification('[COLOR red]Subtitles successfully loaded.[/COLOR]');
+	    except:
+		    notification(u'[COLOR lime]Failed to load subtitles![/COLOR]');
+	elif 'TM' not in vurl:
+	    notification('[COLOR lime]This movies no subtitles![/COLOR]');
+	if 105 - 105: i11iII1iiI - iiIiiII1i1iI . O0Oooo00 . ooooo00000OOOO / iii1II11ii + O0Oooo00
+
+	  
 def OOoO0O00o0(content):
     OOoO = re.search("'file':'(http://v2.cdn.clip.vn/.+?)','kind':'captions','label':'Tiếng Việt'",content)
     if OOoO:OOoO = OOoO.group(1)
@@ -961,15 +1096,27 @@ def addDir(name,url,mode,iconimage,fanart):
         u = 'plugin://plugin.video.itv.htvonline'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
+    if 'megafun' in url:
+        u = 'plugin://plugin.video.4vn.megafun'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
     if 'vietmusic' in url:
         u = 'plugin://plugin.audio.vietmusic'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
-
+    if 'mp3.zing.vn' in url:
+        u = 'plugin://plugin.audio.mp3zing'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
     if 'p2psport' in url:
         u = 'plugin://plugin.video.p2psport'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
+
+    if 'Xshare' in name:
+        u = 'plugin://plugin.video.xsharelite'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok		
     if 'HDviet' in name:
         u = 'plugin://plugin.video.lnt.hdviet'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
@@ -978,16 +1125,16 @@ def addDir(name,url,mode,iconimage,fanart):
         u = 'plugin://plugin.video.lnt.hayhaytv'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
-    if 'Xshare' in name:
-        u = 'plugin://plugin.video.xsharelite'
+    if 'Vietmedia.movie' in name:
+        u = 'plugin://plugin.video.vietmedia.movie/?mode=default&url=rap1.menu()'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
-    if 'Cài Đặt - Tài Khoản' in name:
-        u = 'plugin://plugin.video.xsharelite/?mode=99'
+    if 'ZingTV' in name:
+        u = 'plugin://plugin.video.mrodin.tvzing'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
-    if 'megafun' in url:
-        u = 'plugin://plugin.video.4vn.megafun'
+    if 'MovieBox' in name:
+        u = 'plugin://plugin.video.4vn.moviebox'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
     if 'Anhtrang.org' in name:
@@ -1005,10 +1152,40 @@ def addDir(name,url,mode,iconimage,fanart):
     if 'XomGiaiTri.com' in name:
         u = 'plugin://plugin.video.4vn.xomgiaitri'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
+    if 'Yeuphim' in name:
+        u = 'plugin://plugin.video.4vn.yeuphim'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
+    if 'Tìm Kiếm Ca Nhạc (CSN)' in name:
+        u = 'plugin://plugin.audio.vietmusic/?mode=9&page=0&query&type=f&url=timkiem'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
+    if 'Tìm Kiếm Ca Nhạc (Zing)' in name:
+        u = 'plugin://plugin.audio.mp3zing/?mode=700'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
+    if 'Tìm Kiếm MyTube' in name:
+        u = 'plugin://plugin.video.youtube/kodion/search/input/'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
+    if 'Cài Đặt - Tài Khoản' in name:
+        u = 'plugin://plugin.video.xsharelite/?mode=99'
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok		
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
     return ok
 
+def addir(name,link,img='',fanart='',mode=0,page=0,query='',isFolder=False):
+	ok=True
+	item=xbmcgui.ListItem(name,iconImage=img,thumbnailImage=img)
+	item.setInfo(type="Video", infoLabels={"title":name})
+	item.setProperty('Fanart_Image',fanart)
+	u=sys.argv[0]+"?url="+urllib.quote_plus(link)+"&img="+urllib.quote_plus(img)+"&fanart="+urllib.quote_plus(fanart)+"&mode="+str(mode)+"&page="+str(page)+"&query="+query+"&name="+name
+	if not isFolder:item.setProperty('IsPlayable', 'true')
+	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=isFolder)
+	return ok	
+	
 phimhd365 = 'http://phimhd365.com'
 pgt = 'http://phimgiaitri.vn/'
 hplus = 'http://hplus.com.vn/'
@@ -1060,6 +1237,8 @@ try:name=urllib.unquote_plus(params["name"])
 except:pass
 try:iconimage=urllib.unquote_plus(params["iconimage"])
 except:pass
+try:img=urllib.unquote_plus(params["img"])
+except:pass
 #try:fanart=urllib.unquote_plus(params["fanart"])
 #except:pass  
 
@@ -1072,13 +1251,13 @@ print "iconimage: " + str(iconimage)
 sysarg=str(sys.argv[1])
 
 if mode==None or url==None or len(url)<1:
-	I1Ii1()
+	I1Ii1() #I1iI1
 
 elif mode==1:Ii11I1Ii(name,url)
 
 elif mode==2:Ii11I(name)
 	
-elif mode==3:iii1II11ii(name,url)
+elif mode==3:iii1Ii11ii(name,url)
 
 elif mode==4:I1ii11iIi11i(url)	
 
@@ -1099,6 +1278,12 @@ elif mode==15:iIi1II11ii(url,name)
 elif mode==16:I1II11iII11i(name,url)
 
 elif mode==30:I1ii1(url)
+
+elif mode==40:Ii11i1Ii(url)
+
+elif mode==41:Ii1Ii11111Iii(url, mode='')
+
+elif mode==42:Ii1ii11111Iii(url, query='', mode='')
 
 elif mode==50:oOiIi1IIIi1(url)
 
@@ -1122,6 +1307,13 @@ elif mode==101:
     O0OO0O.close()
     del O0OO0O	
 
+elif mode==102:
+    O0OO0O = xbmcgui.DialogProgress()
+    O0OO0O.create('***ITV Plus***', 'Đang tải. Vui lòng chờ trong giây lát...')
+    I11111IIi11i(url)
+    O0OO0O.close()
+    del O0OO0O	
+	
 elif mode==500:addon.openSettings();end='ok'
 	
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
