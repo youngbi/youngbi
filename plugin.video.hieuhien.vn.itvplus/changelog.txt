@@ -1,4 +1,13 @@
-﻿2.0.4 (18/11/2015)
+﻿2.0.7 (03/12/2015)
+- Fix "Kho Phim 4" and "Clip Hot"
+
+2.0.6 (01/12/2015)
+- Replace minor server
+
+2.0.5 (25/11/2015)
+- Fix vietmusic
+
+2.0.4 (18/11/2015)
 - Fix bug version update
 
 2.0.3 (18/11/2015)

@@ -865,7 +865,7 @@ def I11111iII11i(url):
 	elif 'hplus' in url:
 	    try:
 		    content = makeRequest(url)
-		    mediaUrl = re.compile('var iosUrl = "(.+?)"').findall(content)[0]		
+		    mediaUrl = re.compile('var link_stream = iosUrl = "(.+?)";').findall(content)[0]		
 	    except:
 		    alert(u'Nội dung này chưa được Addon hỗ trợ!'); return 
 	elif 'phimhayhd' in url:
@@ -1101,7 +1101,7 @@ def addDir(name,url,mode,iconimage,fanart):
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
     if 'vietmusic' in url:
-        u = 'plugin://plugin.audio.vietmusic'
+        u = 'plugin://plugin.video.vietmedia.movie/?mode=default&url=http://api.vietmedia.kodi.vn/csn/v1/menu'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
     if 'mp3.zing.vn' in url:
@@ -1112,7 +1112,14 @@ def addDir(name,url,mode,iconimage,fanart):
         u = 'plugin://plugin.video.p2psport'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
         return ok
-
+    if '52847232169a585a2449c48c' in url:
+        u = "plugin://plugin.video.vietmedia.movie/?mode=default&url=rap1.dirs('http://fptplay.net/danh-muc/52847232169a585a2449c48c/tv-show.html')"
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
+    if '52842df7169a580a79169efd' in url:
+        u = "plugin://plugin.video.vietmedia.movie/?mode=default&url=rap1.dirs('http://fptplay.net/danh-muc/52842df7169a580a79169efd/the-thao.html')"
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
     if 'Xshare' in name:
         u = 'plugin://plugin.video.xsharelite'
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
