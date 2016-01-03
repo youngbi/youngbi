@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.hieuhien.vn.itv.fptplay"
-       version="1.0.1"
+       version="1.0.3"
        name="[COLOR red][B]ITV*[/COLOR]FPTplay[/B]"
        provider-name="itv member">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.xbmcswift2" version="2.4.0"/>
   </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
+  <extension point="xbmc.python.module" library="default.py" />
   <extension point="xbmc.addon.metadata">
     <summary>Entertainment</summary>
     <description>Thử nghiệm xem các kênh truyền hình tại http://fptplay.net/livetv</description>
