@@ -303,7 +303,7 @@
 
 <addon
   id="plugin.video.hieuhien.vn.htvonline"
-  version="1.0.5"
+  version="1.0.6"
   name="[COLOR violet][B]HTV Online[/B][/COLOR]"
   provider-name="thongld">
   <requires>
