@@ -2,7 +2,7 @@
 <addon
 	id="plugin.video.hieuhien.vn.tvvn"
 	version="0.9.9"
-	name="TV Viet Nam"
+	name="[COLOR violet][B]TV Viet Nam[/B][/COLOR]"
 	provider-name="Binh Nguyen">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
