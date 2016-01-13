@@ -2,6 +2,18 @@ __author__ = 'Dknight'
 import urllib,urllib2,re
 import StringIO,gzip
 
+def make_Request(url, headers=None):
+    if headers is None:
+        headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
+                 'Referer' : 'http://www.google.com'}
+    try:
+        req = urllib2.Request(url,headers=headers)
+        f = urllib2.urlopen(req)
+        body=f.read()
+        return body
+    except:
+        pass 
+
 def GetContent(url, useProxy=False):
     strresult=""
     #if useProxy==True:
