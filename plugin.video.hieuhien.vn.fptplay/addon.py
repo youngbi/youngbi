@@ -1,128 +1,200 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''
-Copyright (C) 2014                                                     
+from xbmcswift2 import Plugin,xbmcaddon, xbmc
+import urlfetch
+from BeautifulSoup import BeautifulSoup
+import json
+import re
 
-This program is free software: you can redistribute it and/or modify   
-it under the terms of the GNU General Public License as published by   
-the Free Software Foundation, either version 3 of the License, or      
-(at your option) any later version.                                    
+plugin = Plugin()
+__settings__ = xbmcaddon.Addon(id='plugin.video.hieuhien.vn.fptplay')
+crawurl = 'https://fptplay.net/livetv'
 
-This program is distributed in the hope that it will be useful,        
-but WITHOUT ANY WARRANTY; without even the implied warranty of         
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          
-GNU General Public License for more details.                           
+def getAllChannels():
+    cns = []
+    #cns.extend(getEvents(crawurl))
+    cns.extend(getChannels(crawurl))
+    return cns
 
-You should have received a copy of the GNU General Public License      
-along with this program. If not, see <http://www.gnu.org/licenses/>  
-'''                                                                           
+def getEvents(url):
+    cns = []
+    result = None
+    result = urlfetch.fetch(
+        url,
+        headers={
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36'
+            })
+    if result.status_code != 200 :
+        plugin.log.error('Something wrong when get list fpt play event !')
+        return None
+    soup = BeautifulSoup(result.content, convertEntities=BeautifulSoup.HTML_ENTITIES)
 
-import urllib,urllib2,re,os,json
-import xbmcplugin,xbmcgui,xbmcaddon
+    item = soup.find('ul', {'class' : 'slider_event'})
+    if item == None :
+        return None
+    itemlinks = item.findAll('a')
+    if itemlinks == None :
+        return None
+    for item in itemlinks:
+        title = item.get('title')
+        link = item.get('href')
+        img = item.find('img')
+        imgthumbnail = ''
+        if img != None :
+            imgthumbnail = img.get('src')
+        if not imgthumbnail :
+            continue
+        cn = {
+                'label': title,
+                'path': plugin.url_for('plays', id = link),
+                'thumbnail':imgthumbnail,
+                'is_playable': True
+            }
+        if cn not in cns :
+            cns.append(cn)
+    return cns
 
-addon = xbmcaddon.Addon(id='plugin.video.hieuhien.vn.fptplay')
-profile = addon.getAddonInfo('profile')
-home = addon.getAddonInfo('path')
+def getChannels(url):
+    cns = []
+    result = None
+    result = urlfetch.fetch(
+        url,
+        headers={
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36'
+            })
+    if result.status_code != 200 :
+        plugin.log.error('Something wrong when get list fpt play channel !')
+        return None
+    soup = BeautifulSoup(result.content, convertEntities=BeautifulSoup.HTML_ENTITIES)
 
-homeUrl = 'http://fptplay.net/livetv'
-getUrl = 'http://fptplay.net/show/getlinklivetv?id=%s&type=newchannel&quality=1&mobile=web'
+    items = soup.findAll('div', {'class' : 'hover01'})
+    for item in items:
 
-dict = {'&amp;':'&', '&acirc;':'â', '&Aacute;':'Á', '&agrave;':'à', '&aacute;':'á', '&atilde;':'ã', '&igrave;':'ì', '&iacute;':'í', '&uacute;':'ú', '&ugrave;':'ù', '&oacute;':'ó', '&ouml;':'ö', '&ograve;':'ò', '&otilde;':'õ', '&ocirc;':'ô', '&Ocirc;':'Ô', '&eacute;':'é', '&egrave;':'è', '&ecirc;':'ê', '&Yacute;':'Ý', '&yacute;':'ý', "&#039;":"'"}
+        ac = item.find('a', {'class' : 'tv_channel '})
 
-def main():
-    content = make_request(homeUrl)
-    match = re.compile('<a class="tv_channel.+?".+?title="([^>]+)".+?onclick=".+?".+?data-href="([^"]*)".+?>\s*\s*<img class="lazy" data-original="([^"]*)".+?/>\s*</a>').findall(content)
-    for title, url, thumb in match:
-        title = replace_all(title, dict)	
-        addLink( title, url, 100, thumb)		
-    skin_used = xbmc.getSkinDir()
-    if skin_used == 'skin.xeebo':
-        xbmc.executebuiltin('Container.SetViewMode(52)')  
-    else:
-        xbmc.executebuiltin('Container.SetViewMode(%d)' % 500)
-		
-def resolveUrl(url):
-	params = url.split('/')
-	id = params[len(params) - 1]
-	data = { 'id':id, 'quality': addon.getSetting('quality'), 'mobile':'web'}
-	content = make_request(getUrl,data)
-	jsonObject = json.loads(content)
-	mediaUrl = jsonObject['stream']
-	item = xbmcgui.ListItem(path = mediaUrl)
-	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)		
-	return    		
-		
-def make_request(url, params=None, headers=None):
-    if headers is None:
-        headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:15.0) Gecko/20100101 Firefox/15.0.1',
-        		   'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        		   'X-Requested-With': 'XMLHttpRequest',
-                   'Referer' : 'http://fptplay.net'}
-    try:
-    	if params is not None:
-    		params = urllib.urlencode(params)
-        req = urllib2.Request(url,params,headers)
-        f = urllib2.urlopen(req)
-        body=f.read()
-        return body
-    except:
-    	pass
+        if ac == None :
+            ac = item.find('a', {'class' : 'tv_channel active'})
+            if ac == None :
+                continue
 
-def replace_all(text, dict):
-	try:
-		for a, b in dict.iteritems():
-			text = text.replace(a, b)
-		return text
-	except:
-		pass
-		
-def addLink(name,url,mode,iconimage):
-    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)
-    liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-    liz.setInfo( type="Video", infoLabels={ "Title": name})
-    liz.setProperty('mimetype', 'video/x-msvideo')
-    liz.setProperty("IsPlayable","true")
-    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz, isFolder=False)
-    return ok 
-	  	
-def get_params():
-    param=[]
-    paramstring=sys.argv[2]
-    if len(paramstring)>=2:
-        params=sys.argv[2]
-        cleanedparams=params.replace('?','')
-        if (params[len(params)-1]=='/'):
-            params=params[0:len(params)-2]
-        pairsofparams=cleanedparams.split('&')
-        param={}
-        for i in range(len(pairsofparams)):
-            splitparams={}
-            splitparams=pairsofparams[i].split('=')
-            if (len(splitparams))==2:
-                param[splitparams[0]]=splitparams[1]
-    return param
-   
-params=get_params()
-url=None
-name=None
-mode=None
-iconimage=None
+        lock = item.find('img', {'class' : 'lock'})
 
-try:url=urllib.unquote_plus(params["url"])
-except:pass
-try:name=urllib.unquote_plus(params["name"])
-except:pass
-try:mode=int(params["mode"])
-except:pass
-try:iconimage=urllib.unquote_plus(params["iconimage"])
-except:pass
+        if lock != None :
+            continue
 
-if mode==None or url==None or len(url)<1:main()
-elif mode==100:
-    dialogWait = xbmcgui.DialogProgress()
-    dialogWait.create('Đang tải. Vui lòng chờ trong giây lát...')
-    resolveUrl(url)
-    dialogWait.close()
-    del dialogWait
-  
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
+        dataref = ac.get('data-href')
+
+        if dataref == None :
+            continue
+
+        img = ac.find('img', {'class' : 'img-responsive'})
+
+        imgthumbnail = ''
+
+        if img != None :
+            imgthumbnail = img.get('data-original')
+
+        if not dataref.startswith(crawurl) :
+            continue
+
+        channelid = dataref[27:]
+
+        if not channelid :
+            continue
+
+        title = channelid
+        cn = {
+                'label': title,
+                'path': plugin.url_for('plays', id = channelid),
+                'thumbnail':imgthumbnail,
+                'is_playable': True
+            }
+        cns.append(cn)
+    return cns
+
+def getLink(id = None):
+
+    if id.startswith('https://') :
+        #is event
+        id = getChannelIdFromEventLink(id)
+    if id == None :
+        return None
+
+
+    #get cookie & csrf
+    result = urlfetch.fetch(
+        crawurl,
+        headers={
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36'
+            })
+
+    #plugin.log.error(result.content)
+
+    m = re.search(r"name=\"_token\" content=\"(.+)\"",result.content)
+
+    if m == None :
+        return None
+    csrf = m.group(1)
+    cookie='laravel_session=' + result.cookies.get('laravel_session') + ";"
+
+    result = urlfetch.post(
+        'https://fptplay.net/show/getlinklivetv',
+        data={"id": id,
+            "quality": __settings__.getSetting('quality'),
+            "mobile": "web",
+			"type" : "newchannel"
+            },
+        headers={'Content-Type': 'application/x-www-form-urlencoded',
+                'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36',
+                'X-Requested-With':'XMLHttpRequest',
+                'Referer':'https://fptplay.net/livetv',
+                'x-csrf-token': csrf,
+                'cookie':cookie
+                }
+        )
+
+    if result.status_code != 200 :
+        plugin.log.error("Can't get link for id " + id)
+        return None
+
+    info = json.loads(result.content)
+    plugin.log.error(info)
+
+    return info['stream']
+
+def startChannel():
+    channelid = __settings__.getSetting('start_channelid')
+    link = getLink(channelid)
+    xbmc.Player().play(link)
+
+def getChannelIdFromEventLink(url = None) :
+    if url == None :
+        return None
+    result = None
+    result = urlfetch.fetch(
+        url,
+        headers={
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36'
+            })
+    if result.status_code != 200 :
+        plugin.log.error('Something wrong when get content of event link !')
+        return None
+    m = re.search(r"var id = '([^']+)';",result.content)
+    if m == None :
+        return None
+    return m.group(1)
+
+@plugin.route('/')
+def index():
+    cns = getAllChannels()
+    return cns
+
+@plugin.route('/plays/<id>')
+def plays(id):
+    link = getLink(id)
+    plugin.log.info("Playing : " + link)
+    plugin.set_resolved_url(link)
+
+if __name__ == '__main__':
+    plugin.run()

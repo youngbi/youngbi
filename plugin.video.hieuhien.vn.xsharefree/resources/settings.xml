@@ -14,18 +14,14 @@
 		<setting id="phimmoiresolution" type="labelenum" label="[COLOR blue]Chọn độ phân giải tối đa trên[/COLOR] [COLOR ghostwhite]phimmoi.net[/COLOR]" values="720|1080" default="1080"/>
 		<setting id="sodonghienthi" type="labelenum" label="[COLOR blue]Số dòng hiển thị cho 1 trang[/COLOR]" values="20|30|50" default="30"/>
 		<setting id="cookie" type="text" label="cookiestring" default="" visible="false"/>
-		
 	</category>
 	<category label="Các tùy chọn riêng">
-		<setting id="copyxml" type="bool" label="[COLOR green]Tự động Copy list phim xml vào [COLOR gold]MyFolder[/COLOR][/COLOR] (y/n)" default="false"/>
 		<setting id="checkdatabase" type="bool" label="[COLOR green]Mở chế độ kiểm tra database cho xshare[/COLOR] (y/n)" default="false"/>
 		<setting id="autoload_sub" type="bool" label="[COLOR green]Tự động load sub trong [COLOR green]SubsFolder[/COLOR][/COLOR] (y/n)" default="true"/>
 		<setting id="autotrans_sub" type="bool" label="[COLOR green]Tự động dịch sau khi download sub tiếng Anh[/COLOR] (y/n)" default="true"/>
 		<setting id="autodel_sub" type="bool" label="[COLOR green]Tự động xóa thư mục SubsFolder[/COLOR] (y/n)" default="true"/>
-		<setting id="hdvnfindall" type="bool" label="[COLOR green]Không giới hạn tìm kiếm trên [COLOR red]hdvietnam.com[/COLOR][/COLOR] (All Uploader) (y/n)" default="true"/>
 		<setting id="history" type="bool" label="[COLOR green]Cho phép hiển thị lịch sử tìm kiếm[/COLOR] (y/n)" default="true"/>
 		<setting id="phim18" type="bool" label="[COLOR red]Kích hoạt xem phim 18+[/COLOR] (y/n)" default="true"/>
-		
 	</category>
 	<category label="HDViet.com">
 		<setting id="hdvietresolution" type="labelenum" label="[COLOR darkorange]Chọn độ phân giải tối đa trên hdviet.com[/COLOR]" values="720|1080" default="1080"/>
