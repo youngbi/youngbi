@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8">
-
 <a server="MMN" category="FRE" mode="10" color="orange" icon="serverphimkhac.png">Kho phim trên các server free</a>
 
 <a server="FRE" category="hdviet.com" mode="22" color="darkorange" icon="hdviet.png">Kho phim trên hdviet.com</a>
@@ -9,6 +8,7 @@
 <a server="FRE" category="hdonline.vn" mode="30" color="turquoise" icon="hdonline.png">Kho phim trên hdonline.vn</a>
 <a server="FRE" category="MGB" mode="17" color="orangered" icon="megabox.png">Kho phim trên megabox.vn</a>
 <a server="MGB" category="megabox.vn" mode="17" color="lime" icon="megabox.png">Search trên megabox.vn</a>
+<a server="FRE" category="phim3s.net" mode="32" color="lightgray" icon="phim3s.png">Kho phim trên phim3s.net</a>
 <a server="FRE" category="kenh88.com" mode="26" color="cyan" icon="kenh88.png">Kho phim trên kenh88.com</a>
 <a server="FRE" category="phimdata.com" mode="27" color="magenta" icon="phimdata.png">Kho phim trên phimdata.com</a>
 <a server="FRE" category="phimsot.com" mode="29" color="orangered" icon="phimsot.png">Kho phim trên phimsốt.com</a>

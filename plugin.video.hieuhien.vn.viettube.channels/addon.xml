@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<addon id="plugin.video.hieuhien.vn.viettube.channels" name="[COLOR violet][B]VietTube Channels[/B][/COLOR]" version="4.0" provider-name="V137">
+		<requires>
+			<import addon="xbmc.python" version="2.1.0"/>
+		</requires>
+		<extension point="xbmc.python.pluginsource" library="addon.py">
+			<provides>video</provides>
+		</extension>
+		<extension point="xbmc.addon.metadata">
+			<platform>all</platform>
+			<summary lang="en">Viet YouTube channels</summary>
+			<language/>
+			<description lang="en">Viet YouTube channels</description>
+		</extension>
+	</addon>

@@ -7,7 +7,7 @@ from math import radians , sqrt , sin , cos , atan2
 from operator import itemgetter 
 import xmltodict
 if 64 - 64: i11iIiiIii
-OO0o = 'plugin.video.hieuhien.vn.viettv24free'
+OO0o = 'plugin.video.viettv24.free'
 Oo0Ooo = xbmcaddon . Addon ( OO0o )
 Oo0Ooooo = Oo0Ooo . getLocalizedString
 O0O0OO0O0O0 = xbmc . translatePath ( Oo0Ooo . getAddonInfo ( 'profile' ) )
@@ -16,8 +16,6 @@ i1I11i = xbmc . translatePath ( os . path . join ( i1I11i , "temp.jpg" ) )
 O0O0OO0O0 = Oo0Ooo . getAddonInfo ( 'path' )
 O0O0OO0O = xbmc . translatePath ( os . path . join ( O0O0OO0O0 , 'resources' , 'thumbs' ) )
 O0o0OO0 = xbmc . translatePath ( os . path . join ( O0O0OO0O0 , 'resources' , 'data' , '12345678901.txt' ) )
-iIiiI11I = xbmc . getCondVisibility ( 'system.platform.windows' )
-IiiiiI11 = xbmc . getCondVisibility ( 'system.platform.android' )
 i1I11iiiI = Oo0Ooo . getSetting ( 'local' )
 i1I11ii = Oo0Ooo . getSetting ( 'online' )
 iiiii = int ( sys . argv [ 1 ] )
@@ -25,8 +23,12 @@ if 64 - 64: iIIi1iI1II111 + ii11i / oOooOoO0Oo0O
 def iI1 ( ) :
  iI111iI ( Oo0Ooooo ( 30001 ) . encode ( 'utf-8' ) , O0O0OO0O0 + Oo0Ooooo ( 30002 ) . encode ( 'utf-8' ) , 'indexgroup' , i1I11i . replace ( "temp.jpg" , "icon.png" ) )
  iI111iI ( Oo0Ooooo ( 30003 ) . encode ( 'utf-8' ) , i1I11iiiI , 'indexgroup' , O0O0OO0O + '/' + Oo0Ooooo ( 30004 ) . encode ( 'utf-8' ) )
- iI111iI ( Oo0Ooooo ( 30005 ) . encode ( 'utf-8' ) , i1I11ii , 'indexgroup' , O0O0OO0O + '/' + Oo0Ooooo ( 30006 ) . encode ( 'utf-8' ) ) 
- iI111iI ( Oo0Ooooo ( 30007 ) . encode ( 'utf-8' ) , 'o0oOo0o' , None , O0O0OO0O + '/' + Oo0Ooooo ( 30008 ) . encode ( 'utf-8' ) )
+ iI111iI ( Oo0Ooooo ( 30005 ) . encode ( 'utf-8' ) , i1I11ii , 'indexgroup' , O0O0OO0O + '/' + Oo0Ooooo ( 30006 ) . encode ( 'utf-8' ) )
+ if i11Ii1 ( ) == 'windows' or i11Ii1 ( ) == 'osx' :  
+  iI111iI ( Oo0Ooooo ( 30007 ) . encode ( 'utf-8' ) , 'o0oOo0o' , None , O0O0OO0O + '/' + Oo0Ooooo ( 30008 ) . encode ( 'utf-8' ) )
+ if i11Ii1 ( ) == 'android' :
+  iI111iI ( Oo0Ooooo ( 30014 ) . encode ( 'utf-8' ) , 'o00Oo0o00' , 'redirect' , O0O0OO0O + '/' + Oo0Ooooo ( 30015 ) . encode ( 'utf-8' ) )
+  iI111iI ( Oo0Ooooo ( 30016 ) . encode ( 'utf-8' ) , 'o00O0o00' , 'red1rect' , O0O0OO0O + '/' + Oo0Ooooo ( 30017 ) . encode ( 'utf-8' ) )  
  Oo = I1ii11iIi11i ( O0o0OO0 )
  if "xml" in Oo :
   o0OOO = Oo
@@ -34,25 +36,21 @@ def iI1 ( ) :
    Iii1ii1II11i = xbmc . translatePath ( os . path . join ( O0O0OO0O0 , 'resources' , 'data' , Iii1ii1II11i ) )
    i1I11i11 = i1I11i . replace ( "temp.jpg" , "icon.png" )   
    if iIiiiI == Oo0Ooooo ( 30009 ) . encode ( 'utf-8' ) :
-    iI111iI ( iIiiiI , Iii1ii1II11i , 'indexgroup' , O0O0OO0O + '/' + Oo0Ooooo ( 30010 ) . encode ( 'utf-8' ) ) 	
+    iI111iI ( iIiiiI , Iii1ii1II11i , 'indexgroup' , O0O0OO0O + '/' + Oo0Ooooo ( 30010 ) . encode ( 'utf-8' ) )
    elif iIiiiI == Oo0Ooooo ( 30011 ) . encode ( 'utf-8' ) :	
     iI111iI ( iIiiiI , Iii1ii1II11i , 'indexgroup' , O0O0OO0O + '/' + Oo0Ooooo ( 30012 ) . encode ( 'utf-8' ) )   
    else :
     try :
-     if Oo0Ooooo ( 30013 ) . encode ( 'utf-8' ) in iIiiiI :	 
+     if Oo0Ooooo ( 30013 ) . encode ( 'utf-8' ) in iIiiiI : 
       Iii1ii1II11i = ( 'http:' + Iii1ii1II11i . split ( ":" ) [ -1 ] ) % i1II11i ( )
     except : pass      
-    if Oo0Ooooo ( 30014 ) . encode ( 'utf-8' ) in iIiiiI :
-     i1I11i11 = O0O0OO0O + '/' + Oo0Ooooo ( 30015 ) . encode ( 'utf-8' )	
-    elif Oo0Ooooo ( 30016 ) . encode ( 'utf-8' ) in iIiiiI :
-     i1I11i11 = O0O0OO0O + '/' + Oo0Ooooo ( 30017 ) . encode ( 'utf-8' )	 
     iI111iI ( iIiiiI , Iii1ii1II11i , 'indexgroup' , i1I11i11 ) 
   IiII = xbmc . getSkinDir ( )
   if IiII == 'skin.xeebo' :
    xbmc . executebuiltin ( 'Container.SetViewMode(50)' )
  else :
   iI1Ii11111iIi = xbmcgui . Dialog ( )
-  iI1Ii11111iIi . ok ( "ID: %s" % O0O , Oo )
+  iI1Ii11111iIi . ok ( "ID : %s" % O0O , Oo )
  if 41 - 41: I1II1 
 def Ooo0OO0oOO ( url ) : 
  if url == None :
@@ -76,7 +74,7 @@ def Ooo0OO0oOO ( url ) :
    if "/thumbnail" in oo00 :
     o00 = re . compile ( '<thumbnail>(.*?)</thumbnail>' ) . findall ( oo00 ) [ 0 ]
     if o00 == 'tvchina.png' :
-	 o00 = O0O0OO0O + '/' + 'tvchina.png'	
+     o00 = O0O0OO0O + '/' + 'tvchina.png'	
    i1 ( Oo0oO0ooo , o0oOoO00o , 'play' , o00 )   
   IiII = xbmc . getSkinDir ( )
   if IiII == 'skin.xeebo' :
@@ -91,9 +89,9 @@ def Ooo0OO0oOO ( url ) :
 def O00o0o0000o0o ( url ) :
  O0Oo = url . split ( "&n=" ) [ 1 ]
  url = url . split ( "&n=" ) [ 0 ]
- if url == i1I11iiiI or url == i1I11ii:
+ if url == i1I11iiiI or url == i1I11ii :
   oooO0oo0oOOOO = I1ii11iIi1 ( url )
- else: 
+ else : 
   oooO0oo0oOOOO = I1ii11iIi11i ( url )  
  oo = re . compile ( '<channel>(.+?)</channel>' ) . findall ( oooO0oo0oOOOO )
  for IiII1I1i1i1ii in oo :
@@ -110,7 +108,7 @@ def O00o0o0000o0o ( url ) :
     if "/thumbnail" in oo00 :
      o00 = re . compile ( '<thumbnail>(.*?)</thumbnail>' ) . findall ( oo00 ) [ 0 ]
      if o00 == 'tvvn.png' :
-	  o00 = O0O0OO0O + '/' + 'tvvn.png'  
+      o00 = O0O0OO0O + '/' + 'tvvn.png'  
     i1 ( Oo0oO0ooo , o0oOoO00o , 'play' , o00 )
  IiII = xbmc . getSkinDir ( )
  if IiII == 'skin.xeebo' :
@@ -173,25 +171,7 @@ def II11iII ( url , title ) :
   iiii11I = xbmc . Player ( )
   OOO0OOO00oo . add ( url , Iii111II )
   iiii11I . play ( OOO0OOO00oo )
-  if 96 - 96: I11iii11IIi % IIII . I11i1I + oOooOoO0Oo0O * oOo00Oo00O - i1iiIII111ii
-def i11i1 ( lat1 , lon1 , lat2 , lon2 ) :
- lat1 = radians ( lat1 )
- lon1 = radians ( lon1 )
- lat2 = radians ( lat2 )
- lon2 = radians ( lon2 )
- if 29 - 29: IiI1I1 % OOo0o0 + Ii / i1iIIi1 + I11i1I * i1iIIi1
- i1I1iI = lon1 - lon2
- if 93 - 93: ii11i % oOo00Oo00O * I1II1
- Ii11Ii1I = 6372.8
- if 72 - 72: o0O0 / I1II1 * OOoOoo00oo - OOoo0O0
- Oo0O0O0ooO0O = sqrt (
- ( cos ( lat2 ) * sin ( i1I1iI ) ) ** 2
- + ( cos ( lat1 ) * sin ( lat2 ) - sin ( lat1 ) * cos ( lat2 ) * cos ( i1I1iI ) ) ** 2
- )
- IIIIii = sin ( lat1 ) * sin ( lat2 ) + cos ( lat1 ) * cos ( lat2 ) * cos ( i1I1iI )
- O0o0 = atan2 ( Oo0O0O0ooO0O , IIIIii )
- return Ii11Ii1I * O0o0
- if 71 - 71: I11i1I + Ii % i11iIiiIii + IiI1I1 - o0 
+  if 96 - 96: I11iii11IIi % IIII . I11i1I + oOooOoO0Oo0O * oOo00Oo00O - i1iiIII111ii 
 def I1ii11iIi1 ( url ) :
  o0oOoO00o = ""
  if os . path . exists ( url ) :
@@ -209,7 +189,7 @@ def I1ii11iIi1 ( url ) :
  o0oOoO00o = re . sub ( '  +' , ' ' , o0oOoO00o )
  o0oOoO00o = o0oOoO00o . replace ( '> <' , '><' )
  return o0oOoO00o  
-def I1ii11iIi11i ( url ) :						
+def I1ii11iIi11i ( url ) :
  o0oOoO00o = ""
  if os . path . exists ( url ) == True :
   o0oOoO00o = open ( url ) . read ( )
@@ -229,6 +209,14 @@ def I1ii11iIi11i ( url ) :
  o0oOoO00o = o0oOoO00o . replace ( '> <' , '><' )
  return o0oOoO00o
  if 93 - 93: iI1OoOooOOOO % oOo00Oo00O . iI1OoOooOOOO * OOoo0O0 % IIII . I11iii11IIi
+def iIi ( ) :
+ xbmc . executebuiltin ( 'StartAndroidActivity ( com.viettv24.iptv )' )
+ sys . exit ( )
+ if 34 - 34: I11iii11IIi - I11i1I - i11iIiiIii % i1iiIII111ii - I11iii11IIi * IIII  
+def i1i ( ) :
+ xbmc . executebuiltin ( 'StartAndroidActivity ( com.vietuu.hlsplayer )' )
+ sys . exit ( )
+ if 35 - 35: I11iii11IIi - I11i1I - i11iIiiIii % i1iiIII111ii - I11iii11IIi * IIII 
 def i1 ( name , url , mode , iconimage ) :
  iI1ii1Ii = sys . argv [ 0 ] + "?url=" + urllib . quote_plus ( url ) + "&mode=" + str ( mode ) + "&name=" + urllib . quote_plus ( name ) + "&iconimage=" + urllib . quote_plus ( iconimage )
  oooo000 = xbmcgui . ListItem ( name , iconImage = "DefaultVideo.png" , thumbnailImage = iconimage )
@@ -236,10 +224,6 @@ def i1 ( name , url , mode , iconimage ) :
  if ( "youtube.com/user/" in url ) or ( "youtube.com/channel/" in url ) :
   iI1ii1Ii = "plugin://plugin.video.youtube/%s/%s/" % ( url . split ( "/" ) [ - 2 ] , url . split ( "/" ) [ - 1 ] )
   return xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = iI1ii1Ii , listitem = oooo000 , isFolder = True ) 
- elif 'o00Oo0o00' in url and IiiiiI11:
-  iI1ii1Ii =  xbmc . executebuiltin ( 'StartAndroidActivity ( com.viettv24.iptv )' ) 
- elif 'o00O0o00' in url and IiiiiI11:
-  iI1ii1Ii =  xbmc . executebuiltin ( 'StartAndroidActivity ( com.vietuu.hlsplayer )' )   
  return xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = iI1ii1Ii , listitem = oooo000 )
  if 16 - 16: IiI1I1 + iI1OoOooOOOO - I11iii11IIi
 def iI111iI ( name , url , mode , iconimage ) :
@@ -247,7 +231,7 @@ def iI111iI ( name , url , mode , iconimage ) :
  oOoOO0 = True
  oooo000 = xbmcgui . ListItem ( name , iconImage = "DefaultFolder.png" , thumbnailImage = iconimage )
  oooo000 . setInfo ( type = "Video" , infoLabels = { "Title" : name } )
- if 'o0oOo0o' in url and iIiiI11I:
+ if 'o0oOo0o' in url :
   iI1ii1Ii = 'plugin://plugin.program.chrome.launcher/?kiosk=no&mode=showSite&stopPlayback=no&url=http%3A%2F%2Fwww.viettv24.com%2Fmain%2F%3Flanguage%3Dvi'
  oOoOO0 = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = iI1ii1Ii , listitem = oooo000 , isFolder = True )
  return oOoOO0
@@ -263,28 +247,19 @@ def oO00O0O0O ( parameters ) :
     i1ii1iiI [ i1iIi1iIi1i [ 0 ] ] = i1iIi1iIi1i [ 1 ]
  return i1ii1iiI
  if 46 - 46: OOoo0O0 % o0o0OOO0o0 + iI1OoOooOOOO . i1iiIII111ii . iI1OoOooOOOO
-if os . path . exists ( O0O0OO0O0O0 ) == False :
- os . mkdir ( O0O0OO0O0O0 )
-oO00o0 = os . path . join ( O0O0OO0O0O0 , 'visitor' )
-if 55 - 55: OOoOoo00oo + ii11i / i1iiIII111ii * oOo00Oo00O - i11iIiiIii - IIII
-if os . path . exists ( oO00o0 ) == False :
- from random import randint
- ii1ii1ii = open ( oO00o0 , "w" )
- ii1ii1ii . write ( str ( randint ( 0 , 0x7fffffff ) ) )
- ii1ii1ii . close ( )
- if 91 - 91: o0
-def iiIii ( utm_url ) :
- ooo0O = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
- import urllib2
- try :
-  oO0OOoO0 = urllib2 . Request ( utm_url , None ,
- { 'User-Agent' : ooo0O }
- )
-  I111Ii111 = urllib2 . urlopen ( oO0OOoO0 ) . read ( )
- except :
-  print ( "GA fail: %s" % utm_url )
- return I111Ii111
- if 75 - 75: i1iIIi1 % i1iIIi1 . OOoo0O0
+def i11Ii1 ( ) :
+ if xbmc.getCondVisibility('system.platform.android'):
+  return 'android'
+ elif xbmc.getCondVisibility('system.platform.linux'):
+  return 'linux'
+ elif xbmc.getCondVisibility('system.platform.windows'):
+  return 'windows'
+ elif xbmc.getCondVisibility('system.platform.osx'):
+  return 'osx'
+ elif xbmc.getCondVisibility('system.platform.atv2'):
+  return 'atv2'
+ elif xbmc.getCondVisibility('system.platform.ios'):
+  return 'ios'
 I1Ii = oO00O0O0O ( sys . argv [ 2 ] )
 O0oo00o0O = I1Ii . get ( 'mode' )
 i1I1I = I1Ii . get ( 'url' )
@@ -302,6 +277,10 @@ if O0oo00o0O == 'index' :
  O00o0o0000o0o ( i1I1I )
 elif O0oo00o0O == 'indexgroup' :
  Ooo0OO0oOO ( i1I1I )
+elif O0oo00o0O == 'redirect' :
+ iIi ( )
+elif O0oo00o0O == 'red1rect' :
+ i1i ( ) 
 elif O0oo00o0O == 'play' :
  if any ( x in i1I1I for x in [ ".jpg" , ".zip" ] ) :
   I11II1i ( i1I1I )
@@ -313,4 +292,4 @@ elif O0oo00o0O == 'play' :
   del IiIIii1iII1II
 else :
  iI1 ( )
-xbmcplugin . endOfDirectory ( int ( o0O ) ) # dd678faae9ac167bc83abf78e5cb2f3f0688d3a3
+xbmcplugin . endOfDirectory ( int ( o0O ) )

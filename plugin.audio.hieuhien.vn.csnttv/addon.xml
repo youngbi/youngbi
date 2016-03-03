@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon
+  id="plugin.audio.hieuhien.vn.chiasenhacttv"
+  version="0.0.2"
+  name="[B][COLOR lime]Chia[/COLOR] [COLOR red]Sẻ [/COLOR][COLOR yellow]Nhạc[/COLOR][COLOR violet] 02[/COLOR][/B]"
+  provider-name="traitravinh">
+  <requires>
+	<import addon="xbmc.python" version="2.1.0" />    
+    <import addon="script.common.plugin.cache" version="2.5.2" />    
+    <import addon="script.module.simple.downloader" version="1.9.4" />
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="chiasenhac.py">
+        <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Chiasenhac</summary>
+    <description>Search and play/download music on chiasenhac.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
