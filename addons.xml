@@ -554,7 +554,7 @@
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.itvplus"
-       version="2.2.1"
+       version="2.2.5"
        name="[COLOR red]ITV*[/COLOR]Plus"
        provider-name="itv member">
   <requires>

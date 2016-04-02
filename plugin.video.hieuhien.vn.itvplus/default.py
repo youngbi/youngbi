@@ -42,6 +42,8 @@ dict = {'&amp;':'&', '&acirc;':'â', '&Aacute;':'Á', '&agrave;':'à', '&aacute;
 
 reg = '|User-Agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0'
 
+mhd = {'User-Agent' : 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3'}
+
 def replace_all(text, dict):
 	try:
 		for a, b in dict.iteritems():
@@ -532,6 +534,16 @@ def Ii1ii11111IIi(url,name,iconimage):
 	    match = re.compile('<a href="(.+?)" .+?"><span>(.+?)</span></a>').findall(content)
 	    for url, epi in match:						
 		    addir('[[COLOR lime]'+str(epi)+'[/COLOR]] '+name,url,img,'',mode=102,isFolder=False)
+    elif 'mphim' in url:
+        match = re.compile('<a id=.+? class="waiting" href="/xem-phim([^"]*)" title=".+?">([^>]+)</a>').findall(content)
+        for href, epi in match:
+		    addir( '[[COLOR gold]Tập ' + str(epi) + '[/COLOR]] ' + name, mphim + '/xem-phim' + href, img, img, 100, isFolder=False)
+    elif 'phimbathu' in url:
+        match = re.findall('<a class=.+?href="(.+?)">(.+?)</a>',content)
+        for href, epi in match:
+		    addir( name.split('[')[0] + ' [[COLOR gold]' + epi + '[/COLOR]]', href, img, img, 100, isFolder=False)
+        if len(match) < 1:
+		    addir( name.split('[')[0], url, img, img, 100, isFolder=False)
     elif 'phim3s' in url:
         match = re.compile('<div class="server"><div class="label"><i></i>' + name + '</div><ul class="episodelist">((?s).+?)</div>').findall(content)
         for slink in match:
@@ -557,6 +569,7 @@ def Ii1ii11111IIi(url,name,iconimage):
             trangtiep = trangtiep.group(1)
             url = re.sub('page=\d{1,3}&','page=%s&'%trangtiep,url)
             addDir('[COLOR red]Trang Tiếp Theo >>>[/COLOR]',url+'?name='+name,10,logos+'NEXT.png','')
+
 	
     III()
     if 98 - 98: i11iII1iiI
@@ -764,9 +777,9 @@ def oOiIi1IIIi1(url):
         elif 'timalbum' in url:  
             url = 'http://www.woim.net/search/album/%s.html' + urllib.quote_plus(searchText)      
             oOiii1IIIi1(url)
-        elif 'timphim1' in url:  
-            url = 'http://phim3s.net/search/%s/' % urllib.quote_plus(searchText)      
-            iI1Ii11111iIi(name,url)	  
+        elif 'timphim01' in url:  
+            url = 'http://mphim.net/tim-kiem/%s/trang-1.html' % (searchText.replace(' ','-').encode("utf-8"))      
+            Ii1Ii11I11(url,page)	  
         elif 'timphim2' in url:  
             url = 'http://phimhd365.com/search.htm?keyword=%s' % searchText      
             oOiii1IiIi1(url)
@@ -793,7 +806,10 @@ def oOiIi1IIIi1(url):
             oOiii1IiIi1(url)
         elif 'timphim10' in url:
             url = 'http://ssphim.com/movie/tags-' + searchText + '/'
-            oOiii1IiIi1(url)	  
+            oOiii1IiIi1(url)
+        elif 'timphim11' in url:
+            url = 'http://phimbathu.com/tim-kiem.html?q=%s' % urllib.quote_plus(searchText.replace(' ','+').encode('utf-8'))
+            Ii1Ii11I11(url,page)			
     except:
         pass
 
@@ -819,7 +835,7 @@ def OOiii1IiIi1(url):
     if (keyb.isConfirmed()):
         searchText=urllib.quote_plus(keyb.getText())
     try:	  
-        url = 'http://phimhd365.com/search.htm?keyword=%s' % searchText
+        url = 'http://phimhd365.com/search.htm?keyword=%s' % urllib.quote_plus(searchText)
         oOiii1IiIi1(url)
         try:	  
             url = pgt+'result.php?type=search&keywords=' + searchText
@@ -831,17 +847,17 @@ def OOiii1IiIi1(url):
                     url = 'http://xuongphim.tv/tim-kiem/%s.html' % urllib.quote_plus(searchText)
                     oOiii1IiIi1(url)
                     try:
-                        url = 'http://phim3s.net/search/%s/' % urllib.quote_plus(searchText)
+                        url = 'http://phim7.com/tim-kiem/tat-ca/' + searchText.replace('+', '-') + '.html'
                         oOiii1IiIi1(url)
                         try:
-                            url = 'http://phim7.com/tim-kiem/tat-ca/' + searchText.replace('+', '-') + '.html'
+                            url = 'http://phim.clip.vn/search?p=1&keyword=' + searchText + '/'
                             oOiii1IiIi1(url)
                             try:
-                                url = 'http://phim.clip.vn/search?p=1&keyword=' + searchText + '/'
+                                url = 'http://ssphim.com/movie/tags-' + searchText + '/'
                                 oOiii1IiIi1(url)
                                 try:
-                                    url = 'http://ssphim.com/movie/tags-' + searchText + '/'
-                                    oOiii1IiIi1(url)
+                                    url = 'http://hdonline.vn/tim-kiem/'+searchText.replace('+', '-')+'.html'
+                                    Ii1ii11111Iii(url, query='', mode='')
                                 except:pass 									
                             except:pass 								
                         except:pass							
@@ -854,56 +870,43 @@ def OOiii1IiIi1(url):
 
 def oOiii1IiIi1(url):	
     content = makeRequest(url)
-
-    match = re.compile('<div class="inner"><a href="(.+?)" title="(.+?)"><img src="(.+?)".+?</a><div class="info">.+?</a>(.+?)</div>').findall(content)
-    for url, title, thumbnail, year in match:
-	    addDir('[COLOR lime]Server 1 [/COLOR]' + title + ' ' + year, phim3s + url + 'xem-phim/', 9, thumbnail, thumbnail)	
-	
-    match=re.compile('<a data-tooltip=".+?" href="(.+?)">.*\s.*data-original="(.+?)"  alt="(.+?)"').findall(content)
+    #s2
+    match = re.compile('<a data-tooltip=".+?" href="(.+?)">.*\s.*data-original="(.+?)"  alt="(.+?)"').findall(content)
     for url, thumbnail, name in match:
 	    name = replace_all(name, dict)
 	    addDir('[COLOR red]Server 2 [/COLOR]'+name,phimhd365+url,10,thumbnail,thumbnail)
-
+    #s3
     match = re.compile('<a style=\'text-decoration:none\' href=\'([^\']*).html\'>\s*<img style=.+?src=(.+?) ><table style.+?:0px\'>(.+?)\s*<\/font><br \/><font style.+?#F63\'>(.+?)</font>').findall(content)
     for url,thumbnail,name,oname in match:
         addLink('[COLOR blue]Server 3 [/COLOR]'+name+' - '+oname,pgt+url+'/Tap-1.html',100,pgt+thumbnail)
     match = re.compile('<a style=\'text-decoration:none\' href=\'([^\']*).html\'>\s*<img style=.+?src=(.+?) ><table style.+?:0px\'>(.+?)</b>').findall(content)
     for url,thumbnail,name in match:
-        addLink('[COLOR blue]Server 3 [/COLOR]'+name,pgt+url+'/Tap-1.html',100,pgt+thumbnail)	  
-
+        addLink('[COLOR blue]Server 3 [/COLOR]'+name,pgt+url+'/Tap-1.html',100,pgt+thumbnail)
     match = re.compile("<a style='text-decoration:none' href='(.+?).html'>\s*<img style='.+?' src=(.+?) ><div class='text'>\s*<p>(.+?)</p>\s*</div><table style='.+?'><tr><td style='.+?'><b><font style='.+?:0px'>(.+?)\s*</font><br /><font style='.+?:#F63'> (.+?)</font>").findall(content)  
     for url,thumbnail,epi,name,oname in match:
         addDir('[COLOR blue]Server 3 [/COLOR]'+name+' - '+oname+' '+'[COLOR green]'+epi+'[/COLOR]',pgt+url+'/Tap-1.html',10,pgt+thumbnail,pgt+thumbnail)
     match = re.compile("<a style='text-decoration:none' href='(.+?).html'>\s*<img style='.+?' src=(.+?) ><div class='text'>\s*<p>(.+?)</p>\s*</div><table style='.+?'><tr><td style='.+?'><b><font style='.+?:0px'>(.+?)</b>").findall(content)  
     for url,thumbnail,epi,name in match:	
         addDir('[COLOR blue]Server 3 [/COLOR]'+name+'[COLOR green]'+epi+'[/COLOR]',pgt+url+'/Tap-1.html',10,pgt+thumbnail,pgt+thumbnail)
-	  
-    match=re.compile('<a class="tooltips" href=".+?" style=".+?url\(\'(.+?)\'\)" data-content-tooltips=".+?"></a>\s*</div>\s*<h3>\s*<a href="(.+?)" title=".+?">(.+?)<').findall(content)
+    #s4	  
+    match = re.compile('<a class="tooltips" href=".+?" style=".+?url\(\'(.+?)\'\)" data-content-tooltips=".+?"></a>\s*</div>\s*<h3>\s*<a href="(.+?)" title=".+?">(.+?)<').findall(content)
     for thumbnail,url,name in match:
-	    addDir('[COLOR lime]Server 4 [/COLOR]'+name,hplus+url,10,thumbnail+'?.png',thumbnail)
-	  
-    #match=re.compile('<a class="movie-item m-block" href="(.+?)" title="(.+?)"><div class="block-wrapper"><div class=".+?"><div class=".+?"><span class=".+?"><span class=".+?">(.+?)</span></span><img src="(.+?)"').findall(content)
-    #for url, title, res, thumbnail in match:
-	    #addDir('[COLOR orange]Server 6 [/COLOR]'+title.replace("&#39","'")+' [COLOR green]< '+res+' >[/COLOR]',url,10, thumbnail, thumbnail)	  
-
-    match=re.compile('<a href="(.+?)" .+? src="(.+?)" .+? alt="(.+?)"></span>').findall(content)
+	    addDir('[COLOR red]Server 4 [/COLOR]'+name,hplus+url,10,thumbnail+'?.png',thumbnail)	  
+    #s6
+    match = re.compile('<a href="(.+?)" .+? src="(.+?)" .+? alt="(.+?)"></span>').findall(content)
     for url, thumbnail, name in match:
 	    name = replace_all(name, dict)		
-	    addDir('[COLOR orange]Server 6 [/COLOR]' + name, xuongphim +url, 10, thumbnail, thumbnail)
-		
-    match = re.compile('href="(.+?)" >\s*<img src="(.+?)"\s*alt="(.+?)"').findall(content)
-    for url, thumbnail, name in match:
-        addDir('[COLOR firebrick]Server 7 [/COLOR]'+name, url, 10, thumbnail, thumbnail)	  
-
+	    addDir('[COLOR lime]Server 6 [/COLOR]' + name, xuongphim +url, 10, thumbnail, thumbnail)
+    #s8
     match = re.compile('href="(.+?)" title="(.+?)"><span class="poster">\s*<img src=".+?" alt="" />\s*<img class=".+?" src=".+?" data-original="(.+?)"').findall(content)
     for url, name, thumbnail in match:
-        addDir('[COLOR gold]Server 8 [/COLOR]' + name, phim7 + url.replace('/phim/', '/xem-phim/'), 9, thumbnail, thumbnail)	  
-	  
-    match=re.compile('<a href="(.+?)" class="item">\s*.+?\s*<div class=".+?" data-title="(.+?)" data-title-o=".+?" .+? data-year="(.+?)" .+?">\s*.+?\s* src="(.+?)"').findall(content)[:1]
+        addDir('[COLOR blue]Server 8 [/COLOR]' + name, phim7 + url.replace('/phim/', '/xem-phim/'), 9, replace_all(thumbnail, dict), thumbnail)	  
+    #s9
+    match = re.compile('<a href="(.+?)" class="item">\s*.+?\s*<div class=".+?" data-title="(.+?)" data-title-o=".+?" .+? data-year="(.+?)" .+?">\s*.+?\s* src="(.+?)"').findall(content)[:1]
     for url, title, year, thumbnail in match:
-	    addDir('[COLOR green]Server 9 [/COLOR]' + title + ' - ' + year, url, 10, thumbnail, thumbnail)
-
-    match=re.compile('<a href="(.+?)" title=".+?">\s*<div class=".+?">\s*<h4>.+?</h4>\s*.+?\s*.+?\s*</div>\s*<img class="img-thumbnail" src="(.+?)" alt="(.+?)">\s*</a>').findall(content)
+	    addDir('[COLOR orange]Server 9 [/COLOR]' + title + ' - ' + year, url, 10, thumbnail, thumbnail)
+    #s10
+    match = re.compile('<a href="(.+?)" title=".+?">\s*<div class=".+?">\s*<h4>.+?</h4>\s*.+?\s*.+?\s*</div>\s*<img class="img-thumbnail" src="(.+?)" alt="(.+?)">\s*</a>').findall(content)
     for url, thumbnail, name in match:
 	    thumbnail = thumbnail.replace(' ','%20')
 	    addDir('[COLOR deeppink]Server 10 [/COLOR]' + name, url, 10, thumbnail, thumbnail)
@@ -976,7 +979,120 @@ def Ii1ii11111Iii(url, query='', mode=''):
 					    addDir('[COLOR red]Trang Tiếp Theo >>>[/COLOR]',vurl,42,logos+'NEXT.png','')
 	III()
 
-	
+################################	
+
+def Ii11i1II():
+    addDir( '[COLOR red]Tìm Kiếm[/COLOR]', 'timphim01', 50, logos + 'timkiem.png',fanart)
+    content = visitor.make_Request(mphim)
+    match = re.compile('<li ><h2><a href="([^"]*).html">([^>]+)</a></h2>').findall(content)  
+    for url, title in match:
+        addir( title, mphim + url + '/trang-' + str(page) +'.html', logos + 'TheLoai.png', fanart, 32, page=1, query='', isFolder=True)
+    match = re.compile('<li ><h2><a href="([^"]*)">([^>]+)</a></h2>').findall(content)  
+    for url, title in match:
+        if '#' in url:
+            addir( title, mphim, logos + 'TheLoai.png', fanart, 31, page='', query='', isFolder=True)
+    III()
+			
+def Ii1Ii11i11(url,name,page=1):
+    if 'mphim' in url:
+        if 'Thể loại' in name:
+            content = visitor.make_Request(url)
+            match = re.compile('<a href="/the-loai/([^"]*).html" title=".+?">([^>]+)</a>').findall(content)
+            for url, name in match:
+                addir( name, ('%s/the-loai/%s' % (mphim, url)) + '/trang-' + str(page) +'.html', logos + 'TheLoai.png', fanart, 32, page=1, query='', isFolder=True)
+        elif 'Quốc gia' in name:
+            content = visitor.make_Request(url)
+            match = re.compile('<a href="/quoc-gia/([^"]*).html" title=".+?">([^>]+)</a>').findall(content)  
+            for url, name in match:
+                addir( name, ('%s/quoc-gia/%s' % (mphim, url)) + '/trang-' + str(page) +'.html', logos + 'QuocGia.png', fanart, 32, page=1, query='', isFolder=True) 
+        elif 'Năm Phát Hành' in name:
+            content = visitor.make_Request(url)
+            match = re.compile('<li style="width:100px"><a href="/nam-phat-hanh/([^"]*).html">([^>]+)</a></li>').findall(content)  
+            for url, name in match:
+                addir( name, ('%s/nam-phat-hanh/%s' % (mphim, url)) + '/trang-' + str(page) +'.html', logos + 'NamSX.png', fanart, 32, page=1, query='', isFolder=True)
+    if 'phimbathu' in url:
+        if 'Thể Loại' in name:
+            content = makeRequest(url)
+            match = re.compile('<a title=".+?" href="/the-loai(.+?)">(.+?)</a>').findall(content)[1:]
+            for url, title in match:
+	            addir( title, ('%sthe-loai%s' % (phimbathu, url)), iconimage, fanart, 32, page=1, query='', isFolder=True)
+        elif 'Quốc Gia' in name:
+            content = makeRequest(url)
+            match = re.compile('<a title=".+?" href="/quoc-gia(.+?)">(.+?)</a>').findall(content)[1:]
+            for url, title in match:
+	            addir( title, ('%squoc-gia%s' % (phimbathu, url)), iconimage, fanart, 32, page=1, query='', isFolder=True)				
+        elif 'Phim Lẻ' in name:
+            content = makeRequest(url)
+            match = re.compile('<a title=".+?" href="/danh-sach/phim-le(.+?)">(.+?)</a>').findall(content)[1:]
+            for url, title in match:
+	            addir( title, ('%sdanh-sach/phim-le%s' % (phimbathu, url)), iconimage, fanart, 32, page=1, query='', isFolder=True)
+        elif 'Phim Bộ' in name:
+            content = makeRequest(url)
+            match = re.compile('<a title=".+?" href="/danh-sach/phim-bo(.+?)">(.+?)</a>').findall(content)[1:]
+            for url, title in match:
+	            addir( title, ('%sdanh-sach/phim-bo%s' % (phimbathu, url)), iconimage, fanart, 32, page=1, query='', isFolder=True)
+        elif 'Phim Chiếu Rạp' in name:
+            content = makeRequest(url)
+            match = re.compile('<a title=".+?" href="/danh-sach/phim-chieu-rap(.+?)">(.+?)</a>').findall(content)[1:]
+            for url, title in match:
+	            addir( title, ('%sdanh-sach/phim-chieu-rap%s' % (phimbathu, url)), iconimage, fanart, 32, page=1, query='', isFolder=True)
+        elif 'Phim Mới' in name:
+            content = makeRequest(url)
+            match = re.compile('<a title=".+?" href="/danh-sach/phim-moi(.+?)">(.+?)</a>').findall(content)[1:]
+            for url, title in match:
+	            addir( title, ('%sdanh-sach/phim-moi%s' % (phimbathu, url)), iconimage, fanart, 32, page=1, query='', isFolder=True)
+        elif 'Phim Thuyết Minh' in name:
+            content = makeRequest(url)
+            match = re.compile('<a title=".+?" href="/danh-sach/phim-thuyet-minh(.+?)">(.+?)</a>').findall(content)[1:]
+            for url, title in match:
+	            addir( title,('%sdanh-sach/phim-thuyet-minh%s' % (phimbathu, url)), iconimage, fanart, 32, page=1, query='', isFolder=True)	
+    III()
+			
+def Ii1Ii11I11(url,page=1):
+    if 'mphim' in url:
+        content = visitor.make_Request(url)
+        soup = BeautifulSoup(str(content), convertEntities=BeautifulSoup.HTML_ENTITIES)
+        items = soup.findAll('a',{'class' : 'ntips'})
+        for item in items:
+            title = item.find('span',{'class':'title'}).string
+            href = item.get('href')
+            thumb = item.find('img',{'class':'lazy'}).get('data-original')
+            thumb = thumb.replace('4.bp.blogspot.com','lh3.googleusercontent.com').replace('3.bp.blogspot.com','lh3.googleusercontent.com').replace('2.bp.blogspot.com','lh3.googleusercontent.com').replace('1.bp.blogspot.com','lh3.googleusercontent.com')		
+            addir( title.encode('utf-8'), mphim + href.replace('phim','xem-phim'), thumb, thumb, 10, page='', query='', isFolder=True)   
+        if len(items) == 25:		
+            trangtiep = page+1
+            next_page = url.split('trang')[0] + 'trang-' + str(trangtiep)+'.html'
+            addir( '[COLOR red]Next >>>[COLOR green] ' + 'trang ' + str(trangtiep) + '[/COLOR]', next_page, logos + 'NEXT.png', icon, 32, page = trangtiep, query='', isFolder=True)
+    if 'phimbathu' in url:
+        content = makeRequest(url)
+        soup = BeautifulSoup(str(content), convertEntities=BeautifulSoup.HTML_ENTITIES)
+
+        items = soup.findAll('li',{'class' : 'item '})
+        for item in items:
+            title = item.find('a').get('title')
+            info = ' [COLOR blue][ ' + item.find('span',{'class' : 'label'}).text + ' ][/COLOR]'
+            xinfo = info.replace('Trailer','[COLOR gold]Trailer[/COLOR]')
+            href = item.find('a').get('href')
+            xhref = href.split('/')[-1].replace('.html','')
+            thumb = item.find('img').get('data-original')
+            addir( title.encode('utf-8') + xinfo.encode('utf-8'), 'plugin://plugin.video.4vn.phimbathu/eps/' + xhref.split('-')[-1], thumb, thumb, 10, page='', query='', isFolder=True)
+        items = soup.findAll('li',{'class' : 'item no-margin-left'})
+        for item in items:
+            title = item.find('a').get('title')
+            info = ' [COLOR blue][ ' + item.find('span',{'class' : 'label'}).text + ' ][/COLOR]'
+            xinfo = info.replace('Trailer','[COLOR gold]Trailer[/COLOR]')		
+            href = item.find('a').get('href')
+            xhref = href.split('/')[-1].replace('.html','')
+            thumb = item.find('img').get('data-original')
+            addir( title.encode('utf-8') + xinfo.encode('utf-8'), 'plugin://plugin.video.4vn.phimbathu/eps/' + xhref.split('-')[-1], thumb, thumb, 10, page='', query='', isFolder=True)
+        if page:
+            page = page+1
+            next_page = url.split('?')[0] + '?page=' + str(page)
+            addir( '[COLOR red]Next >>>[COLOR green] ' + 'trang ' + str(page) + '[/COLOR]', next_page, logos + 'NEXT.png', icon, 32, page = page, query='', isFolder=True)
+    III()
+		
+################################
+		
 def iii1II11ii(string):
 	string = string.replace('+','-').replace(' ','-')	
 	string = string.replace('?','').replace('!','').replace('.','').replace(':','').replace('"','')
@@ -1061,6 +1177,29 @@ def I11111iII11i(url):
 	elif 'phim3s' in url:
 		content = makeRequest(url)
 		mediaUrl = re.compile("videoUrl = '(.+?)mp4';").findall(content)[0] + 'mp4'
+	elif 'mphim' in url:
+		content = makeRequest(url)
+		try:
+		    try:
+		        mediaUrl = re.compile('{file: "(.+?)", label:".+?", type: "video/mp4"}').findall(content)[-1]
+		    except:
+		        videoUrl = re.compile('file : "(.+?)",').findall(content)[0]
+		        mediaUrl = 'plugin://plugin.video.youtube/play/?video_id=' + videoUrl.split('?v=')[-1].split('&amp;')[0]
+		except:
+		    notification(u'[COLOR red]Link phim hỏng, đang chờ cập nhật[/COLOR]'); return
+	elif 'phimbathu' in url:
+		content = visitor.make_Request(url,mhd)
+		try:
+		    try:
+		        videoUrl = re.compile('<source src="https://redirector.googlevideo.com/videoplayback(.+?)" type="video/mp4" data-res=".+?"').findall(content)
+		        mediaUrl = 'https://redirector.googlevideo.com/videoplayback' + videoUrl[0]
+		    except:
+		        videoUrl = re.compile('<source src="(.+?)" type="video/mp4" data-res=".+?"').findall(content)
+		        mediaUrl = videoUrl[-1]
+		except:
+		    videoUrl = re.compile('(youtu\.be\/|youtube-nocookie\.com\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|user)\/))([^\?&"\'>]+)').findall(content)
+		    vid = videoUrl [ 0 ] [ len ( videoUrl [ 0 ] ) - 1 ] . replace ( 'v/' , '' )
+		    mediaUrl = 'plugin://plugin.video.youtube/?action=play_video&videoid=%s' % vid
 	elif 'profile1' in url:		  
 		mediaUrl = url.replace('encry','channel')		
 	elif 'phimhd365' in url:
@@ -1071,14 +1210,7 @@ def I11111iII11i(url):
 		    content = makeRequest(url)
 		    mediaUrl = re.compile('var link_stream = iosUrl = "(.+?)";').findall(content)[0]		
 	    except:
-		    alert(u'Nội dung này chưa được Addon hỗ trợ!'); return 
-	elif 'phimhayhd' in url:
-		content = makeRequest(url)
-		try:
-		    mediaUrl = re.compile('file":"(.+?)","title":.+?').findall(content)[-1].replace('\\','')		  
-		except:
-		    videoUrl = re.compile('"url":"(.+?)","status":"ok"').findall(content)[0].replace('\\','')
-		    mediaUrl = videoUrl.replace('http://www.youtube.com/watch?v=', 'plugin://plugin.video.youtube/play/?video_id=').replace('https://www.youtube.com/watch?v=', 'plugin://plugin.video.youtube/play/?video_id=')
+		    alert(u'Nội dung này chưa được Addon hỗ trợ!'); return
 	elif 'phimgiaitri' in url:
 		try:	
 		    xbmc.log(url)	
@@ -1153,7 +1285,7 @@ def I11111iIi11i(url):
 		OOoO = OOoO0O0OoO(content)
 	elif 'xuongphim' in url:
 		content = makeRequest(url)
-		videoUrl = re.compile('file: "(.+?)",.+?type:').findall(content)
+		videoUrl = re.compile('{file: "(.+?)",.+?}').findall(content)
 		if '.mp4' in videoUrl:
 		    mediaUrl = videoUrl[-1]
 		else:
@@ -1308,9 +1440,14 @@ def addir(name,link,img='',fanart='',mode=0,page=0,query='',isFolder=False):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(link)+"&img="+urllib.quote_plus(img)+"&fanart="+urllib.quote_plus(fanart)+"&mode="+str(mode)+"&page="+str(page)+"&query="+query+"&name="+name
 	if not isFolder:
 	    item.setProperty('IsPlayable', 'true')
+	if 'plugin' in link:
+	    u = link
+	    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=isFolder)
+	    return ok
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=isFolder)
 	return ok	
 
+phimbathu = 'http://phimbathu.com/'
 mphim = 'http://mphim.net'	
 phimhd365 = 'http://phimhd365.com'
 pgt = 'http://phimgiaitri.vn/'
@@ -1412,11 +1549,11 @@ elif mode==17:I1II11iiI11i(name,url)
 
 elif mode==20:I1ii1(url)
 
-#elif mode==30:Ii11i1II()
+elif mode==30:Ii11i1II()
 
-#elif mode==31:Ii1Ii11i11()
+elif mode==31:Ii1Ii11i11(url,name,page)
 
-#elif mode==32:Ii1Ii11I11()
+elif mode==32:Ii1Ii11I11(url,page)
 
 elif mode==40:Ii11i1Ii(url)
 
