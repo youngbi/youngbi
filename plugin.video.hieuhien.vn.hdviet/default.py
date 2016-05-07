@@ -135,14 +135,16 @@ def main_menu():
 	addDir('Phim hot trong tháng', {'mode':'movies_from_url', 'url':'http://movies.hdviet.com/phim-hot-trong-thang/trang-1.html', 'page':'1'}, '', '')
 	addDir('Phim Lẻ', {'mode':'sub_menu', 'type': '0'}, '', '')
 	addDir('Phim Bộ', {'mode':'sub_menu', 'type': '1'}, '', '')
-	addDir('Đăng xuất tài khoản', {'mode':'logout'}, '', '')
+	#addDir('Đăng xuất tài khoản', {'mode':'logout'}, '', '')
+	addDir('Cài Đặt Tùy Chọn', {'mode':'settings'}, '', '')
 def main_menu_api():
 	addDir('Tìm Kiếm', {'mode':'search'}, '', '')
 	addDir('Phim hot trong tháng', {'mode':'movies_from_api', 'cat':'hot-trong-thang', 'genre':'0','page':'1'}, '', '')
 	addDir('Phim Lẻ', {'mode':'sub_menu_api', 'type': '1'}, '', '')
 	addDir('Phim Bộ', {'mode':'sub_menu_api', 'type': '2'}, '', '')
-	addDir('Đăng xuất tài khoản', {'mode':'logout'}, '', '')
-
+	#addDir('Đăng xuất tài khoản', {'mode':'logout'}, '', '')	
+	addDir('Cài Đặt Tùy Chọn', {'mode':'settings'}, '', '')
+	
 def sub_menu(movie_type):
 	soup = BeautifulSoup(make_request('http://movies.hdviet.com/'))
 	
@@ -352,7 +354,7 @@ def play(movie_id, ep = 0):
 			elif use_dolby_audio:
 				if movie['Audio'] > 0:audio_index = 2
 				else:audio_index = 1
-		
+				
 		# get link and resolution
 		got = False
 		if try_fullhd and not vip:
@@ -405,7 +407,7 @@ def play(movie_id, ep = 0):
 			if lines[i + 1].startswith('http'):
 				playable_item['url'] = lines[i + 1]
 			else:
-				playable_item['url'] = lp.replace('playlist.m3u8', lines[i + 1])
+				playable_item['url'] = lp.replace('playlist.m3u8', 'playlist_h.m3u8')
 
 			playable_items.append(playable_item)
 			i += 2
@@ -513,5 +515,7 @@ elif mode[0] == 'search':
 	search()
 elif mode[0] == 'logout':
 	logout()
+elif mode[0] == 'settings':
+	my_addon.openSettings()
 	
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
