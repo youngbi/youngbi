@@ -1,1 +1,8 @@
-﻿Version_2.3.0
+﻿Version_2.4.2 <02/07/2016>
+- Fix Other channel
+
+Version_2.4.1 <01/07/2016>
+- New menu
+
+Version_2.4.0 <28/06/2016>
+- Fix VTVCAB
