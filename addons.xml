@@ -973,6 +973,21 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.hieuhien.vn.sbtntv"
+       name="SBTN TV"
+       version="1.0.3"
+       provider-name="bacha">
+  <requires>
+  </requires>
+  <extension point="xbmc.python.module" library="sbtn.py" />
+
+  <extension point="xbmc.addon.metadata">
+    <summary>SBTN TV</summary>
+    <description>Watch SBTN TV</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.hieuhien.vn.snagfilms"
        name="[COLOR yellow][B]Snagfilms[/B][/COLOR]"
        version="1.0.10"
