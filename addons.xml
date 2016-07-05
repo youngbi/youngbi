@@ -554,8 +554,8 @@
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.itvplus"
-       version="2.3.1"
-       name="[COLOR red]ITV*[/COLOR]Plus"
+       version="2.3.2"
+       name="[COLOR red]ITV [/COLOR]Plus"
        provider-name="itv member">
     <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
