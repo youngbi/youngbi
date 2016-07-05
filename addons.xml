@@ -553,8 +553,8 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.itvplus233"
-       version="2.3.3"
+<addon id="plugin.video.hieuhien.vn.itvplus234"
+       version="2.3.4"
        name="[COLOR red]ITV [/COLOR]Plus"
        provider-name="itv member">
     <requires>
@@ -969,21 +969,6 @@
   <extension point="xbmc.addon.metadata">
     <summary>Watch Movies</summary>
     <description>Watch Movies on phimvang.com</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.hieuhien.vn.sbtntv"
-       name="SBTN TV"
-       version="1.0.3"
-       provider-name="bacha">
-  <requires>
-  </requires>
-  <extension point="xbmc.python.module" library="sbtn.py" />
-
-  <extension point="xbmc.addon.metadata">
-    <summary>SBTN TV</summary>
-    <description>Watch SBTN TV</description>
     <platform>all</platform>
   </extension>
 </addon>

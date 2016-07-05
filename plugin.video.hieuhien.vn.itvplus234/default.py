@@ -21,7 +21,7 @@ import urllib,urllib2,re,os,sys,json,base64
 import xbmcplugin,xbmcgui,xbmcaddon,xbmc
 import autorun
 
-addon = xbmcaddon.Addon(id='plugin.video.hieuhien.vn.itvplus233')
+addon = xbmcaddon.Addon(id='plugin.video.hieuhien.vn.itvplus234')
 profile = addon.getAddonInfo('profile')
 home = addon.getAddonInfo('path')
 icon = xbmc.translatePath( os.path.join( home, 'icon.png' ))
