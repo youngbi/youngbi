@@ -1,4 +1,7 @@
-﻿Version_2.4.2 <02/07/2016>
+﻿Version_2.4.3 <05/07/2016>
+- New menu; Fix resolution of video movies
+
+Version_2.4.2 <02/07/2016>
 - Fix Other channel
 
 Version_2.4.1 <01/07/2016>

@@ -66,7 +66,7 @@ def notify():
     wdlg.addControl(img)
     wdlg.doModal()
 
-def noti_fy(url):
+def slideshow(url):
     wdlg = xbmcgui.WindowDialog()
     img = xbmcgui.ControlImage( 0, 0, 1280, 720, url )
     wdlg.addControl(img)
@@ -95,13 +95,13 @@ def OOo000():
     for iII111ii, iiIi, thumbnail, banner in match:
 	    if 'http' in thumbnail: thumb = thumbnail
 	    else: thumb = logos + thumbnail
-	    addDir( iII111ii, IIiIiII11i, iiIi, thumb, banner)
+	    addDir( iII111ii, d ( 'imai' , IIiIiII11i ), iiIi, thumb, banner)
     III()
     if 9 - 9: i111IiI + iIIIiI11 . iII111ii
 		
 def Ii11I1Ii(name,url):
     name = name
-    content = makeRequest( d ( 'imai' , url ) )
+    content = makeRequest( url )
     match = re.findall('<channel>\s*<name>' + name + '</name>((?s).+?)</channel>',I1IiiI(content))
     for O00o in match:
         item = re.compile('<title>(.*?)</title>\s*<link>(.*?)</link>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(O00o)
@@ -115,43 +115,46 @@ def Ii11I(name):
         content = makeRequest( d ( 'imov', IIiIiiI11i ) )
         match = re.findall('<server>\s*<name>(.+?)</name>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>',I1IiiI(content))
         for iIIIiI11,iiIi,thumbnail in match:
-	        addDir(iIIIiI11,IIiIiiI11i,iiIi,thumbnail,'')
+	        addDir( iIIIiI11, d ( 'imov', IIiIiiI11i ), iiIi, thumbnail, '')
     elif 'MY TUBE' in name:
         content = makeRequest( d ( 'itub', IIiIIiI11i ) )
-        match = re.compile('<channel>\s*<name>(.+?)</name>\s*<thumbnail>(.*?)</thumbnail>').findall(content)
-        for iII111ii,thumbnail in match:
-	        addDir(iII111ii,IIiIIiI11i,16,thumbnail,'')
+        match = re.compile('<channel>\s*<name>(.+?)</name>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(content)
+        for iII111ii,iiIi,thumbnail in match:
+	        addDir( iII111ii, d ( 'itub', IIiIIiI11i ), iiIi, thumbnail, '')
+    elif 'GIÁO DỤC' in name:
+        content = makeRequest( d ( 'iedu', '0dnY5aOUk-3L0sej0tna5dXa16PXytikvrO0tqywk7W2ytLqsJPc4tU=' ) )
+        match = re.compile('<channel>\s*<name>(.+?)</name>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(content)
+        for iII111ii,iiIi,thumbnail in match:
+	        addDir( iII111ii, d ( 'iedu', '0dnY5aOUk-3L0sej0tna5dXa16PXytikvrO0tqywk7W2ytLqsJPc4tU=' ), iiIi, thumbnail,'')
+    elif 'VUI TẾT' in name:
+        content = makeRequest( d ( 'ixua', IiIIIiI11i ) )
+        match = re.compile('<channel>\s*<name>(.+?)</name>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(content)
+        for iII111ii,iiIi,thumbnail in match:
+	        addDir( iII111ii, d ( 'ixua', IiIIIiI11i ), iiIi, thumbnail,'')
     elif 'GÓC CỦA BÉ' in name:
         content = makeRequest( d ( 'ichi', IiIiIiI11i ) )
         match = re.compile('<title>(.*?)</title>\s*<link>(.*?)</link>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(content)
         for title,url,iiIi,thumbnail in match:
-	        addDir(title,url,iiIi,thumbnail,'')
-    elif 'VUI TẾT' in name:
-        content = makeRequest( d ( 'ixua', IiIIIiI11i ) )
-        match = re.compile('<channel>\s*<name>(.+?)</name>\s*<thumbnail>(.*?)</thumbnail>').findall(content)
-        for iII111ii,thumbnail in match:
-	        addDir(iII111ii,IiIIIiI11i,17,thumbnail,'')
+	        addDir( title, url, iiIi, thumbnail, '')
     elif 'HOT' in name:
         content = makeRequest( d ( 'ihot', IiIiIII11i ) )
-        match = re.compile('<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumbnail>\s*<fanart>(.*?)</fanart>\s*<direct>(.*?)</direct>').findall(content)
-        for title, url, thumbnail, banner, direct in match:
-	        if direct == '301' or direct == '302':
-	            if direct == '301': isFolder=False 
-	            if direct == '302': isFolder=True
-	            addir( title, url, thumbnail, banner, mode=100, page='', query='', isFolder=isFolder)
-	        if direct == '103':
-	            addDir(title,url,direct,thumbnail,banner)
+        match = re.compile('<title>(.*?)</title>\s*<link>(.*?)</link>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(content)
+        for title,url,iiIi,thumbnail in match:
+	        if (iiIi == '100'): isFolder=False
+	        if (iiIi == '302') or (iiIi == '103'): isFolder=True
+	        addir( title, url, thumbnail, '', mode=iiIi, page='', query='', isFolder=isFolder)
+
     III()	
     if 16 - 16: iIIIiI11 % OooO0o0Oo . O00 % iII111ii
 	
 def iii1Ii11ii(name,url):
     name = name
-    content = makeRequest( d ( 'imov' , url ) )
+    content = makeRequest( url )
     match = re.findall('<server>\s*<name>' + name + '</name>((?s).+?)</server>',I1IiiI(content))	
     for O00o in match:
             item = re.compile('<title>(.*?)</title>\s*<link>(.*?)</link>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(O00o)
             for title, url, iiIi, thumbnail in item:		
-                addDir(title,url,iiIi,logos+thumbnail,fanart+replace_all(name, accent)+'.jpg')				
+                addDir(title,url,iiIi,logos+thumbnail,'')				
     III()
     if 10 - 10: I111IiIi + oO0o0ooO0
 	
@@ -197,25 +200,18 @@ def I1Ii11iII11i(url):
 
 def I1II11iII11i(name,url):
     name = name	
-    OoI1Ii11I1Ii1i = makeRequest( d ( 'itub', url ) )
-    match = re.compile('<channel>\s*<name>' + name + '</name>((?s).+?)</channel>').findall(OoI1Ii11I1Ii1i)
-    for O00o in match:	
-        item = re.compile('<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumbnail>').findall(O00o)
-        for title,url,thumbnail in item:
-	        addDir( title, url, '', thumbnail, '')			
-    III()
-    if 100 - 100: i11iIiiIii / iI1Ii11111iIi % I111IiIi - oO0o0ooO0 / iiIIIII1i1iI
-
-def I1II11iiI11i(name,url):
-    name = name	
-    OoI1Ii11I1Ii1i = makeRequest( d ( 'ixua', url ) )
+    OoI1Ii11I1Ii1i = makeRequest( url )
     match = re.compile('<channel>\s*<name>' + name + '</name>((?s).+?)</channel>').findall(OoI1Ii11I1Ii1i)
     for O00o in match:	
         item = re.compile('<title>(.*?)</title>\s*<link>(.*?)</link>\s*<mode>(.*?)</mode>\s*<thumbnail>(.*?)</thumbnail>').findall(O00o)
-        for title,url,iiIi,thumbnail in item:
-	        addLink( title, url, iiIi, thumbnail)
-    III()	
+        for title,link,iiIi,thumbnail in item:
+	        if iiIi == '100' : isFolder=False 
+	        if iiIi == '#': link = 'plugin://plugin.video.youtube/%s/%s/' % (link.split( '/' )[-2], link.split( '/' )[-1]); isFolder=True
+	        addir( title, link, thumbnail, '', mode=iiIi, page='', query='', isFolder=isFolder)
+    III()
     if 16 - 16: i11iIiiIii / iI1Ii11111iIi % I111IiIi - oO0o0ooO0 / iiIIIII1i1iI
+
+
 	
 def iI1Ii11111iIi(name,url):
     if 'woim' in url:
@@ -1231,7 +1227,7 @@ def Ii1Ii11I11(url,page=1):
 #RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR#
 
 def I1ii1(url):
-    alert(u'Nội dung đang được chúng tôi phát triển!'); return	
+    alert(u'Nội dung đang được chúng tôi phát triển!'); sys.exit()	
 	
 def I1Ii1():
 	if len(OO0OO0O0O0) < 1:
@@ -1387,9 +1383,9 @@ def I11111iII11i(url):
 		content = makeRequest(url)
 		try:
 		    try:
-		        mediaUrl = 'https://redirector' + re.compile('file: "https://redirector(.+?)", label:".+?", type: "video/mp4"').findall(content)[-1]
+		        mediaUrl = re.compile('file: "(https://lh3.googleusercontent.com.+?)", label:".+?", type: "video/mp4"').findall(content)[-1]
 		    except:
-		        mediaUrl = re.compile('file: "(.+?)", label:".+?", type: "video/mp4"').findall(content)[-1]
+		        mediaUrl = re.compile('file: "(.+?)", label:".+?", type: "video/mp4"').findall(content)[0]
 		except:
 		    mediaUrl = re.compile('source src="(.+?)"').findall(content)[0]
 	else:	
@@ -1732,7 +1728,7 @@ elif mode==102:
     O0OO0O.close()
     del O0OO0O	
 
-elif mode==103:noti_fy(url)	
+elif mode==103:slideshow(url)	
 	
 elif mode==500:addon.openSettings();end='ok'
 	
