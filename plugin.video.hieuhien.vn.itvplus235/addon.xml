@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.hieuhien.vn.itvplus234"
-       version="2.3.4"
-       name="[COLOR red]ITV [/COLOR]Plus"
+<addon id="plugin.video.hieuhien.vn.itvplus235"
+       version="2.3.5"
+       name="[COLOR red]ITV [/COLOR]Plus 235"
        provider-name="itv member">
     <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
