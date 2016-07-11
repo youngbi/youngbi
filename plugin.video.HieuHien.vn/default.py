@@ -1,1271 +1,1907 @@
-__author__ = 'hieuhien.vn'
-#coding=utf-8
-import xbmc,xbmcplugin,xbmcgui,xbmcaddon,urllib,urllib2,re,os,unicodedata,datetime,random,json
-import base64
+# -*- coding: utf-8 -*-
+ 
+"""
+Copyright (C) 2015 PodGod
 
-home = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
-sys.path.append(os.path.join(home,'resources','lib'));from urlfetch import get,post;import xshare;import hdonline;import hdviet;import hayhaytv
-from config import hayhaytv_vn,hdviet_com,dangcaphd_com,megabox_vn,phimgiaitri_vn,phimmoi_net, hdonlinevn,megaboxvn,vuahdtv,phimmoinet, csn,csn_logo, nct,nct_logo, home,logos,dataPath,www,color
-from setting import myaddon, danhmucphim,hdonline_view,vuahd_view,hdviet_view,hayhaytv_view,dangcaphd_view,megabox_view,phimmoi_view,phimgiaitri_view
-from xshare import myfolder,copyxml,subsfolder,tempfolder,rows
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-icon={}
-for item in ['hdonline', 'vuahd', 'hdviet', 'hayhaytv', 'dangcaphd', 'megabox', 'phimmoi', 'phimgiaitri', 'next', 'icon']:
-	icon.setdefault(item,os.path.join(logos,'%s.png'%item))
-### -----------------
-def setViewMode(view_mode = '2'):
-	skin_used = xbmc.getSkinDir()
-	if skin_used == 'skin.xeebo':
-		xbmc.executebuiltin('Container.SetViewMode(52)')
-	else:
-		if view_mode == "1": # List
-			xbmc.executebuiltin('Container.SetViewMode(502)')
-		elif view_mode == "2": # Big List
-			xbmc.executebuiltin('Container.SetViewMode(51)')
-		elif view_mode == "3": # Thumbnails
-			xbmc.executebuiltin('Container.SetViewMode(500)')
-		elif view_mode == "4": # Poster Wrap
-			xbmc.executebuiltin('Container.SetViewMode(501)')
-		elif view_mode == "5": # Fanart
-			xbmc.executebuiltin('Container.SetViewMode(508)')
-		elif view_mode == "6":  # Media info
-			xbmc.executebuiltin('Container.SetViewMode(504)')
-		elif view_mode == "7": # Media info 2
-			xbmc.executebuiltin('Container.SetViewMode(503)')
-		elif view_mode == "8": # Media info 3
-			xbmc.executebuiltin('Container.SetViewMode(515)')
-		return
-	
-def strVnEn(str1, str2):
-	try:                                                                   
-		str = str1.lower()
-		if str == '': return
-		if type(str).__name__ == 'unicode': str = str.encode('utf-8')
-		items = ["á","à","ả","ạ","ã","â","ấ","ầ","ẩ","ậ","ẫ","ă","ắ","ằ","ẳ","ặ","ẵ","đ","í","ì","ỉ","ị","ĩ","é","è","ẻ","ẹ","ẽ","ê","ế","ề","ể","ệ","ễ","ó","ò","ỏ","ọ","õ","ô","ố","ồ","ổ","ộ","ỗ","ơ","ớ","ờ","ở","ợ","ỡ","ú","ù","ủ","ụ","ũ","ư","ứ","ừ","ử","ự","ữ","ý","ỳ","ỷ","ỵ","ỹ"]
-		for item in items:			
-			if item in str :
-				return str2, str1 + ' - ' + str2
-		return str1, str2 + ' - ' + str1
-	except: pass	
-	
-def fixString(string):
-	string = string.replace('&amp;','&').replace("&#39;","'")
-	return string
-	
-def fixSearch(string):
-	string = string.replace('+','-').replace(' ','-')	
-	string = string.replace('?','').replace('!','').replace('.','').replace(':','').replace('"','')
-	string = string.replace('&amp;','and').replace('&','and').replace("&#39;","")
-	i = 1
-	while i < 10:
-		string = string.replace('(Season '+str(i)+'','Season '+str(i))
-		i += 1  # This is the same as i = i + 1	
-	string = string.replace('- Season','Season')	# MegaBox	
-	string = string.strip()
-	return string
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-def fixSearchss(string):
-	string = string.replace('+','-').replace(' ','-')	
-	string = string.replace('?','').replace('!','').replace('.','').replace(':','')	
-	string = string.replace('&amp;','and').replace('&','and').replace("&#39;","")
-	string = string.upper()
-	string = string.strip()
-	return string
-###-----------------	
-def alert(message,title="Cantobu Media"):
-  xbmcgui.Dialog().ok(title,"",message)
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>
+"""
 
-def notification(message, timeout=7000):
-  xbmc.executebuiltin((u'XBMC.Notification("%s", "%s", %s)' % ('Cantobu Media', message, timeout)).encode("utf-8"))	
-###-----------------
-def Home():
-	content = Get_Url(DecryptData(homeurl))
-	match=re.compile("<title>([^<]*)<\/title>\s*<link>([^<]+)<\/link>\s*<thumbnail>(.+?)</thumbnail>").findall(content)
-	for title,url,thumbnail in match:
-		title = '[B]'+title+'[/B]'
-		if 'MYPLAYLIST' in url or 'tvcatchup' in url:
-			pass
-		elif 'Setting' in url:			
-			addLink(title,url,'menu_group',thumbnail)		
-		else:
-			addDir(title,url,'menu_group',thumbnail)		
-		
-def Menu_Group(url):
-	if 'Setting' in url:
-		xbmcaddon.Addon().openSettings()
-		return
-	elif 'MenuTivi' in url:
-		content = Get_Url(url)
-		match=re.compile("<title>([^<]*)<\/title>\s*<link>([^<]+)<\/link>\s*<thumbnail>(.+?)</thumbnail>").findall(content)
-		for title,url,thumbnail in match:
-			addDir(title,url,'indexgroup',thumbnail)
-		setViewMode('3')
-	elif 'MenuLiveShow' in url:
-		content = Get_Url(url)
-		match=re.compile("<title>([^<]*)<\/title>\s*<link>([^<]+)<\/link>\s*<thumbnail>(.+?)</thumbnail>").findall(content)
-		for title,url,thumbnail in match:
-			addDir(title,url,'indexgroup',thumbnail)
-		setViewMode('3')
-	elif 'MenuShows' in url:
-		content = Get_Url(url)
-		match=re.compile("<title>([^<]*)<\/title>\s*<link>([^<]+)<\/link>\s*<thumbnail>(.+?)</thumbnail>").findall(content)
-		for title,url,thumbnail in match:
-			if 'xml' in url:
-				addDir(title,url,'get_xml',thumbnail)
-			elif 'm3u' in url:
-				addDir(title,url,'get_m3u',thumbnail)				
-		setViewMode('3')
-	elif 'MenuMusic' in url:
-		content = Get_Url(url)
-		match=re.compile("<title>([^<]*)<\/title>\s*<link>([^<]+)<\/link>\s*<thumbnail>(.+?)</thumbnail>").findall(content)
-		for title,url,thumbnail in match:
-			if 'LIVESHOWS' in url:
-				addDir(title,url,'index_group',thumbnail)
-			elif 'm3u' in url:
-				addDir(title,url,'get_m3u',thumbnail)
-			else:
-				addDir(title,url,'category',thumbnail)
-		setViewMode('2')
-	elif 'MenuMovie' in url:
-		categoryroot(url)
-	elif 'MenuTube' in url:
-		content = Get_Url(url)
-		names = re.compile('<name>(.+?)</name>\s*<thumbnail>(.+?)</thumbnail>').findall(content)
-		for name,thumb in names:
-			addDir(name, url+"?n="+name, 'index', thumb)		
-		setViewMode('3')
-	elif 'SEARCH' in url:
-		addDir('Tìm Video Chia Sẻ Nhạc','TimVideoCSN','search',csn_logo)
-		addDir('Tìm Video Nhạc Của Tui','TimVideoNCT','search',nct_logo)
-		servers = ['HDOnline', 'HDViet', 'PhimMoi']
-		for server in servers:
-			addDir('Tìm kiếm kho phim '+server,server,'search',icon[server.lower()])
-		setViewMode('2')
+import urllib, urllib2, sys, re, os, unicodedata, cookielib, random, shutil
+import xbmc, xbmcgui, xbmcplugin, xbmcaddon, base64, json
+from operator import itemgetter, attrgetter
 
-def categoryroot(url):
-	if danhmucphim == 'HDOnline' or 'HDOnline' in url:
-		link = hdonline.GetContent("http://hdonline.vn/")
-		link = ''.join(link.splitlines()).replace('\'','"')
-		try:
-			link =link.encode("UTF-8")
-		except: pass
-		vidcontent=re.compile('<nav class="tn-gnav">(.+?)</nav> ').findall(link)
-		vidcontentlist=[]
-		if(len(vidcontent)>0):
-			addDir(color['search']+'Tìm kiếm kho phim HDOnline[/COLOR]','HDOnline','search',icon['hdonline'])
-			vidcontentlist=re.compile('<li>(.+?)</div>\s*</div>\s*</li>').findall(vidcontent[0])
-			for vidcontent in vidcontentlist:
-				mainpart=re.compile('<a href="(.+?)"> <span class="tnico-(.+?)"></span>(.+?)</a>').findall(vidcontent)
-				mainname=mainpart[0][2]
-				href=mainpart[0][0]
-				if 'hdonline.vn' not in href:href='http://hdonline.vn'+mainpart[0][0]
-				vidlist=re.compile('<li><a [^>]*href=["\']?([^>^"^\']+)["\']?[^>]*>(.+?)</a></li>').findall(vidcontent)
-				
-				if 'TIN' in mainname : mainname = "MORE";href='http://hdonline.vn/danh-sach/phim-moi.html'
-				xshare.addir('[B]'+mainname+'[/B]',href,img,'fanart',mode='category',page=0,query='Index',isFolder=True)	
-				for vurl,vname in vidlist:
-					#vname = vname.replace('Phim ','')
-					if 'Mỹ' in vname : vname = 'Âu/	' + vname
-					if mainname == "MORE" : vurl = 'http://hdonline.vn'+vurl
-					if(vurl.find("javascript:") ==-1 and len(vurl) > 3):
-						xshare.addir('- '+vname,vurl,img,'fanart',mode='category',page=0,query='Index',isFolder=True)	
-			#vidcontent=re.compile('<nav class="tn-gnav">(.+?)</nav> ').findall(link)		
-			#vidcontent=re.compile('<span class="tnico-news"></span> (.+?) </a>').findall(link)						
-			#items2=re.findall('<a href="(.+?)" .?title=".+?">(.+?)</a>',vidcontent[0])	
-			#for href,name in items2:
-				#xshare.addir(name,href,img,'fanart',mode=10,page=0,query='Index',isFolder=True)					
-	elif danhmucphim == 'HDViet' or 'HDViet' in url:
-		home='http://movies.hdviet.com/';direct_link='https://api-v2.hdviet.com/movie/play?movieid=%s'
-		addDir(color['search']+'Tìm kiếm kho phim HDViet[/COLOR]','HDViet','search',icon['hdviet'])
-		
-		xshare.addir('[B]PHIM LẺ[/B]',hdviet_com+'phim-le.html',img,fanart='',mode='category',page=1,query='',isFolder=True)
-		body=xshare.make_request('http://movies.hdviet.com/phim-le.html')
-		items=re.findall('<a href="(.+?)" .?menuid="(.+?)" .?title=".+?" >(.+?)</a>',body)
-		for href,id,name in items:
-			xshare.addir('- '+name,href,img,fanart='',mode='category',page=1,query=id,isFolder=True)		
-		xshare.addir('[B]PHIM BỘ[/B]',hdviet_com+'phim-bo.html',img,fanart='',mode='category',page=1,query='',isFolder=True)
-		body=xshare.make_request('http://movies.hdviet.com/phim-bo.html')
-		items=re.findall('<a href="(.+?)" menuid="(.+?)" title=".+?">(.+?)</a>',body)
-		items+=re.findall('<a class="childparentlib" menuid="(.+?)" href="(.+?)" title=".+?">(\s.*.+?)</a>',body)
-		for href,id,name in items:
-			if 'au-my' in href or 'tai-lieu' in href:name='Âu Mỹ %s'%name.strip()
-			elif 'hong-kong' in href:name='Hồng Kông %s'%name.strip()
-			elif 'trung-quoc' in href:name='Trung Quốc %s'%name.strip()
-			else:name=name.strip()
-			if href in '38-39-40':temp=href;href=id;id=temp
-			xshare.addir('- '+name,href,img,fanart='',mode='category',page=1,query=id,isFolder=True)
-		
-		addLink('[B]THỂ LOẠI PHIM[/B]',"",0,img)
-		for href,name in re.findall('<p><a href="(.+?)" title=".+?">(.+?)</a></p>',xshare.make_request(home)):
-			xshare.addir('- '+name,href,img,fanart='',mode='category',page=1,query=id,isFolder=True)
-			
-		addLink('[B]THẾ GIỚI SAO[/B]',"",0,img)
-		for href,name in re.findall('<li><a href="(.+?)" title=".+?">(.+?)</a></li>',xshare.make_request(home)):
-			if 'Tất cả' not in name:
-				xshare.addir('- '+name.replace('&nbsp;',''),href,img,fanart='',mode='category',page=1,query=id,isFolder=True)
-		addDir('Đăng xuất tài khoản', '', 'logouthdviet', '')								
-		setViewMode('2')
-	elif danhmucphim == 'HayHayTV' or 'HayHayTV' in url:
-		addDir(color['search']+'Tìm kiếm kho phim HayHayTV[/COLOR]','HayHayTV','search',icon['hayhaytv'])
-		ajax=hayhaytv_vn+'ajax_hayhaytv.php'
-		body=xshare.make_request(hayhaytv_vn)					
-		for href,name in re.findall('menu_fa_text.+?" href="(.+?)".*>(.+?)</a>',body):
-			url = href
-			if name in 'PHIM LẺ-PHIM BỘ-SHOWS':
-				name='[B]'+name+'[/B]'
-				xshare.addir(name,href,img,fanart='',mode='category',page=1,query='M2',isFolder=True)
-																			
-				body=xshare.make_request(hayhaytv_vn+'/tim-kiem');pattern='http.+/\w{1,6}-'
-				body=body[body.find(url):];body=body[:body.find('mar-r20')]
-				for href,name in re.findall('href="(.+?)".*?>(.+?)</a></li>',body):
-					xshare.addir('- '+name,href,img,fanart='',mode='category',page=1,query='M2',isFolder=True)
-		addDir('Đăng xuất tài khoản', '', 'logouthayhaytv', '')								
-		setViewMode(view_mode = '2')
-	elif danhmucphim == 'DangCapHD' or 'DangCapHD' in url:
-		addDir(color['search']+'Tìm kiếm kho phim DangCapHD[/COLOR]','DangCapHD','search',icon['dangcaphd'])
-		body=xshare.make_request(dangcaphd_com)		
-		for name in re.findall('</i>(.+?)<span class="caret">',body):
-			name='[B]'+ name.strip() +'[/B]'
-			xshare.addir(name,dangcaphd_com,icon['dangcaphd'],mode='category',query='DC1',isFolder=True)
-			
-			#body=xshare.make_request(dangcaphd_com)
-			if 'the loai' in  xshare.no_accent(name).lower():
-				for href,name in re.findall('<a href="(http://dangcaphd.com/cat.+?)" title="(.+?)">',body):
-					#name='[B]'+name.strip()+'[/B]'
-					xshare.addir('- '+name.strip(),href,icon['dangcaphd'],mode='category',query='DC2',isFolder=True)
-			if 'quoc gia' in  xshare.no_accent(name).lower():
-				for href,name in re.findall('<a href="(http://dangcaphd.com/country.+?)" title="(.+?)">',body):
-					xshare.addir('- '+name.strip(),href,icon['dangcaphd'],mode='category',query='DC2',isFolder=True)
-			
-		for href,name in re.findall('<a href="(.+?)"><i class=".+?"></i>(.+?)</a>',body):
-			if 'channel.html' not in href and 'product.html' not in href:
-				name='[B]'+name.strip()+'[/B]'
-				xshare.addir(name,href,icon['dangcaphd'],mode='category',query='DC2',isFolder=True)					
-		setViewMode('2')
-	elif danhmucphim == 'PhimMoi' or 'PhimMoi' in url:
-		addDir(color['search']+'Tìm kiếm kho phim PhimMoi[/COLOR]','PhimMoi','search',icon['phimmoi'])
-		body=xshare.make_request(phimmoi_net)
-		content=xshare.xsearch('<ul id=".+?"(.+?)</ul></div>',body,1)
-		for title in re.findall('<a>(.+?)</a>',content):
-			addLink('[B]'+title+'[/B]',"",0,img)
-			#xshare.addir('[B]'+title+'[/B]','',icon['phimmoi'],mode=mode,query='menubar',isFolder=True)
+plugin_handle = int(sys.argv[1])
+mysettings = xbmcaddon.Addon(id = 'plugin.video.HieuHien.vn')
+profile = mysettings.getAddonInfo('profile')
+home = mysettings.getAddonInfo('path')
+getSetting = xbmcaddon.Addon().getSetting
+enable_adult_section = mysettings.getSetting('enable_adult_section')
+enable_tvguide = mysettings.getSetting('enable_tvguide')
+enable_thongbao = mysettings.getSetting('enable_thongbao')
+enable_youtube_channels = mysettings.getSetting('enable_youtube_channels')
+enable_channel_tester = mysettings.getSetting('enable_channel_tester')
+enable_local_tester = mysettings.getSetting('enable_local_tester')
+server_notification = mysettings.getSetting('enable_server_notification')
+enable_public_uploads = mysettings.getSetting('enable_public_uploads')
+enable_links_to_tutorials = mysettings.getSetting('enable_links_to_tutorials')
+local_path = mysettings.getSetting('local_path')
+enable_online_tester = mysettings.getSetting('enable_online_tester')
+online_path = mysettings.getSetting('online_path')
+enable_iptvsimple_playlist = mysettings.getSetting('enable_iptvsimple_playlist')
+choose_server_group = mysettings.getSetting('choose_server_group')
+enable_server_selection = mysettings.getSetting('enable_server_selection')
+select_a_server = mysettings.getSetting('select_a_server')
+enable_other_sources = mysettings.getSetting('enable_other_sources')
+enable_other_addons1 = mysettings.getSetting('enable_other_addons1')
+enable_other_addons2 = mysettings.getSetting('enable_other_addons2')
+enable_other_addons3 = mysettings.getSetting('enable_other_addons3')
+enable_other_addons4 = mysettings.getSetting('enable_other_addons4')
+enable_other_addons5 = mysettings.getSetting('enable_other_addons5')
+enable_other_addons6 = mysettings.getSetting('enable_other_addons6')
+viet_mode = mysettings.getSetting('viet_mode')
+youtube_mode = mysettings.getSetting('youtube_mode')
 
-			content_=xshare.xsearch('<ul id=".+?"(.+?)</ul></div>',body,1)
-			gen={'Thể loại':'the-loai','Quốc gia':'quoc-gia','Phim lẻ':'phim-le','Phim bộ':'phim-bo'}
-			query=gen.get(re.sub('\[/?COLOR.*?\]|\(.+?\)','',title).strip())
-			pattern='<a href="(%s/.*?)">(.+?)</a>'%query
-			for href,title in re.findall(pattern,content_):
-				xshare.addir('- '+title,phimmoi_net+href,icon['phimmoi'],mode='category',isFolder=True)
-						
-		for href,title in re.findall('<a href="([\w|-]+/|http://www.phimmoi.net/tags/.*?)">(.+?)</a>',content):
-			if 'tags' not in href:href=phimmoi_net+href
-			xshare.addir('[B]'+title+'[/B]',href,icon['phimmoi'],mode='category',isFolder=True)
+local_thongbaomoi = xbmc.translatePath(os.path.join(home, 'thongbaomoi.txt'))
+local_vietradio = xbmc.translatePath(os.path.join(home, 'vietradio.m3u'))
+fanart = xbmc.translatePath(os.path.join(home, 'fanart.jpg'))
+icon = xbmc.translatePath(os.path.join(home, 'icon.png'))
 
-			content_=xshare.xsearch('<ul id=".+?"(.+?)</ul></div>',body,1)
-			gen={'Thể loại':'the-loai','Quốc gia':'quoc-gia','Phim lẻ':'phim-le','Phim bộ':'phim-bo'}
-			query=gen.get(re.sub('\[/?COLOR.*?\]|\(.+?\)','',title).strip())
-			pattern='<a href="(%s/.*?)">(.+?)</a>'%query
-			for href,title in re.findall(pattern,content_):
-				if len(href)>8:	#bỏ danh mục phim-le, phim-bo
-					xshare.addir('- '+title,phimmoi_net+href,icon['phimmoi'],mode='category',isFolder=True)					
-		setViewMode('2')		
-	elif danhmucphim == 'Tất cả':
-		#servers = ['HDOnline', 'VuaHD', 'HDViet', 'HayHayTV', 'DangCapHD', 'MegaBox', 'PhimMoi', 'PhimGiaiTri']
-		servers = ['HDOnline', 'HDViet', 'PhimMoi']
-		for server in servers:
-			name='[B]'+'Kho phim '+server+'[/B]'				
-			xshare.addir(name,'MenuMovie|'+server,icon[server.lower()],mode='menu_group',query='',isFolder=True)
-		setViewMode('2')				
-		
-def category(url, mode=''):
-	if 'ott.thuynga' in url:
-		match=menulist(dataPath+'/data/category.xml')
-		for title,url,thumbnail in match:	  
-			if 'ott.thuynga' in url:
-				addDir(title,url,'episodes',thumbnail)
-			else:pass				
-	elif 'chiasenhac' in url:
-		content=Get_Url(url)
-		addDir(color['search']+'Tìm kiếm[/COLOR]','TimVideoCSN','search',csn_logo)	
-		
-		match=re.compile("<a href=\"hd(.+?)\" title=\"([^\"]*)\"").findall(content)[1:8]
-		for url,name in match:
-			addDir(name,csn+'hd'+url,'episodes',csn_logo)
-	elif 'nhaccuatui' in url:
-		content=Get_Url(url)
-		addDir(color['search']+'Tìm kiếm[/COLOR]','TimVideoNCT','search',nct_logo)	
-	
-		match = re.compile("href=\"http:\/\/m.nhaccuatui.com\/mv\/(.+?)\" title=\"([^\"]*)\"").findall(content)
-		for url, name in match:		
-			if 'Phim' in name:
-				pass
-			else:
-				addDir(name,nct + 'mv/' + url,'search_result',nct_logo)
-		#match = re.compile("href=\"http:\/\/m.nhaccuatui.com\/mv\/(.+?)\" title=\"([^\"]*)\"").findall(content)
-		#for url, name in match:
-			#if 'Phim' in name:
-				#add_dir('[COLOR orange]' + name + '[/COLOR]', nctm + 'mv/' + url, 3, logos + 'nhaccuatui.png', fanart)					
-	else: Search_Result(url, query='', mode=mode)
+xml_regex = '<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumbnail>'
+m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
+group_title_regex = 'group-title=[\'"](.*?)[\'"]'
+m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
+adult_regex = '#(.+?)group-title="Adult",(.+)\s*(.+)\s*'
+adult_regex2 = '#(.+?)group-title="Public-Adult",(.+)\s*(.+)\s*'
+ondemand_regex = '[ON\'](.*?)[\'nd]'
+server_regex = '<server>(.*?)</server>'
+media_regex = '<medialink>(.*?)</medialink>'
+yt = 'https://www.youtube.com/'
+text = 'http://pastebin.com/raw.php?i=Zr0Hgrbw'
+m3u = 'WVVoU01HTkViM1pNTTBKb1l6TlNiRmx0YkhWTWJVNTJZbE01ZVZsWVkzVmpSMmgzVURKck9WUlViRWxTYXpWNVZGUmpQUT09'.decode('base64')
+dic = {';':'', '&amp;':'&', '&quot;':'"', '.':' ', '&#39;':'\'', '&#038;':'&', '&#039':'\'', '&#8211;':'-', '&#8220;':'"', '&#8221;':'"', '&#8230':'...', 'u0026quot':'"'}
+iconpath = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMM1pwWlhScFkyOXVjdz09'.decode('base64').decode('base64')
+SRVlist = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMM05sY25abGNuTXVkSGgw'.decode('base64').decode('base64')
+medialink = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMMjFsWkdsaGJHbHVheTUwZUhRPQ=='.decode('base64').decode('base64')
+tubemenu = 'YUhSMGNITTZMeTluYjI4dVoyd3ZZVkZhU25KcA=='.decode('base64').decode('base64')
+ytsearchicon = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMM2x2ZFhSMVltVXZhV052Ym5NdldWUlRaV0Z5WTJndWNHNW4='.decode('base64').decode('base64')
+iptvsimple = xbmc.translatePath("special://home/userdata/addon_data/pvr.iptvsimple/iptv.m3u.cache")
+public_uploads = 'plugin://plugin.program.chrome.launcher/?kiosk=no&mode=showSite&stopPlayback=no&url=https%3a%2f%2fscript.google.com%2fmacros%2fs%2fAKfycbxwkVU0o3lckrB5oCQBnQlZ-n8CMx5CZ_ajq6Y3o7YHSTFbcODk%2fexec'
+otheraddons1 = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOUNkMWh5ZDBrPQ=='.decode('base64').decode('base64')
+List1 = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64').decode('base64')
+otheraddons2 = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOUliRWRQY1hBPQ=='.decode('base64').decode('base64')
+List2 = 'YUhSMGNEb3ZMM2d1WTI4dlpHSmphREF4'.decode('base64').decode('base64')
+otheraddons3 = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOUxOR1IxVjFnPQ=='.decode('base64').decode('base64')
+List3 = 'YUhSMGNEb3ZMMkZwYnk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVE9PQ=='.decode('base64').decode('base64')
+otheraddons4 = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOXhhbkJFY1ZFPQ=='.decode('base64').decode('base64')
+List4 = 'YUhSMGNEb3ZMMmR2TW13dWFXNXJMMnR2WkdrPQ=='.decode('base64').decode('base64')
+otheraddons5 = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOXVjMDVyVmtzPQ=='.decode('base64').decode('base64')
+List5 = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOVNNVUZHY0RBPQ=='.decode('base64').decode('base64')
+otheraddons6 = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOUpRV0ZKTkhnPQ=='.decode('base64').decode('base64')
+othersources = 'YUhSMGNITTZMeTluYjI4dVoyd3ZVemQ1TlRCcw=='.decode('base64').decode('base64')
+adultaddons = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMMkZrZFd4MFlXUmtiMjV6TG5SNGRBPT0='.decode('base64').decode('base64')
 
-def episodes(url, name=''):
-	if 'hdonline.vn' in url :
-		items=re.findall('<a href="(.+?)" .+?"><span>(.+?)</span></a>',xshare.make_request(url));
-		for url, eps in items:
-			name = name.replace('[COLOR tomato]', '').replace('[/COLOR]', '')						
-			xshare.addir('Tập '+str(eps)+' - '+name,url,img,'fanart',mode='hdonlineplay',isFolder=False)
-	elif 'vuahd.tv' in url :
-		items=re.findall('<a href="#" class="btn-1 btnUpgrade">Xem (.+?)</a>',xshare.make_request(url));temp=[]
-		for eps in items:	
-			if eps not in temp:
-				temp.append(eps);title=eps+'-'+name;tap=xshare.xshare_group(re.search('(\d{1,3})',eps),1)
-				if tap:tap=format(int(tap),'02d')
-				else:continue
-				url = url.replace('tv-series/','')+'-%s'%tap
-				url = url+'/watch'
-				url = vuahdtv + url.replace('/', '%2F')			
-				xshare.addir(title,url,img,'fanart',mode='16',isFolder=False)		
-	elif 'hdviet.com' in url :
-		url = query		
-		href='http://movies.hdviet.com/lay-danh-sach-tap-phim.html?id=%s'%url
-		response=xshare.make_request(href,resp='j')
-		if not response:return
-		for eps in range(1,int(response["Sequence"])+1):		
-			name=re.sub(' \[COLOR tomato\]\(\d{1,4}\)\[/COLOR\]','',name)
-			title='Tập %s/%s-%s'%(format(eps,'0%dd'%len(response['Episode'])),str(response['Episode']),re.sub('\[.?COLOR.{,12}\]','',name))
-			xshare.addir(title,'%s_e%d'%(url,eps),img,fanart='',mode='22',page=1,query='hdvietplay')		
-	elif 'hayhaytv.vn' in url :			
-		if 'xem-show' in url:pattern='href="(.+?)".*src=".+?"\D*(\d{1,3})<'
-		else:pattern='<a class=".*?" href="(.+?)"\D*(\d{1,3})<'
-		resp=xshare.make_request(url,resp='o');body=resp.body if resp.status==200 else xshare.make_request(resp.headers['location'])
-		items=re.findall(pattern,body)
-		if not page:
-			id=xshare.xshare_group(re.search('FILM_ID\D{3,7}(\d{3,6})',body),1)	
-			url='https://www.fshare.vn/folder/5VNFUPO32P6F'
-			hd=xshare.xshare_group(re.search('<title>.*xx(.+?)xx.*</title>',xshare.make_request(url)),1).split('-')
-			#['Authorization', 'Basic', 'YXBpaGF5OmFzb2tzYXBySkRMSVVSbzJ1MDF1cndqcQ==']
-			data='device=xshare&secure_token=1.0&request='+urllib.quote('{"movie_id":"%s"}'%id)
-			response=xshare.make_post('http://api.hayhaytv.vn/movie/movie_detail',{hd[0]:'%s %s'%(hd[1],hd[2])},data)
-			try:json=response.json['data']
-			except:json={}						
-			if json:page=json['total_episode'].encode('utf-8')
-		for href,epi in items:
-			xshare.addir('Tập %s/%s-%s'%(epi,page,re.sub('\[.?COLOR.{,12}\]','',name)),href,img,fanart='',mode=23,page=1,query='play')						
-	elif 'phimmoi.net' in url :	
-		body=xshare.make_request(url+'xem-phim.html');name=re.sub('\[/?COLOR.*?\]|\(.+?\)|\d{1,3} phút','',name).strip()
-		for detail in re.findall('data-serverid="pcs"(.+?)</li></ul></div>',body,re.DOTALL):
-			title=' '.join(s for s in xshare.xsearch('<h3 class="server-name">(.+?)</h3>',detail,1,re.DOTALL).split())
-			if title and 'tập phim' not in title:xshare.addir('[COLOR lime]%s[/COLOR]'%'---'+title,'',img,'',mode,1,'no')
-			label=name.replace('TM ','') if title and 'Thuyết minh' not in title else name
-			for title,href in re.findall('title="(.+?)".+?href="(.+?)"',detail,re.DOTALL):
-				try:
-					xshare.addir(title+' '+label,phimmoi_net+href,img,'fanart',mode='24',query='pmplay',isFolder=False)
-				except:
-					xshare.addir(title+' '+label,href,img,'fanart',mode='16',query=phimmoi_net,isFolder=False)
-	elif 'megabox.vn' in url :	
-		content = Get_Url(url)
-		match = re.compile("href='(.+?)' >(\d+)<").findall(content)
-		for url, title in match:
-			url = megaboxvn + url.replace('/', '%2F')
-			xshare.addir('Tập ' + title,url,img,'fanart',mode='16',isFolder=False)
-	elif 'phimgiaitri.vn' in url :
-		add_Link('Tập 1', url, img)
-		
-		content = Get_Url(url)
-		match = re.compile('<a href="(.+?)" page=(.+?)>').findall(content)
-		for url,title in match:		
-			add_Link('Tập ' + title, url, img)
-	elif 'youtube' in url:
-		add_Link(name, url, thumbnail)
-	elif 'chiasenhac' in url:
-		content = Get_Url(url)
-		items=re.compile("<a href=\"([^\"]*)\" title=\"(.*?)\"><img src=\"([^\"]+)\"\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s*<span style=\"color: .*?\">(.*?)</span>").findall(content)
-		for url,name,thumbnail,cat in items:
-			add_Link(name+color['cat']+' ['+cat+'][/COLOR]',csn+url,thumbnail)
-		items=re.compile("<a href=\"hd\/video\/([a-z]-video\/new[0-9]+).html\" class=\"npage\">(\d+)<\/a>").findall(content)
-		for url,name in items:
-			addDir('[COLOR lime]Mới Chia Sẻ - Trang '+name+'[/COLOR]',csn+'hd/video/'+url+'.html','episodes',icon['next'])
-		items=re.compile("<a href=\"hd\/video\/([a-z]-video\/down[0-9]+).html\" class=\"npage\">(\d+)<\/a>").findall(content)
-		for url,name in items:
-			addDir('[COLOR red]Download mới nhất - Trang '+name+'[/COLOR]',csn+'hd/video/'+url+'.html','episodes',icon['next'])			
-						
-def ServerList(name, url, mode, query):	
-	search_string = fixSearch(query)
-		
-	name='['+danhmucphim+'] '+name
-	if danhmucphim == 'HDOnline' and hdonline_view == 'true':
-		if mode == '12' : mode='hdonlineplay';v_query='';isFolder=False
-		else : mode='episodes';v_query='';isFolder=True;url='http://m.hdonline.vn'+url		
-	elif danhmucphim == 'HDViet' and hdviet_view == 'true':
-		if mode == '12' : mode='22';v_query='hdvietplay';isFolder=False
-		else : mode='episodes';v_query=url;isFolder=True;url=hdviet_com
-	elif danhmucphim == 'HayHayTV' and hayhaytv_view == 'true':
-		if mode == '12' : mode='23';v_query='play';isFolder=False
-		else : mode='episodes';v_query='';isFolder=True
-	elif danhmucphim == 'DangCapHD' and dangcaphd_view == 'true':
-		if mode == '12' : mode='18';v_query='DCP';isFolder=False
-		else : mode='18';v_query='DC3';isFolder=True
-	elif danhmucphim == 'PhimMoi' and phimmoi_view == 'true':
-		if mode == '12' : mode='24';v_query='pmplay';isFolder=False
-		else : mode='24';v_query='episodes';isFolder=True	
-	xshare.addir(name,url,img,'fanart',mode=mode,page=1,query=v_query,isFolder=isFolder)
-						
-	if danhmucphim <> 'HDOnline' and hdonline_view == 'true':
-		url = 'http://hdonline.vn/tim-kiem/'+search_string+'.html'      					
-		Search_Result(url, query)			
-	if danhmucphim <> 'VuaHD' and vuahd_view == 'true':
-		url='http://vuahd.tv/movies/q/%s'%search_string
-		Search_Result(url, query)
-	if danhmucphim <> 'HDViet' and hdviet_view == 'true':
-		url='http://movies.hdviet.com/tim-kiem.html?keyword=%s'%search_string
-		Search_Result(url, query)
-	if danhmucphim <> 'HayHayTV' and hayhaytv_view == 'true':
-		url=hayhaytv_vn+'tim-kiem/%s/trang-1'%search_string
-		Search_Result(url, query)
-	if danhmucphim <> 'DangCapHD' and dangcaphd_view == 'true':
-		url='http://dangcaphd.com/movie/search.html?key=%s&search_movie=1'%search_string
-		Search_Result(url, query)	
-	if danhmucphim <> 'Megabox' and megabox_view == 'true':
-		url='http://phim.megabox.vn/search/index?keyword=' + search_string#+'/phim-le'
-		Search_Result(url, query)	
-	if danhmucphim <> 'PhimMoi' and phimmoi_view == 'true':
-		url='http://www.phimmoi.net/tim-kiem/%s/'%search_string
-		Search_Result(url, query)		
-	if danhmucphim <> 'PhimGiaiTri' and phimgiaitri_view == 'true':
-		url = phimgiaitri_vn+'result.php?type=search&keywords='+search_string      
-		try:
-			Search_Result(url, query)	
-		except: pass
-			
-def Search(url): 	
-	if '-' in url:query='-'
-	else:query=''
 
+def make_request(url):
 	try:
-		keyb=xbmc.Keyboard('', color['search']+'Nhập nội dung cần tìm kiếm[/COLOR]')
+		req = urllib2.Request(url)
+		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0')
+		response = urllib2.urlopen(req)
+		link = response.read()
+		response.close()
+		return link
+	except:
+		pass
+
+def read_file(file):
+	try:
+		f = open(file, 'r')
+		content = f.read()
+		f.close()
+		return content
+	except:
+		pass
+
+def srv_list():
+	#match = re.compile(server_regex).findall(read_file(os.path.expanduser(r'~\Desktop\servers.txt')))
+	match = re.compile(server_regex).findall(make_request(SRVlist))
+	i=0
+	while i < len(match):
+		match[i] = match[i].decode('base64').decode('base64')
+		i+=1 
+	return match
+
+List6 = srv_list()[-1]
+if choose_server_group == '0':
+	CCLOUDTV_SRV_URL = [List1, List2, List3, List4, List5, List6]
+else:
+	CCLOUDTV_SRV_URL = srv_list()
+
+def media_link():
+	#match = re.compile(media_regex).findall(read_file(os.path.expanduser(r'~\Desktop\medialink.txt')))
+	match =  re.compile(media_regex).findall(make_request(medialink))
+	i=0
+	while i < len(match):
+		match[i] = match[i].decode('base64').decode('base64')
+		i+=1
+	return match
+
+def server_message(message, timeout = 5000):
+	xbmc.executebuiltin((u'XBMC.Notification("%s", "%s", %s, %s)' % ('[B]cCloud.tv[/B]', message, timeout, icon)).encode("utf-8"))
+
+def select_server():
+	try:
+		if (enable_iptvsimple_playlist == 'true') and (os.path.exists(iptvsimple)) and ('Welcome to cCloudTV' in (read_file(iptvsimple))):
+			if server_notification == 'true':
+				server_message('Using [COLOR chocolate]cCloudTV playlist[/COLOR] from [COLOR chocolate]IPTV Simple.[/COLOR]')
+			#print ('Using cCloudTV playlist from IPTV Simple.')
+			return (read_file(iptvsimple))
+		elif enable_server_selection == 'true':
+			if select_a_server == '0':
+				server = List1
+			elif select_a_server == '1':
+				server = List2
+			elif select_a_server == '2':
+				server = List3
+			elif select_a_server == '3':
+				server = List4
+			elif select_a_server == '4':
+				server = List5
+			elif select_a_server == '5':
+				server = List6
+			content = make_request(server)
+			if server_notification == 'true':
+				if content is None:
+					#print ("Chosen server " + select_a_server + " is offline.")
+					server_message("[COLOR red]Server " + select_a_server + " is offline. Choose another server.[/COLOR]")
+				else:
+					#print ("Currently using chosen server " + select_a_server)
+					server_message("Currently using [COLOR brown]chosen server " + select_a_server + '[/COLOR]')
+					return content
+			else:
+				if content is None:
+					#print ("Chosen server " + select_a_server + " is offline.")
+					return content
+				else:
+					#print ("Currently using [COLOR brown]chosen server " + select_a_server + '[/COLOR]')
+					return content
+		else:
+			for server in (CCLOUDTV_SRV_URL):
+				#print ("Checking server " + str(CCLOUDTV_SRV_URL.index(server)))
+				content = make_request(server)
+				if content is None:
+					#print ("Server " + str(CCLOUDTV_SRV_URL.index(server)) + ": offline")
+					server = CCLOUDTV_SRV_URL[CCLOUDTV_SRV_URL.index(server) + 1]
+				else:
+					#print ("Server " + str(CCLOUDTV_SRV_URL.index(server)) + ": online")
+					#print ("Using server " + str(CCLOUDTV_SRV_URL.index(server)))
+					if server_notification == 'true':
+						if str(server) == str(CCLOUDTV_SRV_URL[-1]):
+							server_message('[COLOR magenta] Backup server[/COLOR] is currently [COLOR magenta]online[/COLOR].')
+						else:
+							server_message('Server ' + str(CCLOUDTV_SRV_URL.index(server)) + ' is currently online.')
+					return content
+	except:
+		server_message('[COLOR red]All cCloud TV servers seem to be down. Please try again in a few minutes.[/COLOR]')
+
+def replace_all(text, dic):
+	try:
+		for a, b in dic.iteritems():
+			text = text.replace(a, b)
+		return text
+	except:
+		pass
+
+def platform():
+	if xbmc.getCondVisibility('system.platform.android'):
+		return 'android'
+	elif xbmc.getCondVisibility('system.platform.linux'):
+		return 'linux'
+	elif xbmc.getCondVisibility('system.platform.windows'):
+		return 'windows'
+	elif xbmc.getCondVisibility('system.platform.osx'):
+		return 'osx'
+	elif xbmc.getCondVisibility('system.platform.atv2'):
+		return 'atv2'
+	elif xbmc.getCondVisibility('system.platform.ios'):
+		return 'ios'
+
+def main():
+	
+	
+	if enable_other_addons1 == 'true':
+		addDir('PHIM TRUYỆN', 'NoLinkRequired', 100, 'http://goo.gl/tOBhgd', fanart)
+		
+	if enable_other_addons2 == 'true':
+		addDir('TRUYỀN HÌNH', 'NoLinkRequired', 102, 'http://goo.gl/M0NCZA', fanart)	
+	
+	if enable_other_addons3 == 'true':
+		addDir('ÂM NHẠC', 'NoLinkRequired', 103, 'http://goo.gl/PBy2cd', fanart)	
+	
+	if enable_other_addons4 == 'true':
+		addDir('THỂ THAO', 'NoLinkRequired', 104, 'http://goo.gl/zn28G2', fanart)	
+	
+	if enable_other_addons5 == 'true':
+		addDir('PHIM NƯỚC NGOÀI', 'NoLinkRequired', 105, 'http://goo.gl/ok0VNC', fanart)	
+					
+	if enable_youtube_channels == 'true':
+		addDir('KÊNH GIẢI TRÍ', tubemenu, 18, 'http://goo.gl/D9nS4f', fanart)
+	
+	if enable_other_addons6 == 'true':
+		addDir('TỔNG HỢP', 'NoLinkRequired', 106, 'http://goo.gl/j4sDm7', fanart)	
+	
+	if enable_other_sources == 'true':
+		addDir('LINK IPTV', 'NoLinkRequired', 110, 'http://goo.gl/RhGeAq', fanart)
+	
+	addDir('Dọn rác', 'clearcache', 109, 'http://goo.gl/R2ceCh', fanart)	
+	
+	addDir('***Giới thiệu***', yt, 3, 'http://goo.gl/MZuYDV', fanart)
+	
+	
+"""
+	addDir('[COLOR red][B]Search[/B][/COLOR]', 'searchlink', 99, '%s/search.png'% iconpath, fanart)
+	if len(CCLOUDTV_SRV_URL) > 0:
+		addDir('[COLOR yellow][B]All Channels[/B][/COLOR]', yt, 2, '%s/allchannels.png'% iconpath, fanart)
+	if (len(CCLOUDTV_SRV_URL) < 1 ):
+		mysettings.openSettings()
+		xbmc.executebuiltin("Container.Refresh")
+	if enable_tvguide == 'true':
+		addDir('[COLOR yellow][B]TV Guide[/B][/COLOR]', 'guide', 97, '%s/guide.png'% iconpath, fanart)
+	if enable_channel_tester == 'true':
+		addDir('[COLOR lime][B]Channel Tester[/B][/COLOR]', 'channeltester', 40, '%s/channeltester.png'% iconpath, fanart)
+	if enable_local_tester == 'true':
+		addDir('[COLOR lime][B]Local M3U Playlist Tester[/B][/COLOR]', 'localtester', 41, '%s/localtester.png'% iconpath, fanart)
+	if enable_online_tester == 'true':
+		addDir('[COLOR lime][B]Online M3U Playlist Tester[/B][/COLOR]', 'onlinetester', 42, '%s/onlinetester.png'% iconpath, fanart)
+	if platform() == 'windows' or platform() == 'osx':
+		if enable_public_uploads == 'true':
+			addDir('[COLOR brown][B]Public Uploads[/B][/COLOR]', public_uploads, None, '%s/ChromeLauncher.png'% iconpath, fanart)
+		if enable_links_to_tutorials == 'true':
+			addDir('[COLOR green][B]Links to Tutorials[/B][/COLOR]', media_link()[1], 27, '%s/tutlinks.png'% iconpath, fanart)
+	if viet_mode == 'group':
+		addDir('[COLOR royalblue][B]Vietnam[/B][/COLOR]', 'vietnam_group', 30, '%s/vietnam.png'% iconpath, fanart)
+	if viet_mode == 'abc order':
+		addDir('[COLOR royalblue][B]Vietnam[/B][/COLOR]', 'vietnam_abc_order', 48, '%s/vietnam.png'% iconpath, fanart)
+	if viet_mode == 'category':
+		addDir('[COLOR royalblue][B]Vietnam[/B][/COLOR]', 'vietnam_category', 70, '%s/vietnam.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]English[/B][/COLOR]', 'english', 62, '%s/english.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Top 10[/B][/COLOR]', 'top10', 51, '%s/top10.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Sports[/B][/COLOR]', 'sports', 52, '%s/sports.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]News[/B][/COLOR]', 'news', 53, '%s/news.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Documentary[/B][/COLOR]', 'documentary', 54, '%s/documentary.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Entertainment[/B][/COLOR]', 'entertainment', 55, '%s/entertainment.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Family[/B][/COLOR]', 'family', 56, '%s/family.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Lifestyle[/B][/COLOR]', 'lifestyle', 63, '%s/lifestyle.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Movies[/B][/COLOR]', 'movie', 57, '%s/movies.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Music[/B][/COLOR]', 'music', 58, '%s/music.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]On Demand Movies[/B][/COLOR]', 'ondemandmovies', 59, '%s/ondemandmovies.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]On Demand Shows[/B][/COLOR]', 'ondemandshows', 65, '%s/ondemandshows.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]24/7 Channels[/B][/COLOR]', '24', 60, '%s/twentyfourseven.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Radio[/B][/COLOR]', 'radio', 61, '%s/radio.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Non-English/International (Z-A)[/B][/COLOR]', 'international', 64,'%s/international.png'% iconpath, fanart)
+	if getSetting("enable_adult_section") == 'true':
+		addDir('[COLOR magenta][B]Adult(18+)[/B][/COLOR]', 'adult', 98, '%s/adult.png'% iconpath, fanart)
+"""
+
+def clear_cache():  #### plugin.video.xbmchubmaintenance ####
+	xbmc_cache_path = os.path.join(xbmc.translatePath('special://temp'))
+	if os.path.exists(xbmc_cache_path) == True:
+		for root, dirs, files in os.walk(xbmc_cache_path):
+			file_count = 0
+			file_count += len(files)
+			if file_count > 0:
+				dialog = xbmcgui.Dialog()
+				if dialog.yesno("Xóa file rác trong KODI", "Đã tìm thấy " + str(file_count) + " files rác của KODI trong bộ nhớ Cache.", "Bạn có muốn xóa " + str(file_count) +" files rác này không?"):
+					for f in files:
+						try:
+							os.unlink(os.path.join(root, f))
+						except:
+							pass
+					for d in dirs:
+						try:
+							shutil.rmtree(os.path.join(root, d))
+						except:
+							pass
+					dialog = xbmcgui.Dialog()
+					dialog.ok("Hieuhien.vn Media Center", "", "Đã xóa " + str(file_count) + " file rác thành công!")
+			else:
+				pass
+	
+	sys.exit()
+
+
+def other_sources():
+	#content = read_file(os.path.expanduser(r'~\Desktop\othersources.txt'))
+	content = make_request(othersources)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		if 'tvg-logo' in thumb:
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+			if thumb.startswith('http'):
+				addDir(name, url, 111, thumb, thumb)
+			else:
+				thumb = '%s/%s' % (iconpath, thumb)
+				addDir(name, url, 111, thumb, thumb)
+		else:
+			addDir(name, url, 111, icon, fanart)
+
+def other_sources_list(url):
+	content = make_request(url)
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		try:
+			m3u_playlist(name, url, thumb)
+		except:
+			pass
+
+def other_addons1():
+#	reposinstaller = xbmc.translatePath(os.path.join(home, 'repos.zip'))
+#	if os.path.exists(reposinstaller):
+#		d = xbmcgui.Dialog().yesno('Repos Installer', 'Do you want to install necessary repositories for "Other Addons" section?', '[COLOR magenta]Quí vị có muốn cài đặt những repositories cần thiết cho mục "Other Addons" không?[/COLOR]', '', '')
+#		if d:
+#			import time, extract
+#			dp = xbmcgui.DialogProgress()
+#			dp.create("Repos Installer", "Working...", "", "")
+#			addonfolder = xbmc.translatePath(os.path.join('special://', 'home'))
+#			time.sleep(2)
+#			dp.update(0,"", "Extracting zip files. Please wait...")
+#			extract.all(reposinstaller,addonfolder,dp)
+#			time.sleep(2)
+#			os.remove(reposinstaller)
+#			xbmcgui.Dialog().ok("Installation Completed.", "Please restart Kodi.", "", "[COLOR magenta]Vui lòng khởi động lại kodi.[/COLOR]")
+#			sys.exit()
+#		else:
+#			sys.exit()
+#	else:
+		#content = read_file(os.path.expanduser(r'~\Desktop\otheraddons.txt'))
+		content = make_request(otheraddons1)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addDir(name, url, None, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addDir(name, url, None, thumb, thumb)
+			else:
+				addDir(name, url, None, icon, fanart)
+
+
+def other_addons2():
+		content = make_request(otheraddons2)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addDir(name, url, None, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addDir(name, url, None, thumb, thumb)
+			else:
+				addDir(name, url, None, icon, fanart)
+				
+
+def other_addons3():
+		content = make_request(otheraddons3)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addDir(name, url, None, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addDir(name, url, None, thumb, thumb)
+			else:
+				addDir(name, url, None, icon, fanart)
+
+def other_addons4():
+		content = make_request(otheraddons4)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addDir(name, url, None, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addDir(name, url, None, thumb, thumb)
+			else:
+				addDir(name, url, None, icon, fanart)
+
+def other_addons5():
+		content = make_request(otheraddons5)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addDir(name, url, None, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addDir(name, url, None, thumb, thumb)
+			else:
+				addDir(name, url, None, icon, fanart)
+				
+def other_addons6():
+		content = make_request(otheraddons6)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addDir(name, url, None, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addDir(name, url, None, thumb, thumb)
+			else:
+				addDir(name, url, None, icon, fanart)
+				
+def removeAccents(s):
+	return ''.join((c for c in unicodedata.normalize('NFD', s.decode('utf-8')) if unicodedata.category(c) != 'Mn'))
+
+def search(): 
+	try:
+		keyb = xbmc.Keyboard('', 'Enter Channel Name')
 		keyb.doModal()
 		if (keyb.isConfirmed()):
-			searchText=urllib.quote_plus(keyb.getText())
-		if 'TimVideoCSN' in url:  
-			url=csn+'search.php?s='+searchText+'&cat=video'      
-		elif 'TimVideoNCT' in url:
-			url = nct + 'tim-kiem/mv?q=' + searchText     
-		elif 'HDOnline' in url:
-			url = 'http://hdonline.vn/tim-kiem/'+searchText.replace('+', '-')+'.html'      			
-		elif 'VuaHD' in url:		
-			url = 'http://vuahd.tv/movies/q/'+searchText.replace('+', '-')
-		elif 'HDViet' in url:
-			url = hdviet_com+'tim-kiem.html?keyword=%s'%searchText.replace('+', '-')
-		elif 'HayHayTV' in url:
-			url = hayhaytv_vn+'tim-kiem/%s/trang-1'%searchText.replace('+', '-')
-		elif 'DangCapHD' in url:
-			url = 'http://dangcaphd.com/movie/search.html?key=%s&search_movie=1'%searchText.replace('+', '-')
-		elif 'MegaBox' in url:
-			url = 'http://phim.megabox.vn/search/index?keyword='+searchText.replace('+', '-')
-		elif 'PhimMoi' in url:
-			url = 'http://www.phimmoi.net/tim-kiem/%s/'%searchText.replace('+', '-')     
-		elif 'PhimGiaiTri' in url:  
-			url = phimgiaitri_vn+'result.php?type=search&keywords='+searchText
-   
-		Search_Result(url, query)
-	except:pass	
-
-def Search_Result(url, query='', mode=''):
-	search_string = fixSearch(query)
-	if search_string=='-':search_string=''	
-	if 'hdonline.vn' in url:
-		content = hdonline.GetContent(url)
-		content = ''.join(content.splitlines()).replace('\'','"')
-		try:
-			content =content.encode("UTF-8")
-		except: pass
-		#movielist=re.compile('<li>\s*<div class="tn-bxitem">(.+?)<div class="clearfix">').findall(content)
-		movielist=re.compile('<li>\s*<div class="tn-bxitem">(.+?)</li>').findall(content)
-		for idx in range(len(movielist)):
-			vcontent = movielist[idx]				
-			items=re.compile('<a href="(.+?)"(.+?)<img src="(.+?)".+?<p class="name-vi">(.+?)</p>\s*<p class="name-en">(.+?)</p>').findall(vcontent)										
-			for url, episodes, img, nameen, namevn in items :
-				name = namevn + ' - ' + nameen							
-				if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua																
-					isFolder=True;v_query=nameen
-					if 'episodes' in episodes :														
-						v_mode='120'
-						name = '[HDOnline] ' + name if query!='' else color['phimbo'] + name + '[/COLOR]'
-					else :						
-						v_mode='12'
-						if query!='':name = '[HDOnline] ' + name
-						
-					if danhmucphim != 'Tất cả': pass
-					else:
-						if v_mode == '12' :
-							v_mode='hdonlineplay';isFolder=False						
-						else :
-							v_mode='episodes';url = 'http://m.hdonline.vn' + url													
-					xshare.addir(name,url,img,fanart='fanart',mode=v_mode,page=1,query=v_query,isFolder=isFolder)
-			setViewMode('3')
-		if query=='':
-			pagecontent=re.compile('<ul class="pagination">(.+?)</ul>').findall(content)
-			if(len(pagecontent)>0):
-				pagelist=re.compile('<li><a [^>]*href=["\']?([^>^"^\']+)["\']?[^>]*>(.+?)</a></li>').findall(pagecontent[0])
-				for vurl,vname in pagelist:
-					if 'Trang' not in vname : vname = 'Trang ' + vname
-					if mode!='category':vurl='http://hdonline.vn'+vurl
-					addDir(vname,vurl,mode if mode=='category' else 'search_result',"")		
-	elif 'hdviet' in url:
-		#category
-		#body=xshare.make_request(url)
-		#body=xshare.sub_body(body,'class="homesection"','class="h2-ttl cf"')
-		#xshare.additemshdviet(body, danhmucphim)
-
-		body=xshare.make_request(url);body=body[body.find('box-movie-list'):body.find('h2-ttl cf')];		
-		pattern='<a href="(.{,200})"><img src="(.+?)"(.+?)"h2-ttl3">(.+?)<span>(.+?)</span>(.*?)<a'
-		links=re.findall(pattern,body)
-		for link,img,temp,ttl3,title,cap in links:
-			strNameEn, name = strVnEn(title, ttl3.replace('&nbsp;',''))
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua																					
-				isFolder=True;v_query=strNameEn
-				caps=''
-				if 'icon-SD' in cap:caps+='[COLOR gold]SD[/COLOR]'
-				if 'icon-720' in cap:caps+='[COLOR gold]HD[/COLOR]720'
-				if 'icon-1080' in cap:caps+='[COLOR gold]HD[/COLOR]1080'
-				if 'icon-TM' in cap:caps+='[COLOR green]TM[/COLOR]'
-				if '>18+<' in cap:caps+='[COLOR red]18+[/COLOR]'
-				isFolder=xshare.xshare_group(re.search('"labelchap2">(\d{1,3})</span>',temp),1)
-				link=xshare.xshare_group(re.search('id="tooltip(\d{,10})"',temp),1).strip()
-
-				if not isFolder:
-					v_mode='12'
-					if query!='':name = '[HDViet] ' + name
-				#elif isFolder=='1':hdviet(title,link,img,mode='22',page=1,query='folder',isFolder=True)
-				else:
-					v_mode='120'
-					name = '[HDViet] ' + name if query!='' else color['phimbo'] + name + '[/COLOR]'
-
-				if danhmucphim != 'Tất cả': pass
-				else:
-					if v_mode == '12' :
-						v_mode='22';isFolder=False
-						v_query='hdvietplay'
-					else :
-						v_mode='episodes';link = hdviet_com													
-						v_query=link
-				xshare.addir(name,link,img,fanart='fanart',mode=v_mode,page=1,query=v_query,isFolder=isFolder)					
-		if query=='':					
-			pages=re.findall('<li class=""><a href="(.+?)">(.+?)</a></li>',body[body.find('class="active"'):])
-			if pages:
-				pagenext=pages[0][1];pageend=pages[len(pages)-1][1]
-				name='%sTrang tiếp theo: trang %s/%s[/COLOR]'%(color['trangtiep'],pagenext,pageend)
-				addDir(name,pages[0][0],mode if mode=='category' else 'search_result',"")
-				#xshare.addir(name,pages[0][0],img,fanart='fanart',mode='search_result',page=1,query='hdvietplay',isFolder=True)			
-		setViewMode('3')
-	elif 'hayhaytv' in url:					
-		if '/shows' in url or mode=='search_result':
-			body=xshare.make_request(url);#body=body[body.find('slide_child_div_dt'):];body=body[:body.find('class="paging"')]
-			content=body[body.find('slide_child_div_dt'):];content=content[:content.find('class="paging"')]
-			pattern='tooltip="(.+?)" href="(.+?)">\s.*"(http://img.+?)".*\s.*color">(.*?)<.*\s.*>(.*?)</span>'
-			#pattern='href="(.+?)".*\s.*alt="poster phim (.+?)" src="(.+?)"'
-			ids=dict((re.findall('id="(sticky\d{1,3})".{,250}Số tập[\D]{,30}(\d{1,4})',body,re.DOTALL)))		
-			items=re.findall(pattern,content)		
-		else:
-			#body=xshare.make_request(url)		
-			body=xshare.make_post(re.sub('page=\d{1,3}','page=%d'%page,url)).body
-			pattern='tooltip="(.+?)" href="(.+?)">\s.*"(http://img.+?)".*\s.*color">(.*?)<.*\s.*>(.*?)</span>'
-			items=re.findall(pattern,body)
-			ids=dict((re.findall('id="(sticky\d{1,3})".{,250}Số tập[\D]{,30}(\d{1,4})',body,re.DOTALL)))
-								
-		for stic,href,img,name_e,name_v in items:		
-			isFolder=True
-			name=name_v+' - '+name_e if name_v else name_e			
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua					
-				v_query = name_e[:-7]
-				if re.search('Tap-\d{1,3}',href):													
-					v_mode='120'
-					name = '[HayHayTV] ' + name if query!='' else color['phimbo'] + name + '[/COLOR]'
-				else :						
-					v_mode='12'
-					if query!='':name = '[HayHayTV] ' + name							
-					
-				if danhmucphim != 'Tất cả' and 'xem-show' not in href: pass
-				else:
-					if v_mode == '12' :
-						v_mode='23';isFolder=False
-						v_query = 'play'						
-					else :
-						v_mode='episodes';isFolder=True				
-				xshare.addir(name,href,img,fanart='fanart',mode=v_mode,page=1,query=v_query,isFolder=isFolder)								
-		if '/shows' in url or mode=='search_result':
-			if query=='':
-				if len(items)>14 or (len(items)>7 and 'su-kien' in url):
-					temp='trang-' if 'trang-' in url else 'page=';url=re.sub('%s\d{1,3}'%temp,'%s%d'%(temp,page+1),url)
-					name='%sTrang tiếp theo: trang %s[/COLOR]'%(color['trangtiep'],page+1)
-					addDir(name,url,'search_result&page=%d'%(page+1),"")		
-		else:
-			body=body[body.find('javascript:slideTogglePage1()'):body.find('data-tooltip="sticky')]						
-			items=re.findall('<a href=\'(.+?)\' onclick=.*?>(.+?)</a>',body)
-			for href, name in items:				
-				name = color['trangtiep'] + 'Trang ' + name + '[/COLOR]'
-				addDir(name,href,'category',"")		
-				
-		setViewMode('3')
-	elif 'vuahd' in url:
-		body=xshare.make_request(url)
-		items=re.findall('img src="(.+?)".{,500}<a href="(.+?)" title="(.+?)"',body,re.DOTALL)
-		home='http://vuahd.tv'
-		for img,href,name in items:			
-			names=re.findall('<h2>(.+?)<br />\s*(.+?)\s*</h2>',xshare.make_request(home+href),re.DOTALL)
-			for nameen, namevn in names:
-				name = namevn.replace('( ', '').replace(')', '') + ' - ' + nameen.strip()				
-
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua			
-				isFolder=True
-				if 'tv-series' in href:	#Phim bộ
-					if query=='':
-						name = color['phimbo'] + name + '[/COLOR]'
-						v_mode='episodes'	
-					elif query=='-':
-						name = color['phimbo'] + name + '[/COLOR]'
-						v_mode='120'
-					else:
-						name = '[VuaHD] ' + name
-						v_mode='120'
-					v_mode='episodes'
-					href = home+href
-				elif 'actors' not in href:
-					isFolder=False
-					href = vuahdtv + 'http%3A%2F%2Fvuahd.tv' + href.replace('/', '%2F')					
-					if query=='':
-						name = '[Phim lẻ] ' + name
-						v_mode='16'						
-					elif query=='-':
-						name = '[Phim lẻ] ' + name
-						v_mode='12'
-					else:
-						name = '[VuaHD] ' + name
-						v_mode='12'
-					v_mode='16'	
-				xshare.addir(fixString(name),href,img,fanart='fanart',mode=v_mode,page=1,query=nameen.strip(),isFolder=isFolder)
-		if query=='':pass			
-			#if items and len(items)>25:
-				#name=color['trangtiep']+'Trang tiếp theo: trang %s[/COLOR]'%str(page+1)
-				#xshare.addir(name,url,icon['vuahd'],fanart,v_mode,page=page+1,query='trangtiep',isFolder=True)		
-	elif 'dangcaphd' in url:			
-		body=re.sub('\t|\n|\r|\f|\v','',xshare.make_request(url))
-		items=re.findall('<a class="product.+?" href="(.+?)" title="(.+?)">.+?<img src="(.+?)" (.+?)</li>',body)		
-		for href,name,img,other in items:			
-			if ' - ' in name:
-				arrName = name.split(' - ')
-				str1=str2=strYear=''
-				str1 = arrName[0]#.strip()
-				if len(arrName) > 1: str2 = arrName[1]#.strip()		
-				strNameEn, name = strVnEn(str2, str1)
-				if len(arrName) > 2:
-					strYear = arrName[2]#.strip()
-					name = name + ' (' + strYear + ')'
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua			
-				isFolder=True;v_query=strNameEn
-				if re.search('<div class="sale">.+?</div>',other):
-					name=name+' - ('+xshare.xshare_group(re.search('<div class="sale">(.+?)</div>',other),1)+')'
-					if query!='' and query!='-':name = '[DangCapHD] ' + name
-					else:name = color['phimbo'] + name + '[/COLOR]'
-					if query=='' or (query!='' and danhmucphim <> 'DangCapHD'):
-						#v_mode='episodes'#episodes
-						v_mode='18'
-						v_query = 'DC3'
-					else:v_mode='120'#list_server
-				else:
-					if query!='' and query!='-':name = '[DangCapHD] ' + name
-					if query=='' or (query!='' and danhmucphim <> 'DangCapHD'):
-						v_mode='18';isFolder=False
-						v_query = 'DCP'
-					else:v_mode='12'#list_server
-				xshare.addir(name,href,img,fanart='fanart',mode=v_mode,page=1,query=v_query,isFolder=isFolder)
-		if query=='':
-			pattern='<a class="current">\d{1,5}</a><a href="(.+?)">(\d{1,5})</a>.*<a href=".+?page=(\d{1,5})">.+?</a></div>'
-			page_control=re.search(pattern,body)
-			if page_control:
-				href=re.sub('&amp;','&',page_control.group(1));pagenext=page_control.group(2)
-				pages=int(page_control.group(3))/rows+1
-				name=color['trangtiep']+'Trang tiếp theo: trang %s/%d[/COLOR]'%(pagenext,pages)
-				xshare.addir(name,href,mode if mode=='category' else 'search_result',isFolder=True)
-		setViewMode('3')
-	elif 'megabox.vn' in url:
-		content = Get_Url(url)	
-		items = re.compile('src="(.+?)">\s*<span class="features">\s*</span>\s*</a>\s*<div class="meta">\s*<h3 class="H3title">\s*<a href="(.+?)">(.+?)</a></h3>\s*<div class="explain">(.+?)</div>').findall(content)
-		for img, href, titleVn, titleEn in items:
-			name = titleVn + ' - ' + titleEn	
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua			
-				if query=='':
-					#name = '[Phim lẻ] ' + name
-					v_mode='16'						
-					isFolder=False
-				elif query=='-':
-					#name = '[Phim lẻ] ' + name
-					v_mode='12'
-				else:
-					name = '[MegaBox] ' + name
-					v_mode='12'				
-			
-				href = megaboxvn + href.replace('/', '%2F').replace(':', '%3A')			
-				xshare.addir(name,href,img,'fanart',mode='16',page=1,query='play',isFolder=False)
-		items = re.compile('src="(.+?)">\s*<span class=\'esp\'>.+?<span class="features">\s*</span>\s*</a>\s*<div class="meta">\s*<h3 class="H3title">\s*<a href="(.+?)">(.+?)</a></h3>\s*<div class="explain">(.+?)</div>').findall(content)
-		for img, href, titleVn, titleEn in items:
-			name = titleVn + ' - ' + titleEn
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua
-				if query=='':
-					name = color['phimbo'] + name + '[/COLOR]'
-					v_mode='episodes'	
-				elif query=='-':
-					name = color['phimbo'] + name + '[/COLOR]'
-					v_mode='120'
-				else:
-					name = '[MegaBox] ' + name
-					v_mode='120'											
-				xshare.addir(name,href,img,'fanart',mode='episodes',page=1,query='eps',isFolder=True)
-				
-		#items = re.compile('class="next"><a href="(.+?)">').findall(content)
-		#addDir('[COLOR red]Trang Tiếp Theo[/COLOR]', megabox_vn + items[0],'episodes',icon['next'])	
-			
-	elif 'phimmoi' in url:
-		body=xshare.make_request(url);menu1='Add to Tủ phim'
-		for content in re.findall('<li class="movie-item">(.+?)</li>',body,re.DOTALL):		
-			title=xshare.xsearch('title="(.+?)"',content,1);href=xshare.xsearch('href="(.+?)"',content,1)
-			arr = title.split(' - ')
-			titleEn=arr[1] if len(arr)>1 else ''			
-						
-			img=xshare.xsearch('\((http.+?)\)',content,1);detail=' '.join(re.findall('<span(.+?)</span>',content))
-			title,href,img,v_query,isFolder=xshare.get_info(title,href,img,detail)
-			menu=[(menu1,{'name':menu1,'url':href,'query':'tuphim'})]
-
-			if fixSearchss(search_string) in fixSearchss(title) or search_string == '' : # xu ly tim kiem cho nhieu ket qua			
-				isFolder=True
-				if v_query == 'pmfolder' :														
-					if query!='':v_mode='120'
-					if query!='' and query!='-':title = '[PhimMoi] ' + title
-					else:title = color['phimbo'] + title + '[/COLOR]'
-					if query=='' or (query!='' and danhmucphim <> 'PhimMoi'):
-						v_mode='episodes'
-				else :						
-					if query!='':v_mode='12'
-					if query!='' and query!='-':title = '[PhimMoi] ' + title
-					if query=='' or (query!='' and danhmucphim <> 'PhimMoi'):
-						v_mode='24';isFolder=False
-				xshare.pm_addir2(title,href,img,fanart='',mode=v_mode,page=1,query=titleEn,isFolder=isFolder)#,menu=menu)
-		if query=='':
-			urlnext=xshare.xshare_group(re.search('<li><a href="(.+?)">Trang kế.+?</a></li>',body),1)
-			if urlnext:
-				pagenext=xshare.xshare_group(re.search('/page-(\d{1,3})\.html',urlnext),1)
-				name='%sTrang tiếp theo: trang %s[/COLOR]'%(color['trangtiep'],pagenext)
-				xshare.addir(name,phimmoi_net+urlnext,img,fanart='',mode=mode if mode=='category' else 'search_result',page=1,query='readpage',isFolder=True)
-	elif 'phimgiaitri' in url:
-		content = xshare.make_request(url)			
-		#try:
-		#items = re.compile('<a style=\'text-decoration:none\' href=\'([^\']*).html\'>\s*<img style=.+?src=(.+?) ><table style.+?:0px\'>(.+?)\s*<\/font>').findall(content)
-		items = re.compile('<a style=\'text-decoration:none\' href=\'([^\']*).html\'>\s*<img style=.+?src=(.+?) ><table style.+?:0px\'>(.+?)\s*</font>.+?\'> (.+?)</font>').findall(content)
-		for href,img,namevn,nameen in items:		
-			strNameEn, name =  strVnEn(namevn, nameen)
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua			
-				if query=='':
-					v_mode='16'						
-					isFolder=False
-				elif query=='-':
-					v_mode='12'
-				else:
-					name = '[PhimGiaiTri] ' + name
-					v_mode='12'			
-			href = phimgiaitri_vn+href+'/Tap-1.html'
-			add_Link(name,href,phimgiaitri_vn+img)
-			#xshare.addir(href,href,phimgiaitri_vn+img,'fanart',mode='stream',page=1,query='play',isFolder=False)
-			
-			#href = phimgiaitri_vn  + 'http:%2F%2Fphimgiaitri.vn%2F' + href.replace('/', '%2F')
-			#xshare.addir(href,href,phimgiaitri_vn+img,'fanart',mode='16',page=1,query='play',isFolder=False)
-
-		items = re.compile('<a style=\'text-decoration:none\' href=\'([^\']*).html\'>\s*<img style=.+?src=(.+?) ><div class=\'text\'>\s*(.+?)\s*</div><table style.+?:0px\'>(.+?)\s*</font>.+?\'> (.+?)</font>').findall(content)
-		for href,img,eps,namevn,nameen in items:		
-			name =  namevn + ' - ' + nameen
-			if fixSearchss(search_string) in fixSearchss(name) or search_string == '' : # xu ly tim kiem cho nhieu ket qua					
-				if '01/01' in eps : #truong hop phim le o trang chu co hien thi (Tập 01/01)
-					if query=='':
-						v_mode='16'						
-						isFolder=False
-					elif query=='-':
-						v_mode='12'
-					else:
-						name = '[PhimGiaiTri] ' + name
-						v_mode='12'		
-					href = phimgiaitri_vn+href+'/Tap-1.html'
-					add_Link(name,href,phimgiaitri_vn+img)					
-					#xshare.addir(name,url,phimgiaitri_vn+img,'fanart',v_mode='play',page=1,isFolder=False)	
-				else : 
-					if query=='':
-						name = color['phimbo'] + name + '[/COLOR]'
-						v_mode='episodes'	
-					elif query=='-':
-						name = color['phimbo'] + name + '[/COLOR]'
-						v_mode='120'
-					else:
-						name = '[PhimGiaiTri] ' + name
-						v_mode='120'	
-					href = phimgiaitri_vn+href+'/Tap-1.html'
-					xshare.addir(name,href,phimgiaitri_vn+img,'fanart',mode='episodes',page=1,isFolder=True)	
-								
-		#items = re.compile("<a  href='(.+?)'>(\d+)  <\/a>").findall(content) 		
-		#for url,name in items:
-		  #addDir('[COLOR lime]Trang tiếp theo '+name+'[/COLOR]',phimgiaitri_vn+href.replace(' ','%20'),'search_result',icon['next'])
-		#except:pass
-										
-	elif 'chiasenhac' in url:
-		content = Get_Url(url)
-		items=re.compile("<a href=\"([^\"]*)\" title=\"(.*?)\"><img src=\"([^\"]+)\"").findall(content)
-		#items=re.compile("<a href=\"([^\"]*)\" title=\"(.*?)\"><img src=\"([^\"]+)\"\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s.+\s*<span class=\"gen\">.*?<br /><span style=\"color: .*?\">(.*?)</span>").findall(content)
-		cat = '...'
-		if 'page=' not in url:url=url+"&page=1"
-		for href,name,thumbnail in items:
-			name=name.replace(';',' +')
-			add_Link(name+color['cat']+' ['+cat+'][/COLOR]',csn+href,thumbnail)
-		items=re.compile("href=\"(.+?)\" class=\"npage\">(\d+)<").findall(content)
-		for href,name in items:
-			if 'page='+name not in url:
-				addDir(color['trangtiep']+'Trang '+name+'[/COLOR]',href.replace('&amp;','&'),'search_result',icon['next'])
-	elif 'nhaccuatui' in url:
-		content = Get_Url(url)
-		match = re.compile("href=\"http:\/\/m.nhaccuatui.com\/video\/([^\"]*)\" title=\"([^\"]+)\"><img alt=\".+?\" src=\"(.*?)\"").findall(content)		
-		for url, name, thumb in match:			
-			add_Link(name,nct + 'video/' + url,thumb)
-		match = re.compile("href=\"([^\"]*)\" class=\"next\" titlle=\"([^\"]+)\"").findall(content)
-		for url, name in match:	
-			addDir(color['trangtiep']+name+'[/COLOR]',url,mode if mode=='episodes' else 'search_result',icon['next'])					
-
-def Get_M3U(url,iconimage):
-	m3ucontent = Get_Url(url)
-	items = re.compile('#EXTINF:-?\d,(.+?)\n(.+)').findall(m3ucontent)
-	for name,url in items:	
-		#if 'youtube' in url:
-			#addLink('' + name + '', url, 'play', iconimage)
-		#else:
-		add_Link(name.replace('TVSHOW - ','').replace('MUSIC - ',''),url,iconimage)
-
-def Get_XML(url,iconimage):
-	xmlcontent = GetUrl(url)
-	match=re.compile("<title>([^<]*)<\/title>\s*<link>([^<]+)<\/link>\s*<thumbnail>(.+?)</thumbnail>").findall(xmlcontent)
-	for title,url,thumbnail in match:
-		add_Link(title, url, thumbnail)
-		#addLink('' + title + '', url, 'play', thumbnail)
-		
-def Index(url,iconimage):
-    byname = url.split("?n=")[1]
-    url = url.split("?")[0]
-    xmlcontent = GetUrl(url)
-    channels = re.compile('<channel>(.+?)</channel>').findall(xmlcontent)
-    for channel in channels:
-        if byname in channel:
-            items = re.compile('<item>(.+?)</item>').findall(channel)
-            for item in items:
-                thumb=""
-                title=""
-                link=""
-                if "/title" in item:
-                    title = re.compile('<title>(.+?)</title>').findall(item)[0]
-                if "/link" in item:
-                    link = re.compile('<link>(.+?)</link>').findall(item)[0]
-                if "/thumbnail" in item:
-                    thumb = re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
-                if "youtube" in link:					                    
-					if 'MenuTube' in url:
-						addDir(title, link, 'episodes', thumb)
-					else:
-						add_Link(title, link, thumb)
-                else:					
-                    addLink('' + title + '', link, 'play', thumb)
-    skin_used = xbmc.getSkinDir()
-    if skin_used == 'skin.xeebo':
-        xbmc.executebuiltin('Container.SetViewMode(50)')
-		
-def IndexGroup(url):
-    xmlcontent = GetUrl(url)
-    names = re.compile('<name>(.+?)</name>').findall(xmlcontent)
-    if len(names) == 1:
-        items = re.compile('<item>(.+?)</item>').findall(xmlcontent)
-        for item in items:
-            thumb=""
-            title=""
-            link=""
-            if "/title" in item:
-                title = re.compile('<title>(.+?)</title>').findall(item)[0]
-            if "/link" in item:
-                link = re.compile('<link>(.+?)</link>').findall(item)[0]
-            if "/thumbnail" in item:
-                thumb = re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
-            add_Link(title, link, thumb)
-        skin_used = xbmc.getSkinDir()
-        if skin_used == 'skin.xeebo':
-            xbmc.executebuiltin('Container.SetViewMode(52)')
-        else:
-            xbmc.executebuiltin('Container.SetViewMode(%d)' % 500)			
-    else:
-        for name in names:
-            addDir('' + name + '', url+"?n="+name, 'index', '')
-
-def Index_Group(url):
-	xmlcontent = GetUrl(url)
-	names = re.compile('<name>(.+?)</name>\s*<thumbnail>(.+?)</thumbnail>').findall(xmlcontent)
-	if len(names) == 1:
-		items = re.compile('<item>(.+?)</item>').findall(xmlcontent)
-		for item in items:
-			thumb=""
-			title=""
-			link=""
-			if "/title" in item:
-				title = re.compile('<title>(.+?)</title>').findall(item)[0]
-			if "/link" in item:
-				link = re.compile('<link>(.+?)</link>').findall(item)[0]
-			if "/thumbnail" in item:
-				thumb = re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
-			addLink(title, link, 'play', thumb)
-		skin_used = xbmc.getSkinDir()
-		if skin_used == 'skin.xeebo':
-				xbmc.executebuiltin('Container.SetViewMode(50)')
-	else:
-		for name,thumb in names:
-			addDir(name, url+"?n="+name, 'index', thumb)
-
-def menulist(homepath):
-	try:
-		mainmenu=open(homepath, 'r')  
-		link=mainmenu.read()
-		mainmenu.close()
-		match=re.compile("<title>([^<]*)<\/title>\s*<link>([^<]+)<\/link>\s*<thumbnail>(.+?)</thumbnail>").findall(link)
-		return match
+			searchText = urllib.quote_plus(keyb.getText(), safe="%/:=&?~#+!$,;'@()*[]").replace('+', ' ')
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
 	except:
 		pass
-	
-def resolve_url(url):
-	if 'xemphimso' in url:
-		content = Get_Url(url)	
-		url = urllib.unquote_plus(re.compile("file=(.+?)&").findall(content)[0])
-	elif 'vtvplay' in url:
-		content = Get_Url(url)
-		url = content.replace("\"", "")
-		url = url[:-5]
-	elif 'vtvplus' in url:
-		content = Get_Url(url)
-		url = re.compile('var responseText = "(.+?)";').findall(content)[0]		
-	elif 'htvonline' in url:
-		content = Get_Url(url)	
-		url = re.compile('data\-source=\"([^\"]*)\"').findall(content)[0]
-	elif 'hplus' in url:
-		content = Get_Url(url)	
-		url = re.compile('iosUrl = "(.+?)";').findall(content)[0]
-	elif 'megabox' in url:
-		content = Get_Url(url)	
-		url = re.compile('var iosUrl = "(.+?)"').findall(content)[0]+'|User-Agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0'		
-	elif 'chiasenhac' in url:
-		content = Get_Url(url)
-		try:
-		  url = re.compile("\"hd-2\".+?\"([^\"]+)\"").findall(content)[0].replace('%3A',':').replace('%2F','/').replace('%2520','%20')
-		except:
-		  url = re.compile("\"file\".*?\"([^\"]*)\"").findall(content)[-1].replace('%3A', ':').replace('%2F', '/').replace('%2520', '%20')		
-		  #url = re.compile("\"hd-2\".+?\"([^\"]+)\"").findall(content)[-1].replace('%3A',':').replace('%2F','/').replace('%2520','%20')
-	elif 'nhaccuatui' in url:
-		content = Get_Url(url)
-		url = re.compile("title=\".+?\" href=\"([^\"]*)\"").findall(content)[0] 
-		
-	elif 'f.vp9.tv' in url:
-		content = Get_Url(url)
-		try:
-		  try:
-		    url = url+re.compile('<a href="(.*?)HV.mp4"').findall(content)[0]+'HV.mp4'
-		  except:
-		    url = url+re.compile('<a href="(.*?)mvhd.mp4"').findall(content)[0]+'mvhd.mp4'
-		except:
-		  url = url+re.compile('<a href="(.*?)mv.mp4"').findall(content)[0]+'mv.mp4'
-	elif 'ott.thuynga' in url:
-		content = Get_Url(url)	
-		url=re.compile("var iosUrl = '(.+?)'").findall(content)[0]
-	elif 'phim7' in url:
-		content = Get_Url(url)
-		try:
-		  url = 'https://redirector' + re.compile('file: "https://redirector(.+?)", label:".+?", type: "video/mp4"').findall(content)[-1]
-		except:
-		  url = 'plugin://plugin.video.youtube/play/?video_id=' + re.compile('file : "http://www.youtube.com/watch\?v=(.+?)&amp').findall(content)[0]		
-	elif 'phimgiaitri' in url:
-		xbmc.log(url)	
-		arr = url.split('/')
-		phimid = arr[len(arr) - 3]
-		tap = arr[len(arr) - 1]
-		tap2 = tap.split('-')
-		tap3 = tap2[1].split('.')
-		tap = tap3[0]
-		url2 = 'http://120.72.85.195/phimgiaitri/mobile/service/getep3.php?phimid=' + phimid
-		content = Get_Url(url2)
-		content = content[3:]
-		infoJson = json.loads(content)
-		tapindex = int(tap) -1
-		link = infoJson['ep_info'][tapindex]['link']
-		link = link.replace('#','*')
-		url3 ='http://120.72.85.195/phimgiaitri/mobile/service/getdireclink.php?linkpicasa=' + link
-		content = Get_Url(url3)
-		content = content[3:]
-		linkJson = json.loads(content)
-		url = linkJson['linkpi'][0]['link720'] or linkJson['linkpi'][0]['link360']		
+
+def tutorial_links(url):
+	content = make_request(url)
+	if url.endswith('m3u'):
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'plugin.program.chrome.launcher' in url:
+				if 'tvg-logo' in thumb:
+					thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+					if thumb.startswith('http'):
+						addDir(name, url, None, thumb, thumb)
+					else:
+						thumb = '%s/%s' % (iconpath, thumb)
+						addDir(name, url, None, thumb, thumb)
+				else:
+					addDir(name, url, None, icon, fanart)
+			else:
+				if 'tvg-logo' in thumb:
+					thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+					if thumb.startswith('http'):
+						addLink(name, url, 1, thumb, thumb)
+					else:
+						thumb = '%s/%s' % (iconpath, thumb)
+						addLink(name, url, 1, thumb, thumb)
+				else:
+					addLink(name, url, 1, icon, fanart)
+	elif url.endswith('xml'):
+		match = re.compile(xml_regex).findall(content)
+		for name, url, thumb in match:
+			if 'plugin.program.chrome.launcher' in url:
+				addDir(name, url, None, thumb, thumb)
+			else:
+				addLink(name, url, 1, thumb, thumb)
+
+def search_youtube(): 
+	try:
+		keyb = xbmc.Keyboard('', 'Enter Channel Name')
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			searchText = urllib.quote_plus(keyb.getText()) 
+		url = 'https://www.youtube.com/results?search_query=' + searchText
+		youtube_search(url)
+	except:
+		pass
+
+def youtube_search(url):
+	content = make_request(url)
+	match = re.compile('href="/watch\?v=(.+?)" class=".+?" data-sessionlink=".+?" title="(.+?)".+?Duration: (.+?).</span>').findall(content)
+	for url, name, duration in match:
+		name = replace_all(name, dic)
+		thumb = 'https://i.ytimg.com/vi/' + url + '/mqdefault.jpg'
+		url = 'plugin://plugin.video.youtube/play/?video_id=' + url
+		addLink(name + ' (' + duration + ')', url, 1, thumb, fanart)
+	match = re.compile('href="/results\?search_query=(.+?)".+?aria-label="Go to (.+?)"').findall(content)
+	for url, name in match:
+		url = 'https://www.youtube.com/results?search_query=' + url
+		addDir('[COLOR cyan]' + name + '[/COLOR]', url, 26, ytsearchicon, ytsearchicon)
+
+def youtube_menu(url):
+	#if url == tubemenu:
+	#	addDir('[COLOR yellow][B]YouTube - Search[/B][/COLOR]', 'ytsearch', 25, ytsearchicon, ytsearchicon)
+	content = make_request(url)
+	match = re.compile(xml_regex+'\s*<mode>(.*?)</mode>').findall(content)
+	for name, url, thumb, mode in match:
+		if youtube_mode == 'direct':
+			if 'plugin://plugin.video.youtube' in url:
+				addLink(name, url, mode, thumb, thumb)
+			else:
+				addDir(name, url, mode, thumb, thumb) 
+		elif youtube_mode == 'tubelink':
+			if mode == '20':
+				getDir(name, url, None, thumb, thumb)
+			else:
+				if 'plugin://plugin.video.youtube' in url:
+					addLink(name, url, mode, thumb, thumb)
+				else:
+					addDir(name, url, mode, thumb, thumb) 
+
+def youtube_channels(url):
+	content = make_request(url)
+	match = re.compile(xml_regex).findall(content)
+	for name, url, thumb in match:
+		if youtube_mode == 'direct':
+			addDir(name, url, 20, thumb, thumb)
+		elif youtube_mode == 'tubelink':
+			getDir(name, url, None, thumb, thumb)
+
+def youtube_list(url):
+	addDir('[COLOR magenta][B]Playlists[/B][/COLOR]', (url + '/playlists?sort=dd&view=1'), 21, '%s/YTPlaylist.png'% iconpath, fanart)
+	link = make_request(url + '/videos')
+	link = ''.join(link.splitlines()).replace('\t','')
+	match = re.compile('src="//i.ytimg.com/vi/(.+?)".+?aria-label.+?>(.+?)</span>.+?href="/watch\?v=(.+?)">(.+?)</a>').findall(link)
+	for thumb, duration, url, name in match:
+		name = replace_all(name, dic)
+		thumb = 'https://i.ytimg.com/vi/' + thumb
+		addLink(name, 'plugin://plugin.video.youtube/play/?video_id=' + url, 1, thumb, thumb)
+	try:
+		match = re.compile('data-uix-load-more-href="(.+?)"').findall(link)
+		addDir('[COLOR yellow][B]Next page [/B][/COLOR][COLOR lime][B]>>[/B][/COLOR]', 'https://www.youtube.com' + match[0].replace('&amp;','&'), 23, '%s/nextpage.png'% iconpath, fanart)
+	except:
+		pass
+
+def youtube_playlist(url):
+	link = make_request(url)
+	link = ''.join(link.splitlines()).replace('\t','')
+	match = re.compile('[src|data-thumb]="//i.ytimg.com/vi/(.+?)".+?href="/playlist(.+?)">(.+?)<').findall(link)    # Either src or data-thumb [src|data-thumb]
+	for thumb, url, name in match:
+		name = replace_all(name, dic)
+		thumb = 'https://i.ytimg.com/vi/' + thumb
+		if 'Liked videos' in name or 'Favorites' in name:
+			pass
+		else:
+			addDir(name, url, 22, thumb, thumb)
+
+def youtube_playlist_index(url):
+	link = make_request('https://www.youtube.com/playlist' + url)
+	link = ''.join(link.splitlines()).replace('\t','')
+	newmatch = re.compile('data-title="(.+?)".+?href="\/watch\?v=(.+?)\&amp\;.+?data-thumb="(.+?)".+?aria-label.+?>(.+?)<\/span><\/div>').findall(link)
+	for name, url, thumb, duration in newmatch:
+		name = replace_all(name, dic)
+		thumb = 'https:' + thumb
+		if '[Deleted Video]' in name:
+			pass
+		else:
+			addLink(name, 'plugin://plugin.video.youtube/play/?video_id=' + url, 1, thumb, thumb)
+	try:
+		match = re.compile('data-uix-load-more-href="(.+?)"').findall(link)
+		addDir('[COLOR magenta]Next page >>[/COLOR]', 'https://www.youtube.com' + match[0].replace('&amp;','&'), 24, '%s/nextpage.png'% iconpath, fanart)
+	except:
+		pass
+
+def next_page(url):
+	req = urllib2.Request(url)
+	req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0')
+	response = urllib2.urlopen(req) 
+	link = response.read()
+	response.close()
+	newlink = ''.join(link.splitlines()).replace('\\', '').replace('\t','')
+	match = re.compile('src="//i.ytimg.com/vi/(.+?)".+?aria-label="(.+?)".+?dir="ltr" title="(.+?)".+?href="/watch\?v=(.+?)"').findall(newlink)
+	for thumb, duration, name, url in match:
+		name = replace_all(name, dic)
+		thumb = 'https://i.ytimg.com/vi/' + thumb
+		addLink(name, 'plugin://plugin.video.youtube/play/?video_id=' + url, 1, thumb, thumb)
+	try:
+		match = re.compile('data-uix-load-more-href="(.+?)"').findall(newlink)
+		addDir('[COLOR yellow][B]Next page [/B][/COLOR][COLOR lime][B]>>[/B][/COLOR]', 'https://www.youtube.com' + match[0].replace('&amp;','&'), 23, '%s/nextpage.png'% iconpath, fanart)
+	except:
+		pass
+
+def next_page_playlist(url):
+	req = urllib2.Request(url)
+	req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0')
+	response = urllib2.urlopen(req) 
+	link = response.read()
+	response.close()
+	newlink = ''.join(link.splitlines()).replace('\\', '').replace('\t','')
+	match = re.compile('data-video-id="(.+?)".+?data-title="(.+?)".+?data-thumb="//i.ytimg.com/vi/(.+?)".+?aria-label="(.+?)"').findall(newlink)
+	for url, name, thumb, duration in match:
+		name = replace_all(name, dic)
+		thumb = 'https://i.ytimg.com/vi/' + thumb
+		addLink(name, 'plugin://plugin.video.youtube/play/?video_id=' + url, 1, thumb, thumb)
+	try:
+		match = re.compile('data-uix-load-more-href="(.+?)"').findall(newlink)
+		addDir('[COLOR magenta]Next page >>[/COLOR]', 'https://www.youtube.com' + match[0].replace('&amp;','&'), 24, '%s/nextpage.png'% iconpath, fanart)
+	except:
+		pass
+
+def vietmedia_tutorials():
+	thumb = 'https://yt3.ggpht.com/-Y4hzMs0ItTw/AAAAAAAAAAI/AAAAAAAAAAA/OquSyoI-Y2s/s100-c-k-no/photo.jpg'
+	addLink('[COLOR orange][B]VietMedia - YouTube - Hướng Dẫn[/B][/COLOR]', 'NoLinkRequired', 1, thumb, thumb)
+	content = make_request(yt + 'playlist?list=PLCFeyxaD_7E30Ibjhm8D5qn7KUVDE7os2')
+	newcontent = ''.join(content.splitlines()).replace('\t','')
+	newmatch = re.compile('data-title="(.+?)".+?href="\/watch\?v=(.+?)\&amp\;.+?data-thumb="(.+?)".+?aria-label.+?>(.+?)<\/span><\/div>').findall(newcontent)
+	for name, url, thumb, duration in newmatch:
+		thumb = 'https:' + thumb
+		if '[Deleted Video]' in name:
+			pass
+		else:
+			name = replace_all(name, dic)
+			addLink(name, 'plugin://plugin.video.youtube/play/?video_id=' + url, 1, thumb, thumb)
+	content = make_request(yt + 'playlist?list=PLCFeyxaD_7E3LLqjhIwkboAePgDT--8YF')
+	newcontent = ''.join(content.splitlines()).replace('\t','')
+	newmatch = re.compile('data-title="(.+?)".+?href="\/watch\?v=(.+?)\&amp\;.+?data-thumb="(.+?)".+?aria-label.+?>(.+?)<\/span><\/div>').findall(newcontent)
+	for name, url, thumb, duration in newmatch:
+		thumb = 'https:' + thumb
+		if '[Deleted Video]' in name:
+			pass
+		else:
+			name = replace_all(name, dic)
+			addLink(name, 'plugin://plugin.video.youtube/play/?video_id=' + url, 1, thumb, thumb)
+	thumb1 = '%s/utube.png'% iconpath
+	addLink('[COLOR magenta][B]Other Tutorials on YouTube - Những Hướng Dẫn Khác[/B][/COLOR]', 'NoLinkRequired', 1, thumb1, thumb1)
+	content = make_request(media_link()[1])
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match:
+		if 'plugin.video.youtube' in url:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addLink(name, url, 1, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addLink(name, url, 1, thumb, thumb)
+			else:
+				addLink(name, url, 1, icon, fanart)
+		else:
+			pass
+
+def vietnam_abc_order():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					else:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+	try:
+		content = make_request(media_link()[3])
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				addLink(name, url, 1, thumb, thumb)
+			else:
+				addLink(name, url, 1, icon, fanart)
+		content = make_request(media_link()[2])
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				addLink(name, url, 1, thumb, thumb)
+			else:
+				addLink(name, url, 1, icon, fanart)
+		vietmedia_tutorials()
+	except:
+		pass
+
+def vietnam_group():
+	addDir('Movies', 'vietnam_group', 77, '%s/group.png'% iconpath, fanart)
+	addDir('Music', 'vietnam_group', 75, '%s/group.png'% iconpath, fanart)
+	addDir('Radio', 'vietnam_group', 79, '%s/group.png'% iconpath, fanart)
+	addDir('Sports', 'vietnam_group', 82, '%s/group.png'% iconpath, fanart)
+	addDir('Tutorials', 'vietnam_group', 83, '%s/group.png'% iconpath, fanart)
+	addDir('TV', 'vietnam_group', 31, '%s/group.png'% iconpath, fanart)
+
+def viet_tv_group():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)): 
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name) or ('OnDemandMovies' in name) or ('Music' in name) or ('Radio' in name) or ('Sports' in name) or ('Tutorials' in name):
+						pass
+					else:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+	try:
+		content = make_request(media_link()[3])
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				addLink(name, url, 1, thumb, thumb)
+			else:
+				addLink(name, url, 1, icon, fanart)
+	except:
+		pass
+
+def vietnam_category(): 
+	addDir('Documentary', 'vietnam_category', 71, '%s/category.png'% iconpath, fanart)
+	addDir('Entertainment', 'vietnam_category', 72, '%s/category.png'% iconpath, fanart)
+	addDir('Family', 'vietnam_category', 73, '%s/category.png'% iconpath, fanart)
+	addDir('Movie Channels', 'vietnam_category', 74, '%s/category.png'% iconpath, fanart)
+	addDir('Music', 'vietnam_category', 75, '%s/category.png'% iconpath, fanart)
+	addDir('News', 'vietnam_category', 76, '%s/category.png'% iconpath, fanart)
+	addDir('On Demand Movies', 'vietnam_category', 77, '%s/category.png'% iconpath, fanart)
+	addDir('On Demand Shows', 'vietnam_category', 78, '%s/category.png'% iconpath, fanart)
+	addDir('Radio', 'vietnam_category', 79, '%s/category.png'% iconpath, fanart)
+	addDir('Random Air Time 24/7', 'vietnam_category', 80, '%s/category.png'% iconpath, fanart)
+	addDir('Special Events', 'vietnam_category', 81, '%s/category.png'% iconpath, fanart)
+	addDir('Sports', 'vietnam_category', 82, '%s/category.png'% iconpath, fanart)
+	addDir('Tutorials', 'vietnam_category', 83, '%s/category.png'% iconpath, fanart)
+
+def viet_Documentary():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Documentary' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_Entertainment():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Entertainment' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_Family():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Family' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+	try:
+		content = make_request(media_link()[3])
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				addLink(name, url, 1, thumb, thumb)
+			else:
+				addLink(name, url, 1, icon, fanart)
+	except:
+		pass
+
+def viet_Movie_Channels():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Movie Channels' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_Music():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Music' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_News():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'News' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_OnDemandMovies():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'OnDemandMovies' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_OnDemandShows():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'OnDemandShows' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_Radio():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Radio' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+	try:
+		content = make_request(media_link()[2])
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				addLink(name, url, 1, thumb, thumb)
+			else:
+				addLink(name, url, 1, icon, fanart)
+	except:
+		pass
+
+def viet_RandomAirTime():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'RandomAirTime 24/7' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_Special_Events():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Special Events' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_Sports():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Sports' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def viet_Tutorials():
+	try:
+		searchText = '\(VN\)|(Vietnamese)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if (re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					if 'Tutorials' in name:
+						m3u_playlist(name, url, thumb)
+	except:
+		pass
+	try:
+		vietmedia_tutorials()
+	except:
+		pass
+
+def top10():
+	try:
+		searchText = '(Top10)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def sports():
+	try:
+		searchText = '(Sports)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def news():
+	try:
+		searchText = '(News)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def documentary():
+	try:
+		searchText = '(Document)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def entertainment():
+	try:
+		searchText = '(Entertainment)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def family():
+	try:
+		searchText = '(Family)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def lifestyle():
+	try:
+		searchText = '(Lifestyle)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def movie():
+	try:
+		searchText = '(Movie Channels)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def music():
+	try:
+		searchText = '(Music)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def ondemandmovies():
+	try:
+		searchText = '(OnDemandMovies)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def ondemandshows():
+	try:
+		searchText = '(OnDemandShows)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def twentyfour7():
+	try:
+		searchText = '(RandomAirTime 24/7)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def radio():
+	try:
+		searchText = '(Radio)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def adult():
+	addDir('[COLOR red][B]Adult Addons[/B][/COLOR]', 'adult_addons', 120, '%s/xxx.png'% iconpath, fanart)
+	try:
+		content = make_request(media_link()[4])
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'plugin://plugin' in url:
+				if 'tvg-logo' in thumb:
+					thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+					if thumb.startswith('http'):
+						addDir(name, url, 111, thumb, thumb)
+					else:
+						thumb = '%s/%s' % (iconpath, thumb)
+						addDir(name, url, 111, thumb, thumb)
+				else:
+					addDir(name, url, 111, icon, fanart)
+			else:
+				if 'tvg-logo' in thumb:
+					thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+					if thumb.startswith('http'):
+						addLink(name, url, 1, thumb, thumb)
+					else:
+						thumb = '%s/%s' % (iconpath, thumb)
+						addLink(name, url, 1, thumb, thumb)
+				else:
+					addLink(name, url, 1, icon, fanart)
+	except:
+		pass
+	try:
+		content = make_request('http://www.giniko.com/watch.php?id=95')
+		match = re.compile('image: "([^"]*)",\s*file: "([^"]+)"').findall(content)
+		for thumb, url in match:
+			addLink('[COLOR magenta][B]Miami TV (Adult 18+)[/B][/COLOR]', url, 1, thumb, thumb)
+	except:
+		pass
+	try:
+		searchText = ('(Adult)') or ('(Public-Adult)')
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(adult_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					adult_playlist(name, url, thumb)
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(adult_regex2).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					adult_playlist(name, url, thumb)
+	except:
+		pass
+
+def adult_addons():
+	adultreposinstaller = xbmc.translatePath(os.path.join(home, 'adult_repos.zip'))
+	if os.path.exists(adultreposinstaller):
+		d = xbmcgui.Dialog().yesno('Adult Repos Installer', 'Do you want to install necessary repositories for "Adult Addons" section?', '[COLOR magenta]Quí vị có muốn cài đặt những repositories cần thiết cho mục "Adult Addons" không?[/COLOR]', '', '')
+		if d:
+			import time, extract
+			dp = xbmcgui.DialogProgress()
+			dp.create("Adult Repos Installer", "Working...", "", "")
+			addonfolder = xbmc.translatePath(os.path.join('special://', 'home'))
+			time.sleep(2)
+			dp.update(0,"", "Extracting zip files. Please wait...")
+			extract.all(adultreposinstaller,addonfolder,dp)
+			time.sleep(2)
+			os.remove(adultreposinstaller)
+			xbmcgui.Dialog().ok("Installation Completed.", "Please restart Kodi.", "", "[COLOR magenta]Vui lòng khởi động lại kodi.[/COLOR]")
+			sys.exit()
+		else:
+			sys.exit()
 	else:
-		url = url
-	item=xbmcgui.ListItem(path=url)
-	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)	  
+		content = make_request(adultaddons)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			if 'tvg-logo' in thumb:
+				thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+				if thumb.startswith('http'):
+					addDir(name, url, None, thumb, thumb)
+				else:
+					thumb = '%s/%s' % (iconpath, thumb)
+					addDir(name, url, None, thumb, thumb)
+			else:
+				addDir(name, url, None, icon, fanart)
+
+def english():
+	try:
+		searchText = '(English)'
+		if len(CCLOUDTV_SRV_URL) > 0:
+			content = select_server()
+			match = re.compile(m3u_regex).findall(content)
+			for thumb, name, url in sorted(match, key = itemgetter(1)):
+				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+	except:
+		pass
+
+def international():
+	if len(CCLOUDTV_SRV_URL) > 0:
+		content = select_server()
+		match = sorted(re.compile(m3u_regex).findall(content), key = itemgetter(1))
+		try:
+			searchVietnamese = '\(VN\)|(Vietnamese)'
+			for thumb, name, url in match:
+				if (re.search(searchVietnamese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE)):
+					if ('\(Adult\)' in name) or ('\(Public-Adult\)' in name):
+						pass
+					else:
+						m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchUrdu = '(Urdu)'
+			for thumb, name, url in match:
+				if re.search(searchUrdu, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchUkrainian = '(Ukrainian)'
+			for thumb, name, url in match:
+				if re.search(searchUkrainian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchTamil = '(Tamil)'
+			for thumb, name, url in match:
+				if re.search(searchTamil, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchSpanish = '(Spanish)'
+			for thumb, name, url in match:
+				if re.search(searchSpanish, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchSomali = '(Somali)'
+			for thumb, name, url in match:
+				if re.search(searchSomali, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchSlovenian = '(Slovenian)'
+			for thumb, name, url in match:
+				if re.search(searchSlovenian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchRussian = '(Russian)'
+			for thumb, name, url in match:
+				if re.search(searchRussian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchRomanian = '(Romanian)'
+			for thumb, name, url in match:
+				if re.search(searchRomanian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchPortuguese = '(Portuguese)'
+			for thumb, name, url in match:
+				if re.search(searchPortuguese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchPolish = '(Polish)'
+			for thumb, name, url in match:
+				if re.search(searchPolish, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchMandarin = '(Mandarin)'
+			for thumb, name, url in match:
+				if re.search(searchFilipino, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchMaltese = '(Maltese)'
+			for thumb, name, url in match:
+				if re.search(searchMaltese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchMacedonian = '(Macedonian)'
+			for thumb, name, url in match:
+				if re.search(searchMacedonian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchLithuanian = '(Lithuanian)'
+			for thumb, name, url in match:
+				if re.search(searchLithuanian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchKurdish = '(Kurdish)'
+			for thumb, name, url in match:
+				if re.search(searchKurdish, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchJamaica = '(Jamaica)'
+			for thumb, name, url in match:
+				if re.search(searchJamaica, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchItalian = '(Italian)'
+			for thumb, name, url in match:
+				if re.search(searchItalian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchIsraeli = '(Israeli)'
+			for thumb, name, url in match:
+				if re.search(searchIsraeli, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchIndian = '(Indian)'
+			for thumb, name, url in match:
+				if re.search(searchIndian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchhungarian = '(Hungarian)'
+			for thumb, name, url in match:
+				if re.search(searchHungarian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchHindi = '(Hindi)'
+			for thumb, name, url in match:
+				if re.search(searchHindi, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchGreek = '(Greek)'
+			for thumb, name, url in match:
+				if re.search(searchGreek, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchGerman = '(German)'
+			for thumb, name, url in match:
+				if re.search(searchGerman, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchFrench = '(French)'
+			for thumb, name, url in match:
+				if re.search(searchFrench, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchFilipino = '(Filipino)'
+			for thumb, name, url in match:
+				if re.search(searchFilipino, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchFarsi = '(Farsi)'
+			for thumb, name, url in match:
+				if re.search(searchFarsi, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchDutch = '(Dutch)'
+			for thumb, name, url in match:
+				if re.search(searchDutch, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchDeutsch = '(Deutsch)'
+			for thumb, name, url in match:
+				if re.search(searchDeutsch, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchChinese = '(Chinese)'
+			for thumb, name, url in match:
+				if re.search(searchChinese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchCatalan = '(Catalan)'
+			for thumb, name, url in match:
+				if re.search(searchCatalan, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchArabic = '(Arabic)'
+			for thumb, name, url in match:
+				if re.search(searchArabic, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+		try:
+			searchAfrikaans = '(Afrikaans)'
+			for thumb, name, url in match:
+				if re.search(searchAfrikaans, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
+					m3u_playlist(name, url, thumb)
+		except:
+			pass
+
+def thongbao():
+	try:
+		text = '[COLOR royalblue][B]***Thông Báo Mới***[/B][/COLOR]'
+		if urllib.urlopen(media_link()[0]).getcode() == 200:
+			link = make_request(media_link()[0])
+		else:
+			link = read_file(local_thongbaomoi)
+		match=re.compile("<START>(.+?)<END>",re.DOTALL).findall(link)
+		for status in match:
+			try:
+					status = status.decode('ascii')
+			except:
+					status = status.decode('utf-8')
+			status = status.replace('&amp;','')
+			text = status
+		showText('[COLOR royalblue][B]***Thông Báo Mới***[/B][/COLOR]', text)
+	except:
+		pass
+
+def text_online():
+	xbmc_cache_path = os.path.join(xbmc.translatePath('special://temp'))
+	dialog = xbmcgui.Dialog()
+	dialog.ok("Giới thiệu về Addon [COLOR lime]Hieuhien.vn Media Center[/COLOR]", "", "Đây là addon được chỉnh sửa từ addon [COLOR lime]Ccloud.tv[/COLOR] của tác giả [COLOR blue]Tony Nguyen[/COLOR]. Sử dụng 1 số tính năng để [COLOR red]Hieuhien.vn[/COLOR] có thể dễ dàng cập nhật các addon mới nhất. Chân thành cảm ơn tác giả đã cho phép Hieuhien.vn sử dụng source code này!")
+	sys.exit()
+
+def showText(heading, text):
+	id = 10147
+	xbmc.executebuiltin('ActivateWindow(%d)' % id)
+	xbmc.sleep(100)
+	win = xbmcgui.Window(id)
+	retry = 50
+	while (retry > 0):
+		try:
+			xbmc.sleep(10)
+			retry -= 1
+			win.getControl(1).setLabel(heading)
+			win.getControl(5).setText(text)
+			return
+		except:
+			pass
+
+def guide():
+	dialog = xbmcgui.Dialog()
+	ret = dialog.yesno('cCloud TV Guide', '[COLOR yellow]cCloud TV[/COLOR] is now integrated with your favourite TV Guides.','This is currently in beta and not all channels are supported.','[COLOR yellow]>>>>>>>>>>>>>  Choose Your Guide Below  <<<<<<<<<<<<<[/COLOR]','iVue TV Guide','Renegades TV Guide')
+	if ret == 1:
+		xbmc.executebuiltin("RunAddon(script.renegadestv)")
+		sys.exit()
+	if ret == 0:
+		xbmc.executebuiltin("RunAddon(script.ivueguide)")
+		sys.exit()
+	else:
+		sys.exit()
+
+def channelTester():
+	try:
+		keyb = xbmc.Keyboard('', 'Enter Channel Name [COLOR lime]- Tiếng Việt Không Dấu[/COLOR]')
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			name = urllib.quote_plus(keyb.getText(), safe="%/:=&?~#+!$,;'@()*[]").replace('+', ' ')
+		keyb = xbmc.Keyboard('', 'Enter Channel URL [COLOR lime](m3u8, rtmp, mp4)[/COLOR]')
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			url = urllib.quote_plus(keyb.getText(), safe="%/:=&?~#+!$,;'@()*[]").replace('+', ' ')
+		keyb = xbmc.Keyboard('', 'Enter Logo URL [COLOR lime]- Không Bắt Buộc[/COLOR]')
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			thumb = urllib.quote_plus(keyb.getText(), safe="%/:=&?~#+!$,;'@()*[]").replace('+', ' ')
+		if len(name) > 0 and len(url) > 0:
+			if len(thumb) < 1:
+				thumb = icon
+			addLink(name, url, 1, thumb, fanart)
+	except:
+		pass
+
+def localTester():
+	if len(local_path) < 1:
+		mysettings.openSettings()
+		sys.exit()
+	else:
+		content = read_file(local_path)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			try:
+				m3u_playlist(name, url, thumb)
+			except:
+				pass
+
+def onlineTester():
+	if len(online_path) < 1:
+		mysettings.openSettings()
+		sys.exit()
+	else:
+		content = make_request(online_path)
+		match = re.compile(m3u_regex).findall(content)
+		for thumb, name, url in match:
+			try:
+				m3u_playlist(name, url, thumb)
+			except:
+				pass
+
+def m3u_online():
+	content = select_server() 
+	match = re.compile(m3u_regex).findall(content)
+	for thumb, name, url in match[0:1]:
+		m3u_playlist('[COLOR yellow][B]' + name + '[/B][/COLOR]', url, thumb)
+	for thumb, name, url in sorted(match, key = itemgetter(1)):
+		try:
+			if 'Welcome to cCloudTV' in name:
+				pass
+			else:
+				m3u_playlist(name, url, thumb)
+		except:
+			pass
+
+def m3u_playlist(name, url, thumb):
+	name = re.sub('\s+', ' ', name).strip()
+	url = url.replace('"', ' ').replace('&amp;', '&').strip()
+	if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
+		if 'tvg-logo' in thumb:
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+			addDir(name, url, '', thumb, thumb)
+		else:
+			addDir(name, url, '', icon, fanart)
+	else:
+		if ('(Adult)' in name) or ('(Public-Adult)' in name):
+			name = 'ADULTS ONLY'.url = 'http://ignoreme.com'
+		if 'youtube.com/watch?v=' in url:
+			url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
+		elif 'dailymotion.com/video/' in url:
+			url = url.split('/')[-1].split('_')[0]
+			url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url
+		else:
+			url = url
+		if 'tvg-logo' in thumb:
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+			addLink(name, url, 1, thumb, thumb)
+		else:
+			addLink(name, url, 1, icon, fanart)
+
+def adult_playlist(name, url, thumb):
+	name = re.sub('\s+', ' ', name).strip()
+	url = url.replace('"', ' ').replace('&amp;', '&').strip()
+	if ('youtube.com/user/' in url) or ('youtube.com/channel/' in url) or ('youtube/user/' in url) or ('youtube/channel/' in url):
+		if 'tvg-logo' in thumb:
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+			addDir(name, url, '', thumb, thumb)
+		else:
+			addDir(name, url, '', icon, fanart)
+	else:
+		if 'youtube.com/watch?v=' in url:
+			url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
+		elif 'dailymotion.com/video/' in url:
+			url = url.split('/')[-1].split('_')[0]
+			url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url
+		else:
+			url = url
+		if 'tvg-logo' in thumb:
+			thumb = re.compile(m3u_thumb_regex).findall(str(thumb))[0].replace(' ', '%20')
+			addLink(name, url, 1, thumb, thumb)
+		else:
+			addLink(name, url, 1, icon, fanart)
+
+def play_video(url):
+	media_url = url
+	item = xbmcgui.ListItem(name, path = media_url)
+	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 	return
 
-def PlayVideo(url,title):
-    if(url.find("youtube") > 0):
-        vidmatch=re.compile('(youtu\.be\/|youtube-nocookie\.com\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|user)\/))([^\?&"\'>]+)').findall(url)
-        vidlink=vidmatch[0][len(vidmatch[0])-1].replace('v/','')
-        url = 'plugin://plugin.video.youtube?path=/root/video&action=play_video&videoid=' + vidlink.replace('?','')
-        xbmc.executebuiltin("xbmc.PlayMedia("+url+")")	
-    else:
-        title = urllib.unquote_plus(title)
-        playlist = xbmc.PlayList(1)
-        playlist.clear()
-        listitem = xbmcgui.ListItem(title)
-        listitem.setInfo('video', {'Title': title})
-        xbmcPlayer = xbmc.Player()
-        playlist.add(url, listitem)
-        xbmcPlayer.play(playlist)
-	
-def Get_Url(url):
-    try:
-		req=urllib2.Request(url)
-		req.add_header('User-Agent', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)')
-		response=urllib2.urlopen(req)
-		link=response.read()
-		response.close()  
-		return link
-    except:
-		pass
-    
-def GetUrl(url):
-    link = ""
-    if os.path.exists(url)==True:
-        link = open(url).read()
-    else:
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-    link = ''.join(link.splitlines()).replace('\'','"')
-    link = link.replace('\n','')
-    link = link.replace('\t','')
-    link = re.sub('  +',' ',link)
-    link = link.replace('> <','><')
-    return link
-	
-def add_Link(name,url,iconimage):
-    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode=stream"+"&img="+urllib.quote_plus(iconimage)
-    liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-    liz.setInfo( type="Video", infoLabels={ "Title": name } )
-    liz.setProperty('IsPlayable', 'true')  
-    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz)  
-
-def addLink(name,url,mode,iconimage):
-    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
-    ok=True
-    liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-    liz.setInfo( type="Video", infoLabels={ "Title": name } )
-    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz)
-    return ok
-	
-def addDir(name,url,mode,iconimage):
-    u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&img="+urllib.quote_plus(iconimage)
-    ok=True
-    liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-    liz.setInfo( type="Video", infoLabels={ "Title": name } )
-    if ('www.youtube.com/user/' in url) or ('www.youtube.com/channel/' in url):
-		u = 'plugin://plugin.video.youtube/%s/%s/' % (url.split( '/' )[-2], url.split( '/' )[-1])
-		ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz, isFolder = True)
-		return ok	
-    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
-    return ok	
-	
-DecryptData = base64.b64decode	
-homeurl = 'aHR0cDovL3d3dy5oaWV1aGllbi52bi9YQk1DL0hpZXVoaWVuTWVkaWEvTWVudS54bWw='
 def get_params():
-	param=[]
-	paramstring=sys.argv[2]
-	if len(paramstring)>=2:
-		params=sys.argv[2]
-		cleanedparams=params.replace('?','')
-		if (params[len(params)-1]=='/'):
-			params=params[0:len(params)-2]
-		pairsofparams=cleanedparams.split('&')
-		param={}
+	param = []
+	paramstring = sys.argv[2]
+	if len(paramstring)>= 2:
+		params = sys.argv[2]
+		cleanedparams = params.replace('?', '')
+		if (params[len(params)-1] == '/'):
+			params = params[0:len(params)-2]
+		pairsofparams = cleanedparams.split('&')
+		param = {}
 		for i in range(len(pairsofparams)):
-			splitparams={}
-			splitparams=pairsofparams[i].split('=')
-			if (len(splitparams))==2:
-				param[splitparams[0]]=splitparams[1]
+			splitparams = {}
+			splitparams = pairsofparams[i].split('=')
+			if (len(splitparams)) == 2:
+				param[splitparams[0]] = splitparams[1]
 	return param
-### ------------
-xbmcplugin.setContent(int(sys.argv[1]), 'movies');params=get_params();mode=0;page=1;temp=[]
-homnay=datetime.date.today().strftime("%d/%m/%Y");url=name=fanart=img=date=query=end=''
 
-try:url=urllib.unquote_plus(params["url"])
-except:pass
-try:name=urllib.unquote_plus(params["name"])
-except:pass
-try:img=urllib.unquote_plus(params["img"])
-except:pass
-try:fanart=urllib.unquote_plus(params["fanart"])
-except:pass
-try:mode=str(params["mode"])
-except:pass
-try:page=int(params["page"])
-except:pass
-try:query=urllib.unquote_plus(params["query"])
-except:pass#urllib.unquote
+def getDir(name, url, mode, iconimage, fanart):
+	u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) + "&name=" + urllib.quote_plus(name) + "&iconimage=" + urllib.quote_plus(iconimage)
+	ok = True
+	liz = xbmcgui.ListItem(name, iconImage = "DefaultFolder.png", thumbnailImage = iconimage)
+	liz.setInfo( type = "Video", infoLabels = { "Title": name } )
+	liz.setProperty('fanart_image', fanart)
+	if ('www.youtube.com/user/' in url) or ('www.youtube.com/channel/' in url):
+		u = 'plugin://plugin.video.youtube/%s/%s/' % (url.split( '/' )[-2], url.split( '/' )[-1])
+	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz, isFolder = True)
+	return ok
 
-### ------------
-print "Main---------- Mode: "+str(mode),"URL: "+str(url),"Name: "+str(name),"query: "+str(query),"page: "+str(page)
-if not mode:Home();xshare.init_file(),setViewMode('3')
-elif mode == 'index':Index(url,img)
-elif mode == 'indexgroup':IndexGroup(url)	
-elif mode == 'index_group':Index_Group(url)	
-elif mode == 'menu_group':Menu_Group(url)
-elif mode == 'category':category(url, mode),setViewMode('3')
-elif mode == 'episodes':episodes(url, name)
-elif mode == 'get_m3u':Get_M3U(url,img)
-elif mode == 'get_xml':Get_XML(url,img)
-elif mode == 'search_result':Search_Result(url)
-elif mode == 'search':Search(url)	
-elif mode=='stream':
-    dialogWait = xbmcgui.DialogProgress()
-    dialogWait.create('Hieuhien.vn Media Center', 'Đang tải. Vui lòng chờ trong giây lát...')
-    resolve_url(url)
-    dialogWait.close()
-    del dialogWait	
-elif mode=='play':
-    dialogWait = xbmcgui.DialogProgress()
-    dialogWait.create('Hieuhien.vn Media Center', 'Đang tải. Vui lòng chờ trong giây lát...')
-    PlayVideo(url,name)
-    dialogWait.close()
-    del dialogWait
+def addDir(name, url, mode, iconimage, fanart):
+	u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) + "&name=" + urllib.quote_plus(name) + "&iconimage=" + urllib.quote_plus(iconimage)
+	ok = True
+	liz = xbmcgui.ListItem(name, iconImage = "DefaultFolder.png", thumbnailImage = iconimage)
+	liz.setInfo( type = "Video", infoLabels = { "Title": name } )
+	liz.setProperty('fanart_image', fanart)
+	if 'plugin://plugin' in url or 'script://script' in url:
+		u = url
+	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz, isFolder = True)
+	return ok
 
-elif mode=='logouthdviet':hdviet.logout()
-elif mode=='logouthayhaytv':hayhaytv.logout()
-elif mode=='12' or mode=='120':#serverlist	
-	ServerList(name, url, mode, query)
+def addLink(name, url, mode, iconimage, fanart):
+	u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) + "&name=" + urllib.quote_plus(name) + "&iconimage=" + urllib.quote_plus(iconimage)
+	liz = xbmcgui.ListItem(name, iconImage = "DefaultVideo.png", thumbnailImage = iconimage)
+	liz.setInfo( type = "Video", infoLabels = { "Title": name } )
+	liz.setProperty('fanart_image', fanart)
+	liz.setProperty('IsPlayable', 'true')
+	ok = xbmcplugin.addDirectoryItem(handle = int(sys.argv[1]), url = u, listitem = liz)
+
+params = get_params()
+url = None
+name = None
+mode = None
+iconimage = None
+
+try:
+	url = urllib.unquote_plus(params["url"])
+except:
+	pass
+try:
+	name = urllib.unquote_plus(params["name"])
+except:
+	pass
+try:
+	mode = int(params["mode"])
+except:
+	pass
+try:
+	iconimage = urllib.unquote_plus(params["iconimage"])
+except:
+	pass
+
+print "Mode: " + str(mode)
+print "URL: " + str(url)
+print "Name: " + str(name)
+print "iconimage: " + str(iconimage)
+
+if mode == None or url == None or len(url) < 1:
+	main()
+
+elif mode == 1:
+	play_video(url)
+
+elif mode == 2:
+	m3u_online()
+
+elif mode == 3:
+	text_online()
+
+elif mode == 4:
+	thongbao()
+
+elif mode == 18:
+	youtube_menu(url)
+
+elif mode == 19:
+	youtube_channels(url)
+
+elif mode == 20:
+	youtube_list(url)
+
+elif mode == 21:
+	youtube_playlist(url)
+
+elif mode == 22:
+	youtube_playlist_index(url)
+
+elif mode == 23:
+	next_page(url)
+
+elif mode == 24:
+	next_page_playlist(url)
+
+elif mode == 25:
+	search_youtube()
+
+elif mode == 26:
+	youtube_search(url)
+
+elif mode == 27:
+	tutorial_links(url)
+
+elif mode == 30:
+	vietnam_group()
+
+elif mode == 31:
+	viet_tv_group()
+
+elif mode == 40:
+	channelTester()
+
+elif mode == 41:
+	localTester()
+
+elif mode == 42:
+	onlineTester()
+
+elif mode == 48:
+	vietnam_abc_order()
+
+elif mode == 50:
+	vietnam(name)
+
+elif mode == 51:
+	top10()
+
+elif mode == 52:
+	sports()
+
+elif mode == 53:
+	news()
+
+elif mode == 54:
+	documentary()
+
+elif mode == 55:
+	entertainment()
+
+elif mode == 56:
+	family()
+
+elif mode == 57:
+	movie()
+
+elif mode == 58:
+	music()
+
+elif mode == 59:
+	ondemandmovies()
+
+elif mode == 65:
+	ondemandshows()
+
+elif mode == 60:
+	twentyfour7()
+
+elif mode == 61:
+	radio()
+
+elif mode == 62:
+	english()
+
+elif mode == 63:
+	lifestyle()
+
+elif mode == 64:
+	international()
+
+elif mode == 70:
+	vietnam_category()
+
+elif mode == 71:
+	viet_Documentary()
+
+elif mode == 72:
+	viet_Entertainment()
+
+elif mode == 73:
+	viet_Family()
+
+elif mode == 74:
+	viet_Movie_Channels()
+
+elif mode == 75:
+	viet_Music()
+
+elif mode == 76:
+	viet_News()
+
+elif mode == 77:
+	viet_OnDemandMovies()
+
+elif mode == 78:
+	viet_OnDemandShows()
+
+elif mode == 79:
+	viet_Radio()
+
+elif mode == 80:
+	viet_RandomAirTime()
+
+elif mode == 81:
+	viet_Special_Events()
+
+elif mode == 82:
+	viet_Sports()
+
+elif mode == 83:
+	viet_Tutorials()
+
+elif mode == 97:
+	guide()
+
+elif mode == 98:
+	adult()
+
+elif mode == 99:
+	search()
+
+elif mode == 100:
+	other_addons1()
+
+elif mode == 102:
+	other_addons2()	
 	
-elif mode=='hdonlineplay':
-	fid = xshare.xshare_group(re.search('-(\d{1,5}).html',url),1)
-	url = 'http://hdonline.vn/frontend/episode/loadxmlconfigorder?ep=1&fid='+str(fid)
-	content = hdonline.GetContent(url)
+elif mode == 103:
+	other_addons3()
+
+elif mode == 104:
+	other_addons4()
+
+elif mode == 105:
+	other_addons5()
+
+elif mode == 106:
+	other_addons6()
 	
-	vurl=re.compile('<jwplayer:file>(.+?)</jwplayer:file>').findall(content)[0]
-	if(vurl.find("http") == -1):
-		vurl=hdonline.decodevplug(vurl)		
-		#vurl='https://drive.google.com/file/d/0BxgS9RbZFNQkb1FuTXByN1NFTzQ/view'
-	vsubtitle=re.compile('<jwplayer:vplugin.subfile>(.+?)</jwplayer:vplugin.subfile>').findall(content)
-	suburl=""
-	if(len(vsubtitle)>0 and vsubtitle[0].find("http")>-1):
-		suburl=vsubtitle[0]
-	elif(len(vsubtitle)>0):
-		suburl=decodevplug(vsubtitle[0])
-	for item in suburl.split(','):
-		if 'VIE' in item:suburl=item				
+elif mode == 109:
+	clear_cache()	
+elif mode == 110:
+	other_sources()
 
-	link=vurl
-	subtitle=suburl
-	
-	listitem = xbmcgui.ListItem(path=link)
-	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
-	if len(subtitle) > 0:
-	  subtitlePath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
-	  subfile = xbmc.translatePath(os.path.join(subtitlePath, "temp.sub"))
-	  try:
-		if os.path.exists(subfile):
-		  os.remove(subfile)
-		f = urllib2.urlopen(subtitle)
-		with open(subfile, "wb") as code:
-		  code.write(f.read())
-		xbmc.sleep(3000)
-		xbmc.Player().setSubtitles(subfile)
-	  except:
-		notification(u'Không tải được phụ đề phim.');
-	  #urllib.urlretrieve (subtitle,subfile )
-	elif 'TM' not in vurl:
-	  notification('Video này không có phụ đề rời.');
-elif mode=='16':
-	_version = '1.0.11'
-	_user = 'vietmedia'
-	def fetch_data(url, headers=None):
-	  #visitor = get_visitor()
-	  #visitor = '175f2580-3a59-11e5-a8f2-701a0439657d'
-	  if headers is None:
-		headers = { 'User-agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 VietMedia/1.0',
-					'Referers':'http://www..google.com',
-					#'X-Visitor':visitor,
-					'X-Version':_version,
-					'X-User':_user
-				  }
-	  try:
-		req = urllib2.Request(url,headers=headers)
-		f = urllib2.urlopen(req)
-		body=f.read()
-		return body
-	  except:
-		pass			
+elif mode == 111:
+	other_sources_list(url)
 
-	if 'hdonline.vn' in query:
-		url = hdonlinevn + 'http:%2F%2Fhdonline.vn' + url.replace('/', '%2F').replace('?', '%3f').replace('=', '%3D')
-	elif 'phimmoi.net' in query:
-		url = phimmoinet + 'http:%2F%2Fphimmoi.net%2F' + url.replace('/', '%2F')		
-
-	content = fetch_data(url)	
-	jsonObject = json.loads(content)
-
-	if jsonObject.get('url'):		
-		link = jsonObject['url']		
-		if 'phimhd3s.com' in link or 'vn-hd.com' in link:
-		  client_id = hdonline.client_id_2()
-		  if client_id is not None:
-			link = link.replace('dc469e7a3c7f76e5bfcc0e104526fb85',client_id)		
-
-		subtitle = ''
-		if jsonObject.get('subtitle'):
-		  subtitle = jsonObject['subtitle']
-
-		listitem = xbmcgui.ListItem(path=link)
-		xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)
-		if len(subtitle) > 0:
-		  subtitlePath = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
-		  subfile = xbmc.translatePath(os.path.join(subtitlePath, "temp.sub"))
-		  try:
-			if os.path.exists(subfile):
-			  os.remove(subfile)
-			f = urllib2.urlopen(subtitle)
-			with open(subfile, "wb") as code:
-			  code.write(f.read())
-			xbmc.sleep(3000)
-			xbmc.Player().setSubtitles(subfile)
-		  except:
-			notification(u'Không tải được phụ đề phim.');
-		  #urllib.urlretrieve (subtitle,subfile )
-		elif jsonObject.get('subtitle'):
-		  notification('Video này không có phụ đề rời.');
-	elif jsonObject.get('error') is not None:	
-		alert(jsonObject['error'])
-
-elif mode=='17':end=xshare.megabox(name,url,mode,page,query)
-elif mode=='18':xshare.dangcaphd(name,url,img,mode,page,query)
-elif mode==19:xshare.pubvn(name,url,img,mode,page,query)
-elif mode=='21':xshare.vuahd(name,url,img,mode,page,query)
-elif mode=='22':	
-	hdviet.play(url, ep = 1)
-	#xshare.hdviet(name,url,img,mode,page,query)
-elif mode=='23':
-	try:
-		hd = {'User-Agent' : 'Mozilla/5.0 Chrome/39.0.2171.71 Firefox/33.0'}
-		body=xshare.make_request(url,headers=hd,maxr=3)	
-		movie_id=xshare.xshare_group(re.search('FILM_ID\D{3,7}(\d{3,6})',body),1)
-		hayhaytv.play(movie_id, 1, subtitle='')
-	except:
-		xshare.hayhaytv(name,url,img,'fanart',mode,page,query)
-elif mode=='24':xshare.phimmoi(name,url,img,mode,page,query)	
-
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
+elif mode == 120:
+	adult_addons()
+     
+xbmcplugin.endOfDirectory(plugin_handle)

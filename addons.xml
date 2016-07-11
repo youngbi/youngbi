@@ -1,35 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.audio.chiasenhac"
-       name="[B][COLOR lime]Chia[/COLOR] [COLOR red]Sẻ [/COLOR][COLOR yellow]Nhạc[/COLOR][/B]"
-       version="1.9"
-       provider-name="VietMusic">
+<addon id="plugin.audio.hieuhien.vn.itv.music"
+       version="1.0.1"
+       name="ITV Music"
+       provider-name="itv member">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Entertainment</summary>
+    <description>Nghe nhạc online</description>
+	<disclaimer lang="en">Nguồn data trên web nên chúng tôi không chịu trách nhiệm về sự ổn định.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.audio.hieuhien.vn.itv.nhacso"
+       name="Nhạc Số"
+       version="1.0.1"
+       provider-name="itv member">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.simple.downloader" version="1.9.4" />
 	</requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>audio</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
+  	<extension point="xbmc.python.pluginsource" library="default.py" >
+  		<provides>audio</provides>
+ 	 </extension>
+  	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Entertainment</summary>
+		<description lang="en">Thử nghiệm nghe nhạc tại http://nhacso.net/</description>
+        <disclaimer lang="en">Nguồn data trên web nên chúng tôi không chịu trách nhiệm về sự ổn định.</disclaimer>
         <platform>all</platform>
         <language>en</language>
-		<summary lang="en">Add-on play Vietnamese Music online</summary>
-		<description lang="en">Nghe nhạc online từ website: Chiasenhac.com</description>
     </extension>
 </addon>
 
-<addon id="plugin.audio.hieuhien.vn.csnttn" name="[B][COLOR lime]Chia[/COLOR] [COLOR red]Sẻ [/COLOR][COLOR yellow]Nhạc[/COLOR][COLOR violet] 01[/COLOR][/B]" version="3.3.3" provider-name="thaitni">
+<addon id="plugin.audio.hieuhien.vn.vietmusic"
+       version="1.8.3"
+       name="VietMusic"
+       provider-name="VietMusic">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" optional="true" />
+	<import addon="script.module.simple.downloader" version="1.9.4" />
+	<import addon="script.module.t0mm0.common" version="1.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Viet Music online</summary>
+    <description>Add-on play Vietnamese Music online</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.audio.hieuhien.vn.xsharefree" name="[COLOR lime][B]Xshare [/COLOR][COLOR red]Music[/COLOR] [COLOR blue]Center[/B][/COLOR]" version="3.4.5.1" provider-name="thaitni">
     <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
     </requires>
-    <extension point="xbmc.python.pluginsource" library="xsharecsn.py">
+    <extension point="xbmc.python.pluginsource" library="xshare.py">
         <provides>audio</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>Xshare - XBMC HD Video</summary>
-		<description lang="en">Tìm và Xem HD Video trên chiasenhac.com</description>
+		<description lang="en">Tìm và nghe nhạc trên XBMC từ: chiasenhac.com, nhaccuatui.com va nhacdj.vn</description>
 		<platform>all</platform>
 		<language>en</language>
 		<license>GNU General Public License - v2</license>
@@ -38,47 +75,27 @@
     </extension>
 </addon>
 
-<addon
-  id="plugin.audio.hieuhien.vn.chiasenhacttv"
-  version="0.0.2"
-  name="[B][COLOR lime]Chia[/COLOR] [COLOR red]Sẻ [/COLOR][COLOR yellow]Nhạc[/COLOR][COLOR violet] 02[/COLOR][/B]"
-  provider-name="traitravinh">
-  <requires>
-	<import addon="xbmc.python" version="2.1.0" />
-    <import addon="script.common.plugin.cache" version="2.5.2" />
-    <import addon="script.module.simple.downloader" version="1.9.4" />
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="chiasenhac.py">
-        <provides>audio</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Chiasenhac</summary>
-    <description>Search and play/download music on chiasenhac.com</description>
-    <platform>all</platform>
-  </extension>
-</addon>
+<addon id="plugin.video.castaway" name="Castaway" version="0.2.6" provider-name="natko1412">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+		<import addon="script.module.requests"  />
+    	<import addon="script.module.addon.common" />
+		<import addon="script.module.urlresolver" />
+		<import addon="script.module.liveresolver"  />
 
-<addon
-  id="plugin.audio.hieuhien.vn.mp3zing"
-  version="1.0.5"
-  name="[B][COLOR lime]Mp3[/COLOR].[COLOR yellow]zing[/COLOR].[COLOR red]vn[/COLOR][/B]"
-  provider-name="MrOdin">
-  <requires>
-	<import addon="xbmc.python" version="2.1.0" />
-    <import addon="script.common.plugin.cache" version="2.5.2" />
-    <import addon="script.module.requests" version="2.4.3"/>
-    <import addon="service.vnmusic" version="1.0.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="mp3zing.py">
-        <provides>audio</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Nghe nhac tren mp3.zing.vn</summary>
-    <description>Nghe nhac tren mp3.zing.vn</description>
-    <platform>all</platform>
-  </extension>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Just a castaway.</summary>
+		<description lang="en">Visit TVADDONS.ag for support.
+		</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon
@@ -102,126 +119,25 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.HieuHien.vn" name="[COLOR lime][B]Hieuhien.vn Media[/B][/COLOR]" version="1.0.0" provider-name="phuoclv">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0" optional="true" />
-		<import addon="script.module.simplejson" />
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Cantobu Media Entertainment</summary>
-		<description>Addon này được viết lại dựa trên addon cantobumedia của tác giả phuoclv, ITV Plus của tác giả itv member, XShare của tác giả thaitni, VietMedia của tác giả tinhyeu44, ...</description>
-		<disclaimer>Tất cả nội dung được lấy từ Internet - Tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
-		<platform>all</platform>
-    </extension>
-</addon>
-
-<addon
-	id="plugin.video.HieuHien.vn.01"
-	version="0.0.1"
-	name="Zero 1-Chưa xem được"
-	provider-name="Hieuhien.vn">
-	<requires>
-		<import addon="script.module.simplejson" />
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
-		<description>ADDON dang xay dung!!!!!</description>
-		<disclaimer>ADDON dang xay dung!!!!!</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon
-	id="plugin.video.HieuHien.vn.02"
-	version="0.0.1"
-	name="Zero 2-Chưa xem được"
-	provider-name="Hieuhien.vn">
-	<requires>
-		<import addon="script.module.simplejson" />
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
-		<description>ADDON dang xay dung!!!!!</description>
-		<disclaimer>ADDON dang xay dung!!!!!</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon
-	id="plugin.video.HieuHien.vn.03"
-	version="0.0.1"
-	name="Zero 3-Chưa xem được"
-	provider-name="Hieuhien.vn">
-	<requires>
-		<import addon="script.module.simplejson" />
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
-		<description>ADDON dang xay dung!!!!!</description>
-		<disclaimer>ADDON dang xay dung!!!!!</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon
-	id="plugin.video.HieuHien.vn.04"
-	version="0.0.1"
-	name="Zero 4-Chưa xem được"
-	provider-name="Hieuhien.vn">
-	<requires>
-		<import addon="script.module.simplejson" />
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
-		<description>ADDON dang xay dung!!!!!</description>
-		<disclaimer>ADDON dang xay dung!!!!!</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon
-	id="plugin.video.HieuHien.vn.05"
-	version="0.0.1"
-	name="Zero 5-Chưa xem được"
-	provider-name="Hieuhien.vn">
-	<requires>
-		<import addon="script.module.simplejson" />
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
-		<description>ADDON dang xay dung!!!!!</description>
-		<disclaimer>ADDON dang xay dung!!!!!</disclaimer>
-		<platform>all</platform>
-	</extension>
+<addon id="plugin.video.HieuHien.vn" name="[B][COLOR red]Hieuhien.vn[/COLOR] [COLOR lime]Media Center[/COLOR][/B]" version="1.0.1" provider-name="podgod-mod by Tony Nguyen">
+  <requires>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.service" library="autostart.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Tổng hợp các addon hay dành cho người Việt</summary>
+    <description>Addon Hieuhien.vn Media Center được viết lại từ addon cCloud.tv của tác gia Tony Nguyen. Đây là addon tổng hợp lại tất cả những addon hay dành cho người Việt và sẽ được Hieuhien.vn cập nhật thường xuyên. Xin cảm ơn tác giả Tony Nguyen đã cho phép Hieuhien.vn sử dụng source code này
+    </description>
+    <license>http://www.gnu.org/licenses/</license>
+    <website>http://hieuhien.vn</website>
+    <website>http://facebook.com/hieuhien.vn</website>
+    <website>http://zidoo.vn</website>
+    <email/>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.anhtrang.org" name="[COLOR lime][B]Phim AnhTrang.org[/B][/COLOR]" provider-name="thongld" version="1.0.5">
@@ -242,20 +158,19 @@
 
 <addon
   id="plugin.video.hieuhien.vn.azdrama"
-  version="1.0.25"
-  name="[COLOR yellow][B]azdrama.net[/B][/COLOR]"
-  provider-name="Dknight">
+  version="1.0.28"
+  name="[B]azdrama.net[/B]"
+  provider-name="Dknight (maintained by cthlo)">
   <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
-		<import addon="script.module.beautifulsoup" version="3.0.8"/>
+		<import addon="script.module.html5lib" version="0.999.0"/>
+		<import addon="script.module.beautifulsoup4" version="4.3.2"/>
 		<import addon="script.module.simplejson" />
 		<import addon="script.module.t0mm0.common" version="1.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
+            library="default.py" />
+   <extension point="xbmc.addon.metadata">
     <summary>azdrama.net</summary>
     <description>Watch azdrama.net (Chinese)Videos</description>
     <platform>all</platform>
@@ -331,15 +246,13 @@
 
 <addon
 	id="plugin.video.hieuhien.vn.chantube"
-	version="1.0.2"
+	version="1.0.3"
 	name="[COLOR violet][B]ChanTube[/B][/COLOR]"
 	provider-name="chanmodoi">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="addon.py">
-		<provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="addon.py" />
 	<extension point="xbmc.addon.metadata">
 	<summary>ChanTube</summary>
 	<description>Tổng hợp các kênh Youtube hay</description>
@@ -349,8 +262,8 @@
 
 <addon
   id="plugin.video.hieuhien.vn.drama24h"
-  version="1.0.5"
-  name="[COLOR yellow][B]drama24h[/B][/COLOR]"
+  version="1.0.7"
+  name="[COLOR yellow][B]drama24h[/COLOR][/B]"
   provider-name="Dknight">
   <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
@@ -360,9 +273,7 @@
 		<import addon="script.module.t0mm0.common" version="1.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
+            library="default.py" />
   <extension point="xbmc.addon.metadata">
     <summary>drama24h</summary>
     <description>Watch drama24h (Chinese)Videos</description>
@@ -372,8 +283,8 @@
 
 <addon
   id="plugin.video.hieuhien.vn.dramago"
-  version="1.0.9"
-  name="[COLOR yellow][B]DramaGo[/B][/COLOR]"
+  version="1.0.10"
+  name="DramaGo"
   provider-name="Dknight">
   <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
@@ -383,9 +294,7 @@
 		<import addon="script.module.t0mm0.common" version="1.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
+            library="default.py" />
   <extension point="xbmc.addon.metadata">
     <summary>DramaGo</summary>
     <description>Watch Asain Drama Movies and TVShows on DramaGo</description>
@@ -393,16 +302,32 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.footballreplays" name="[COLOR violet][B]Bóng đá xem lại[/B][/COLOR]" version="3.0.1" provider-name="lambda">
+<addon id="plugin.video.hieuhien.vn.exodus" version="1.3.7" name="Exodus" provider-name="Exodus">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="repository.exodus" version="1.0.0" />
+		<import addon="script.exodus.artwork" version="1.0.1" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Exodus</summary>
+		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="plugin.video.hieuhien.vn.footballreplays" name="[COLOR violet][B]Bóng đá xem lại[/B][/COLOR]" version="3.0.2" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
 		<import addon="script.module.parsedom" optional="true"/>
 		<import addon="plugin.video.youtube" optional="true"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Football on demand</summary>
 		<description lang="en">Visit TVADDONS.ag for support</description>
@@ -463,12 +388,30 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.hdonline" name="[COLOR green]**Test Update**[/COLOR]HDOnline" version="1.0.1" provider-name="anhlon">
+<addon
+  id="plugin.video.hieuhien.vn.hayhaytv"
+  version="1.0.6"
+  name="[B]HayHayTV[B]"
+  provider-name="lnt900">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py" />
+
+  <extension point="xbmc.addon.metadata">
+    <summary>hayhaytv</summary>
+    <description>Watch hayhaytv.vn (Vietnamese) Videos</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.hieuhien.vn.hdonline" name="[B]HDOnline[/B]" version="1.0.5" provider-name="anhlon">
 	<requires>
-		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="xbmc.python" version="2.7.0"/>
 		<import addon="script.module.framework" version="1.4"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py" />
+
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en"></summary>
 		<description lang="en"></description>
@@ -479,15 +422,14 @@
 
 <addon
   id="plugin.video.hieuhien.vn.hdviet"
-  version="1.1.6"
-  name="[COLOR lime][B]HDViet[/B][/COLOR]"
+  version="1.1.7"
+  name="[B]HDViet[/B]"
   provider-name="lnt900">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
+  <extension point="xbmc.python.pluginsource" library="default.py" />
+
   <extension point="xbmc.addon.metadata">
     <summary>HDViet</summary>
     <description>Watch free videos from hdviet.com</description>
@@ -495,15 +437,14 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.hdvietsd" name="[COLOR lime][B]HDViet SD[/B][/COLOR]" version="1.0.0" provider-name="">
+<addon id="plugin.video.hieuhien.vn.hdvietsd" name="[B]HDViet SD[/B]" version="1.0.1" provider-name="">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
 		<import addon="script.common.plugin.cache" version="2.5.5"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py"/>
+
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en"></summary>
 		<description lang="en"></description>
@@ -530,55 +471,16 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.itv.fptplay"
-       version="1.0.3"
-       name="[COLOR red][B]ITV*[/COLOR]FPTplay[/B]"
-       provider-name="itv member">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.xbmcswift2" version="2.4.0"/>
-  </requires>
-  <extension point="xbmc.python.module" library="default.py" />
-  <extension point="xbmc.addon.metadata">
-    <summary>Entertainment</summary>
-    <description>Thử nghiệm xem các kênh truyền hình tại http://fptplay.net/livetv</description>
-	<disclaimer lang="en">Nguồn data trên web nên chúng tôi không chịu trách nhiệm về sự ổn định.</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.hieuhien.vn.itv.htvonline"
-       version="1.0.0"
-       name="[COLOR red][B]ITV*[/COLOR]HTVonline[/B]"
-       provider-name="itv member">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0" optional="true" />
-	<import addon="script.module.simplejson" />
-	<import addon="script.module.t0mm0.common" version="1.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Entertainment</summary>
-    <description>Thử nghiệm xem các kênh truyền hình tại http://www.htvonline.com.vn/</description>
-	<disclaimer lang="en">Nguồn data trên web nên chúng tôi không chịu trách nhiệm về sự ổn định.</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.hieuhien.vn.itvplus"
-       version="2.3.4"
-       name="[COLOR ffff0000]*ITV*[/COLOR]Plus 2.3.4"
+       version="2.4.3"
+       name="[COLOR ffff0000]*ITV*[/COLOR]Plus"
        provider-name="itv member">
     <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
 	    <import addon="script.module.simplejson" />
 	    <import addon="script.module.t0mm0.common" />
     </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
+    <extension point="xbmc.python.pluginsource" library="default.py" />
     <extension point="xbmc.service" library="autorun.py" start="startup">
     </extension>
     <extension point="xbmc.addon.metadata">
@@ -712,14 +614,12 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.movihd" name="[COLOR lime][B]MoviHD[/B][/COLOR]" version="1.0.3" provider-name="anhlon">
+<addon id="plugin.video.hieuhien.vn.movihd" name="[B]MoviHD[/B]" version="1.0.4" provider-name="anhlon">
 	<requires>
 		<import addon="xbmc.python" version="2.7.0"/>
 		<import addon="script.module.framework" version="1.4"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en"></summary>
 		<description lang="en"></description>
@@ -794,7 +694,7 @@
 
 <addon id="plugin.video.hieuhien.vn.p2pstreams"
        name="[COLOR violet][B]Bóng đá P2P-Streams[/B][/COLOR]"
-       version="1.4.0"
+       version="1.4.1"
        provider-name="enen92,fightnight">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -805,9 +705,7 @@
     <import addon="script.module.mechanize" version="0.2.6"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
+            library="default.py" />
   <extension point="xbmc.service" library="server.py" start="startup" />
   <extension point="xbmc.addon.metadata">
     <summary>SopCast and AceStream</summary>
@@ -826,49 +724,49 @@
   </extension>
 </addon>
 
-	<addon id="plugin.video.hieuhien.vn.phim14.net" version="2.0.7" name="[COLOR lime][B]Phim14.net[/B][/COLOR]" provider-name="V137">
+<addon
+  id="plugin.video.hieuhien.vn.phatam"
+  version="1.0.2"
+  name="[COLOR yellow][B]Phật Âm[/B][/COLOR]"
+  provider-name="traitravinh">
+  <requires>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="phatam.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary>Watch KinhPhat</summary>
+    <description>A-Di-Da-Phat</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+	<addon id="plugin.video.hieuhien.vn.phim14.net" version="2.2" name="[B]Phim14.net[/B]" provider-name="V137">
 		<requires>
 			<import addon="xbmc.python" version="2.1.0" />
-			<import addon="script.module.xbmcswift2" version="1.3.1" />
-			<import addon="plugin.video.youtube" version="4.4.1" />
 			<import addon="script.module.requests" version="2.6.0"/>
+			<import addon="script.module.urlresolver" version="1.0.0"/>
+			<import addon="script.module.xbmcswift2" version="1.3.1" />
 			<import addon="script.module.t0mm0.common" version="1.1.0"/>
 		</requires>
-		<extension library="default.py" point="xbmc.python.pluginsource">
-			<provides>video</provides>
-		</extension>
-		<extension point="xbmc.addon.metadata">
+		<extension library="default.py" point="xbmc.python.pluginsource" />
+   		<extension point="xbmc.addon.metadata">
 			<summary>Phim14.net</summary>
 			<description>Phim14.net (Vietnamese)</description>
 			<platform>all</platform>
 		</extension>
 	</addon>
 
-<addon
-	id="plugin.video.hieuhien.vn.phim3s"
-	version="1.0.0"
-	name="[COLOR lime][B]Phim 3S[/B][/COLOR]"
-	provider-name="DaveLN">
+<addon id="plugin.video.hieuhien.vn.phim3s" name="[B]Phim3s[/B]" version="1.3.8" provider-name="anhlon">
 	<requires>
-		<import addon="xbmc.python" version="2.1.0" optional="true" />
-		<import addon="script.module.simplejson" />
-		<import addon="script.module.t0mm0.common" version="1.1.0"/>
+		<import addon="xbmc.python" version="2.7.0"/>
+		<import addon="script.module.framework" version="1.4"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
 	<extension point="xbmc.addon.metadata">
-		<summary>Movies</summary>
-		<description>[COLOR lime][B]Xem phim từ website phim3s.net[/B][/COLOR]</description>
-		<disclaimer lang="en">
-			[COLOR lime]The streaming media are pulled from online provider(s).
-			[COLOR red]These streams do not represent my views or opinions in any way.[/COLOR]</disclaimer>
+		<summary lang="en"></summary>
+		<description lang="en"></description>
+		<disclaimer lang="en"></disclaimer>
 		<platform>all</platform>
-		<license>http://www.gnu.org/licenses/</license>
-		<forum></forum>
-		<website></website>
-		<email></email>
-		<source></source>
 	</extension>
 </addon>
 
@@ -894,17 +792,15 @@
 
 <addon
 	id="plugin.video.hieuhien.vn.phimanhtrang"
-	version="1.0.0"
-	name="[COLOR lime][B]Phim Ánh Trăng[/B][/COLOR]"
+	version="1.0.1"
+	name="[B]Phim Ánh Trăng[/B]"
 	provider-name="DaveLN">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" optional="true" />
 		<import addon="script.module.simplejson" />
 		<import addon="script.module.t0mm0.common" version="1.1.0"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
 	<extension point="xbmc.addon.metadata">
 		<summary>Movies</summary>
 		<description>[COLOR lime][B]Xem phim từ website anhtrang.org[/B][/COLOR]</description>
@@ -920,7 +816,7 @@
 	</extension>
 </addon>
 
-	<addon id="plugin.video.hieuhien.vn.phimlt"  version="1.8" name="[COLOR lime][B]PhimLT.com[/B][/COLOR]" provider-name="V137">
+	<addon id="plugin.video.hieuhien.vn.phimlt"  version="1.9" name="[COLOR lime][B]PhimLT.com[/B][/COLOR]" provider-name="V137">
 		<requires>
 			<import addon="xbmc.python" version="2.1.0" />
 			<import addon="script.module.xbmcswift2" version="1.3.1" />
@@ -928,8 +824,6 @@
 			<import addon="script.module.requests" version="2.6.0"/>
 		</requires>
 		<extension library="default.py" point="xbmc.python.pluginsource">
-			<provides>video</provides>
-		</extension>
 		<extension point="xbmc.addon.metadata">
 			<summary>PhimLT.com</summary>
 			<description>PhimLT.com (Vietnamese)</description>
@@ -937,14 +831,12 @@
 		</extension>
 	</addon>
 
-<addon id="plugin.video.hieuhien.vn.phimmoi" name="[COLOR lime][B]PhimMoi[/B][/COLOR]" version="1.3.7" provider-name="anhlon">
+<addon id="plugin.video.hieuhien.vn.phimmoi" name="[B]PhimMoi.net[/B]" version="1.3.8" provider-name="anhlon">
 	<requires>
 		<import addon="xbmc.python" version="2.7.0"/>
 		<import addon="script.module.framework" version="1.4"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en"></summary>
 		<description lang="en"></description>
@@ -1037,14 +929,12 @@
 
 <addon
 	id="plugin.video.hieuhien.vn.tubemotion"
-	version="1.0.0"
+	version="1.0.1"
 	name="[COLOR violet][B]TubeMotion[/B][/COLOR]"
 	provider-name="bacha">
 	<requires>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
 	<extension point="xbmc.addon.metadata">
 	<summary>YouTube and Dailymotion Channels</summary>
 	<description>Tổng hợp các kênh Youtube và Dailymotion. Addon này được viết lại dựa trên netmedia và chantube addons.</description>
@@ -1078,13 +968,11 @@
 	</extension>
 </addon>
 
-	<addon id="plugin.video.hieuhien.vn.viettube.channels" name="[COLOR violet][B]VietTube Channels[/B][/COLOR]" version="4.0" provider-name="V137">
+	<addon id="plugin.video.hieuhien.vn.viettube.channels" name="[COLOR violet][B]VietTube Channels[/B][/COLOR]" version="4.1" provider-name="V137">
 		<requires>
 			<import addon="xbmc.python" version="2.1.0"/>
 		</requires>
-		<extension point="xbmc.python.pluginsource" library="addon.py">
-			<provides>video</provides>
-		</extension>
+		<extension point="xbmc.python.pluginsource" library="addon.py" />
 		<extension point="xbmc.addon.metadata">
 			<platform>all</platform>
 			<summary lang="en">Viet YouTube channels</summary>
@@ -1197,6 +1085,21 @@
 		</extension>
 	</addon>
 
+<addon id="plugin.video.hieuhien.vn.xemphimso"  version="1.9" name="[COLOR green]*[/COLOR]XemPhimSo" provider-name="traitravinh, V137">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.requests" version="2.4.3" />
+		<import addon="script.module.beautifulsoup" version="3.2.1" />
+		<import addon="script.module.beautifulsoup4"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="xemphimso.py" />
+	<extension point="xbmc.addon.metadata">
+		<summary>XemPhimSo</summary>
+		<description>XemPhimSo (Vietnamese)</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 
 <addon id="plugin.video.hieuhien.vn.xemvn" version="1.0.0" name="[COLOR violet][B]Xem.Vn[/B][/COLOR]" provider-name="chanmodoi">
 	<requires>
@@ -1237,11 +1140,11 @@
 		</extension>
 	</addon>
 
-<addon id="plugin.video.hieuhien.vn.xsharefree" name="[COLOR lime][B]Kho Phim Xshare Free[/B][/COLOR]" version="3.4.0" provider-name="thaitni">
+<addon id="plugin.video.hieuhien.vn.xsharefree" name="[COLOR lime][B]Xshare Media Center[/B][/COLOR]" version="3.4.5.1" provider-name="thaitni">
     <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
     </requires>
-    <extension point="xbmc.python.pluginsource" library="xsharefree.py">
+    <extension point="xbmc.python.pluginsource" library="xshare.py">
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
@@ -1255,15 +1158,13 @@
     </extension>
 </addon>
 
-	<addon id="plugin.video.hieuhien.vn.xuongphim" version="1.1" name="[COLOR lime][B]XuongPhim.TV[/B][/COLOR]" provider-name="V137">
+	<addon id="plugin.video.hieuhien.vn.xuongphim" version="1.2" name="[B]XuongPhim.TV[/B]" provider-name="V137">
 		<requires>
 			<import addon="xbmc.python" version="2.1.0"/>
 			<import addon="script.module.requests" version="2.6.0"/>
 			<import addon="script.module.xbmcswift2" version="1.3.1" />
 		</requires>
-		<extension point="xbmc.python.pluginsource" library="default.py">
-			<provides>video</provides>
-		</extension>
+		<extension point="xbmc.python.pluginsource" library="default.py" />
 		<extension point="xbmc.addon.metadata">
 			<summary>XuongPhim.TV</summary>
 			<description>XuongPhim.TV (Vietnamese)</description>
@@ -1289,15 +1190,13 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.zingtv" name="[COLOR lime][B]Zing TV[/B][/COLOR]" version="1.0.0" provider-name="">
+<addon id="plugin.video.hieuhien.vn.zingtv" name="[B]Zing TV[/B]" version="1.0.1" provider-name="">
 	<requires>
 		<import addon="xbmc.python" version="2.6.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
 		<import addon="script.common.plugin.cache" version="2.5.5"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
+	<extension point="xbmc.python.pluginsource" library="default.py" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en"></summary>
 		<description lang="en"></description>
@@ -1346,33 +1245,6 @@
 		<disclaimer>Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
 		<platform>all</platform>
 	</extension>
-</addon>
-
-<addon id="plugin.video.zeus" name="[COLOR yellow][B]ZEUS VIDEO[/B][/COLOR]" version="2.1.0" provider-name="ZEUS">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.beautifulsoup4" />
-	<import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">ZEUS VIDEO - KODI XBMC ADDON</summary>
-    <description lang="en">For Support and news go to http://zeusrepo.com
-	Video TV Shows Sport Latest and HD Movies 24/7 </description>
-    <platform>all</platform>
-  </extension>
 </addon>
 
 <addon id="program.hieuhien.vn.plexus"
@@ -1650,6 +1522,19 @@
 	</extension>
 </addon>
 
+<addon id="repo.natko1412" name="natko1412 repo" version="2.0.0" provider-name="natko1412">
+<extension point="xbmc.addon.repository" name="Natko's Addon Repository">
+<info compressed="false">https://offshoregit.com/natko1412/addons.xml</info>
+<checksum>https://offshoregit.com/natko1412/addons.xml.md5</checksum>
+<datadir zip="true">https://offshoregit.com/natko1412/zips/</datadir>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>Install all of Natko's Addons</summary>
+<description>Download and install addons by natko1412. For support visit XBMC thread on forum.hr</description>
+<platform>all</platform>
+</extension>
+</addon>
+
 <addon id="repository.otherguysstuff" name="The other Viet Addons" version="1.0.0" provider-name="dk">
 	<extension point="xbmc.addon.repository" name="The other Viet Addons">
 		<info compressed="false">https://bitbucket.org/dknlght/dk-xbmc-repaddon-rep/raw/master/addons.xml</info>
@@ -1688,6 +1573,26 @@
 	<extension point="xbmc.addon.metadata">
 		<summary>Install My Addons</summary>
 		<description>Download and install addons from podgod!</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.shani" name="Shanis Addon Repository" version="2.8" provider-name="Shani">
+	<extension point="xbmc.addon.repository" name="Shanis Addon Repository">
+    <dir>
+            <info compressed="false">https://raw.github.com/Shani-08/ShaniXBMCWork2/master/addons.xml</info>
+            <checksum>https://raw.github.com/Shani-08/ShaniXBMCWork2/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.github.com/Shani-08/ShaniXBMCWork2/master/zips</datadir>
+    </dir>
+
+    <info compressed="false">https://offshoregit.com/Shani-08/main/addons.xml</info>
+    <checksum>https://offshoregit.com/Shani-08/main/addons.xml.md5</checksum>
+    <datadir zip="true">https://offshoregit.com/Shani-08/main/zips</datadir>
+
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Addons related to XBMC for Zemtv etc</summary>
+		<description>Go though the plugins and see what you like</description>
 		<platform>all</platform>
 	</extension>
 </addon>

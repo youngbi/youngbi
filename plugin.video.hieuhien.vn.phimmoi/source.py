@@ -183,25 +183,30 @@ class Source:
 
 	def resolve_stream(self, url):
 		page = self.__get_page__(url, cacheTime=0)
-		return self.__get_stream__(page)
+		new_url = self.__get_stream__(page)
+		headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36', 'Referer': url}
+		res = api.JSONKit(cache_path=self.cache_path).ObjectFromURL(new_url, cacheTime=0, headers=headers)
+
+		medias = res['medias']
+
+		for m in medias:
+			if m['resolution'] in [1080, 720]:
+				if self.__is_youtube_url__(m['url']):
+					return self.__get_youtube_stream__(m['url'])
+				else:
+					return m['url']
+
+		u = medias[0]['url']
+		if self.__is_youtube_url__(u):
+			return self.__get_youtube_stream__(u)
+		else:
+			return u
 
 
 	def __get_stream__(self, page):
-		url = None
-		token = None
-		for s in page.find_all('script'):
-			m = re.search("(?i)currentEpisode.url='(.*)';", s.text)
-			if m:
-				url = m.group(1)
-				if self.__is_youtube_url__(url):
-					return self.__get_youtube_stream__(url)
-			m = re.search("(?i)fx.token='(.*)';", s.text)
-			if m:
-				token = m.group(1)
-				token = token[token.index('-') + 1: ]
-		if url <> None and token <> None:
-			req = 'http://www.phimmoi.net/player.php?url=%s&token=%s&res=720' %(url, token)
-			return req
+		for s in page.find_all('script', {'async': 'true'}):
+			if 'token' in s['src']:
+				return s['src'].replace('javascript', 'json')
 		return None
 
 
@@ -237,3 +242,4 @@ class Source:
 	def __get_video_id__(self, url):
 		qs = urlparse.parse_qs(url[url.index('?')+1:])
 		return qs['v'][0]
+

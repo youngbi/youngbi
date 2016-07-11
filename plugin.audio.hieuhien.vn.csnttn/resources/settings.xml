@@ -1,6 +1,0 @@
-﻿<settings>
-	<category label="Thông tin Account">
-		<setting id="csn_u" type="text" option="hidden" label="User name [COLOR green]chiasenhac.com[/COLOR]"default="tk.chiasenhac.com@gmail.com"/>/>
-		<setting id="csn_p" type="text" option="hidden" label="Password [COLOR green]chiasenhac.com[/COLOR]"default="chiasenhac@com"/>/>
-	</category>
-</settings>

@@ -1,26 +1,44 @@
-﻿<settings>
-	<category label="Thông tin Account">
-		<setting id="userhdviet" type="text" label="User name [COLOR darkorange]hdviet.com[/COLOR] (email/Số ĐT)" default="tk.hdviet.com@gmail.com"/>
-		<setting id="passhdviet" type="text" option="hidden" label="Password [COLOR darkorange]hdviet.com[/COLOR]" default="hdviet.com"/>
-		<setting id="tokenhdviet" type="text" visible="false" default="none" label="Token"/>
-		<setting id="userphimmoi" type="text" label="User name [COLOR ghostwhite]phimmoi.net[/COLOR]" default="tk.phimmoi.net"/>
-		<setting id="passphimmoi" type="text" option="hidden" label="Password [COLOR ghostwhite]phimmoi.net[/COLOR]" default="phimmoi.net"/>
-
-		
+<settings>
+	<category label="Testers">
+		<setting label="Local M3U Playlist Tester" type="lsep" />
+		<setting id="local_path" type="file" label="Select Local M3U Playlist" default="" />
+		<setting id="local_choice" type="bool" label="Keep Local M3U Source Path?" default="false" />
+		<setting id="enable_local_tester" type="bool" label="Enable Local M3U Playlist Tester" default="true" />
+		<setting label="Online M3U Playlist Tester" type="lsep" />
+		<setting id="online_path" type="text" label="[B]Enter Online M3U Playlist URL[/B]" default="" />
+		<setting id="online_choice" type="bool" label="[B]Keep Online M3U Source Path?[/B]" default="false" />
+		<setting id="enable_online_tester" type="bool" label="[B]Enable Online M3U Playlist Tester[/B]" default="true" />
+		<setting label="Channel Tester" type="lsep" />
+		<setting id="enable_channel_tester" type="bool" label="Enable Channel Tester" default="true" />
 	</category>
-	<category label="Thông tin khác">
-		<setting id="danhmucphim" type="labelenum" label="[COLOR blue]Hiển thị danh mục phim theo server:[/COLOR]" values="HDOnline|HDViet|PhimMoi|Tất cả" default="Tất cả"/>
-		<setting id="note" type="text" label="[COLOR red]Danh mục phim: Tất cả -> Không tìm kiếm phim liên quan từ server khác ở dưới.[/COLOR]" />		
-		<setting id="hdonline_view" type="bool" label="Tự động tìm kiếm thêm phim từ server HDOnline (y/n)" default="true"/>		
-		<setting id="hdviet_view" type="bool" label="Tự động tìm kiếm thêm phim từ server HDViet (y/n)" default="true"/>
-		<setting id="phimmoi_view" type="bool" label="Tự động tìm kiếm thêm phim từ server PhimMoi (y/n)" default="true"/>		
-		<setting label="Chất lượng phim" type="labelenum" id="video_quality" default="Full HD" values="SD|HD|Full HD" visible="false"/>
-		<setting id="hdvietresolution" type="labelenum" label="[COLOR blue]Chọn độ phân giải tối đa trên[/COLOR] [COLOR darkorange]hdviet.com[/COLOR]" values="720|1080" default="1080"/>
-		<setting id="phimmoiresolution" type="labelenum" label="[COLOR blue]Chọn độ phân giải tối đa trên[/COLOR] [COLOR ghostwhite]phimmoi.net[/COLOR]" values="720|1080" default="1080"/>
-		<setting id="sodonghienthi" type="labelenum" label="[COLOR blue]Số dòng hiển thị cho 1 trang[/COLOR]" values="20|30|50" default="30" visible="false"/>
-		<setting id="cookie" type="text" label="cookiestring" default="" visible="false"/>
-		
-		<setting id="hdvietaudio" type="bool" label="[COLOR green]Tự động chọn Audio thuyết minh trên[/COLOR] [COLOR darkorange]hdviet.com[/COLOR] (y/n)" default="true"/>
-		<setting id="phimmoiaudio" type="bool" label="[COLOR green]Tự động chọn Audio thuyết minh trên[/COLOR] [COLOR ghostwhite]phimmoi.net[/COLOR] (y/n)" default="true"/>	
+	<category label="Servers">
+		<setting label="Server Groups" type="lsep" />
+		<setting id="choose_server_group" type="enum" values="1|2" label="Choose Server Group Number" default="0"/>
+		<setting label="Manual Server Selection" type="lsep" />
+		<setting id="enable_server_selection" type="bool" label="Enable Manual Server Selection" default="false" />
+		<setting id="select_a_server" type="enum" values="0|1|2|3|4|5" label="Select Server Number" default="3"/>
+		<setting label="Other Selections" type="lsep" />
+		<setting id="enable_server_notification" type="bool" label="Enable Server Notification" default="false" />
+		<setting id="enable_iptvsimple_playlist" type="bool" label="Enable cCloudTV Playlist from IPTV Simple Client" default="false" />
+	</category>
+	<category label="General">
+		<setting id="viet_mode" type="select" label="Select Vietnam Section Mode" values="group|abc order|category" default="group" />
+		<setting id="youtube_mode" type="select" label="Select YouTube Mode" values="tubelink|direct" default="tubelink" />
+		<setting id="enable_thongbao" type="bool" label="Enable Thong Bao Moi" default="true" />
+		<setting id="enable_tvguide" type="bool" label="Enable TV Guide" default="true" />
+		<setting id="enable_youtube_channels" type="bool" label="Enable Youtube Channels" default="true" />
+		<setting id="enable_other_sources" type="bool" label="Enable Other Sources" default="true" />
+		<setting id="enable_other_addons1" type="bool" label="Enable Other Addons" default="true" />
+		<setting id="enable_other_addons2" type="bool" label="Enable Other Addons" default="true" />
+		<setting id="enable_other_addons3" type="bool" label="Enable Other Addons" default="true" />
+		<setting id="enable_other_addons4" type="bool" label="Enable Other Addons" default="true" />
+		<setting id="enable_other_addons5" type="bool" label="Enable Other Addons" default="true" />
+		<setting id="enable_other_addons6" type="bool" label="Enable Other Addons" default="true" />
+		<setting id="enable_public_uploads" type="bool" label="Enable Public Uploads (Win/Mac PC)" default="true" />
+		<setting id="enable_links_to_tutorials" type="bool" label="Enable Links to Tutorials (Win/Mac PC)" default="true" />
+		<setting id="enable_autorun" type="bool" label="Enable Autostart cCloud.tv" default="false" />
+	</category>
+	<category label="Adult">
+		<setting id="enable_adult_section" type="bool" label="Enable Adult Section (by enabling, you confirm you are 18+)" default="false" />
 	</category>
 </settings>

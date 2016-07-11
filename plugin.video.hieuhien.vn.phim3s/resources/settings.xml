@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-	<category label="General Settings">		
-		<setting id="Mode_Number" type="select" label="Chọn số, nhấn OK (Số 7 = Nhanh, làm nhiều. Số 16 = Chậm, làm ít)" values="7|16" default="7"/>	
-	</category>	
+	<setting id="playback_quality" type="labelenum" label="Chất Lượng" values="1080p|720p|360p" default="720p" />
 </settings>
