@@ -177,27 +177,6 @@
   </extension>
 </addon>
 
-<addon
-	id="plugin.video.hieuhien.vn.behocchu"
-	version="1.0"
-	name="[COLOR violet][B]BÉ HỌC CHỮ[/B][/COLOR]"
-	provider-name="Tuấn Tàu">
-	<requires>
-		<import addon="script.module.simplejson" />
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="liveshow.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>[COLOR red]Tuấn Tàu[/COLOR]</summary>
-		<description>[COLOR lime][B]Add-on dạy bé học chữ dựa trên phương pháp Flash Cards[/B][/COLOR]</description>
-		<disclaimer>Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="plugin.video.hieuhien.vn.cartoons8" name="[COLOR yellow][B]Cartoons8[/B][/COLOR]" version="1.0.10" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
