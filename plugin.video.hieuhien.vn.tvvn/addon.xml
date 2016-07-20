@@ -8,7 +8,7 @@
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="tvvn.py">
-		<provides>video</provides>
+		<provides></provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>

@@ -12,7 +12,7 @@
   </requires>
   <extension point="xbmc.python.pluginsource"
             library="talktv.py">
-        <provides>video</provides>
+        <provides></provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Truyền hình trực tiếp, stream game, xem trực tiếp game</summary>

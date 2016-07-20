@@ -5,7 +5,7 @@
 			<import addon="script.module.requests" version="2.6.0"/>
 		</requires>
 		<extension point="xbmc.python.pluginsource" library="default.py">
-			<provides>video</provides>
+			<provides></provides>
 		</extension>
 		<extension point="xbmc.addon.metadata">
 			<summary>PhimNhanh.com</summary>

@@ -6,7 +6,9 @@
 		<import addon="script.module.beautifulsoup" version="3.2.1" />
 		<import addon="script.module.beautifulsoup4"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="xemphimso.py" />
+	<extension point="xbmc.python.pluginsource" library="xemphimso.py">
+		<provides></provides>
+	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>XemPhimSo</summary>
 		<description>XemPhimSo (Vietnamese)</description>

@@ -7,7 +7,9 @@
 	<requires>		
 		<import addon="xbmc.python" version="2.1.0" />	
 	</requires>	
-	<extension point="xbmc.python.pluginsource" library="addon.py" />
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides></provides>
+	</extension>
 	<extension point="xbmc.addon.metadata">
 	<summary>ChanTube</summary>		
 	<description>Tổng hợp các kênh Youtube hay</description>		

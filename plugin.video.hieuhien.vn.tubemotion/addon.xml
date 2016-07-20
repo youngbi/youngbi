@@ -6,7 +6,9 @@
 	provider-name="bacha">	
 	<requires>		
 	</requires>	
-	<extension point="xbmc.python.pluginsource" library="default.py" />	
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides></provides>
+	</extension>	
 	<extension point="xbmc.addon.metadata">
 	<summary>YouTube and Dailymotion Channels</summary>		
 	<description>Tổng hợp các kênh Youtube và Dailymotion. Addon này được viết lại dựa trên netmedia và chantube addons.</description>		

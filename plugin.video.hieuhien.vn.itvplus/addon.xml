@@ -8,7 +8,9 @@
 	    <import addon="script.module.simplejson" />
 	    <import addon="script.module.t0mm0.common" />
     </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py" />
+    <extension point="xbmc.python.pluginsource" library="default.py">
+		<provides></provides>
+	</extension>
     <extension point="xbmc.service" library="autorun.py" start="startup">
     </extension>   
     <extension point="xbmc.addon.metadata">

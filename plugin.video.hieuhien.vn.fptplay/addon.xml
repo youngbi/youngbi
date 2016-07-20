@@ -5,7 +5,7 @@
     <import addon="script.module.xbmcswift2" version="2.4.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
+    <provides></provides>
   </extension>
   <extension point="xbmc.service"
 			library="start.py" start="startup">
