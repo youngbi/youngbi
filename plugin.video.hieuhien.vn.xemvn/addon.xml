@@ -8,7 +8,7 @@
 		<import addon="script.module.requests" version="2.7.0" />		
 	</requires>	
 	<extension point="xbmc.python.pluginsource" library="addon.py">				
-		<provides>video</provides>		
+		<provides></provides>		
 	</extension>			
 	<extension point="xbmc.addon.metadata">			
 		<summary>Xem.Vn</summary>					

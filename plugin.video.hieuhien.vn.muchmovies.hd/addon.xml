@@ -9,7 +9,7 @@
 		<import addon="plugin.video.youtube" optional="true"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
+		<provides></provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Watch a wide selection of movies from muchmovies.org</summary>

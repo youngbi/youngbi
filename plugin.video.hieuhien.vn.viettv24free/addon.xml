@@ -11,7 +11,7 @@
   </requires>
   <extension point="xbmc.python.pluginsource"
             library="default.py">
-        <provides>video</provides>
+        <provides></provides>
   </extension>   
   <extension point="xbmc.addon.metadata">
     <summary>viettv24free+</summary>
