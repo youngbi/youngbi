@@ -2,5 +2,6 @@
 <a server="MMN" category="FRE" mode="88" color="orange" icon="movie.png">Xem Phim</a>
 <a server="MMN" category="Home" mode="89" color="orange" icon="tv.png">Xem Truyền Hình</a>
 <a server="MMN" category="Home" mode="51" color="orange" icon="music.png">Nghe Nhạc</a>
+<a server="MMN" category="Home" mode="98" color="red" icon="youtube.png">Youtube [COLOR green](Bản thử nghiệm)[/COLOR]</a>
 
 
