@@ -1,0 +1,26 @@
+﻿Version_2.4.8 <25/07/2016>
+- Fix Other channel and minor fix
+
+Version_2.4.7 <18/07/2016>
+- Fix Other channel and minor fix
+
+Version_2.4.6 <07/07/2016>
+- Build HDPlay android app for kodi
+
+Version_2.4.5 <07/07/2016>
+- New Favourites Menu
+
+Version_2.4.4 <06/07/2016>
+- New source
+
+Version_2.4.3 <05/07/2016>
+- New menu; Fix resolution of video movies
+
+Version_2.4.2 <02/07/2016>
+- Fix Other channel
+
+Version_2.4.1 <01/07/2016>
+- New menu
+
+Version_2.4.0 <28/06/2016>
+- Fix VTVCAB
