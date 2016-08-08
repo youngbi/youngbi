@@ -404,7 +404,7 @@ def gibberishAES(string, key=''):
 
 class serversList:
 	def __init__(self):
-		self.servers=[('hdviet.com', '22'),('bilutv.com', '36'),('phimmoi.net', '24'), ('hdonline.vn', '30'), ('megabox.vn', '17'), ('fptplay.net', '07'), ('phimbathu.com', '43'), ('phim.media', '40'),('phim3s.net', '32'), ('phim14.net', '39'), ('hayhaytv.vn', '23'),   ('kenh88.com', '26'), ('phimdata.com', '27'), ('phim47.com', '28'), ('hdsieunhanh.com', '44'), ('vietsubhd.com', '54'), ('mphim.net', '55'), ('anime47.com', '37'),('tvhay.org', '41'),('phimnhanh.com', '35'), ('kphim.tv', '33'),  ('phimsot.com', '29')]
+		self.servers=[('hdviet.com', '22'),('bilutv.com', '36'),('phimmoi.net', '24'), ('hdonline.vn', '30'), ('megabox.vn', '17'), ('fptplay.net', '07'), ('phimbathu.com', '43'), ('imovies.vn', '48'),('phim.media', '40'),('phim3s.net', '32'), ('phim14.net', '39'), ('hayhaytv.vn', '23'),   ('kenh88.com', '26'), ('phimdata.com', '27'), ('phim47.com', '28'), ('hdsieunhanh.com', '44'), ('vietsubhd.com', '54'), ('mphim.net', '55'), ('anime47.com', '37'),('tvhay.org', '41'),('phimnhanh.com', '35'), ('kphim.tv', '33'),  ('phimsot.com', '29')]
 		try:self.ordinal=[int(i) for i in xrw('free_servers.dat').split(',')]
 		except:self.ordinal=[]
 		l=len(self.servers);update=False
@@ -759,11 +759,11 @@ class fptPlay:#from resources.lib.servers import fptPlay;fpt=fptPlay(c)
 	def fpt2s(self,s):return ' '.join(re.sub('&.+;',xsearch('&(\w).+;',i),i) for i in s.split())
 	
 	def login(self):
-		email=get_setting('mail_fptplay');password=get_setting('pass_fptplay')
-		if not email:
-			mess(u'Bạn đang sử dụng account Fptplay của xshare')
-			email,password=urllib2.base64.b64decode('eHNoYXJlQHRoYW5odGhhaS5uZXQ6YWRkb254c2hhcmU=').split(':')
-		data=urllib.urlencode({'email':email,'password':password})
+		phone=get_setting('phone');password=get_setting('pass_fptplay')
+		if not phone:
+			#mess(u'Bạn đang sử dụng account Fptplay của bác HT')
+			phone,password=urllib2.base64.b64decode('MDk2NDQ2MDg2ODphY2NuaG9tc3VwZXJ2aXBAMzYw==').split(':')
+		data=urllib.urlencode({'phone':phone,'password':password});print data
 		cookie=urllib2.HTTPCookieProcessor();opener=urllib2.build_opener(cookie);urllib2.install_opener(opener)
 		#try:b=opener.open(self.hd['referer'])
 		#except:pass
@@ -772,8 +772,8 @@ class fptPlay:#from resources.lib.servers import fptPlay;fpt=fptPlay(c)
 		try:b=urllib2.urlopen(req,timeout=30)
 		except:pass
 		cookie=xcookie(cookie);print cookie
-		if 'laravel_id' in cookie:mess(u'Login thành công','fptplay.net');xrw('fptplay.cookie',cookie)
-		else:mess(u'Login không thành công!','fptplay.net')
+		if 'laravel_id' in cookie:xrw('fptplay.cookie',cookie)
+		#else:mess(u'Login không thành công!','fptplay.net')
 		return cookie
 	
 	def login5(self):
@@ -961,7 +961,10 @@ class kPhim:
 		return items
 	
 	def eps(self,url):
-		return re.findall('<a class="btn btn-default" href="(.+?)"> (.+?) </a>',xread(url))
+		b=xread(url)
+		items=re.findall('<a class="btn btn-default" href="(.+?)"> (.+?) </a>',b)
+		if not items:items=re.findall('<a class="label[^"]+?" href="(.+?)"> (.+?) </a>',b)
+		return items
 	
 	def getLink(self,url):
 		b=xread(url)
@@ -1426,7 +1429,7 @@ class imovies:
 	def getPage(self,url):
 		b=xread(url);items=[]
 		if 'Ooops.Đã Có lỗi xảy ra!' in b:mess(u'Ooops.Đã Có lỗi xảy ra!','imovies.vn')#;return items[]
-		S=[i for i in b.split('<div class="item-content ">') if '<div class="title-movie">' in i]
+		S=[i for i in b.split('<div class="mlii">') if '  <span class="mvn">' in i]
 		for s in S:items.append((self.getDetail(s)))
 		
 		pn=re.search('<li class="active">.+?<li class="">.*?href="(.+?)">(.+?)</a>',b,re.S)
