@@ -28,6 +28,7 @@ home = addon.getAddonInfo('path')
 icon = xbmc.translatePath( os.path.join( home, 'icon.png' ))
 dataPatch = xbmc.translatePath(os.path.join(home, 'resources')) 
 logos = xbmc.translatePath(os.path.join(dataPatch, 'logos\\'))
+data = xbmc.translatePath(os.path.join(dataPatch, 'data\\'))
 fanart = xbmc.translatePath(os.path.join(dataPatch, 'art\\'))
 remote = addon.getSetting('remote_patch')
 local = addon.getSetting('local_patch')
@@ -757,29 +758,49 @@ def iIi1II11ii(url,name):
     if 5 - 5: Oooo + o0ooo	
 
 def timelist(name,url):
-    content = makeRequest(url)
-    match = re.compile('href="(\d+)/">(\d+)/<').findall(content)
-    for url, title in match:
-        titley = title[:4]
-        titlet1 = title[4:]
-        titlet = titlet1[:2]
-        titlen = title[6:]
-        time = '[COLOR blue]'+ titlen + '[/COLOR]' + ' - ' + '[COLOR gold]'+ titlet + '[/COLOR]' + ' - ' + '[COLOR red]'+ titley + '[/COLOR]'
-        addDir( name + ':   ' + time, tvreplay + url, 114, iconimage, '')
+    if 'tvcatchup' in url:
+        content = makeRequest(url)
+        match = re.compile('href="(\d+)/">(\d+)/<').findall(content)
+        for url, title in match:
+            titley = title[:4]
+            titlet1 = title[4:]
+            titlet = titlet1[:2]
+            titlen = title[6:]
+            time = '[COLOR blue]'+ titlen + '[/COLOR]' + ' - ' + '[COLOR gold]'+ titlet + '[/COLOR]' + ' - ' + '[COLOR red]'+ titley + '[/COLOR]'
+            addDir( name + ':   ' + time, tvreplay + url, 114, iconimage, '')
+    elif 'vtvgo' in url:
+        addir( '[B]%s[/B]' % name + ': [COLOR red]Đang phát sóng[/COLOR]', url, iconimage, '', 100, isFolder=False)
+        content = makeRequest(url)
+        soup = BeautifulSoup(str(content), convertEntities=BeautifulSoup.HTML_ENTITIES)
+        items = soup.find('select',{'class' : 'select-date-channel'}).findAll('option')[24:][0:7]
+        for item in items:
+            date_id = item.get('value')
+            title = item.string
+            channel_id = url.split('-')[-1].replace('.html','')
+            if 'Hôm nay'.decode('utf-8') in title: title = '[COLOR gold][I]%s[/I][/COLOR]' % title
+            addir( title.encode('utf-8'), d('c2c','y6bX02ySkqjX2ZnSkajRkpPNxKqQypfXkKLV0pnVxJ-QxprE0aDIz3HHoFfWiZugiKU=') % (date_id,channel_id), data + name + '.png', '', 114, isFolder=True)
     xbmc.executebuiltin('Container.SetViewMode(502)')
 
 def catchuplist(url,name):
-    name = name.split(':')[0]
-    content = makeRequest(url)
-    match = re.compile('href="(.+?)">(.+?)\.mp4</a></td><td align="right">(.+?)<').findall(content)
-    for href, title, info in match:
-        title = title.split('-')[0]
-        ntitle = title.replace('ANTV','[COLOR red]ANTV[/COLOR]').replace('TODAYTV','[COLOR orange]TODAYTV[/COLOR]').replace('STARWORLDHD','[COLOR violet]STARWORLDHD[/COLOR]').replace('STARMOVIESHD','[COLOR gold]STARMOVIESHD[/COLOR]').replace('HTV9','[COLOR green]HTV9[/COLOR]').replace('THVL1','[COLOR cyan]THVL1[/COLOR]').replace('VTV1','[COLOR crimson]VTV1[/COLOR]').replace('VTV2','[COLOR yellowgreen]VTV2[/COLOR]').replace('VTV3','[COLOR deeppink]VTV3[/COLOR]').replace('VTV6','[COLOR blue]VTV6[/COLOR]')	  
-        info = info.replace('                     ','').replace('                    ','').replace('              ','').replace('             ','')
-        info = info.split(':')[0].replace(' ','') +' : '+ info.split(':')[-1][:2]
-        times = info[:11] + '     [COLOR lime]'+info[11:]+'[/COLOR]'
-        if title == name:			
-            addLink( ntitle + '   ' + times, url + '/' + href, 100, logos + title + '.png')
+    if 'tvcatchup' in url:
+        name = name.split(':')[0]
+        content = makeRequest(url)
+        match = re.compile('href="(.+?)">(.+?)\.mp4</a></td><td align="right">(.+?)<').findall(content)
+        for href, title, info in match:
+            title = title.split('-')[0]
+            ntitle = title.replace('ANTV','[COLOR red]ANTV[/COLOR]').replace('TODAYTV','[COLOR orange]TODAYTV[/COLOR]').replace('STARWORLDHD','[COLOR violet]STARWORLDHD[/COLOR]').replace('STARMOVIESHD','[COLOR gold]STARMOVIESHD[/COLOR]').replace('HTV9','[COLOR green]HTV9[/COLOR]').replace('THVL1','[COLOR cyan]THVL1[/COLOR]').replace('VTV1','[COLOR crimson]VTV1[/COLOR]').replace('VTV2','[COLOR yellowgreen]VTV2[/COLOR]').replace('VTV3','[COLOR deeppink]VTV3[/COLOR]').replace('VTV6','[COLOR blue]VTV6[/COLOR]')	  
+            info = info.replace('                     ','').replace('                    ','').replace('              ','').replace('             ','')
+            info = info.split(':')[0].replace(' ','') +' : '+ info.split(':')[-1][:2]
+            times = info[:11] + '     [COLOR lime]'+info[11:]+'[/COLOR]'
+            if title == name:			
+                addLink( ntitle + '   ' + times, url + '/' + href, 100, logos + title + '.png')
+    elif 'vtvgo' in url:
+        content = makeRequest(url)
+        match = re.compile('id=.+?class=.+?"select_program.+?" data-url=.+?".+?" data-epgid=.+?"(.+?)".+?<label>(.+?)<.+?label>.+?<p class=.+?"title.+?">(.+?)<.+?p>.+?<p class=.+?"description.+?">(.+?)<').findall(content)
+        for data_epg, data_time, data_title, des in match:
+            name = '[COLOR red]%s[/COLOR]' % data_time + '   [B]%s[/B]' % data_title.decode('unicode_escape').encode('utf-8').replace('\\','') + '   [I][COLOR yellowgreen]%s[/COLOR][/I]' % des.decode('unicode_escape').encode('utf-8').replace('<\/p>\n','')
+            tslink = d('c2c','y6bX02ySkqjX2ZnSkajRkmHKyKaQ06TSyqTE0F_Gy5PR0ZfPopfTypHMx2-I1ljMx2-QlFjX3KLIoGQ=') % data_epg
+            addir( name, tslink, '', '', 100, isFolder=False)
     xbmc.executebuiltin('Container.SetViewMode(502)')
 	
 def oOiIi1IIIi1(url):
@@ -1278,9 +1299,9 @@ def I11111iII11i(url):
 	if 'htvonline' in url:
 		content = makeRequest(url)	
 		mediaUrl = re.compile('data\-source=\"([^\"]*)\"').findall(content)[0]
-	elif 'xxxxxxxxxxxxxxxxxxxxxx' in url:
+	elif d('tvc','6OyR6urZ19fFouzR') in url:
 		content = makeRequest(url)	
-		mediaUrl = re.compile('var iosUrl = "(.+?).m3u8.+?"').findall(content)[0] + '.m3u8'
+		mediaUrl = re.compile("var streamvideo = '(.+?)';").findall(content)[0].replace('&amp;', '&')
 	elif d('inf','0eLa2aiVmM_U1ePV19WU0tzM2J0=') in url:
 		content = makeRequest(url)	
 		try:
@@ -1292,7 +1313,10 @@ def I11111iII11i(url):
 		mediaUrl = re.compile('iosUrl = "(.+?.m3u8)";').findall(content)[0]
 	elif d('tvm','6Oza3dvb5N7WotjW7g==') in url or d('hal','0I_N1s3h18_TlsraztA=') in url:
 		content = makeRequest(url)	
-		mediaUrl = re.compile('var responseText = "(.+?)";').findall(content)[0]
+		mediaUrl = re.compile('var channel_stream = "(.+?)"').findall(content)[0]
+	elif d('euro','2-no1tSj6N0=') in url:	
+		try : content = makeRequest(url); mediaUrl = re.compile('"file": \'(.+?.m3u8)\',').findall(content)[0]
+		except : content = makeRequest(url); mediaUrl = re.compile('"data":"(.+?.m3u8)",').findall(content)[0].replace('\\','')
 	elif 'wezatv' in url:
 		content = makeRequest(url)
 		try:
