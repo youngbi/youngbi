@@ -1,6 +1,6 @@
 ﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
-import urllib, urllib2, json, re, urlparse, sys, time, os, hashlib
+import urllib, urllib2, json, re, urlparse, sys, time, os, hashlib, base64
 import xbmc, xbmcgui, xbmcaddon, xbmcplugin
 from BeautifulSoup import BeautifulSoup
 
@@ -33,6 +33,15 @@ header_api = {'User-Agent' : 'Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; AndyW
 			'Access-Token' : apitoken}
 header_app = {'User-agent' : 'com.hdviet.app.ios.HDViet/2.0.1 (unknown, iPhone OS 8.2, iPad, Scale/2.000000)'}
 
+def d ( k , e ) :
+    data = [ ]
+    e = base64.urlsafe_b64decode ( e )
+    for i in range ( len ( e ) ) :
+        ch1 = k [ i % len ( k ) ]
+        ch2 = chr ( ( 256 + ord ( e [ i ] ) - ord ( ch1 ) ) % 256 )
+        data.append ( ch2 )
+    return "".join ( data )
+
 def make_request(url, params=None, headers=None):
 	if headers is None:
 		headers = header_web
@@ -48,8 +57,8 @@ def make_request(url, params=None, headers=None):
 	except:
 		return False
 def login():
-	username = my_addon.getSetting('userhdviet')
-	password = my_addon.getSetting('passhdviet')
+	username = d ( 'imai' , '0uHXmpqek5ubrcjWytbNl8zczg==' )#my_addon.getSetting('userhdviet')
+	password = d ( 'imai' , 'mp6Smpqekpo=' )#my_addon.getSetting('passhdviet')
 	if len(username) < 5 or len(password) < 1:
 		my_addon.setSetting("token", "none")
 		xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR red]Chưa nhập user/password HDViet[/COLOR]',3000)).encode("utf-8"))
@@ -354,7 +363,7 @@ def play(movie_id, ep = 0):
 			elif use_dolby_audio:
 				if movie['Audio'] > 0:audio_index = 2
 				else:audio_index = 1
-				
+		
 		# get link and resolution
 		got = False
 		if try_fullhd and not vip:

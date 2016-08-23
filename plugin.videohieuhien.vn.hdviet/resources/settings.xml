@@ -10,8 +10,8 @@
 		<setting id="npp" default="25" type="number" label="Số lượng phim trong 1 trang"/>
 	</category>
 	<category label="Account Setting">
-	    <setting id="userhdviet" type="text" label="Email/Số ĐT" default="tk.hdviet.com@gmail.com"/>
-		<setting id="passhdviet" type="text" option="hidden" label="Password" default="hdviet.com"/>
+	    <setting id="userhdviet" default="tk.hdviet.com@gmail.com" type="text" option="hidden" label="Email/Số ĐT" visible="false"/>
+		<setting id="passhdviet" default="hdviet.com" type="text" option="hidden" label="Password" visible="false"/>
 		<setting id="token" type="text" visible="false" default="none" label="Token"/>
 		<setting label="VIP" type="bool" id="vip" visible="false" default="false"/>
 	</category>
