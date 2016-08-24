@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.HieuHien.vn" name="[B][COLOR red]Hieuhien.vn[/COLOR] [COLOR lime]Media Center[/COLOR][/B]" version="1.0.1" provider-name="podgod-mod by Tony Nguyen">
+<addon id="plugin.video.HieuHien.vn" name="[B][COLOR red]Hieuhien.vn[/COLOR] [COLOR lime]Media Center[/COLOR][/B]" version="1.0.1.1" provider-name="podgod-mod by Tony Nguyen">
   <requires> 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">

@@ -74,6 +74,7 @@ iconpath = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNW
 SRVlist = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMM05sY25abGNuTXVkSGgw'.decode('base64').decode('base64')
 medialink = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMMjFsWkdsaGJHbHVheTUwZUhRPQ=='.decode('base64').decode('base64')
 tubemenu = 'YUhSMGNITTZMeTluYjI4dVoyd3ZZVkZhU25KcA=='.decode('base64').decode('base64')
+childrentube = 'YUhSMGNEb3ZMMmR2Ynk1bmJDOUZja3hNZGpjPQ=='.decode('base64').decode('base64')
 ytsearchicon = 'YUhSMGNITTZMeTl5WVhjdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMMk5zYjNWa2JHbHpkQzl5WlhCdmMybDBiM0o1TG5acGNHeHBjM1F2YldGemRHVnlMMDE1Um05c1pHVnlMM2x2ZFhSMVltVXZhV052Ym5NdldWUlRaV0Z5WTJndWNHNW4='.decode('base64').decode('base64')
 iptvsimple = xbmc.translatePath("special://home/userdata/addon_data/pvr.iptvsimple/iptv.m3u.cache")
 public_uploads = 'plugin://plugin.program.chrome.launcher/?kiosk=no&mode=showSite&stopPlayback=no&url=https%3a%2f%2fscript.google.com%2fmacros%2fs%2fAKfycbxwkVU0o3lckrB5oCQBnQlZ-n8CMx5CZ_ajq6Y3o7YHSTFbcODk%2fexec'
@@ -236,6 +237,9 @@ def main():
 					
 	if enable_youtube_channels == 'true':
 		addDir('KÊNH GIẢI TRÍ', tubemenu, 18, 'http://goo.gl/D9nS4f', fanart)
+		
+	if enable_youtube_channels == 'true':
+		addDir('KÊNH THIẾU NHI', childrentube, 18, 'http://goo.gl/vikREi', fanart)
 	
 	if enable_other_addons6 == 'true':
 		addDir('TỔNG HỢP', 'NoLinkRequired', 106, 'http://goo.gl/j4sDm7', fanart)	
@@ -1492,7 +1496,7 @@ def thongbao():
 def text_online():
 	xbmc_cache_path = os.path.join(xbmc.translatePath('special://temp'))
 	dialog = xbmcgui.Dialog()
-	dialog.ok("Giới thiệu về Addon [COLOR lime]Hieuhien.vn Media Center[/COLOR]", "", "Đây là addon được chỉnh sửa từ addon [COLOR lime]Ccloud.tv[/COLOR] của tác giả [COLOR blue]Tony Nguyen[/COLOR]. Sử dụng 1 số tính năng để [COLOR red]Hieuhien.vn[/COLOR] có thể dễ dàng cập nhật các addon mới nhất. Chân thành cảm ơn tác giả đã cho phép Hieuhien.vn sử dụng source code này!")
+	dialog.ok("Giới thiệu về Addon [COLOR lime]Hieuhien.vn Media Center[/COLOR]", "", "Đây là addon được chỉnh sửa từ addon [COLOR lime]Ccloud.tv[/COLOR] của bác [COLOR blue]Tony Nguyễn[/COLOR]. Sử dụng 1 số tính năng để [COLOR red]Hieuhien.vn[/COLOR] có thể dễ dàng cập nhật các addon mới nhất dành cho người dùng KODI Việt Nam. Xin chân thành cảm ơn tác giả [COLOR blue]Tony Nguyễn![/COLOR]")
 	sys.exit()
 
 def showText(heading, text):
