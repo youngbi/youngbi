@@ -3,7 +3,7 @@
 		<setting id="userhayhay" type="text" label="User name [COLOR tomato]hayhaytv.vn[/COLOR] (email/Số ĐT)" default="tk.hayhaytv.vn@gmail.com"/>
 		<setting id="passhayhay" type="text" option="hidden" label="Password [COLOR tomato]hayhaytv.vn[/COLOR]" default="hayhaytv.vn"/>
 		
-		<setting id="mail_fptplay" type="text" label="User name [COLOR orange]fptplay.net[/COLOR] (email)" default="tk.fptplay.net@gmail.com"/>
+		<setting id="mail_fptplay" type="text" label="User name [COLOR orange]fptplay.net[/COLOR] (email)" default="0918778013"/>
 		<setting id="pass_fptplay" type="text" option="hidden" label="Password [COLOR orange]fptplay.net[/COLOR]" default="fptplay.net"/>
 		
 		<setting id="userhdviet" type="text" label="User name [COLOR darkorange]hdviet.com[/COLOR] (email/Số ĐT)" default="tk.hdviet.com@gmail.com"/>
