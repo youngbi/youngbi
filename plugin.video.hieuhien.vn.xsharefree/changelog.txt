@@ -1,3 +1,23 @@
+[B]Version 3.4.8.1[/B] <03/10/2016>:
+Fix taiphimhd.net
+
+[B]Version 3.4.8.0[/B] <02/10/2016>:
+Fix fptpaly, hdsieunhanh phimbathu vietsubhd 
+Bổ sung fcine.net, taiphimhd.net
+
+[B]Version 3.4.7.4[/B] <25/9/2016>:
+Fix fptpaly, Youtube xml
+
+[B]Version 3.4.7.3[/B] <18/9/2016>:
+Fix chiasenhac, Youtube, tvhay
+Bổ sung module Fshare following search, youtube format, chiasenhac search, lịch phát sóng truyền hình
+
+[B]Version 3.4.7.2[/B] <12/9/2016>:
+Fix fptplay, VTVGo, Youtube
+
+[B]Version 3.4.7.1[/B] <04/9/2016>:
+Fix HDVietnam search, youtube search, Fadio fptplay.net
+
 [B]Version 3.4.7[/B] <01/9/2016>:
 Fix HDVietnam and "Cac servers khac"
 

@@ -1,38 +1,36 @@
 ﻿<settings>
-	<category label="Thông tin Account Server Phim">
+	<category label="Thông tin Account">
+		<setting id="phone_fptplay" type="text" label="User name [COLOR orange]fptplay.net[/COLOR] (Your Phone Number)"/>
+		<setting id="pass_fptplay" type="text" option="hidden" label="Password [COLOR orange]fptplay.net[/COLOR]"/>
+		<setting id="country_fptplay" type="select" label="Country code [COLOR orange]fptplay.net[/COLOR]" values="FR (33)|DE (49)|JP (81)|HK (852)|RU (7)|LA (856)|TW (886)|NZ (64)|TH (66)|CN (86)|CA (1)|VN (84)|AU (61)|GB (44)|IN (91)|ID (62)|MM (95)|MY (60)|KH (855)|US (1)|KR (82)|SG (65)|IL (972)" default="VN (84)"/>
 		<setting id="userhayhay" type="text" label="User name [COLOR tomato]hayhaytv.vn[/COLOR] (email/Số ĐT)" default="tk.hayhaytv.vn@gmail.com"/>
 		<setting id="passhayhay" type="text" option="hidden" label="Password [COLOR tomato]hayhaytv.vn[/COLOR]" default="hayhaytv.vn"/>
-		
-		<setting id="mail_fptplay" type="text" label="User name [COLOR orange]fptplay.net[/COLOR] (email)" default="0918778013"/>
-		<setting id="pass_fptplay" type="text" option="hidden" label="Password [COLOR orange]fptplay.net[/COLOR]" default="fptplay.net"/>
-		
 		<setting id="userhdviet" type="text" label="User name [COLOR darkorange]hdviet.com[/COLOR] (email/Số ĐT)" default="tk.hdviet.com@gmail.com"/>
 		<setting id="passhdviet" type="text" option="hidden" label="Password [COLOR darkorange]hdviet.com[/COLOR]" default="hdviet.com"/>
 		<setting id="hdvietresolution" type="labelenum" label="[COLOR darkorange]Chọn độ phân giải tối đa trên hdviet.com[/COLOR]" values="720|1080" default="1080"/>
 		<setting id="hdvietaudio" type="labelenum" label="[COLOR darkorange]Chọn Audio trên hdviet.com[/COLOR]" values="Thuyết Minh (nếu có)|Tiếng Gốc|Hỏi khi xem" default="Thuyết Minh (nếu có)"/>
-		
+	
 		<setting id="userphimmoi" type="text" label="User name [COLOR ghostwhite]phimmoi.net[/COLOR]" default="tk.phimmoi.net"/>
 		<setting id="passphimmoi" type="text" option="hidden" label="Password [COLOR ghostwhite]phimmoi.net[/COLOR]" default="phimmoi.net"/>
-		<setting id="phimmoiresolution" type="labelenum" label="[COLOR blue]Chọn độ phân giải tối đa trên[/COLOR] [COLOR ghostwhite]phimmoi.net[/COLOR]" values="720|1080" default="1080"/>
-
+	
 		<setting id="p3s_u" type="text" label="User name [COLOR lightgray]phim3s.net[/COLOR]" default="tkphim3snet"/>
 		<setting id="p3s_p" type="text" option="hidden" label="Password [COLOR lightgray]phim3s.net[/COLOR]" default="phim3s.net"/>
 		
 		<setting id="hdo_u" type="text" label="User name [COLOR turquoise]hdonline.vn[/COLOR]" default="tk.hdonline.vn@gmail.com"/>
-		<setting id="hdo_p" type="text" option="hidden" label="Password [COLOR turquoise]hdonline.vn[/COLOR]" default="hdonline.vn"/>
-	</category>
+		<setting id="hdo_p" type="text" option="hidden" label="Password [COLOR turquoise]hdonline.vn[/COLOR]" default="hdonline.vn"/>		
 	
-	<category label="Thông tin Account Server Nhạc">
+		<setting id="nct_u" type="text" label="User name [COLOR turquoise]nhaccuatui.com[/COLOR]"/>
+		<setting id="nct_p" type="text" option="hidden" label="Password [COLOR turquoise]nhaccuatui.com[/COLOR]"/>
+	
 		<setting id="csn_u" type="text" label="User name [COLOR green]chiasenhac.com[/COLOR]"/>
 		<setting id="csn_p" type="text" option="hidden" label="Password [COLOR green]chiasenhac.com[/COLOR]"/>
 		<setting id="csn_s" type="labelenum" label="[COLOR green]Tìm kiếm theo[/COLOR]" values="Tên bài hát/Ca sĩ|Ca sĩ|Sáng tác|Tên Album|Lời bài hát" default="Tên bài hát/Ca sĩ"/>
-		
-		<setting id="nct_u" type="text" label="User name [COLOR turquoise]nhaccuatui.com[/COLOR]"/>
-		<setting id="nct_p" type="text" option="hidden" label="Password [COLOR turquoise]nhaccuatui.com[/COLOR]"/>
-		
+		<setting id="csn_l" type="bool" label="" default="false" visible="false"/>
+
+		<setting id="chonserver" type="select" label="Tự động Chọn server trong PhimBatHu.com" values="Thuyết minh|VietSub|Không" default="Không" />
 	</category>
+
 	<category label="Thông tin khác">
-		<setting id="googlesearch" type="labelenum" label="[COLOR blue]Sử dụng phương thức Google search[/COLOR]" values="API|Web" default="API"/>
 		<setting id="sodonghienthi" type="labelenum" label="[COLOR blue]Số dòng hiển thị cho 1 trang[/COLOR]" values="20|30|50" default="30"/>
 		<setting id="cookie" type="text" label="cookiestring" default="" visible="false"/>
 		<setting id="resolut" type="labelenum" label="[COLOR gold]Chọn độ phân giải cho các server free (max/min)[/COLOR]" values="Max|Min" default="Max"/>
