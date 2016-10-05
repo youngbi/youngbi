@@ -404,7 +404,7 @@ def gibberishAES(string, key=''):
 
 class serversList:
 	def __init__(self):
-		self.servers=[ ('phim.media', '40'),('hdviet.com', '22'), ('megabox.vn', '17'), ('phimbathu.com', '43'),  ('hdonline.vn', '30'),  ('imovies.vn', '48'),('fptplay.net', '07'), ('kenh88.com', '26'), ('phimdata.com', '27'), ('phimnhanh.com', '35'), ('mphim.net', '55'), ('phim47.com', '28'), ('kphim.tv', '33'), ('hdsieunhanh.com', '44'),  ('vietsubhd.com', '54'), ('phimsot.com', '29'), ('bilutv.com', '36'),('phimmoi.net', '24'), ('hayhaytv.vn', '23'),('phim3s.net', '32'), ('phim14.net', '39'), ('anime47.com', '37'), ('tvhay.org', '41')]
+		self.servers=[ ('phim.media', '40'),('hdviet.com', '22'), ('megabox.vn', '17'), ('phimbathu.com', '43'),  ('hdonline.vn', '30'), ('phimmoi.net', '24'),  ('imovies.vn', '48'),('bilutv.com', '36'), ('kenh88.com', '26'), ('phimdata.com', '27'),('hayhaytv.vn', '23'),('fptplay.net', '07'), ('phimnhanh.com', '35'), ('mphim.net', '55'), ('phim47.com', '28'), ('kphim.tv', '33'), ('hdsieunhanh.com', '44'),  ('vietsubhd.com', '54'), ('phimsot.com', '29'), ('phim3s.net', '32'), ('phim14.net', '39'), ('anime47.com', '37'), ('tvhay.org', '41')]
 		try:self.ordinal=[int(i) for i in xrw('free_servers.dat').split(',')]
 		except:self.ordinal=[]
 		l=len(self.servers);update=False
@@ -786,7 +786,7 @@ class fptPlay:#from resources.lib.servers import fptPlay;fpt=fptPlay(c)
 		if not phone_fptplay:#'MDkxODc3ODAxMzpoaWV1aGllbi52bg=='
 			mess(u'Bạn đang sử dụng account Fptplay của hieuhien.vn')
 			#phone_fptplay,password=urllib2.base64.b64decode('MDkwMjQ5OTAxMzpoaWV1aGllbi52bg==').split(':')
-			phone_fptplay,password=urllib2.base64.b64decode('MDkxODc3ODAxMzpoaWV1aGllbi52bg==').split(':')
+			phone_fptplay,password=urllib2.base64.b64decode('MDkwMjQ5OTAxMzpoaWV1aGllbi52bg==').split(':')
 		data=urllib.urlencode({'phone':phone_fptplay,'password':password,'country_code':conutry})
 		cookie=urllib2.HTTPCookieProcessor();opener=urllib2.build_opener(cookie);urllib2.install_opener(opener)
 		#try:b=opener.open(self.hd['referer'])
