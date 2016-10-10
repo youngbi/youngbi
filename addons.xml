@@ -329,7 +329,7 @@
 
 <addon id="plugin.video.hieuhien.vn.fptplay"
        name="HDPlay"
-       version="1.8.13"
+       version="1.8.14"
        provider-name="HDrepo">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -337,7 +337,7 @@
 	</requires>
     <extension point="xbmc.python.pluginsource"
                library="default.py">
-        <provides></provides>
+        <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
