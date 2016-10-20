@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.hieuhien.vn.megabox"
-       name="[COLOR lime][B]Phim MegaBox[/B][/COLOR]"
-       version="2.1.4"
-       provider-name="HCMLIKE">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0" optional="true" />
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<addon id="plugin.video.hieuhien.vn.megabox" name="[B]Cantobu Media[/B]" version="2.1.10.3" provider-name="phuoclv">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" optional="true" />
+		<import addon="script.module.simplejson" />
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>HCMLIKE-Media HD Film</summary>
-    <description>HD Film</description>
-	<disclaimer lang="en">
-[COLOR lime]Copyright © HCMLIKE.com. 
-[COLOR red]Nguồn phát bởi MegaBox và một số nguồn khác trên Internet. Chúng tôi không kiểm soát bất kỳ nguồn phim nào, cũng như không chịu trách nhiệm bản quyền nội dung trên các phim. Người xem đồng ý và cân nhắc nội dung mà mình muốn xem.[/COLOR]</disclaimer>
-    <platform>all</platform>
-		<license>http://www.gnu.org/licenses/</license>
-		<forum>http://www.hdvietnam.com/diendan/229-android-box/969799-danh-sach-cac-ung-dung-pho.html</forum>
-		<website>http://hcmlike.com</website>  
-		<email>hcmlike@gmail.com</email>
-		<source>http://ec2server.entrydns.org/hcmlike/kodi.repo.hcmlike-media</source>
-  </extension>
+    </extension>
+    <extension point="xbmc.service" library="autorun.py" start="startup"></extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Cantobu Media Entertainment</summary>
+		<description>Giải trí trên XBMC/Kodi được viết lại dựa trên addon ITV Plus của tác giả itv member, XShare (thaitni), VietMedia (tinhyeu44), ...</description>
+		<disclaimer>Tất cả nội dung được lấy từ Internet - Tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
+		<source>https://github.com/phuoclv/repository.cantobumedia</source>
+		<platform>all</platform>
+    </extension>
 </addon>
