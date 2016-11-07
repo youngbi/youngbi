@@ -1316,13 +1316,11 @@
 </addon>
 
 <addon id="plugin.video.itvplus"
-       version="2.5.0.253"
+       version="2.5.0.261"
        name="[COLOR ffff0000]*ITV*[/COLOR]Plus"
        provider-name="itv member">
     <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
-	    <import addon="script.module.simplejson" />
-	    <import addon="script.module.t0mm0.common" />
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides></provides>
