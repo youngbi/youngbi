@@ -1,3 +1,18 @@
+[B]Version 3.4.8.6[/B] <27/10/2016>:
+Fix xml for F4mProxy, Youtube (search/play)
+
+[B]Version 3.4.8.5[/B] <27/10/2016>:
+Fix xml for F4mProxy, fptplay/television
+
+[B]Version 3.4.8.4[/B] <18/10/2016>:
+Fix F4mProxy
+
+[B]Version 3.4.8.3[/B] <16/10/2016>:
+Fix anime47, youtube, tivi, hdonline, hdvietnam
+
+[B]Version 3.4.8.2[/B] <09/10/2016>:
+Fix imovies, fcine, myFavourites, subfolder, vaphim, csn, youtube
+
 [B]Version 3.4.8.1[/B] <03/10/2016>:
 Fix taiphimhd.net
 
