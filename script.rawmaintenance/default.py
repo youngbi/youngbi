@@ -340,7 +340,7 @@ def purgePackages():
     for root, dirs, files in os.walk(purgePath):
             file_count = 0
             file_count += len(files)
-    if dialog.yesno("Delete Package Cache Files", "%d packages found."%file_count, "Delete Them?"):  
+    if dialog.yesno("Xoa plugin phien ban cu", "Da tim thay %d plugin phien ban cu."%file_count, "Ban co muon xoa chung khong?"):  
         for root, dirs, files in os.walk(purgePath):
             file_count = 0
             file_count += len(files)
@@ -350,10 +350,12 @@ def purgePackages():
                 for d in dirs:
                     shutil.rmtree(os.path.join(root, d))
                 dialog = xbmcgui.Dialog()
-                dialog.ok("Raw Maintenance", "Deleting Packages all done")
+                dialog.ok("Xoa plugin phien ban cu", "Tat ca cac plugin phien ban cu da duoc xoa sach khoi bo nho :)")
+
             else:
                 dialog = xbmcgui.Dialog()
-                dialog.ok("Raw Maintenance", "No Packages to Purge")
+                dialog.ok("Xoa plugin phien ban cu", "Khong tim thay plugin phien ban cu nao, tat ca da duoc xoa sach :)")
+	sys.exit()
 
 #######################################################################
 #                       Support
