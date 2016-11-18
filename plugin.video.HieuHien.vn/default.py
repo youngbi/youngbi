@@ -312,15 +312,17 @@ def clear_cache():  #### plugin.video.xbmchubmaintenance ####
 						except:
 							pass
 					for d in dirs:
-						try:
-							shutil.rmtree(os.path.join(root, d))
-						except:
+						if any(x in d for x in ['subs', 'temp', 'xshare']):
 							pass
+						else:
+							try:
+								shutil.rmtree(os.path.join(root, d))
+							except:
+								pass
 					dialog = xbmcgui.Dialog()
 					dialog.ok("Hieuhien.vn Media Center", "", "Đã xóa " + str(file_count) + " file rác thành công!")
 			else:
 				pass
-	
 	sys.exit()
 
 
