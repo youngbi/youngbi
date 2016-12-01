@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<addon id="plugin.video.hieuhien.vn.xsharefree" name="[B][COLOR red]Xshare[/COLOR] [COLOR green]Media [/COLOR][COLOR blue]Center[/B][/COLOR]" version="3.4.8.6" provider-name="thaitni">
+<addon id="plugin.video.hieuhien.vn.xsharefree" name="[B][COLOR red]Xshare[/COLOR] [COLOR green]Media [/COLOR][COLOR blue]Center[/B][/COLOR]" version="3.4.9.0" provider-name="thaitni">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.video.F4mProxy"  optional="true"/>
