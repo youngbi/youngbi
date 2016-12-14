@@ -1,0 +1,9 @@
+﻿<settings>
+	<setting id="xmiouser" default="" type="text" label="Username Xmio(xmio.vn)"/>
+	<setting id="xmiopw" default="" type="text" option="hidden" label="Password Xmio(xmio.vn)"/>
+	<setting label="Chất lượng Xmio" type="labelenum" id="xmio_hd" default="HD" values="SD|HD"/>
+	<setting id="xmio_deviceid" type="text" visible="false" default="none" label="Xmio Device Id"/>
+	<setting id="sctvuser" default="" type="text" label="Email Sctv(tv24.vn)"/>
+	<setting id="sctvpw" default="" type="text" option="hidden" label="Password Sctv(tv24.vn)"/>
+	<setting label="SCTV port" type="labelenum" id="sctv_port" default="1935" values="80|1935"/>
+</settings>
