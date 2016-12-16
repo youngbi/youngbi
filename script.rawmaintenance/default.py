@@ -207,7 +207,7 @@ def clearCache():
             if file_count > 0:
 
                 dialog = xbmcgui.Dialog()
-                if dialog.yesno("Delete Kodi Cache Files", str(file_count) + " files found", "Do you want to delete them?"):
+                if dialog.yesno("Xoa file cache trong KODI", str(file_count) + " da duoc tim thay", "Ban co muon xoa khong?"):
                 
                     for f in files:
                         try:
@@ -223,64 +223,7 @@ def clearCache():
                         
             else:
                 pass
-    if os.path.exists(tempPath)==True:    
-        for root, dirs, files in os.walk(tempPath):
-            file_count = 0
-            file_count += len(files)
-            if file_count > 0:
-                dialog = xbmcgui.Dialog()
-                if dialog.yesno("Delete Kodi Temp Files", str(file_count) + " files found", "Do you want to delete them?"):
-                    for f in files:
-                        try:
-                            if (f == "xbmc.log" or f == "xbmc.old.log"): continue
-                            os.unlink(os.path.join(root, f))
-                        except:
-                            pass
-                    for d in dirs:
-                        try:
-                            shutil.rmtree(os.path.join(root, d))
-                        except:
-                            pass
-                        
-            else:
-                pass
-    if xbmc.getCondVisibility('system.platform.ATV2'):
-        atv2_cache_a = os.path.join('/private/var/mobile/Library/Caches/AppleTV/Video/', 'Other')
-        
-        for root, dirs, files in os.walk(atv2_cache_a):
-            file_count = 0
-            file_count += len(files)
-        
-            if file_count > 0:
-
-                dialog = xbmcgui.Dialog()
-                if dialog.yesno("Delete ATV2 Cache Files", str(file_count) + " files found in 'Other'", "Do you want to delete them?"):
-                
-                    for f in files:
-                        os.unlink(os.path.join(root, f))
-                    for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
-                        
-            else:
-                pass
-        atv2_cache_b = os.path.join('/private/var/mobile/Library/Caches/AppleTV/Video/', 'LocalAndRental')
-        
-        for root, dirs, files in os.walk(atv2_cache_b):
-            file_count = 0
-            file_count += len(files)
-        
-            if file_count > 0:
-
-                dialog = xbmcgui.Dialog()
-                if dialog.yesno("Delete ATV2 Cache Files", str(file_count) + " files found in 'LocalAndRental'", "Do you want to delete them?"):
-                
-                    for f in files:
-                        os.unlink(os.path.join(root, f))
-                    for d in dirs:
-                        shutil.rmtree(os.path.join(root, d))
-                        
-            else:
-                pass    
+    
                 
     cacheEntries = setupCacheEntries()
                                          
@@ -304,7 +247,7 @@ def clearCache():
                 
 
     dialog = xbmcgui.Dialog()
-    dialog.ok("Raw Maintenance", "Done Clearing Cache files")
+    dialog.ok("Xoa file cache trong KODI", "Da xoa cache KODI!")
     
     
 def deleteThumbnails():
@@ -340,7 +283,8 @@ def purgePackages():
     for root, dirs, files in os.walk(purgePath):
             file_count = 0
             file_count += len(files)
-    if dialog.yesno("Xoa plugin phien ban cu", "Da tim thay %d plugin phien ban cu."%file_count, "Ban co muon xoa chung khong?"):  
+	
+    if dialog.yesno("Xoa plugin phien ban cu", "Da tim thay %d plugin phien ban cu."%file_count, "Ban co muon xoa khong?"):  
         for root, dirs, files in os.walk(purgePath):
             file_count = 0
             file_count += len(files)
@@ -350,12 +294,10 @@ def purgePackages():
                 for d in dirs:
                     shutil.rmtree(os.path.join(root, d))
                 dialog = xbmcgui.Dialog()
-                dialog.ok("Xoa plugin phien ban cu", "Tat ca cac plugin phien ban cu da duoc xoa sach khoi bo nho :)")
-
+                dialog.ok("Xoa plugin phien ban cu", "Da xoa sach plugin phien ban cu!")
             else:
                 dialog = xbmcgui.Dialog()
-                dialog.ok("Xoa plugin phien ban cu", "Khong tim thay plugin phien ban cu nao, tat ca da duoc xoa sach :)")
-	sys.exit()
+                dialog.ok("Xoa plugin phien ban cu", "Khong con plugin phien ban cu!")
 
 #######################################################################
 #                       Support
