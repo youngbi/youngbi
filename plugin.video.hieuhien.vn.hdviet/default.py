@@ -57,8 +57,8 @@ def make_request(url, params=None, headers=None):
 	except:
 		return False
 def login():
-	username = d ( 'imai' , '0uHXmpqek5ubrcjWytbNl8zczg==' )#my_addon.getSetting('userhdviet')
-	password = d ( 'imai' , 'mp6Smpqekpo=' )#my_addon.getSetting('passhdviet')
+	username = d ( 'imai' , 'mZ6Top2emaGao5c=' )#my_addon.getSetting('userhdviet')
+	password = d ( 'imai' , '1NzF0tLh19nV4tQ=' )#my_addon.getSetting('passhdviet')
 	if len(username) < 5 or len(password) < 1:
 		my_addon.setSetting("token", "none")
 		xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s)'%('HDViet','[COLOR red]Chưa nhập user/password HDViet[/COLOR]',3000)).encode("utf-8"))
