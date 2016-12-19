@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>  
 '''                                                                           
 
-import urllib,urllib2,re,os,sys,json,base64, shutil
+import urllib,urllib2,re,os,sys,json,base64, shutil, requests
 import xbmcplugin,xbmcgui,xbmcaddon,xbmc
 import autorun
 
@@ -109,7 +109,7 @@ def OOo000():
     if 9 - 9: i111IiI + iIIIiI11 . iII111ii	
 	
 def Ii11I1Ii(name,url):
-    clean()
+    #clean()
     name = name
     content = makeRequest( url )
     match = re.findall('<channel>\s*<name>' + name + '</name>((?s).+?)</channel>',I1IiiI(content))
@@ -1088,22 +1088,22 @@ def Ii1Ii11I11(url,page=1):
 
         items = soup.findAll('li',{'class' : 'item '})
         for item in items:
-            title = item.find('a').get('title')
+            title = item.find('a').get('title').encode('utf-8')
             info = ' [COLOR blue][ ' + item.find('span',{'class' : 'label'}).text + ' ][/COLOR]'
             xinfo = info.replace('Trailer','[COLOR gold]Trailer[/COLOR]')
             href = 'http://phimbathu.com/' + item.find('a').get('href')
             xhref = href.split('/')[-1].replace('.html','')
             thumb = item.find('img').get('src')
-            addir( title.encode('utf-8') + xinfo.encode('utf-8'), d('pbh',fake11) % ('Xem Ngay',href), thumb, thumb, 10, page='', query='', isFolder=True)
+            addir( title + xinfo.encode('utf-8'), fake11 % (urllib.quote_plus(title),href), thumb, thumb, 10, page='', query='', isFolder=True)
         items = soup.findAll('li',{'class' : 'item no-margin-left'})
         for item in items:
-            title = item.find('a').get('title')
+            title = item.find('a').get('title').encode('utf-8')
             info = ' [COLOR blue][ ' + item.find('span',{'class' : 'label'}).text + ' ][/COLOR]'
             xinfo = info.replace('Trailer','[COLOR gold]Trailer[/COLOR]')		
             href = 'http://phimbathu.com/' + item.find('a').get('href')
             xhref = href.split('/')[-1].replace('.html','')
             thumb = item.find('img').get('src')
-            addir( title.encode('utf-8') + xinfo.encode('utf-8'), d('pbh',fake11) % ('Xem Ngay',href), thumb, thumb, 10, page='', query='', isFolder=True)
+            addir( title + xinfo.encode('utf-8'), fake11 % (urllib.quote_plus(title),href), thumb, thumb, 10, page='', query='', isFolder=True)
         if page:
             page = page+1
             next_page = url.split('?')[0] + '?page=' + str(page)
@@ -1117,7 +1117,7 @@ def Ii1Ii11I11(url,page=1):
             href = item.find('a',{'class':'block-wrapper'}).get('href')
             thumb = item.find('div',{'class':'movie-thumbnail'}).get('style')
             thumb = thumb.split('&url=')[1].split('.jpg')[0]
-            addir( title.encode('utf-8'), d('phm',fake4) + phimmoi + href, thumb + '.jpg', thumb + '.jpg', 10, page='', query='', isFolder=True)
+            addir( title.encode('utf-8'), phimmoi + href + 'xem-phim.html', thumb + '.jpg', thumb + '.jpg', 33, page='', query='', isFolder=True)
         if len(items) == 30:
             if 'page' in url:
                 page = url.split('-')[-1].replace('.html','')
@@ -1165,20 +1165,34 @@ def source_index(name, url, iconimage):
     elif 'bilutv' in url:
         fake1 = 'plugin://plugin.video.xshare/?text=&url=%s&query=play&page=1&mode=36'	
         name = name.split('[')[0]; url = url
-        content = makeRequest(url)
+        addir( '[COLOR red]Xem phim: '+name+'[/COLOR]', fake1 % url, img, img, 100, isFolder=False)
         try:
+          content = makeRequest(url)
           match = re.compile('<a href="/xem-phim/(.+?)">').findall(content)
           for href in match:
             suburl = '%s/xem-phim/%s' % ( bilu, href)
             subcontent = makeRequest(suburl)
             soup = BeautifulSoup(str(subcontent), convertEntities=BeautifulSoup.HTML_ENTITIES)
-            items = soup.find('ul',{'class':'list-episode'}).findAll('a')
+            items = soup.find('ul',{'class':'list-episode'}).findAll('li')
             for item in items:
                 link = item.get('href')
-                epi = item.text
+                epi = item.text.encode('utf-8')
+                #if len(link) ==1:
+                    #addir( '[COLOR red]'+name+'[/COLOR]', fake1 % url, img, img, 100, isFolder=False)
+                #else:
                 addir( '[[COLOR hotpink]'+epi+'[/COLOR]] ' + name, fake1 % link, img, img, 100, isFolder=False)
         except:
-		    addir( '[COLOR hotpink]'+name+'[/COLOR]', fake1 % url, img, img, 100, isFolder=False)
+            pass
+    if 'phimmoi' in url:
+        name = name
+        content = makeRequest(url)
+        match = re.findall('data-language="subtitle" id=".+?" title=".+?".+?href="(.+?)">(.+?)\s*</a>',content)
+        for href, epi in match:
+            fakepl = 'plugin://plugin.video.xsharelite?text=&url=%s%s&query=play&page=1&mode=24'
+            addir( name + ' [[COLOR gold]' + epi + '[/COLOR]]', fakepl % (phimmoi , href), img, img, 100, isFolder=False)
+        if len(match) < 1:
+            fakepb = 'plugin://plugin.video.xsharelite?text=&url=%s&query=play&page=1&mode=24'
+            addir( name, fakepb % url,img, img, 100, isFolder=False)
     xbmc.executebuiltin('Container.SetViewMode(502)')
 	
 #RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR#
@@ -1276,9 +1290,9 @@ def I11111iII11i(url):
 	if 'htvonline' in url:
 		content = makeRequest(url)	
 		mediaUrl = re.compile('data\-source=\"([^\"]*)\"').findall(content)[0]
-	elif d('m8n','2mbi1q7XpaOc253i') in url:
+	elif 'm.tivitot.net' in url:
 		content = makeRequest(url)	
-		mediaUrl = re.compile("addPlayer\('(http.+?)',.+?\)").findall(content)[0].replace('\\','')
+		mediaUrl = re.compile("{source: '(http.+?)',.+?}").findall(content)[0].replace('\\','')
 	elif d('stv','p-rkoejspag=') in url:	
 		mediaUrl = url % d ('adv', number())
 	elif 'vuitivi' in url:
@@ -1306,12 +1320,30 @@ def I11111iII11i(url):
 	elif d('euro','2-no1tSj6N0=') in url:	
 		try : content = makeRequest(url); mediaUrl = re.compile("'(.+?.m3u8)',").findall(content)[0]
 		except : content = makeRequest(url); mediaUrl = re.compile('"data":"(.+?.m3u8)",').findall(content)[0].replace('\\','')
-	elif 'wezatv' in url:
-		content = makeRequest(url)
-		try:
-		    mediaUrl = 'http:' + re.compile("file: '(.+?)',").findall(content)[0]
-		except:
-		    mediaUrl = 'http:' + re.compile('source type="application/x-mpegurl" src="(.+?)"').findall(content)[0]
+	elif 'drive.google.com' in url:
+		id = url.split('=')[-1]
+		mediaUrl = "https://drive.google.com/uc?export=download&id=%s" % id
+		res = requests.get("https://drive.google.com/file/d/%s" % id)
+		if "fmt_stream_map" in res.text:
+		    jn = json.loads(re.compile('(\["fmt_stream_map".+?\])').findall(res.text)[0])
+		    try:
+		        mediaUrl = re.compile("22\|(.+?),").findall(jn[1])[0]
+		    except:
+		        mediaUrl = re.compile("18\|(.+?),").findall(jn[1])[0]
+		    tail = "|User-Agent=%s&Cookie=%s" % (urllib.quote(res.request.headers["User-Agent"]),urllib.quote(res.headers["Set-Cookie"]))
+		    mediaUrl += tail
+		else:
+		    ses = requests.Session()
+		    res = ses.head(mediaUrl)
+		    confirm = ""
+		    for k,v in res.cookies.iteritems():
+		        if "download_warning_" in k:
+		            confirm = v
+		    if confirm != "":
+		        confirmed_url = "%s&confirm=%s" % (mediaUrl,confirm)
+		        res = ses.head(confirmed_url)
+		        if res.status_code == 302:
+		            mediaUrl = confirmed_url
 	elif 'truelifetv' in url:
 		content = makeRequest(url)	
 		mediaUrl = re.compile('"path":"(.+?)"').findall(content)[0]
@@ -1644,7 +1676,7 @@ if 83 - 83: O0Oooo00 . i11iIiiIii + oOo0O0Ooo . ii1II11I1ii1I * O0Oooo00
 regex = 'pdDJytfbxtWnydSTpdvC1s6riZeUrIqlmNvC1s6rvdyTqcXK3c6fkZeYoJKlnMXK3c6fxdyXndbY0cankZuLqJKpkNbY0canxeCLpd3V1tbL28LS1auJl5OsiqWY4cne1s_PytLZn8Xcl53K2-GfkZeXoJKlnMLb3as='
 fake7 = '1tzjzdncoJ-d1tzjzdnclObXytXdlKTk1J7U1uTe0tHnldXe2Z-T2Q=='
 fake4 = '4NTi19Hbqpec4NTi19Hbnt7W1M3cntDY3pbd2NHa3dfWn6fO09zW39aq3NHg5Mfa1czW0cfW5M3a447d0dzVrQ=='
-fake11 = '4M7d18vWqpGX4M7d18vWntjR1MfXntrb2MPa1ZGn3dHM1Z-co4jW0c_NrYfbltLJ18eloYjZ5cfa6Z_N4Mvb38bN44jc1drcltfa3J-N4w=='
+fake11 = 'plugin://plugin.video.xsharelite/?mode=43&name=%s&page=1&query=eps&text&url=%s'
 fakeo = '1-LZ36iUntTH3uaS3tzK4-ST1d7ZneTTnr3T1MK7xsGT0OHN563S1OLN3tKitc_J2N3E'
 
 if addon.getSetting('big_icon') == 'true':
