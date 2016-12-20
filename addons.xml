@@ -575,8 +575,8 @@
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.livestream"
-       name="[B][COLOR red]Hieuhien.vn[/COLOR][COLOR deepskyblue] Live Stream[/COLOR][/B]"
-       version="2.7.0"
+       name="[B][COLOR white]Live Stream [COLOR orange]PRO[/COLOR][/COLOR][/B]"
+       version="2.7.2"
        provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -594,14 +594,9 @@
      <import addon="script.module.pyamf" optional="true"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides></provides>
+    <provides>video</provides>
   </extension>
 
-     <extension point="xbmc.addon.repository" name="shani repository">
-        <info compressed="false">https://offshoregit.com/Shani-08/main/addons.xml</info>
-        <checksum>https://offshoregit.com/Shani-08/main/addons.xml.md5</checksum>
-        <datadir zip="true">https://offshoregit.com/Shani-08/main/zips/</datadir>
-    </extension>
 
   <extension point="xbmc.addon.metadata">
     <summary>livestreamspro- shamelessly forked from livestreams but added many thinks</summary>
@@ -1445,37 +1440,6 @@
 			<platform>all</platform>
 		</extension>
 	</addon>
-
-<addon id="plugin.video.vietmediaF"
-       name="[B]VietMediaF[/B]"
-       version="1.0.70"
-       provider-name="VietMedia">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-		<import addon="plugin.video.youtube" version="4.4.10"/>
-		<import addon="script.module.requests" version="1" />
- 	</requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-	<extension point="xbmc.service" library="autorun.py" start="startup">
-	</extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <language>en</language>
-		<summary lang="en">VietMediaF Video Online</summary>
-		<description lang="en">Trung tâm giải trí trực tuyến, xem phim, shows, tivi, ca nhạc, karaoke của người Việt.
-		Các nguồn nội dung được lấy từ các cá nhân và tổ chức cung cấp và chia sẻ miễn phí trên mạng Internet. Add-on hoạt động như một trình duyệt media, không lưu trữ hay sở hữu bất cứ nguồn nội dung nào. Người dùng chịu trách nhiệm hoàn toàn về việc xem các nguồn nội dung này.</description>
-    <disclaimer>Các nguồn nội dung được lấy từ các cá nhân và tổ chức cung cấp miễn phí trên mạng Internet. Add-on không lưu trữ hay sở hữu bất cứ nguồn nội dung nào. Người dùng chịu trách nhiệm hoàn toàn về việc xem các nguồn nội dung này.
-- http://vietmediaf.net
-- https://www.facebook.com/groups/vietkodi/
-- Không được sử dụng mã nguồn mà không xin phép tác giả.
-- Không được thay đổi tên, hoặc các thông tin liên quan đến các add-on trong group.
-</disclaimer>
-    </extension>
-</addon>
 
 <addon id="plugin.video.xbmchubmaintenance" version="2.1.6"
 	name="Maintenance Tool" provider-name="tvaddons.ag">

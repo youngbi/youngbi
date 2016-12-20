@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.hieuhien.vn.livestream"
-       name="[B][COLOR red]Hieuhien.vn[/COLOR][COLOR deepskyblue] Live Stream[/COLOR][/B]"
-       version="2.7.0"
+       name="[B][COLOR white]Live Stream [COLOR orange]PRO[/COLOR][/COLOR][/B]"
+       version="2.7.2"
        provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -19,14 +19,9 @@
      <import addon="script.module.pyamf" optional="true"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides></provides>
+    <provides>video</provides>
   </extension>
-  
-     <extension point="xbmc.addon.repository" name="shani repository">
-        <info compressed="false">https://offshoregit.com/Shani-08/main/addons.xml</info>
-        <checksum>https://offshoregit.com/Shani-08/main/addons.xml.md5</checksum>
-        <datadir zip="true">https://offshoregit.com/Shani-08/main/zips/</datadir>
-    </extension>
+
 
   <extension point="xbmc.addon.metadata">
     <summary>livestreamspro- shamelessly forked from livestreams but added many thinks</summary>
