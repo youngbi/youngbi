@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 
-import xbmc, xbmcaddon, xbmcgui, urllib2
+import xbmc, xbmcaddon, xbmcgui, urllib2, json
 re=urllib2.re
 os=urllib2.os
-#addon=addon()
 addon= xbmcaddon.Addon()
 profile=xbmc.translatePath(addon.getAddonInfo('profile'))
+iconpath=os.path.join(profile,'icon')
 datapath=os.path.join(profile,'data')
 tempfolder=xbmc.translatePath('special://temp')
-xsharefolder=os.path.join(tempfolder,'xshare')
+xsharefolder=os.path.join(profile,'xshare')
 icon=os.path.join(profile,'icon','icon.png')
 #b.getcode();b.headers.get('Set-Cookie');b.geturl()
+
 class myaddon:
     def __init__(self):
 		self.addon			= xbmcaddon.Addon()
@@ -28,8 +29,25 @@ class myaddon:
 		self.icon_folder	= os.path.join(self.data_path,'icon')
 		self.icon			= os.path.join(self.icon_folder,'icon.png')
 
+def libsChecker(fn,url):#replace('\r\n', '\n')
+	filename=os.path.join(profile,'xsharelib',fn)
+	if filetime('myinfo.json') < 1 and os.path.isfile(filename):return
+	sHost=getXshareData(True)
+	sLocal=xrw('myinfo.json')
+	try:old=json.loads(sLocal).get('versions',{}).get(fn,'')
+	except:old=''
+	try:new=json.loads(sHost).get('versions',{}).get(fn,'')
+	except:new=''
+	if new > old or not os.path.isfile(os.path.join(profile,'xsharelib',fn)):
+		b=xread(url)
+		if b:
+			xrw(filename,b)
+			xrw('myinfo.json',sHost)
+			mess('New vesion of %s Updated'%fn)
+	else:xrw('myinfo.json',sLocal)
+	
 def filetime(fn):#return hour
-	fn=os.path.join(xsharefolder,fn)
+	if len(fn) < 20:fn=os.path.join(xsharefolder,fn)
 	t=os.path.getmtime(fn) if os.path.isfile(fn) else 0
 	return int((urllib2.time.time()-t)/3600)
 
@@ -39,10 +57,19 @@ def siteName(url):
 
 def get_setting(name):return addon.getSetting(name)
 def set_setting(name,value):addon.setSetting(name,value)
-def namecolor(name,c=''):return '[COLOR %s]%s[/COLOR]'%(c,name) if c else re.sub('\[[^\[]+?\]','',name)
+def getXshareData(lib=False):
+	b=xread('http://pastebin.com/raw/QincDEYZ')
+	if lib:return b
+	try:j=json.loads(b)
+	except:j={}
+	return j
+
+def namecolor(name,c=''):
+	return '[COLOR %s]%s[/COLOR]'%(c,name) if c else re.sub('\[[^\[]+?\]','',name)
 def s2u(s):return s.decode('utf-8') if isinstance(s,str) else s
 def u2s(s):return s.encode('utf-8') if isinstance(s,unicode) else s
-def unescape(string):return ' '.join(re.sub('&.+;',xsearch('&(\w).+;',s,1),s) for s in string.split())
+def unescape(string):
+	return ' '.join(re.sub('&.+;',xsearch('&(\w).+;',s,1),s) for s in string.split())
 def xhref(s,p=''):return xsearch('href="(.+?)"',s,result=xsearch(p,s))
 def xtitle(s,p=''):return ' '.join(xsearch('title="(.+?)"',s,result=xsearch(p,s)).split())
 def ximg(s,p=''):return xsearch('src="(.+?)"',s,result=xsearch(p,s))
@@ -88,10 +115,11 @@ def ls(l):
 	except:L=l
 	return L
 
-def xrw(fn,s=''):
-	fn=os.path.join(xsharefolder,fn)
+def xrw(fn,s='',a='w'):
+	if len(fn) < 20:fn=os.path.join(xsharefolder,fn)
 	try:
-		if s:s=s.replace('\r\n','\n');f=open(fn,'w');f.write(s)
+		if s and a=='w':s=s.replace('\r\n','\n');f=open(fn,a);f.write(s)
+		elif s:f=open(fn,a);f.write(s)
 		else:f=open(fn);s=f.read().replace('\r\n','\n')
 		f.close()
 	except:s=''
@@ -106,25 +134,27 @@ def xread(url,headers={'User-Agent':'Mozilla/5.0'},data=None,timeout=30):
 	req=urllib2.Request(url,data,headers)
 	try:
 		res=urllib2.urlopen(req, timeout=timeout)
-		b=res.read()
-		if res.headers.getheader('content-encoding')=='gzip':
-			from StringIO import StringIO
-			import gzip
-			buf=StringIO(b)
+		hd=dict(res.headers.items())
+		cookie=hd.get('set-cookie','')
+		encoding=hd.get('content-encoding','')
+		if encoding=='gzip':
+			import StringIO,gzip
+			buf=StringIO.StringIO(res.read())
 			f=gzip.GzipFile(fileobj=buf)
 			b=f.read()
+		else:b=res.read()
 		res.close()
 	except:b=''
 	return b
 
-def xreadc(url,c=''):
+def xreadc(url,hd={'User_Agent':'Mozilla/5.0'},data='',c='',timeout=30):
 	cookie=urllib2.HTTPCookieProcessor()
 	opener=urllib2.build_opener(cookie)
 	urllib2.install_opener(opener)
-	opener.addheaders=[('User_Agent','Mozilla/5.0')]
+	opener.addheaders=hd.items()
 	if c:opener.addheaders=[('Cookie',c)]
 	try:
-		o=opener.open(url);b=o.read();o.close()
+		o=opener.open(url,data,timeout=10);b=o.read();o.close()
 		b+='xshare%s'%';'.join('%s=%s'%(i.name,i.value) for i in cookie.cookiejar)
 	except:b=''
 	return b

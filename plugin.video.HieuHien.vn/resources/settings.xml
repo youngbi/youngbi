@@ -1,44 +1,4 @@
 <settings>
-	<category label="Testers">
-		<setting label="Local M3U Playlist Tester" type="lsep" />
-		<setting id="local_path" type="file" label="Select Local M3U Playlist" default="" />
-		<setting id="local_choice" type="bool" label="Keep Local M3U Source Path?" default="false" />
-		<setting id="enable_local_tester" type="bool" label="Enable Local M3U Playlist Tester" default="true" />
-		<setting label="Online M3U Playlist Tester" type="lsep" />
-		<setting id="online_path" type="text" label="[B]Enter Online M3U Playlist URL[/B]" default="" />
-		<setting id="online_choice" type="bool" label="[B]Keep Online M3U Source Path?[/B]" default="false" />
-		<setting id="enable_online_tester" type="bool" label="[B]Enable Online M3U Playlist Tester[/B]" default="true" />
-		<setting label="Channel Tester" type="lsep" />
-		<setting id="enable_channel_tester" type="bool" label="Enable Channel Tester" default="true" />
-	</category>
-	<category label="Servers">
-		<setting label="Server Groups" type="lsep" />
-		<setting id="choose_server_group" type="enum" values="1|2" label="Choose Server Group Number" default="0"/>
-		<setting label="Manual Server Selection" type="lsep" />
-		<setting id="enable_server_selection" type="bool" label="Enable Manual Server Selection" default="false" />
-		<setting id="select_a_server" type="enum" values="0|1|2|3|4|5" label="Select Server Number" default="3"/>
-		<setting label="Other Selections" type="lsep" />
-		<setting id="enable_server_notification" type="bool" label="Enable Server Notification" default="false" />
-		<setting id="enable_iptvsimple_playlist" type="bool" label="Enable cCloudTV Playlist from IPTV Simple Client" default="false" />
-	</category>
-	<category label="General">
-		<setting id="viet_mode" type="select" label="Select Vietnam Section Mode" values="group|abc order|category" default="group" />
-		<setting id="youtube_mode" type="select" label="Select YouTube Mode" values="tubelink|direct" default="tubelink" />
-		<setting id="enable_thongbao" type="bool" label="Enable Thong Bao Moi" default="true" />
-		<setting id="enable_tvguide" type="bool" label="Enable TV Guide" default="true" />
-		<setting id="enable_youtube_channels" type="bool" label="Enable Youtube Channels" default="true" />
-		<setting id="enable_other_sources" type="bool" label="Enable Other Sources" default="true" />
-		<setting id="enable_other_addons1" type="bool" label="Enable Other Addons" default="true" />
-		<setting id="enable_other_addons2" type="bool" label="Enable Other Addons" default="true" />
-		<setting id="enable_other_addons3" type="bool" label="Enable Other Addons" default="true" />
-		<setting id="enable_other_addons4" type="bool" label="Enable Other Addons" default="true" />
-		<setting id="enable_other_addons5" type="bool" label="Enable Other Addons" default="true" />
-		<setting id="enable_other_addons6" type="bool" label="Enable Other Addons" default="true" />
-		<setting id="enable_public_uploads" type="bool" label="Enable Public Uploads (Win/Mac PC)" default="true" />
-		<setting id="enable_links_to_tutorials" type="bool" label="Enable Links to Tutorials (Win/Mac PC)" default="true" />
-		<setting id="enable_autorun" type="bool" label="Enable Autostart cCloud.tv" default="false" />
-	</category>
-	<category label="Adult">
-		<setting id="enable_adult_section" type="bool" label="Enable Adult Section (by enabling, you confirm you are 18+)" default="false" />
-	</category>
+	<setting id="GSheetURL" type="text" label="Google Spreadsheet URL" default="https://goo.gl/vEJzFT"/>
+	<setting id="thumbview" type="bool" label="Auto use thumbnail view (for future use)" default="false"/>
 </settings>

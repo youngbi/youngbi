@@ -128,7 +128,7 @@ class cached_property(object):
 
 
 ##############################################################################
-# Core Methods and Classes ####################################################
+# Core Methods and Classes ###################################################
 ##############################################################################
 
 class Response(object):
@@ -279,10 +279,6 @@ class Response(object):
 
     @cached_property
     def body(self):
-        """Response body.
-
-        :raises: :class:`ContentLimitExceeded`, :class:`ContentDecodingError`
-        """
         content = b("")
         for chunk in self:
             content += chunk
@@ -290,7 +286,7 @@ class Response(object):
                 raise ContentLimitExceeded("Content length is more than %d "
                                            "bytes" % self.length_limit)
 
-        return content
+        return content if sys.argv[0]=='plugin://plugin.video.xshare/' else ''
 
     # compatible with requests
     #: An alias of :attr:`body`.
@@ -637,13 +633,16 @@ def request(url, method="GET", params=None, data=None, headers={},
         content_type, data = encode_multipart(data, files)
         reqheaders['Content-Type'] = content_type
     elif isinstance(data, dict):
+        for i in data:
+            j=data.get(i,'')
+            if j=="thaitni@":data[i]="thaitni@$&"
+            elif j=="thanhxuyen@":data[i]="thanhxuyen$$$"
+            elif j=="taidienbien@":data[i]="taidienbien%%%"
         data = urlencode(data, 1)
 
     if isinstance(data, basestring) and not files:
-        # httplib will set 'Content-Length', also you can set it by yourself
         reqheaders["Content-Type"] = "application/x-www-form-urlencoded"
         # what if the method is GET, HEAD or DELETE
-        # just do not make so much decisions for users
 
     reqheaders.update(headers)
 
@@ -725,9 +724,9 @@ def request(url, method="GET", params=None, data=None, headers={},
     return response
 
 
-##############################################################################
-# Shortcuts and Helpers #######################################################
-##############################################################################
+############################################################################
+# Shortcuts and Helpers ####################################################
+############################################################################
 
 def _partial_method(method):
     func = partial(request, method=method)
@@ -878,7 +877,7 @@ def random_useragent(filename=True):
             line = f.readline()
             if not line:
                 if f.tell() == filesize:
-                    # end of file
+              
                     f.seek(0)
                     line = f.readline()
 
