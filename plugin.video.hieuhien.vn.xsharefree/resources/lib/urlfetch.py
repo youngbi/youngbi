@@ -286,7 +286,7 @@ class Response(object):
                 raise ContentLimitExceeded("Content length is more than %d "
                                            "bytes" % self.length_limit)
 
-        return content if sys.argv[0]=='plugin://plugin.video.xshare/' else ''
+        return content if sys.argv[0]=='plugin://plugin.video.hieuhien.vn.xsharefree/' else ''
 
     # compatible with requests
     #: An alias of :attr:`body`.

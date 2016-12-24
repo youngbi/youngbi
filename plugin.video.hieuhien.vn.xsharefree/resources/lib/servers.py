@@ -433,6 +433,7 @@ class serversList:
 		('vietsubhd.com','54','cyan')]
 			
 			#, ('megabox.vn','17','orangered')
+			#('phim3s.net','32','lightgray'), 
 		try:self.ordinal=[int(i) for i in xrw('free_servers.dat').split(',')]
 		except:self.ordinal=[]
 		l=len(self.servers);update=False
@@ -557,7 +558,6 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 				self.myFavourite_id=''.join(xsearch('(\w{10,})',s[1]) for s in myfolder if s[0]=='xshare_favourite')
 				if not self.myFavourite_id:
 					self.myFavourite_id=self.add_folder(folder_name='xshare_favourite',in_dir_id='0')
-		else:mess(u'Bạn set thông tin acc Fshare chưa đủ','Fshare.vn')
 
 	def fetch(self,url,data=None):
 		try:response=urlfetch.fetch(url,headers=self.hd,data=data)
@@ -565,6 +565,9 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 		return response
 	
 	def login(self,username,password):
+		if not username or not password:
+			mess(u'Bạn set thông tin acc Fshare chưa đủ','Fshare.vn')
+			return
 		response = self.fetch('https://www.fshare.vn/login')
 		if not response or response.status!=200:mess('Connect to fshare.vn fails','Fshare.vn')
 		else:
@@ -574,14 +577,15 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 			response = self.fetch('https://www.fshare.vn/login',data)
 			if response and response.status==302:
 				self.hd['Cookie']=response.cookiestring;self.logged='success'
-				mess(u'Login thành công','Fshare.vn')
+				#mess(u'Login thành công','Fshare.vn')
 			else:mess(u'Login không thành công!','Fshare.vn')
 	
 	def logout(self):
 		if self.logged:
 			response = self.fetch('https://www.fshare.vn/logout')
-			if response and response.status==302:self.logged=None;mess(u'Logout thành công','Fshare.vn')
-			else:mess(u'Logout không thành công!','Fshare.vn')
+			if response and response.status==302:self.logged=None
+				#mess(u'Logout thành công','Fshare.vn')
+			#else:mess(u'Logout không thành công!','Fshare.vn')
 	
 	def loginOK(self,u,p):
 		try:
@@ -601,7 +605,7 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 		return cookie
 	
 	def get_maxlink_free(self,url):
-		if self.logged:self.fetch('https://www.fshare.vn/logout');self.logged=None
+		self.logout()
 		d=getXshareData().get('fshare',[])
 		link='';loop=0;l=len(d);j=[];linkfree=''
 		while (not link or link=='fail') and loop < l:
@@ -627,7 +631,7 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 			
 			b=xget(url,self.hd)
 			if not b:
-				if self.logged:self.fetch('https://www.fshare.vn/logout');self.logged=None
+				self.logout()
 				continue
 			
 			link=b.geturl()
@@ -644,7 +648,7 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 					link=json.loads(b).get('url','')
 					if free:linkfree=link;link=''
 				except:link='fail'
-			if self.logged:self.fetch('https://www.fshare.vn/logout');self.logged=None
+			self.logout()
 			if link and link!='fail':mess('[COLOR cyan]Thanks to %s[/COLOR]'%n,s)
 		
 		if not link or link=='fail':
@@ -854,19 +858,19 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 		data='{"token": "%s", "items":["%s"]}'%(self.get_token(),id)
 		response=self.fetch('https://www.fshare.vn/api/fileops/delete',data)
 		
-	def myFavourites_add(self,s):
+	def myFavourites_add(self,s,prefix):
 		result=[]
 		if not self.myFavourite_id:mess('Your Fshare Favourite ID not found!')
 		else:
-			import time
-			loop=True;prefix=int(time.time());count=0;s=urllib2.base64.urlsafe_b64encode(s)
-			while loop:
+			s=urllib2.base64.urlsafe_b64encode(s)
+			count=0
+			while s:
 				folder_name='%d.%d.'%(prefix,count)+s[:230]
-				if len(s)>230:s=s[230:];count+=1
-				else:loop=False
+				s=s[230:]
+				count+=1
 				i=self.add_folder(folder_name,self.myFavourite_id)
 				if i:result.append(i)
-				else:loop=False#Chua xu ly delete neu that bai
+				else:result=[];s=''#Chua xu ly delete neu that bai
 		return result # list of folders ID created
 	
 	def myFavourites_loads(self,page):
