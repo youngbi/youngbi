@@ -10,7 +10,7 @@
     <import addon="script.module.simplejson" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
+    <provides></provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Liveshow tổng hợp</summary>

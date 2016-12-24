@@ -5,7 +5,7 @@
     <import addon="plugin.video.youtube" version="4.4.1" />
   </requires>
   <extension library="default.py" point="xbmc.python.pluginsource">
-    <provides>video</provides>
+    <provides></provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>

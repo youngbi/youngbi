@@ -177,7 +177,7 @@
     <import addon="plugin.video.youtube" version="4.4.1" />
   </requires>
   <extension library="default.py" point="xbmc.python.pluginsource">
-    <provides>video</provides>
+    <provides></provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
@@ -206,21 +206,6 @@
   <extension point="xbmc.addon.metadata">
     <summary>azdrama.net</summary>
     <description>Watch azdrama.net (Chinese)Videos</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.hieuhien.vn.cartoons8" name="[COLOR yellow][B]Cartoons8[/B][/COLOR]" version="1.0.10" provider-name="MetalKettle">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -356,48 +341,6 @@
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<forum>http://forums.tvaddons.ag/forums/148-lambda-s-xbmc-addons</forum>
 		<source>https://offshoregit.com/lambda81/lambda-addons</source>
-		<website>https://offshoregit.com/lambda81/</website>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="plugin.video.hieuhien.vn.fptplay"
-       name="HDPlay"
-       version="1.8.14"
-       provider-name="HDrepo">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.simple.downloader" version="1.9.4" />
-	</requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <language>en</language>
-		<summary lang="en">TV online</summary>
-		<description lang="en">Cám ơn trungk43 - Tác giả của addon HDplay, thanh51 chỉnh lý bổ sung các kênh TV</description>
-    </extension>
-</addon>
-
-<addon id="plugin.video.hieuhien.vn.genesis" name="[COLOR yellow][B]Genesis[/B][/COLOR]" version="5.1.4" provider-name="lambda">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.requests" version="1.0.0" />
-		<import addon="script.module.metahandler" optional="true" />
-		<import addon="plugin.video.youtube" optional="true" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">The origins of streaming</summary>
-		<description lang="en">Visit TVADDONS.ag for support</description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum>http://forums.tvaddons.ag/forums/148-lambda-s-xbmc-addons</forum>
-		<source>https://offshoregit.com/lambda81/</source>
 		<website>https://offshoregit.com/lambda81/</website>
 		<platform>all</platform>
 	</extension>
@@ -566,7 +509,7 @@
     <import addon="script.module.simplejson" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
+    <provides></provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Liveshow tổng hợp</summary>
@@ -627,7 +570,7 @@
 		<import addon="script.module.simple.downloader" version="1.9.4" />
 	</requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
+        <provides></provides>
     </extension>
     <extension point="xbmc.service" library="autorun.py" start="startup"></extension>
     <extension point="xbmc.addon.metadata">
@@ -1318,7 +1261,7 @@
 		<import addon="script.module.simple.downloader" version="1.9.4" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="liveshow.py">
-		<provides>video</provides>
+		<provides></provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
@@ -1869,26 +1812,6 @@
 		<summary>Testing repo</summary>
 		<description>Testing repo</description>
 		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.uPlayHD.com"
-		name="uPlayHD.com Version 2.1"
-		version="2.1"
-		provider-name="ThuN">
-	<extension point="xbmc.addon.repository"
-		name="uPlayHD Add-on Repository">
-		<info compressed="true">http://bitbucket.org/brianminh84/uplayhd.com/raw/master/addons.xml</info>
-		<checksum>http://bitbucket.org/brianminh84/uplayhd.com/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://bitbucket.org/brianminh84/uplayhd.com/raw/master/</datadir>
-		<hashes>true</hashes>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Repositories uPlayHD.Com</summary>
-		<description lang="en"></description>
-		<disclaimer></disclaimer>
-		<disclaimer lang="en"></disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
