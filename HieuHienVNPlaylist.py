@@ -569,7 +569,7 @@ def GA(title="Home",page="/"):
 		client_id = open(cid_path).read()
 		data      = {
 			'v'   : '1',
-			'tid' : 'UA-52209804-5', #Thay GA id của bạn ở đây
+			'tid' : 'UA-89364622-1', #Thay GA id của bạn ở đây
 			'cid' : client_id,
 			't'   : 'pageview',
 			'dp'  : "VNPlaylist%s" % page,
