@@ -8,7 +8,7 @@ plugin         = Plugin()
 h              = HTMLParser.HTMLParser()
 pluginrootpath = "plugin://plugin.video.hieuhien.vn.sctv"
 #
-addon = xbmcaddon.Addon(id='plugin.video.sctv')
+addon = xbmcaddon.Addon(id='plugin.video.hieuhien.vn.sctv')
 profile = addon.getAddonInfo('profile')
 home = addon.getAddonInfo('path')
 icon = xbmc.translatePath( os.path.join( home, 'icon.png' ))
