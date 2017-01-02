@@ -28,7 +28,7 @@ def GetSheetIDFromSettings():
 	url_path : string
 		link chứa nội dung m3u playlist
 	'''
-	sid = "1zL6Kw4ZGoNcIuW9TAlHWZrNIJbDU5xHTtz-o8vpoJss"
+	sid = "1rFom1XNieCQAmmhNR7t-JyRDushJWC3qkMfZ5oQnBgM"
 	resp, content = http.request(plugin.get_setting("GSheetURL"),"HEAD")
 	try:
 		sid = re.compile("/d/(.+?)/").findall(resp["content-location"])[0]
