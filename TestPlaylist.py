@@ -10,8 +10,8 @@ tmp           = xbmc.translatePath('special://temp')
 addons_folder = xbmc.translatePath('special://home/addons')
 
 plugin         = Plugin()
-addon          = xbmcaddon.Addon("plugin.video.testplaylist")
-pluginrootpath = "plugin://plugin.video.testplaylist"
+addon          = xbmcaddon.Addon("plugin.video.thongld.vnplaylist")
+pluginrootpath = "plugin://plugin.video.thongld.vnplaylist"
 http           = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url      = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers  = {
@@ -27,7 +27,7 @@ def GetSheetIDFromSettings():
 	url_path : string
 		link chứa nội dung m3u playlist
 	'''
-	sid = "1rFom1XNieCQAmmhNR7t-JyRDushJWC3qkMfZ5oQnBgM"
+	sid = "1zL6Kw4ZGoNcIuW9TAlHWZrNIJbDU5xHTtz-o8vpoJss"
 	resp, content = http.request(plugin.get_setting("GSheetURL"),"HEAD")
 	try:
 		sid = re.compile("/d/(.+?)/").findall(resp["content-location"])[0]
@@ -255,7 +255,7 @@ def InstallRepo(path = "0", tracking_string = ""):
 	should_update = False
 	if path.isdigit(): # xác định GID
 		pDialog = xbmcgui.DialogProgress()
-		pDialog.create('Vui lòng đợi','Đang cập nhật','Đang tải...')
+		pDialog.create('Vui lòng đợi','Bắt đầu cài repo','Đang tải...')
 		items = getItems(path)
 		total = len(items)
 		i = 0
@@ -279,8 +279,8 @@ def InstallRepo(path = "0", tracking_string = ""):
 			dlg.ok('Chú ý: Không cài đủ repo!', s)
 		else:
 			dlg = xbmcgui.Dialog()
-			s = "Đã cập nhật thành công"
-			dlg.ok('Cập nhật xong!', s)
+			s = "Tất cả repo đã được cài thành công"
+			dlg.ok('Cài Repo thành công!', s)
 
 	else: # cài repo riêng lẻ
 		try:
@@ -366,7 +366,7 @@ def AddTracking(items):
 		Danh sách các item theo chuẩn xbmcswift2.
 	'''
 	for item in items:
-		if "plugin.video.testplaylist" in item["path"]:
+		if "plugin.video.thongld.vnplaylist" in item["path"]:
 			item["path"] = "%s/%s" % (item["path"], urllib.quote_plus(item["label"]))
 	return items
 
@@ -407,7 +407,7 @@ def GA(title="Home",page="/"):
 		client_id = open(cid_path).read()
 		data      = {
 			'v'   : '1',
-			'tid' : 'UA-89364622-1', #Thay GA id của bạn ở đây
+			'tid' : 'UA-52209804-5', #Thay GA id của bạn ở đây
 			'cid' : client_id,
 			't'   : 'pageview',
 			'dp'  : "VNPlaylist%s" % page,
