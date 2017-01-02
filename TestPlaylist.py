@@ -186,12 +186,11 @@ def getItems(url_path="0"):
 				# https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ
 				yt_route = "ytcp" if "playlists" in item["path"] else "ytc"
 				yt_cid = re.compile("youtube.com/channel/(.+?)$").findall(item["path"])[0]
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/%s/%s/" % (yt_route, yt_cid)
-				item["path"] = item["path"].replace("/playlists","")
+				item["path"] = "plugin://plugin.video.youtube/channel/%s/" % yt_cid
 			elif "youtube.com/playlist" in item["path"]:
 				# https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI
 				yt_pid = re.compile("list=(.+?)$").findall(item["path"])[0]
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/ytp/%s/" % yt_pid
+				item["path"] = "plugin://plugin.video.youtube/playlist/%s/" % yt_pid
 			else:		
 				# Nếu là direct link thì route đến hàm play_url
 				item["is_playable"] = True
@@ -410,7 +409,7 @@ def InstallRepo(path = "0", tracking_string = ""):
 	)
 	if path.isdigit(): # xác định GID
 		pDialog = xbmcgui.DialogProgress()
-		pDialog.create('Vui lòng đợi','Bắt đầu cài repo','Đang tải...')
+		pDialog.create('Vui lòng đợi','Đang cập nhật','Đang tải...')
 		items = getItems(path)
 		total = len(items)
 		i = 0
@@ -433,8 +432,8 @@ def InstallRepo(path = "0", tracking_string = ""):
 			dlg.ok('Chú ý: Không cài đủ repo!', s)
 		else:
 			dlg = xbmcgui.Dialog()
-			s = "Tất cả repo đã được cài thành công"
-			dlg.ok('Cài Repo thành công!', s)
+			s = "Đã cập nhật thành công"
+			dlg.ok('Cập nhật xong!', s)
 
 	else: # cài repo riêng lẻ
 		try:
@@ -620,7 +619,7 @@ def GA(title="Home",page="/"):
 		client_id = open(cid_path).read()
 		data      = {
 			'v'   : '1',
-			'tid' : 'UA-52209804-5', #Thay GA id của bạn ở đây
+			'tid' : 'UA-89364622-1', #Thay GA id của bạn ở đây
 			'cid' : client_id,
 			't'   : 'pageview',
 			'dp'  : "VNPlaylist%s" % page,
