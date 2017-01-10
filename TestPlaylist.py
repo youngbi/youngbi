@@ -116,6 +116,12 @@ def getItems(url_path="0"):
 		path_split = url_path.split("@")
 		gid = path_split[0]
 		sheet_id = path_split[1]
+	history = plugin.get_storage('history')
+	if "sources" in history:
+		history["sources"] = ["https://docs.google.com/spreadsheets/d/%s/edit#gid=%s" % (sheet_id,gid)] + history["sources"]
+		history["sources"] = history["sources"][0:4]
+	else:
+		history["sources"] = ["https://docs.google.com/spreadsheets/d/%s/edit#gid=%s" % (sheet_id,gid)]
 	url = query_url.format(
 		sid = sheet_id,
 		tq  = urllib.quote("select A,B,C,D,E"),
@@ -195,6 +201,8 @@ def getItems(url_path="0"):
 				# Nếu là direct link thì route đến hàm play_url
 				item["is_playable"] = True
 				item["path"] = pluginrootpath + "/play/" + urllib.quote_plus(item["path"])
+		if item["label2"].startswith("http"):
+			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
 	if url_path == "0":
 		add_playlist_item  = [{
@@ -243,7 +251,7 @@ def ClearPlaylists(item=""):
 	if item == "":
 		label = '[COLOR yellow]Xóa hết Playlists[/COLOR]'
 	else:
-		label = '[COLOR yellow]Xóa "%s"[/COLOR]' % item.encode("utf8")
+		label = '[COLOR yellow]Xóa "%s"[/COLOR]' % item
 
 	return (label, actions.background(
 		"%s/remove-playlists/%s" % (pluginrootpath,urllib.quote_plus(item))
@@ -258,7 +266,7 @@ def getValue(colid):
 	colid : string
 		Số thự tự của cột
 	'''
-	if colid is not None: return colid["v"]
+	if colid is not None and colid["v"] is not None: return colid["v"]
 	else: return ""
 
 @plugin.route('/')
@@ -517,10 +525,19 @@ def AddTracking(items):
 	items : list
 		Danh sách các item theo chuẩn xbmcswift2.
 	'''
+
 	for item in items:
 		if "plugin.video.testplaylist" in item["path"]:
-			item["path"] = "%s/%s" % (item["path"], urllib.quote_plus(item["label"]))
+			tmps = item["path"].split("?")
+			if len(tmps) == 1:
+				tail = ""
+			else: tail = tmps[1]
+			item["path"] = "%s/%s?%s" % (tmps[0], urllib.quote_plus(item["label"]),tail)
 	return items
+
+@plugin.route('/showimage/<url>/<tracking_string>')
+def showimage(url,tracking_string):
+	xbmc.executebuiltin("ShowPicture(%s)" % urllib.unquote_plus(url))
 
 @plugin.route('/executebuiltin/<path>/<tracking_string>')
 def execbuiltin(path,tracking_string=""):
@@ -535,7 +552,10 @@ def execbuiltin(path,tracking_string=""):
 @plugin.route('/play/<url>/<title>')
 def play_url(url, title=""):
 	GA("Play [%s]" % title, "/play/%s/%s" % (title,url))
-	plugin.set_resolved_url(get_playable_url(url))
+	if "sub" in plugin.request.args:
+		plugin.set_resolved_url(get_playable_url(url), subtitles=plugin.request.args["sub"][0])
+	else:
+		plugin.set_resolved_url(get_playable_url(url))
 
 def get_playable_url(url):
 	if "youtube" in url:
@@ -570,6 +590,7 @@ def get_playable_url(url):
 					url, "GET", headers = fshare_headers
 				)
 				if "Tập tin quý khách yêu cầu không tồn tại" in content:
+					history = plugin.get_storage('history')
 					header  = "Không lấy được link FShare VIP!"
 					message = "Link không tồn tại hoặc file đã bị xóa"
 					xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' % (header, message, 10000, ''))
@@ -578,10 +599,14 @@ def get_playable_url(url):
 						"Accept-Encoding" : "gzip, deflate, sdch, br",
 						"Content-Type": "application/x-www-form-urlencoded"
 					}
+					body = urllib.urlencode({
+						"entry.955186172": url,
+						"entry.1660252828": history["sources"][0]
+					})
 					(resp, content) = http.request(
 						"aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZm9ybXMvZC9lLzFGQUlwUUxTZndkWU5zdzZxZG80NzhEYlRNRU9helRkMEVMR056Sm9KcFV3SlBEZlBoc0NaV2RBL2Zvcm1SZXNwb25zZQ==".decode("base64"),
 						"POST", headers = h,
-						body=urllib.urlencode({"entry.955186172": url})
+						body=body
 					)
 					return ""
 				else:
