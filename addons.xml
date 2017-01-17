@@ -874,7 +874,7 @@
 
 <addon
   id="plugin.video.hieuhien.vn.sctv"
-  version="1.4"
+  version="3.0.3"
   name="SCTV"
   provider-name="thong.ld">
   <requires>
