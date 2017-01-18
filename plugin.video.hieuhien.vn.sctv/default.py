@@ -177,7 +177,7 @@ def play(cid,phone="",passw=""):
 			'Đăng nhập không thành công!\n',
 			'Chưa có tài khoản? Đăng ký tại [COLOR lime]tv24.vn/dang-ky[/COLOR].\n[COLOR yellow]Bạn muốn nhập tài khoản bây giờ không?[/COLOR]',
 			yeslabel='OK, nhập ngay',
-			nolabel='Nhập sau!'
+			nolabel='Chờ tí, Đăng ký đã!'
 		)
 		if yes:
 			plugin.open_settings()
