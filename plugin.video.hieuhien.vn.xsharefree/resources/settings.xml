@@ -27,6 +27,9 @@
 		<setting id="csn_p" type="text" option="hidden" label="Password [COLOR green]chiasenhac.com[/COLOR]"/>
 		<setting id="csn_s" type="labelenum" label="[COLOR green]Tìm kiếm theo[/COLOR]" values="Tên bài hát/Ca sĩ|Ca sĩ|Sáng tác|Tên Album|Lời bài hát" default="Tên bài hát/Ca sĩ"/>
 		<setting id="csn_l" type="bool" label="" default="false" visible="false"/>
+		<setting id="sctv_user" type="text" label="User name [COLOR tomato]tv24.vn[/COLOR]"/>
+		<setting id="sctv_pass" type="text" option="hidden" label="Password [COLOR tomato]tv24.vn[/COLOR]"/>
+		<setting id="chonserver" type="select" label="Tự động Chọn server trong PhimBatHu.com/Fcine.net/hdonline.vn" values="Thuyết minh|VietSub|Không" default="Không" />
 	</category>
 	<category label="Thông tin khác">
 		<setting id="sodonghienthi" type="labelenum" label="[COLOR blue]Số dòng hiển thị cho 1 trang[/COLOR]" values="20|30|50" default="30"/>

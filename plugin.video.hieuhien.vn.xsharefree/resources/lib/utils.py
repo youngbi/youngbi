@@ -98,9 +98,10 @@ def googleItems(j,link='link',label='label'):#Thu nghiem tren phim14
 	link=''
 	if l:
 		for href,label in ls(l):
-			#link=xcheck(href.replace('\\',''))#;print href
-			resp=xget(href.replace('\\',''))#;print href
-			if resp:link=href;break
+			try:
+				resp=xget(href.replace('\\',''))#;print href
+				if resp:link=href;break
+			except:pass
 	return link
 
 def rsl(s):
@@ -216,7 +217,7 @@ def vnu(s):
 
 def s2c(s):
 	def sc(s):i=xsearch('&a?m?p?;?#(\d+);',s);return re.sub('&a?m?p?;?#\d+;',d.get(i,''),s) if i else s
-	d={'192':'À','193':'Á','194':'Â','195':'Ă','202':'Ê','204':'Ì','205':'Í','211':'Ó','212':'Ô','217':'Ù','218':'Ú','224':'à','225':'á','226':'â','227':'ă','232':'è','233':'é','234':'ê','235':'ẽ','236':'ì','237':'í','242':'ò','243':'ó','244':'ô','245':'ỏ','249':'ù','250':'ú','253':'ý','039':"'"}
+	d={'192':'À','193':'Á','194':'Â','195':'Ă','202':'Ê','204':'Ì','205':'Í','211':'Ó','212':'Ô','217':'Ù','218':'Ú','224':'à','225':'á','226':'â','227':'ă','232':'è','233':'é','234':'ê','235':'ẽ','236':'ì','237':'í','242':'ò','243':'ó','244':'ô','245':'ỏ','249':'ù','250':'ú','253':'ý','039':"'",'8211':'-'}
 	return ' '.join(sc(i) for i in s.split()).replace('&amp;','&').replace('&quot;','"')
 
 def s2c1(s):
@@ -267,3 +268,15 @@ def siteInfo(url):
 		else:title,url=leechInfo(url)
 	if not title:url=''
 	return title,url
+
+def toBase36(value):
+	if not isinstance(value, int):return " "
+	elif value==0:return "0"
+	elif value<0:sign="-";value=-value
+	else:sign=""
+
+	result = []
+	while value:
+		value,mod=divmod(value, 36)
+		result.append("0123456789abcdefghijklmnopqrstuvwxyz"[mod])
+	return sign+"".join(reversed(result))
