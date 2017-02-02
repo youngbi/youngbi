@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
+<addon id="plugin.audio.hieuhien.vn.itv.music"
+       version="1.0.1"
+       name="ITV Music"
+       provider-name="itv member">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Entertainment</summary>
+    <description>Nghe nhạc online</description>
+	<disclaimer lang="en">Nguồn data trên web nên chúng tôi không chịu trách nhiệm về sự ổn định.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.audio.hieuhien.vn.itv.nhacso"
+       name="Nhạc Số"
+       version="1.0.1"
+       provider-name="itv member">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+  	<extension point="xbmc.python.pluginsource" library="default.py" >
+  		<provides>audio</provides>
+ 	 </extension>
+  	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Entertainment</summary>
+		<description lang="en">Thử nghiệm nghe nhạc tại http://nhacso.net/</description>
+        <disclaimer lang="en">Nguồn data trên web nên chúng tôi không chịu trách nhiệm về sự ổn định.</disclaimer>
+        <platform>all</platform>
+        <language>en</language>
+    </extension>
+</addon>
+
 <addon id="plugin.audio.hieuhien.vn.vietmusic"
        version="1.8.3"
        name="VietMusic"
@@ -28,7 +66,7 @@
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>Xshare - XBMC HD Video</summary>
-		<description lang="en">TÃ¬m vÃ  nghe nháº¡c trÃªn XBMC tá»«: chiasenhac.com, nhaccuatui.com va nhacdj.vn</description>
+		<description lang="en">Tìm và nghe nhạc trên XBMC từ: chiasenhac.com, nhaccuatui.com va nhacdj.vn</description>
 		<platform>all</platform>
 		<language>en</language>
 		<license>GNU General Public License - v2</license>
@@ -87,6 +125,28 @@
         <description></description>
         <platform>all</platform>
     </extension>
+</addon>
+
+<addon
+  id="plugin.video.HieuHien.vn"
+  version="1.0.2"
+  name="[B][COLOR red]Hieuhien.vn[/COLOR] [COLOR lime]Trung tâm giải trí[/COLOR][/B]"
+  provider-name="thongld">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.xbmcswift2" version="0.0.7" />
+    <import addon="plugin.video.youtube" version="4.4.1" />
+    <import addon="script.module.httplib2" version="0.1" />
+    <import addon="script.rawmaintenance" version="0.1" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Hieuhien.vn Media Center cho người Việt</summary>
+    <description>Trung tâm giải trí - tất cả trong 1 cho người Việt - Addon này được chỉnh sửa nội dung từ addon [COLOR yellow]VN Open Playlist[/COLOR] của tác giả [COLOR blue]thongld[/COLOR] - Xin cảm ơn tác giả đã cho phép [COLOR red]HieuHien.vn[/COLOR] chỉnh sửa để sử dụng theo cách riêng của mình!</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.anhtrang.org" name="[COLOR lime][B]Phim AnhTrang.org[/B][/COLOR]" provider-name="thongld" version="1.0.5">
@@ -173,7 +233,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 	<summary>ChanTube</summary>
-	<description>Tá»•ng há»£p cÃ¡c kÃªnh Youtube hay</description>
+	<description>Tổng hợp các kênh Youtube hay</description>
 	<platform>all</platform>
 </extension>
 </addon>
@@ -238,13 +298,13 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Exodus</summary>
-		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor itâ€™s intended use, it is simply a third party plugin which has been added to your system.</description>
+		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.footballreplays" name="[COLOR violet][B]BÃ³ng Ä‘Ã¡ xem láº¡i[/B][/COLOR]" version="3.0.2" provider-name="lambda">
+<addon id="plugin.video.hieuhien.vn.footballreplays" name="[COLOR violet][B]Bóng đá xem lại[/B][/COLOR]" version="3.0.2" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
@@ -352,6 +412,33 @@
 	</extension>
 </addon>
 
+<addon id="plugin.video.hieuhien.vn.itvplus"
+       version="2.4.3"
+       name="[COLOR ffff0000]*ITV*[/COLOR]Plus"
+       provider-name="itv member">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" optional="true" />
+	    <import addon="script.module.simplejson" />
+	    <import addon="script.module.t0mm0.common" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+		<provides></provides>
+	</extension>
+    <extension point="xbmc.service" library="autorun.py" start="startup">
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>ITV Entertainment</summary>
+        <description>
+* Addon được ITVPlus xây dựng dựa vào nguồn dữ liệu trên internet. Bản quyền tác giả thuộc về ITVPlus.
+* Với mục đích phục vụ nhu cầu giải trí cho cộng đồng Kodi. Chúng tôi đã tốn nhiều thời gian và công sức để tạo ra sản phẩm, vì vậy mong các tổ chức và cá nhân tuân thủ các quy định sau:
+- Không tự ý sử dụng mã nguồn của addon khi chưa có sự đồng ý của nhóm lập trình viên ITVPlus.
+- Không tự ý chỉnh sửa lại addon và chia sẻ, quảng cáo phục vụ cho nhu cầu lợi ích của một cá nhân hay tập thể nào đó.
+	    </description>
+	    <disclaimer lang="en">[COLOR ffff0000]Data được chia sẻ trên internet. Chúng tôi không chịu mọi trách nhiệm pháp lý.[/COLOR]</disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
+
 <addon id="plugin.video.hieuhien.vn.kenh108.com" name="[COLOR lime][B]kenh108.com[/B][/COLOR]" provider-name="thongld" version="1.0.3">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -371,7 +458,7 @@
 <addon
   id="plugin.video.hieuhien.vn.kenh88"
   version="1.0.0"
-  name="[COLOR lime][B]KÃªnh 88[/B][/COLOR]"
+  name="[COLOR lime][B]Kênh 88[/B][/COLOR]"
   provider-name="Dknight">
   <requires>
         <import addon="xbmc.python" version="2.1.0" optional="true" />
@@ -391,7 +478,7 @@
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.liveshow"
-       name="[COLOR lime][B]Show Tá»•ng Há»£p[/B][/COLOR]"
+       name="[COLOR lime][B]Show Tổng Hợp[/B][/COLOR]"
        version="1.0.0"
        provider-name="HopDenTV">
   <requires>
@@ -404,8 +491,8 @@
     <provides></provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Liveshow tá»•ng há»£p</summary>
-    <description>Addon nÃ y dÆ°á»£c viáº¿t láº¡i tá»« addon "ChÆ°Æ¡ng trÃ¬nh Ä‘áº·c biá»‡t" cá»§a tÃ¡c giáº£ HopDenTV </description>
+    <summary>Liveshow tổng hợp</summary>
+    <description>Addon này dược viết lại từ addon "Chương trình đặc biệt" của tác giả HopDenTV </description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -453,6 +540,43 @@
     </description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.hieuhien.vn.megabox" name="[B]Cantobu Media[/B]" version="2.1.10.3" provider-name="phuoclv">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" optional="true" />
+		<import addon="script.module.simplejson" />
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides></provides>
+    </extension>
+    <extension point="xbmc.service" library="autorun.py" start="startup"></extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Cantobu Media Entertainment</summary>
+		<description>Giải trí trên XBMC/Kodi được viết lại dựa trên addon ITV Plus của tác giả itv member, XShare (thaitni), VietMedia (tinhyeu44), ...</description>
+		<disclaimer>Tất cả nội dung được lấy từ Internet - Tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
+		<source>https://github.com/phuoclv/repository.cantobumedia</source>
+		<platform>all</platform>
+    </extension>
+</addon>
+
+<addon
+	id="plugin.video.hieuhien.vn.megafun.vn"
+	version="1.0.19"
+	name="[COLOR violet][B]Truyền hình Xem lại[/B][/COLOR]"
+	provider-name="ThongLD">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides></provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Megafun.VN</summary>
+		<description>[COLOR lime][B]Addon xem lại một số kênh truyền hình[/B][/COLOR]</description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.moviebox" name="[COLOR lime]Phim MovieBox[/COLOR]" provider-name="thongld" version="0.5">
@@ -525,7 +649,7 @@
 	</addon>
 
 <addon id="plugin.video.hieuhien.vn.p2psport"
-	name="[COLOR violet][B]BÃ³ng Ä‘Ã¡ P2P Sport[/B][/COLOR]"
+	name="[COLOR violet][B]Bóng đá P2P Sport[/B][/COLOR]"
 	version="0.1.0"
 	provider-name="natko1412">
   <requires>
@@ -550,7 +674,7 @@
 </addon>
 
 <addon id="plugin.video.hieuhien.vn.p2pstreams"
-       name="[COLOR violet][B]BÃ³ng Ä‘Ã¡ P2P-Streams[/B][/COLOR]"
+       name="[COLOR violet][B]Bóng đá P2P-Streams[/B][/COLOR]"
        version="1.4.1"
        provider-name="enen92,fightnight">
   <requires>
@@ -567,13 +691,13 @@
   <extension point="xbmc.addon.metadata">
     <summary>SopCast and AceStream</summary>
     <description lang="en">AceStream and Sopcast in your favourite media center! Watch peer-to-peer streams in Kodi without the need for external players. Project page: https://github.com/enen92/P2P-Streams-Kodi</description>
-    <description lang="pt">AceStream e Sopcast no seu Media-Center de eleiÃ§Ã£o! Assista a streams peer-to-peer no Kodi sem a necessidade de players externos. PÃ¡gina do projecto: https://github.com/enen92/P2P-Streams-Kodi</description>
+    <description lang="pt">AceStream e Sopcast no seu Media-Center de eleição! Assista a streams peer-to-peer no Kodi sem a necessidade de players externos. Página do projecto: https://github.com/enen92/P2P-Streams-Kodi</description>
     <description lang="nl">Acestream en Sopcast in jouw favoriete media center. Kijk peer-to-peer streams in Kodi zonder de noodzaak voor externe spelers. Project pagina: https://github.com/enen92/P2P-Streams-Kodi/</description>
-    <description lang="it">AceStream e SopCast nel tuo Media Center preferito! Guarda i canali peer-to-peer in Kodi senza la necessitÃ  di player esterni. Pagina del progetto: https://github.com/enen92/P2P-Streams-Kodi/</description>
+    <description lang="it">AceStream e SopCast nel tuo Media Center preferito! Guarda i canali peer-to-peer in Kodi senza la necessità di player esterni. Pagina del progetto: https://github.com/enen92/P2P-Streams-Kodi/</description>
     <disclaimer lang="en">The authors does not host nor distribute any of the content you may watch using this addon. The authors have no affiliation with any of the content providers. This addon does not track its users.</disclaimer>
-    <disclaimer lang="pt">Os autores nÃ£o alojam nem distribuem nenhum do conteÃºdo acessÃ­vel a partir deste addon. Os autores nÃ£o tÃªm qualquer afiliaÃ§Ã£o com nenhum dos sites utilizados por este addon. O addon nÃ£o contem nenhuma ferramenta de tracking.</disclaimer>
+    <disclaimer lang="pt">Os autores não alojam nem distribuem nenhum do conteúdo acessível a partir deste addon. Os autores não têm qualquer afiliação com nenhum dos sites utilizados por este addon. O addon não contem nenhuma ferramenta de tracking.</disclaimer>
     <disclaimer lang="nl">De auteurs houden of delen niets van de inhoud die u kunt bekijken met behulp van deze addon. De auteurs hebben geen banden met welke leverancier van inhoud dan ook. Deze addon houdt geen gegevens bij van zijn gebruikers.</disclaimer>
-    <disclaimer lang="it">L'autore non detiene o distribuisce alcun contenuto fruibile tramite l'utilizzo di questo addon. L'autore non Ã¨ affiliato con nessun fornitore dei contenuti. Questo addon non traccia i suoi utenti.</disclaimer>
+    <disclaimer lang="it">L'autore non detiene o distribuisce alcun contenuto fruibile tramite l'utilizzo di questo addon. L'autore non è affiliato con nessun fornitore dei contenuti. Questo addon non traccia i suoi utenti.</disclaimer>
     <forum>http://forum.kodi.tv/showthread.php?tid=201894</forum>
     <source>https://github.com/enen92/P2P-Streams-Kodi | https://github.com/enen92/P2P-Streams-Kodi--Modules-</source>
     <website>https://code.google.com/p/p2p-strm/</website>
@@ -584,7 +708,7 @@
 <addon
 	id="plugin.video.hieuhien.vn.phatam"
 	version="1.0.2"
-	name="[COLOR yellow][B]Pháº­t Ã‚m[/B][/COLOR]"
+	name="[COLOR yellow][B]Phật Âm[/B][/COLOR]"
 	provider-name="traitravinh">
 	<requires>
 	</requires>
@@ -652,6 +776,34 @@
   </extension>
 </addon>
 
+<addon
+	id="plugin.video.hieuhien.vn.phimanhtrang"
+	version="1.0.1"
+	name="[B]Phim Ánh Trăng[/B]"
+	provider-name="DaveLN">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" optional="true" />
+		<import addon="script.module.simplejson" />
+		<import addon="script.module.t0mm0.common" version="1.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides></provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Movies</summary>
+		<description>[COLOR lime][B]Xem phim từ website anhtrang.org[/B][/COLOR]</description>
+		<disclaimer lang="en">
+			[COLOR lime]The streaming media are pulled from online provider(s).
+			[COLOR red]These streams do not represent my views or opinions in any way.[/COLOR]</disclaimer>
+		<platform>all</platform>
+		<license>http://www.gnu.org/licenses/</license>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<source></source>
+	</extension>
+</addon>
+
 	<addon id="plugin.video.hieuhien.vn.phimlt"  version="1.9" name="[COLOR lime][B]PhimLT.com[/B][/COLOR]" provider-name="V137">
 		<requires>
 			<import addon="xbmc.python" version="2.1.0" />
@@ -703,7 +855,7 @@
 <addon
   id="plugin.video.hieuhien.vn.phimvang"
   version="1.0.0"
-  name="[COLOR lime][B]Phim VÃ ng[/B][/COLOR]"
+  name="[COLOR lime][B]Phim Vàng[/B][/COLOR]"
   provider-name="traitravinh">
   <requires>
     <import addon="xbmc.python" version="2.1.0" optional="true"/>
@@ -716,6 +868,26 @@
   <extension point="xbmc.addon.metadata">
     <summary>Watch Movies</summary>
     <description>Watch Movies on phimvang.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon
+  id="plugin.video.hieuhien.vn.sctv"
+  version="3.0.3.1"
+  name="SCTV"
+  provider-name="thong.ld">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.xbmcswift2" version="1.3.1" />
+    <import addon="script.module.requests" version="1.0" />
+  </requires>
+  <extension library="default.py" point="xbmc.python.pluginsource">
+    <provides></provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Truyền hình SCTV</summary>
+    <description>Nhóm kênh chính thức của truyền hình SCTV</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -746,6 +918,28 @@
 </addon>
 
 <addon
+  id="plugin.video.hieuhien.vn.talktv"
+  version="0.1.0"
+  name="[COLOR violet][B]TalkTV.vn[/B][/COLOR]"
+  provider-name="MrOdin">
+  <requires>
+	<import addon="xbmc.python" version="2.1.0" />
+    <import addon="script.common.plugin.cache" version="2.5.2" />
+    <import addon="script.module.requests" version="2.4.3"/>
+    <import addon="service.vnmusic" version="1.0.2"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="talktv.py">
+        <provides></provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Truyền hình trực tiếp, stream game, xem trực tiếp game</summary>
+    <description>TalkTV là hệ thống cho phép stream và xem trực tiếp hoàn toàn miễn phí được xây dựng cho cộng đồng Việt.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon
 	id="plugin.video.hieuhien.vn.tubemotion"
 	version="1.0.1"
 	name="[COLOR violet][B]TubeMotion[/B][/COLOR]"
@@ -757,9 +951,35 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 	<summary>YouTube and Dailymotion Channels</summary>
-	<description>Tá»•ng há»£p cÃ¡c kÃªnh Youtube vÃ  Dailymotion. Addon nÃ y Ä‘Æ°á»£c viáº¿t láº¡i dá»±a trÃªn netmedia vÃ  chantube addons.</description>
+	<description>Tổng hợp các kênh Youtube và Dailymotion. Addon này được viết lại dựa trên netmedia và chantube addons.</description>
 	<platform>all</platform>
 </extension>
+</addon>
+
+<addon
+	id="plugin.video.hieuhien.vn.tvvn"
+	version="0.9.9"
+	name="[COLOR violet][B]TV Viet Nam[/B][/COLOR]"
+	provider-name="Binh Nguyen">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="tvvn.py">
+		<provides></provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<language>en vi</language>
+		<website>http://zecoj.com</website>
+		<source>https://github.com/zecoj/xbmc-tvvn</source>
+		<summary lang="en">TV Viet Nam</summary>
+		<summary lang="vi">TV Việt Nam</summary>
+		<description lang="en">This plugin allows you to watch live TV channels or listen to radio stations in Viet Nam or from overseas providers straight from the XBMC interface, thus eliminating the needs for using browsers and flashplayer, etc. Bug report at: zecoj.com. If you enjoy using the plugin, consider donate via PayPal to b [AT] zecoj [DOT] com</description>
+		<description lang="vi">Xem trực tiếp các kênh truyền hình và các đài phát thanh từ Việt Nam và hải ngoại. If you enjoy using the plugin, consider donate via PayPal to b [AT] zecoj [DOT] com</description>
+		<disclaimer lang="en">All live streams are pulled from online providers and in no way represent my views or opinions. I also hold no control over the quality of the streams nor that of your internet connection :)</disclaimer>
+		<disclaimer lang="vi">Tất cả live streams được tải về từ các nhà cung cấp dịch vụ. Tác giả phần mềm này không chịu trách nhiệm về nội dung của chúng.</disclaimer>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+	</extension>
 </addon>
 
 	<addon id="plugin.video.hieuhien.vn.viettube.channels" name="[COLOR violet][B]VietTube Channels[/B][/COLOR]" version="4.1" provider-name="V137">
@@ -949,7 +1169,7 @@
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>Xshare - XBMC HD Video</summary>
-		<description lang="en">TÃ¬m vÃ  Xem HD Video trÃªn XBMC tá»«: fshare.vn, 4share.vn, vaphim.com, ifile.tv, phimfshare.com, fptplay.net, hdvietnam.com, megabox.vn, dangcaphd.com, hayhaytv.vn, hdviet.com, pubvn.net, vuahd.tv, phimmoi.net, hdonline.vn, phim3s.net, kenh88.com, phimdata.com, phimsot.com, phim47.com</description>
+		<description lang="en">Tìm và Xem HD Video trên XBMC từ: fshare.vn, 4share.vn, vaphim.com, ifile.tv, phimfshare.com, fptplay.net, hdvietnam.com, megabox.vn, dangcaphd.com, hayhaytv.vn, hdviet.com, pubvn.net, vuahd.tv, phimmoi.net, hdonline.vn, phim3s.net, kenh88.com, phimdata.com, phimsot.com, phim47.com</description>
 		<platform>all</platform>
 		<language>en</language>
 		<license>GNU General Public License - v2</license>
@@ -977,7 +1197,7 @@
 <addon
   id="plugin.video.hieuhien.vn.yeuphim"
   version="0.6"
-  name="[COLOR lime][B]YÃªu Phim[/B][/COLOR]"
+  name="[COLOR lime][B]Yêu Phim[/B][/COLOR]"
   provider-name="thongld">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1007,6 +1227,94 @@
 		<disclaimer lang="en"></disclaimer>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon
+	id="plugin.video.HieuHienLiveShow"
+	version="1.0.1"
+	name="[COLOR lime][B]HieuHienLiveShow[/B][/COLOR]"
+	provider-name="Hieuhien.vn">
+	<requires>
+		<import addon="script.module.simplejson" />
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="liveshow.py">
+		<provides></provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
+		<description>[COLOR lime][B]Add-on xem các show diễn ca nhạc, hài kịch online[/B][/COLOR]</description>
+		<disclaimer>Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon
+	id="plugin.video.HieuHienTV"
+	version="1.0.1"
+	name="[COLOR lime][B]HieuHienTV[/B][/COLOR]"
+	provider-name="Hieuhien.vn">
+	<requires>
+		<import addon="script.module.simplejson" />
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.simple.downloader" version="1.9.4" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="tvchannel.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>[COLOR red]Hieuhien.vn[/COLOR]</summary>
+		<description>[COLOR lime][B]Add-on Xem truyền hình Online được Hieuhien.vn viết lại dựa trên addon ITV Plus của tác giả itv member[/B][/COLOR]</description>
+		<disclaimer>Tất cả nội dung được lấy từ Internet - chúng tôi hoàn toàn không chịu trách nhiệm về bản quyền hay độ ổn định của chương trình</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="plugin.video.itvplus"
+       version="2.5.0.264"
+       name="[COLOR ffff0000]*ITV*[/COLOR]Plus"
+       provider-name="itv member">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" optional="true" />
+		<import addon="script.module.requests" version="1.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides></provides>
+    </extension>
+    <extension point="xbmc.service" library="autorun.py" start="startup">
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>ITV Entertainment</summary>
+        <description>
+* Addon được ITVPlus xây dựng dựa vào nguồn dữ liệu trên internet.
+* Với mục đích phục vụ nhu cầu giải trí cho cộng đồng Kodi. Chúng tôi đã tốn nhiều thời gian và công sức để tạo ra sản phẩm, vì vậy mong các tổ chức và cá nhân tuân thủ các quy định sau:
+- Không tự ý sử dụng mã nguồn của addon khi chưa có sự đồng ý của nhóm lập trình viên ITVPlus.
+- Không tự ý chỉnh sửa lại addon và chia sẻ, quảng cáo phục vụ cho nhu cầu lợi ích của một cá nhân hay tập thể nào đó.
+	    </description>
+	    <disclaimer lang="en">[COLOR ffff0000]Data được chia sẻ trên internet. Chúng tôi không chịu mọi trách nhiệm pháp lý.[/COLOR]</disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
+
+<addon
+  id="plugin.video.sctv.hieuhien.vn"
+  version="1.0"
+  name="SCTV"
+  provider-name="thong.ld">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.xbmcswift2" version="1.3.1" />
+    <import addon="script.module.requests" version="1.0" />
+  </requires>
+  <extension library="default.py" point="xbmc.python.pluginsource">
+    <provides></provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Truyền hình SCTV</summary>
+    <description>Nhóm kênh chính thức của truyền hình SCTV</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 	<addon id="plugin.video.v137.phimlt"  version="2.2" name="PhimLT.com" provider-name="V137">
@@ -1046,6 +1354,45 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.youtube" name="YouTube" version="5.3.6.99" provider-name="h0d3nt3uf3l, jdf76, bromix">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+        <summary lang="en">Plugin for YouTube</summary>
+        <description lang="en">YouTube is one of the biggest video-sharing websites of the world.</description>
+		<summary lang="de">Plugin für YouTube</summary>
+        <description lang="de">YouTube ist eines der größten Video-Sharing-Websites der Welt.</description>
+        <summary lang="pl">Wtyczka YouTube</summary>
+        <description lang="pl">YouTube jest jednym z największych na świecie serwisów udostępniania wideo.</description>
+		<summary lang="hu">Kiegészítő  a YouTube-hoz</summary>
+        <description lang="hu">A YouTube világ egyik legnagyobb videómegosztó weboldala.</description>
+        <summary lang="es">Plugin para YouTube</summary>
+        <description lang="es">YouTube es un uno de los mayores sitios web de intercambio de vídeos del mundo.</description>
+        <summary lang="ru">Видеодополнение YouTube</summary>
+        <description lang="ru">Данное дополнение позволяет находить и смотреть видео на всеми любимом сайте.</description>
+        <summary lang="fr">Plugin pour YouTube</summary>
+        <description lang="fr">YouTube est l'un des plus grands sites de partage vidéos du monde.</description>
+        <summary lang="zh">YouTube附加元件</summary>
+        <description lang="zh">「Youtube」是全世界最大的影片分享網站</description>
+        <summary lang="bg">Добавка за YouTube</summary>
+        <description lang="bg">YouTube е един от най-големите уеб сайтове за споделяне на видео в целия свят.</description>
+		<summary lang="el">Πρόσθετο YouTube</summary>
+        <description lang="el">Το YouTube είναι μία από τις μεγαλύτερες ιστοσελίδες διαμοιρασμού βίντεο στον κόσμο.</description>
+		<disclaimer lang="en"></disclaimer>
+		<language></language>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+		<forum>http://forum.kodi.tv/showthread.php?tid=267160</forum>
+		<website>http://www.youtube.com</website>
+		<email>ytplugin at datanet dot ws</email>
+		<source>https://github.com/Kolifanes/plugin.video.youtube</source>
+	</extension>
+</addon>
+
 <addon id="program.hieuhien.vn.plexus"
        name="Plexus"
        version="0.1.4"
@@ -1062,9 +1409,9 @@
   <extension point="xbmc.addon.metadata">
     <summary>SopCast and AceStream for Kodi</summary>
     <description lang="en">Plexus - Any complex structure containing an intricate network of parts. Plexus brings native peer-to-peer support (AceStream and SopCast) for Kodi Entertainment Center for several platforms.[CR][CR]Documentation: (missing)</description>
-    <description lang="pt">Plexus - Uma estrutura complexa constituÃ­da por uma rede de partes. O Plexus adiciona suporte peer-to-peer nativo (AceStream e Sopcast) ao Kodi Entertainment Center para vÃ¡rias plataformas.[CR][CR]DocumentaÃ§Ã£o: (em falta)</description>
+    <description lang="pt">Plexus - Uma estrutura complexa constituída por uma rede de partes. O Plexus adiciona suporte peer-to-peer nativo (AceStream e Sopcast) ao Kodi Entertainment Center para várias plataformas.[CR][CR]Documentação: (em falta)</description>
     <disclaimer lang="en">The author does not host nor distribute any of the content you may watch using this addon. The author has no part in the development of any included technologies. When seeking help in Kodi's forum please respect rules (http://kodi.wiki/view/Forum_rules).</disclaimer>
-    <disclaimer lang="pt">Os autores nÃ£o alojam nem distribuem nenhum do conteÃºdo que poderÃ¡ ser reproduzido a partir deste addon. Os autores nÃ£o tÃªm qualquer parte no desenvolvimento de qualquer uma das tecnologias. Se procurar ajuda no fÃ³rum oficial do Kodi por favor respeite as regras do fÃ³rum (http://kodi.wiki/view/Forum_rules).</disclaimer>
+    <disclaimer lang="pt">Os autores não alojam nem distribuem nenhum do conteúdo que poderá ser reproduzido a partir deste addon. Os autores não têm qualquer parte no desenvolvimento de qualquer uma das tecnologias. Se procurar ajuda no fórum oficial do Kodi por favor respeite as regras do fórum (http://kodi.wiki/view/Forum_rules).</disclaimer>
     <forum>http://forums.tvaddons.ag</forum>
     <platform>all</platform>
   </extension>
@@ -1140,7 +1487,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Cantobu Media Entertainment</summary>
-		<description>Giáº£i trÃ­ trÃªn XBMC/Kodi</description>
+		<description>Giải trí trên XBMC/Kodi</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
@@ -1188,6 +1535,30 @@
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Exodus repository</summary>
 		<description lang="en">Exodus repository</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+
+<addon
+	id="repository.hieuhien.vn"
+	version="1.0.0"
+	name="[COLOR lime][B]Hieuhien.vn Repository[/B][/COLOR]"
+	provider-name="Hieuhien.vn">
+	<requires>
+		<import addon="xbmc.addon" version="12.0.0"/>
+	</requires>
+	<extension point="xbmc.addon.repository"
+		name="[COLOR lime][B]Hieuhien.vn Repository[/B][/COLOR]">
+		<info compressed="true">https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml</info>
+		<checksum>https://raw.github.com/hieuhienvn/hieuhien.vn/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/hieuhienvn/hieuhien.vn/raw/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install addon from Hieuhien.vn's repository</summary>
+		<description lang="en">[COLOR red][B]Hieuhien.vn[/COLOR]-[COLOR lime]Repository tập hợp các addon và repository giải trí online trên XBMC - Kodi[/B][/COLOR]</description>
+		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định</disclaimer>
+		<email>contact@hieuhien.vn</email>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -1380,6 +1751,30 @@
 	</extension>
 </addon>
 
+
+<addon
+	id="repository.thanhnguyenphu"
+	version="1.0.0"
+	name="[COLOR blue][B]ThanhNguyenPhu Repository[/B][/COLOR]"
+	provider-name="thanhnguyenphu">
+	<requires>
+		<import addon="xbmc.addon" version="12.0.0"/>
+	</requires>
+	<extension point="xbmc.addon.repository"
+		name="[COLOR blue][B]HDPLAY Repository[/B][/COLOR]">
+		<info compressed="true">https://raw.github.com/thanhnguyenphu/hdplay.kodi/master/addons.xml</info>
+		<checksum>https://raw.github.com/thanhnguyenphu/hdplay.kodi/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/thanhnguyenphu/hdplay.kodi/raw/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install addon from HDPLAY's repository</summary>
+		<description lang="en">[COLOR red][B]HDPLAY[/COLOR]-[COLOR blue]Repository tập hợp các addon và repository giải trí online trên XBMC - Kodi[/B][/COLOR]</description>
+		<disclaimer lang="en">Mọi nội dung được lấy từ Internet vì vậy chúng tôi không chịu trách nhiệm về chất lượng cũng như sự ổn định</disclaimer>
+		<email>https://www.facebook.com/thanh.nguyenphu.3954</email>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.traitravinh" name="TraiTraVinh's Testing Repo" version="1.0" provider-name="traitravinh">
 	<extension point="xbmc.addon.repository" name="TraiTraVinh's Testing Repo">
 		<info compressed="false">https://raw.github.com/traitravinh/traitravinh.repository.xbmc/master/addons.xml</info>
@@ -1446,6 +1841,23 @@
 		<disclaimer lang="en"></disclaimer>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="repository.xbmc-addons-chinese" name="Chinese Add-ons" version="1.2.0" provider-name="Taxigps">
+    <extension point="xbmc.addon.repository" name="Chinese Add-ons">
+        <info compressed="true">https://github.com/taxigps/xbmc-addons-chinese/raw/master/addons.xml</info>
+        <checksum>https://github.com/taxigps/xbmc-addons-chinese/raw/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://github.com/taxigps/xbmc-addons-chinese/raw/master/repo</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Chinese Add-ons Repository</summary>
+        <summary lang="zh">面向中文用户的插件库</summary>
+        <description>Download and install add-ons from xbmc-addons-chinese addon repository.[CR][CR]By using this Repository you will be able to take advantage of our cutting edge features developed for chinese people.</description>
+        <description lang="zh">从xbmc-addons-chinese库下载安装插件。[CR][CR]通过使用这个程序库，你将能够分享我们为中文用户开发的插件。</description>
+        <disclaimer>Taxigps did not make all the add-ons on this repository and is not responsible for their content</disclaimer>
+        <disclaimer lang="zh">本库中扩展功能模块不完全由Taxigps开发，对他人提交的内容不承担责任</disclaimer>
+        <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="repository.xbmchub" name="TVADDONS.ag Addon Repository" version="1.0.6" provider-name="tvaddons.ag">
@@ -1737,7 +2149,7 @@
 	<extension point="xbmc.python.module"
 			 library="lib" />
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Stateful programmatic web browsing in Python, after Andy Lesterâ€™s Perl module WWW::Mechanize.</summary>
+		<summary lang="en">Stateful programmatic web browsing in Python, after Andy Lester’s Perl module WWW::Mechanize.</summary>
 		<description lang="en">packed for xbmc from https://github.com/jjlee/mechanize</description>
 		<disclaimer lang="en">packed for xbmc from https://github.com/jjlee/mechanize</disclaimer>
 		<forum></forum>
@@ -1901,6 +2313,25 @@
   </extension>
 </addon>
 
+<addon id="script.module.singledispatch"
+       name="singledispatch"
+       version="3.4.0.3"
+       provider-name="Łukasz Langa">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.module"
+             library="lib"/>
+  <extension point="xbmc.addon.metadata">
+    <summary>Single-dispatch generic functions</summary>
+    <description>This library brings functools.singledispatch from Python 3.4 to Python 2.6-3.3.</description>
+    <platform>all</platform>
+    <license>MIT</license>
+    <source>https://pypi.python.org/pypi/singledispatch#downloads</source>
+    <website>http://docs.python.org/3/library/functools.html#functools.singledispatch</website>
+  </extension>
+</addon>
+
 <addon id="script.module.six"
        name="six"
        version="1.9.0"
@@ -2055,6 +2486,81 @@
 	</extension>
 </addon>
 
+<addon id="service.subtitles.opensubtitles"
+       name="OpenSubtitles.org"
+       version="5.0.16"
+       provider-name="amet, opensubtitles">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.subtitle.module"
+             library="service.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary>OpenSubtitles</summary>
+    <description lang="en">Search and download subtitles for movies and TV-Series from OpenSubtitles.org. Search in 75 languages, 4.000.000+ subtitles, daily updates.</description>
+	<description lang="at">Pelis and Subtítulos TV en munches llingües, milenta de subtítulos traducíos y xubíos caldía. Descarga llibre dende la fonte, sofitu API, millones d'usuarios.</description>
+	<description lang="br">Istitloù Filmoù ha TV e meur a yezh, miliadoù a istitloù troet hag uskarget bemdez. Pellgargadenn digoust diouzh ar vammenn, skoazell an API, millionoù a implijerien.</description>
+	<description lang="ca">Subtítols de films i televisió en múltiples idiomes, milers de subtítols traduïts carregats diàriament. Descàrrega gratuïta des de la font, suport de l'API, amb milions d'usuaris.</description>
+	<description lang="cs">Titulky k filmům a seriálům v mnoha jazycích, denně tisíce nahraných přeložených titulků. Stažení zadarmo přímo od zdroje, podpora API, milióny uživatelů.</description>
+	<description lang="de">Film- und TV-Untertitel in vielen Sprachen, täglicher Upload von tausenden übersetzten Untertiteln. Freier Download von der Quelle, API-Unterstützung, Millionen Nutzer</description>
+	<description lang="el">Ταινίες και Σειρές σε όλες τις γλώσσες, χιλιάδες μεταφρασμένοι υπότιτλοι ανεβαίνουν καθημερινά, κατεβάστε δωρεάν , υποστήριξη API από εκατομμύρια χρήστες</description>
+	<description lang="eo">Filmaj kaj Televidaj subtekstoj en multaj lingvoj, miloj da tradukitaj subtekstoj ĉiutage alŝutataj. Senpaga elŝuto de fonto, API-subteno, miloj da uzantoj.</description>
+	<description lang="es">Películas y Subtítulos en diversos idiomas, miles de subtítulos traducidos subidos diariamente. Descarge gratis, soporte API, millones de usuarios.</description>
+	<description lang="et">Sadu Filmi ja TV Serjaalide subtiitrid erinevates keeltes laetakse üles igapäev. tasuta allalaadimine ja abi, rohkem kui miljon kasutajat.</description>
+	<description lang="eu">Film eta Telebista azpitituluak hizkuntza anitzetan, milaka azpititulu itzuliak igotzen dira egunero. Doan jaitsi iturburutik, API sostengua, milioika erabiltzaile.</description>
+	<description lang="fi">Tekstityksiä useilla kielillä elokuviin ja TV-Sarjoihin, tuhansia uusia tekstityksiä päivittäin, ilmainen lataus, API tuki, miljoonia käyttäjiä.</description>
+	<description lang="fr">Les sous-titres de film et téléfilm en plusieurs langues, des milliers de sous-titres traduits tous les jours. Bénéficiez de téléchargements gratuits depuis la source, du support API, une d'une communauté de millions d'utilisateurs.</description>
+	<description lang="hi">मूवी और टीवी उपशीर्षक कई भाषाओं में अनुवाद उपशीर्षक के हजारों दैनिक अपलोड की गई। मुफ्त डाउनलोड स्रोत से , एपीआई समर्थन, उपयोगकर्ताओं के लाखों लोगों की ।</description>
+	<description lang="hr">Titlovi za filmove i TV na mnogim jezicima, tisuće prijevoda postavljenih svaki dan. Besplatno preuzimanje s izvora, podrška za API, milijuni korisnika.</description>
+	<description lang="hu">Film és TV feliratok több nyelven, naponta több ezer lefordított felirat feltöltés. Ingyenes letöltés a forrástól, API támogatás, több millió felhasználó.</description>
+	<description lang="id">Subjudul film dan serial TV dalam multibahasa, ribuan subjudul diterjemah dan diunggah setiap harinya. Pengunduhan gratis dari sumber, didukung fitur antarmuka pemrograman aplikasi, dan jutaan pengguna.</description>
+	<description lang="is">Textar fyrir myndir og sjónvarpsþ. á mörgum tungumálum, þúsundir af þýddum textum upphlaðið daglega. Frítt niðurhal frá síðu, API stuðningur, milljónir notenda.</description>
+	<description lang="it">Sottotitoli di Film e TV in più lingue,migliaia di sottotitoli tradotti caricati ogni giorno.Download gratuito,supporto API, milioni di utenti.</description>
+	<description lang="ja">映画やテレビの字幕をさまざまな言語で。毎日数多くの翻訳字幕がアップロードされています。ソースを無料ダウンロード、API 対応、数百万を超えるユーザー。</description>
+	<description lang="ka">სუბტიტრები ფილმებისა და ტვ-სთვის მრავალ ენაზე. ათასობიტ თარგმნილი სუბტიტრის ატვირთვა ყოველდღიურად. უდასო ჩამოტვირტვა წყაროდან, API მხარდაჭერა, მილიონობით მომხმარებელი</description>
+	<description lang="km">អត្ថបទរឿងសម្រាប់ ខ្សែភាពយន្ត និងកម្មវិធីទូរទស្សន៍​ ជាភាសាជាច្រើន រួមនឹងអត្ថបទរឿងបកប្រែរាប់ពាន់​រឿង​ដែល​ត្រូវបាន​អ័ពឡូដជារៀងរាល់ថ្ងៃ។ ទាញយកដោយឥតគិតថ្លៃពីប្រភពដើម គាំទ្រ API និងមានអ្នកប្រើប្រាស់រាប់លាននាក់។ </description>
+	<description lang="ko">Movie and TV Subtitles in multiple languages, thousands of translated subtitles uploaded daily. Free download from source, API support, millions of users.</description>
+	<description lang="ms">Sarikata TV dan Movie dalam pelbagai bahasa, ribuan terjemahan sarikata dimuat-naik setiap hari.Muat-turun percuma dari sumber utama, sokongan API, jutaan pengguna.</description>
+	<description lang="nl">Ondertitels voor films en tv-series in meerdere talen, dagelijks upload van duizenden vertaalde ondertitels. Gratis downloaden van de bron, API ondersteuning, miljoenen gebruikers.</description>
+	<description lang="no">Undertekster for film og TV på mange språk, med tusener av nye oversettelser hver dag. Vi har gratis nedlasting av undertekster, API-support, og mange millioner brukere.</description>
+	<description lang="pt-br">Milhares de legendas para filmes e seriados de TV, em vários idiomas, são traduzidas e enviadas diariamente. Download grátis, suporte API e milhões de usuários.</description>
+	<description lang="pl">Napisy do filmów i seriali w wielu językach. Tysiące napisów dodawanych codziennie. Darmowe pobranie, miliony użytkowników.</description>
+	<description lang="pt">Legendas de filmes e séries de TV em vários idiomas, milhares de legendas traduzidas e enviadas diariamente. Download grátis a partir da fonte, suporte API, milhões de utilizadores.</description>
+	<description lang="ro">Subtitrari pentru filme in multe limbi, mii de subtitrari traduse si încărcate in fiecare zi. Descărca gratuit de la sursă, suport API, milioane de utilizatori.</description>
+	<description lang="ru">Кино и ТВ субтитры на нескольких языках, тысячи переведенными субтитрами загружены ежедневно. Бесплатно скачать из исходных текстов, поддержка API, миллионы пользователей.</description>
+	<description lang="sk">Titulky pre filmy a TV seriály, denne nahratých tisíce titulkov preložených vo viacerých jazykoch. Sťahuj zadarmo zo zdroja, podpora API, milióny používateľov.</description>
+	<description lang="sl">Filmski in televizijski podnapisi v mnogo jezikih, na tisoče prevedenih podnapisov dnevno. Brezplačen prenos iz vira, podpora API, miljoni uporabnikov.</description>
+	<description lang="sq">Titra filmash dhe serialesh në shumë gjuhë, mijëra titra të përkthyera që vendosen çdo ditë. Shkarko nga burimi, apo nga mbështetja e API-së, miliona përdorues.</description>
+	<description lang="sr">Titlovi za filmove i TV na mnogim jezicima, hiljade prevoda okačenih svakodnevno. Besplatno skidanje sa izvora, podrška za API, milioni korisnika.</description>
+	<description lang="sv">Filmer och Tv-undertexter med olika språk, tusentals översatta undertexter uppladdade dagligen. Gratis nerladdning från källor, API support, miljoner av användare.</description>
+	<description lang="tr">Her gün eklenen, pek çok dildeki binlerce film ve dizi altyazısı. Kaynağından ücretsiz indirme, API desteği ve milyonlarca kullanıcı.</description>
+	<description lang="uz">Film va TV Taglavhalari ko'p tillarda, minglab tarjima qilingan taglavhalar har kuni tizimga yuklanadi. Bepul resursdan yuklab oling, API qo'llaydi, millionlab foydalanuvchilar.</description>
+	<description lang="zh">多语种的电影及剧集字幕，每日更新千余条翻译好的字幕。免费下载，提供API接口，已拥有上百万的用户。</description>
+    <disclaimer>Users need to provide OpenSubtitles.org username and password in add-on configuration</disclaimer>
+	<news>
+v5.0.16 (2016-11-26) by opensubtitles
+- Changed descriptions, icons, fanart... (by opensubtitles)
+
+v5.0.15 (2016-11-26) by amet
+- disable anonymous login, users need to register on opensubtitles.org and login in addon settings.
+	</news>
+    <platform>all</platform>
+	<language></language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>https://forum.opensubtitles.org/viewtopic.php?f=8&amp;t=15847</forum>
+    <website>http://www.opensubtitles.org</website>
+    <email>admin [at] opensubtitles {dot} org</email>
+	<assets>
+	    <icon>resources/media/os_logo_512x512.png</icon>
+	    <fanart>resources/media/os_fanart.jpg</fanart>
+		<screenshot>resources/media/screenshot_1.jpg</screenshot>
+		<screenshot>resources/media/screenshot_2.jpg</screenshot>
+		<screenshot>resources/media/screenshot_3.jpg</screenshot>
+	</assets>
+    <source>https://github.com/opensubtitles/service.subtitles.opensubtitles</source>
+  </extension>
+</addon>
+
 <addon id="service.subtitles.subscene"
        name="Subscene.com"
        version="1.7.1"
@@ -2076,6 +2582,21 @@ Other languages with a great number of subtitles are: Danish, French, Swedish, D
         <website/>
         <email/>
         <source>https://github.com/manacker/service.subtitles.subscene</source>
+    </extension>
+</addon>
+
+<addon id="service.subtitles.xshare" name="[COLOR red][B]xshare[/COLOR] [COLOR blue]subtitles[/B][/COLOR]" version="1.2.3" provider-name="thaitni">
+    <requires><import addon="xbmc.python" version="2.1.0"/></requires>
+    <extension point="xbmc.subtitle.module" library="xsharesub.py"/>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">xbmc subtitles for plugin.video.xshare</summary>
+        <description lang="vi">Tìm phụ đề Tiếng Việt, tìm và dịch ra tiếng Việt từ bản tiếng Anh cho plugin.video.xshare trên http://Subscene.com, phudeviet.org.</description>
+		<platform>all</platform>
+		<language>en</language>
+		<license>GNU General Public License - v2</license>
+		<source>https://github.com/thaitni/xbmc.repo.xshare</source>
+		<email>thai@thanhthai.net</email>
     </extension>
 </addon>
 
@@ -2130,6 +2651,74 @@ Other languages with a great number of subtitles are: Danish, French, Swedish, D
 	<email></email>
   </extension>
 </addon>
+
+<addon id="superrepo.kodi.isengard.all" name="SuperRepo All [Isengard][v7]" version="0.7.04" provider-name="Bart Otten">
+                <requires>
+                <import addon="xbmc.addon" version="12.0.0"/>
+                </requires>
+                <extension point="xbmc.addon.repository" name="SuperRepo All [Isengard][v7]">
+                <info compressed="false">
+                http://xml.superrepo.org/v7/.xml/isengard/all/addons.xml
+                </info>
+                <checksum>
+                http://md5.superrepo.org/v7/.md5/isengard/all/addons.xml.md5
+                </checksum>
+                <datadir zip="true">http://redirect.superrepo.org/v7/addons/</datadir>
+                <hashes>true</hashes>
+                </extension>
+                <extension point="xbmc.addon.metadata">
+                <summary>
+                Install add-ons from the SuperRepo All Repository
+                </summary>
+                <summary lang="nl">
+                Installeer add-ons uit de SuperRepo All Repository
+                </summary>
+                <summary lang="cz">Inštalácia add-ons zo SuperRepo All Repozitár</summary>
+                <summary lang="de">
+                Installation von Addons aus dem SuperRepo All Repository
+                </summary>
+                <summary lang="pt">Instale add-ons do SuperRepo All Repositório</summary>
+                <summary lang="br">Instale add-ons do SuperRepo All Repositório</summary>
+                <description>
+                Download and install add-ons for Kodi in the category "All" using SuperRepo.[CR][CR]By using SuperRepo repositories you will be able to take advantage of our serverside dependency checking, extensive file mirror service and many more.[CR]Visit our website at https://superrepo.org/ to browse the add-ons, create personal addon bundles and install whole bundles at once![CR][CR]
+                </description>
+                <description lang="nl">
+                Download and installeer add-ons voor Kodi in de categorie "All" via SuperRepo.[CR]Door SuperRepo te installeren kunt u profiteren van onze controle van add-ons en ons uitgebreide server netwerk. Bezoek onze website op https://superrepo.org om door de add-ons te bladeren, persoonlijke add-on bundels te maken en complete bundels in 1 keer te installeren![CR][CR]
+                </description>
+                <description lang="cz">
+                Preber a inštaluj add-ons do kategórie "All" z SuperRepo.org add-on repozitár.[CR][CR]Ak si našiel add-on ktorý je poškodený alebo nefunkčný, alebo chceš pridať nový add-on, potom prosím pozri na https://superrepo.org/[CR][CR]Repozitár je udržiavaný komunitou Kodi a za pomoci SuperRepo Wiki, a tento preberá add-ons z rôznych zdrojov. Vzhľadom na to, SuperRepo nenesie žiadnu zodpovednosť za služby poskytované týmito add-ons.[CR][CR]Rozšírený repozitár vyvinul Bart Otten[CR][CR]
+                </description>
+                <description lang="de">
+                Lade und installiere Addons der Kategorie "All" aus dem SuperRepo.org Addon Repository.[CR][CR]Möchtest du ein fehlerhaftes Addon melden oder ein neues Addon vorschlagen, kannst du dies über unsere Webseite http://superrepo.org tun.[CR][CR]Das Repository wird mit Hilfe des SuperRepo Wiki durch die Kodi Community gepflegt und durch unseren Generator aus mehreren Quellen zusammengestellt. Daher übernimmt SuperRepo keinerlei Verantwortung für diesen Service.[CR][CR]Der"eXtended Reposity Generator" wird durch Bart Otten entwickelt.[CR][CR]
+                </description>
+                <description lang="pt">
+                Baixe e instale o add-ons na categoria "All" do Repositório SuperRepo.org. [CR] [CR] Se você encontrar um add-on quebrado ou não funcionando, ou você gostaria de incluir um outro, por favor visite https://superrepo.org/ [CR] [CR]O repositório é mantida pela comunidade do Kodi usando o Wiki do SuperRepo e o nosso gerador de busca de add-ons múltiplas fontes. Portanto SuperRepo não aceita qualquer responsabilidade por esse serviço.[CR][CR]O Gerador Reposity eXtended é desenvolvido por Bart Otten[CR][CR]
+                </description>
+                <description lang="br">
+                Baixe e instale o add-ons na categoria "All" do Repositório SuperRepo.org. [CR] [CR] Se você encontrar um add-on quebrado ou não funcionando, ou você gostaria de incluir um outro, por favor visite https://superrepo.org/ [CR][CR]O repositório é mantida pela comunidade do Kodi usando o Wiki do SuperRepo e o nosso gerador de busca de add-ons múltiplas fontes. Portanto SuperRepo não aceita qualquer responsabilidade por esse serviço.[CR][CR]O Gerador Reposity eXtended é desenvolvido por Bart Otten[CR][CR]
+                </description>
+                <disclaimer>
+                The SuperRepo generator fetches addons from multiple sources. Therefore SuperRepo accepts no responsibility for included addons.[CR]
+                </disclaimer>
+                <disclaimer lang="nl">
+                De SuperRepo generator verzamelt addons van verschillende bronnen. Daarom accepteert SuperRepo geen enkele verantwoordelijkheid voor de ingevoegde addons.[CR]
+                </disclaimer>
+                <disclaimer lang="cz">
+                Repozitár je udržiavaný komunitou Kodi a za pomoci SuperRepo Wiki, a tento preberá addons z rôznych zdrojov. Vzhľadom na to, SuperRepo nenesie žiadnu zodpovednosť za služby poskytované týmito addons.[CR]
+                </disclaimer>
+                <disclaimer lang="de">
+                Das Repository wird durch die Kodi Community gepflegt und durch unseren Generator aus mehreren Quellen zusammengestellt. Daher übernimmt SuperRepo keinerlei Verantwortung für die enthaltenen Addons.[CR]
+                </disclaimer>
+                <disclaimer lang="pt">
+                O repositório é mantido pela comunidade comunidade do Kodi e o nosso gerador de busca de addons de múltiplas fontes. Portanto SuperRepo aceita não se responsabiliza por addons incluídos.[CR]
+                </disclaimer>
+                <disclaimer lang="br">
+                O repositório é mantido pela comunidade comunidade do Kodi e o nosso gerador de busca de addons de múltiplas fontes. Portanto SuperRepo aceita não se responsabiliza por addons incluídos.[CR]
+                </disclaimer>
+                <platform>all</platform>
+                <website>https://superrepo.org/</website>
+                </extension>
+                </addon>
 
 <addon id="xbmc.repo.xshare" name="Xshare Repository" version="1.0.0" provider-name="thaitni">
 	<extension point="xbmc.addon.repository" name="Official XBMC.org Add-on Repository">
