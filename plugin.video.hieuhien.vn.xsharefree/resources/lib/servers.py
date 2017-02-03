@@ -1126,8 +1126,8 @@ class hayhayvn:
 		if '/show-' in url:url='http://www.hayhaytv.vn/getsourceshow/%s'%(xsearch('-(\w+)\.html',url)+tap)
 		else:url='http://www.hayhaytv.vn/getsource/%s'%(xsearch('-(\w+)\.html',url)+tap)
 		ip=xsearch("'(.+?)'",xread('http://ip.hayhaytv.vn/',self.hd))
-		b=xread(url+'?ip='+ip,self.hd)
-		try:j=json.loads(b).get('sources',[])
+		b=xread(url+'__tm?ip='+ip,self.hd)
+		try:j=json.loads(b[b.find('{'):]).get('sources',[])
 		except:j=[]
 		link=googleItems(j,'file','label')
 		#items=ls([(i.get('file'),rsl(i.get('label'))) for i in j])
@@ -2167,7 +2167,7 @@ class sieunhanh:
 		url='http://www.hdsieunhanh.com/getsource/%s'%(xsearch('-(\w+)\.html',url)+tap)
 		ip=xsearch("'(.+?)'",xread('http://ip.hdsieunhanh.com/',self.hd))
 		b=xread(url+'?ip='+ip,self.hd)#;xbmc.log(url+'?ip='+ip)
-		try:j=json.loads(b).get('sources',[])
+		try:j=json.loads(b[b.find('{'):]).get('sources',[])
 		except:j=[]
 		link=googleItems(j,'file','label')
 		return link
@@ -2762,21 +2762,12 @@ class mphim:
 	
 	def maxLink(self,url):
 		b=xread(url.replace('/phim/','/xem-phim/'))
-		a=xread(xsearch('playlist: *"(.+?)"',b))
-		items=ls(re.findall('file="(.+?)" label="(.+?)"',a))
-		if not items:
-			a=xsearch('file="(.+?)"',a)
-			if a:items=[(a,'')]
-		
-		if items:items=[(href.replace('&amp;','&'),label) for href,label in items]
-		else:
-			s=xsearch('(video.ready.+?/script>)',b,1,re.S)
-			b=xread(xsearch("url: *'(.+?)'",s))
-			try:
-				j=json.loads(b).get('data',{}).get('sources',[])
-				items=[(i.get('src'),i.get('label')) for i in j]
-			except:items=[]
-		return items
+		s=xsearch('link_url *= *\["(.+?)"',b)
+		try:
+			j=json.loads(xread(s))
+			link=googleItems(j.get('data',{}).get('sources',[]),'src','label')
+		except:link=''
+		return link
 
 class phim14com:
 	def __init__(self,c):
