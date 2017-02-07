@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #coding=utf-8
-import httplib2, json, re, urllib, os, uuid, contextlib, zipfile,random
+import httplib2, json, re, urllib, os, uuid, contextlib, zipfile, random, base64, time
 # Tham khảo xbmcswift2 framework cho kodi addon tại
 # http://xbmcswift2.readthedocs.io/en/latest/
 from xbmcswift2 import Plugin, xbmc, xbmcaddon, xbmcgui, actions
@@ -583,6 +583,8 @@ def get_playable_url(url):
 			try:
 				fshare_headers = {
 					'User-Agent':'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.3; WOW64; Trident/7.0)',
+					"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+					"Accept-Encoding": "gzip, deflate, br",
 					'Cookie':'session_id=%s' % tmp
 				}
 
@@ -609,9 +611,36 @@ def get_playable_url(url):
 						body=body
 					)
 					return ""
-				else:
+				elif "location" in resp:
 					return resp["location"]
+				else:
+					tok = re.compile('data-tk="(.+?)"').findall(content)[0]
+					data_download = {
+						"fs_csrf"                : tok,
+						"DownloadForm[pwd]"      : "",
+						"DownloadForm[linkcode]" : url.split("/")[-1],
+						"ajax"                   : "download-form",
+						"undefined"              : "undefined"
+					}
+					(resp, content) = http.request(
+						"https://www.fshare.vn/download/get", "POST",
+						headers = fshare_headers,
+						body=urllib.urlencode(data_download)
+					)
+					res_json = json.loads(content)
+					if res_json["wait_time"] == "0":
+						return res_json["url"]
+					else:
+						header  = "Không lấy được link FShare VIP!"
+						message = '"Wait time" lớn hơn 0!!!'
+						xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' % (header, message, 10000, ''))
 			except: pass
+	elif "tv24.vn" in url:
+		cid = re.compile('/(\d+)/').findall(url)[0]
+		return "plugin://plugin.video.sctv/play/" + cid
+	elif "dailymotion.com" in url:
+		did = re.compile("/(\w+)$").findall(url)[0]
+		return "plugin://plugin.video.dailymotion_com/?url=%s&mode=playVideo" % did
 	else:
 		if "://" not in url: url = None
 	return url
