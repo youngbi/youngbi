@@ -406,6 +406,8 @@ class serversList:
 	def __init__(self):
 		self.servers=[
 		('phim.media','40','orange'), 
+		('anivn.com','62','FF8FAE22'),
+		('animetvn.com','63','FFD0C101'),
 		('anime47.com','37','deepskyblue'),
 		('banhtv.com','59','FFF08080'),
 		('bilutv.com','36','hotpink'), 
@@ -418,6 +420,7 @@ class serversList:
 		('hdsieunhanh.com','44','orangered'),  
 		('imovies.vn','48','orange'), 
 		('kenh88.com','26','cyan'),
+		('kenhphimbo.net','61','yellow'),
 		('kphim.tv','33','lightgreen'), 
 		('mphim.net','55','deepskyblue'), 
 		('phimmoi.net','24','ghostwhite'), 
@@ -3081,12 +3084,12 @@ class vtvgovn:
 
 class phimMedia:
 	def maxLink(self,url):
-		body=xread(url)
-		s=xsearch('sources: (\[[^\[]+?\])',body)
-		for i in re.findall('(\w+):.?"',s):s=s.replace("%s:"%i,'"%s":'%i)
-		try:items=ls([(i.get('file',''),rsl(i.get('label',''))) for i in eval(s)])
+		b=xread(url)
+		items=re.findall('file: *"(.+?)",\s*label: *"(.+?)"',b)#;xbmc.log(str(items))
+		try:items=[(href,rsl(label)) for href,label in items]
 		except:items=[]
-		return items
+		link=googleItems(items)
+		return link
 
 class InputWindow(xbmcgui.WindowDialog):
     def __init__(self, *args, **kwargs):
