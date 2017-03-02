@@ -2617,23 +2617,6 @@ Other languages with a great number of subtitles are: Danish, French, Swedish, D
   </extension>
 </addon>
 
-<addon id="service.vniptv"
-       name="VNIPTV Service"
-       version="1.0.8"
-       provider-name="lnt900">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.service" library="service.py" start="login" />
-  <extension point="xbmc.addon.metadata">
-    <platform>all</platform>
-    <summary lang="en">Service to watching vietnamese TV providers with PVR Simple IPTV</summary>
-	<description lang="en"></description>
-	<website></website>
-	<email>lnt900@gmail.com</email>
-  </extension>
-</addon>
-
 <addon id="service.vnmusic"
        name="Vn Music Service"
        version="1.0.2"
