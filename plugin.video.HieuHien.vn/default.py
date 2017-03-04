@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os, httplib2, xbmc, xbmcgui, xbmcaddon
+import autorun
+
 # Dev Channel
 url   = 'https://raw.githubusercontent.com/hieuhienvn/hieuhien.vn/master/HieuHienVNPlaylist.py'
 #url   = 'http://www.hieuhien.vn/XBMC/HIEUHIENPLAYLIST/hieuhienvn.txt'
