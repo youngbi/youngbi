@@ -10,7 +10,11 @@ datapath=os.path.join(profile,'data')
 tempfolder=xbmc.translatePath('special://temp')
 xsharefolder=os.path.join(profile,'xshare')
 icon=os.path.join(profile,'icon','icon.png')
-#b.getcode();b.headers.get('Set-Cookie');b.geturl()
+media_ext=['aif','iff','m3u','m3u8','m4a','mid','mp3','mpa','ra','wav','wma','3g2','3gp','asf','asx','avi','flv','mov','mp4','mpg','mkv','m4v','rm','swf','vob','wmv','bin','cue','dmg','iso','mdf','toast','vcd','ts','flac','m2ts','dtshd','nrg']
+color={'fshare':'[COLOR gold]','vaphim':'[COLOR gold]','phimfshare':'[COLOR khaki]','4share':'[COLOR blue]','tenlua':'[COLOR fuchsia]','fptplay':'[COLOR orange]','trangtiep':'[COLOR lime]','search':'[COLOR lime]','ifile':'[COLOR blue]','hdvietnam':'[COLOR red]','hdviet':'[COLOR darkorange]','xshare':'[COLOR blue]','subscene':'[COLOR green]','chiasenhac':'[COLOR orange]','phimmoi':'[COLOR ghostwhite]','megabox':'[COLOR orangered]','dangcaphd':'[COLOR yellow]','hayhaytv':'[COLOR tomato]','kenh88':'[COLOR cyan]','phimdata':'[COLOR FFDB4BDA]','phim47':'[COLOR springgreen]','phimsot':'[COLOR orangered]','hdonline':'[COLOR turquoise]','phim3s':'[COLOR lightgray]','kphim':'[COLOR lightgreen]','phimnhanh':'[COLOR chartreuse]','bilutv':'[COLOR hotpink]','pubvn':'[COLOR deepskyblue]','anime47':'[COLOR deepskyblue]','phim14':'[COLOR chartreuse]','taifile':'[COLOR cyan]','phim':'[COLOR orange]','tvhay':'[COLOR gold]','nhacdj':'[COLOR fuchsia]','phimbathu':'[COLOR lightgray]','taiphimhd':'[COLOR blue]','hdsieunhanh':'[COLOR orangered]','vuahd':'[COLOR tomato]','nhaccuatui':'[COLOR turquoise]','imovies':'[COLOR orange]','vietsubhd':'[COLOR cyan]','imax':'[COLOR chartreuse]','mphim':'[COLOR deepskyblue]','vtvgo':'[COLOR green]','youtube':'[COLOR red]','fcine':'[COLOR gold]','taiphimhdnet':'[COLOR teal]','vungtv':'[COLOR FF228B22]','biphim':'[COLOR FFBA55D3]','banhtv':'[COLOR FFF08080]','fsharefilm':'[COLOR FFF08080]','kenhphimbo':'[COLOR yellow]','anivn':'[COLOR FF8FAE22]','animetvn':'[COLOR FFD0C101]','htvonline':'[COLOR FF59B951]'}
+
+#b.getcode();b.headers.get('Set-Cookie');b.geturl();res.info().dict
+#json.loads(urllib.urlopen("http://ip.jsontest.com/").read())
 
 class myaddon:
     def __init__(self):
@@ -77,18 +81,20 @@ def refa(p,s,f=0):return re.findall(p,s,f)
 def refas(p,s):return re.findall(p,s,re.S)
 def mess(message='',title='',timeShown=5000):
 	if message:
-		title=': [COLOR blue]%s[/COLOR]'%title if title else ''
-		s0='[COLOR green][B]Xshare[/B][/COLOR]'+title
-		message=s2u(message)
-		s1=u'[COLOR red]%s[/COLOR]'%message if '!' in message else u'[COLOR gold]%s[/COLOR]'%message
-		xbmc.executebuiltin((u'XBMC.Notification(%s,%s,%s,%s)'%(s0,s1,timeShown,icon)).encode("utf-8"))
-	else:xbmc.executebuiltin("Dialog.Close(all, true)")
+		title   = ': [COLOR blue]%s[/COLOR]'%title if title else ''
+		s0      = '[COLOR green][B]Xshare[/B][/COLOR]'+title
+		message = s2u(message)
+		s1      = u'[COLOR %s]%s[/COLOR]'%('red' if '!' in message else 'gold', message)
+		message = u'XBMC.Notification(%s,%s,%s,%s)'%(s0,s1,timeShown,icon)
+		xbmc.executebuiltin(message.encode("utf-8"))
+	else:
+		xbmc.executebuiltin("Dialog.Close(all, true)")
 
 def xselect(label,choices):
 	dialog = xbmcgui.Dialog()
 	return dialog.select(label, choices)
 
-def googleItems(j,link='link',label='label'):#Thu nghiem tren phim14
+def googleItems(j,link='link',label='label'):
 	try:l=[(i.get(link),rsl(i.get(label))) for i in j]
 	except:
 		try:l=[(i.get(link),rsl(i.get('type'))) for i in j]
@@ -107,6 +113,17 @@ def googleItems(j,link='link',label='label'):#Thu nghiem tren phim14
 	except:pass
 	return link
 
+def googlevideo(s,label='label',src='file'):
+	link=''
+	items=re.findall('%s\W*(\w+?)\W.+?%s\W+(.+?)["|\| ]'%(label,src),s);xbmc.log(str(len(items)))
+	for href,label in ls([(i[1].replace('\\/','/'),rsl(i[0])) for i in items]):
+		resp=xget(href)#;xbmc.log(href)
+		if resp:link=resp.geturl();break
+	if not link:
+		try:link=l[0][0]
+		except:pass
+	return link
+	
 def rsl(s):
 	s=str(s).replace('HDG','').replace('HD','1080').replace('SD','640').replace('large','640').replace('medium','480')
 	s=s.replace('Auto','640').replace('AUTO','640')
@@ -118,6 +135,75 @@ def ls(l):
 	try:L=sorted(l, key=lambda k: int(k[1]),reverse=reverse)
 	except:L=l
 	return L
+
+def googleLinks(s):
+	def rsl(s):
+		arr = [
+			('HDG',''),
+			('HD','1080'),
+			('SD','640'),
+			('LARGE','640'),
+			('MEDIUM','480'),
+			('AUTO','640'),
+			('org','240')
+		]
+		
+		s = s.upper()
+		e = re.sub('\D','',s)
+		s = ''.join(re.sub(i[0],i[1],s) for i in arr if i[0] in s)
+		if not s and not e:
+			s = '0'
+		return e+re.sub('\D','',s)
+
+	if isinstance(s,basestring):
+		items = re.findall('file\W+(\w.+?)["|\'| ].+?label\W+(\w.+?)["|\'| ]',s)#;xbmc.log(s)
+		if not items:
+			items = re.findall('link\W+(\w.+?)["|\'| ].+?label\W+(\w.+?)["|\'| ]',s)
+			if not items:
+				items = re.findall('label\W+(\w.+?)["|\'| ].+?src\W+(\w.+?)["|\'| ]',s)
+				items = [(i[1],i[0]) for i in items]
+				if not items:
+					items = re.findall('file\W+(\w.+?)["|\'| ]',s)
+					if items:
+						items = [(i,'1') for i in items]
+	
+	elif isinstance(s,list):
+		items = s
+	
+	else:
+		items = []
+	
+	items   = [(i[0].replace('\\/','/'),rsl(i[1])) for i in items]
+	reverse = True if get_setting('resolut') == 'Max' else False
+	items   = sorted(items, key=lambda k: int(k[1]),reverse=reverse)
+	
+	link=''
+	for href,label in items:
+		resp = xget(href)#;xbmc.log(href)
+		if resp and xget(resp.geturl()).getcode() == 200:
+			link = resp.geturl()
+			break
+	
+	return link
+
+def googleDrive(id):
+	url = 'https://drive.google.com/'
+	res = xget('%suc?id=%s'%(url,id), data = 'X-Json-Requested=true')
+	if res:
+		label = "Label In dict"
+		try:
+			j = json.loads(xsearch('(\{.+?\})',res.read()))
+		except:
+			j = {}
+	else:
+		b     = xread('%sopen?id=%s'%(url,id))
+		label = xsearch('<title>(.+?)</title>',b)
+		try:
+			s = json.loads(xsearch("'(\[\[\[.+?)'",b).decode('string_escape'))[0]
+			j = [(i[0],i[2],i[3],i[13]) for i in s]
+		except:
+			j = []
+	return label, j
 
 def xrw(fn,s='',a='w'):
 	if len(fn) < 20:fn=os.path.join(xsharefolder,fn)
@@ -163,7 +249,7 @@ def xreadc(url,hd={'User_Agent':'Mozilla/5.0'},data='',c='',timeout=30):
 	except:b=''
 	return b
 
-def xget(url,hd={'User-Agent':'Mozilla/5.0'},data=None,timeout=30):#d=res.info().dict
+def xget(url,hd={'User-Agent':'Mozilla/5.0'},data=None,timeout=30):
 	try:res=urllib2.urlopen(urllib2.Request(url,data,hd),timeout=timeout)
 	except:res=None
 	return res#res.info().get('content-length')
@@ -214,7 +300,7 @@ def fixTitleEPS(i):
 	return i
 
 def vnu(s):
-	dic={'&Aacute;':'Á','&aacute;':'á','&Agrave;':'À','&agrave;':'à','&acirc;':'â','&atilde;':'ã','&Egrave;':'È','&egrave;':'è','&Eacute;':'É','&eacute;':'é','&ecirc;':'ê','&Ograve;':'Ò','&ograve;':'ò','&Oacute;':'Ó','&oacute;':'ó','&Ocirc;':'Ô','&ocirc;':'ô','&otilde;':'õ','&Uacute;':'Ú','&uacute;':'ú','&Ugrave;':'Ù','&ugrave;':'ù','&Igrave;':'Ì','&igrave;':'ì','&Iacute;':'Í','&iacute;':'í','&Yacute;':'Ý','&yacute;':'ý','&bull;':'*'}
+	dic={'&Aacute;':'Á','&aacute;':'á','&Agrave;':'À','&agrave;':'à','&acirc;':'â','&atilde;':'ã','&Egrave;':'È','&egrave;':'è','&Eacute;':'É','&eacute;':'é','&ecirc;':'ê','&Ograve;':'Ò','&ograve;':'ò','&Oacute;':'Ó','&oacute;':'ó','&Ocirc;':'Ô','&ocirc;':'ô','&otilde;':'õ','&Uacute;':'Ú','&uacute;':'ú','&Ugrave;':'Ù','&ugrave;':'ù','&Igrave;':'Ì','&igrave;':'ì','&Iacute;':'Í','&iacute;':'í','&Yacute;':'Ý','&yacute;':'ý','&bull;':'*','&#039;':'\''}
 	for i in dic:s=s.replace(i,dic.get(i))
 	return ' '.join(re.sub('&.+;',xsearch('&(\w).+;',i),i) for i in s.split())
 
