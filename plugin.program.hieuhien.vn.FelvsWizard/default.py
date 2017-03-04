@@ -243,8 +243,8 @@ def maintMenu():
 	packages   = 'true' if AUTOPACKAGES  == 'true' else 'false'
 	
 	addFile('Fresh Start'          ,'freshstart',      icon=ICONMAINT, themeit=THEME1)
-	addFile('Xóa Cache'          ,'clearcache',      icon=ICONMAINT, themeit=THEME1)
-	addFile('Xóa Packages'       ,'clearpackages',   icon=ICONMAINT, themeit=THEME1)
+	addFile('Xoa Cache'          ,'clearcache',      icon=ICONMAINT, themeit=THEME1)
+	addFile('Xoa Packages'       ,'clearpackages',   icon=ICONMAINT, themeit=THEME1)
 	addFile('Clear Thumbnails'     ,'clearthumb',      icon=ICONMAINT, themeit=THEME1)
 	addFile('Purge Databases'      ,'purgedb',         icon=ICONMAINT, themeit=THEME1)
 	addDir ('Remove Addons'        ,'removeaddons',    icon=ICONMAINT, themeit=THEME1)
