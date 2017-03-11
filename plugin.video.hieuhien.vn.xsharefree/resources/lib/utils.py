@@ -11,7 +11,7 @@ tempfolder=xbmc.translatePath('special://temp')
 xsharefolder=os.path.join(profile,'xshare')
 icon=os.path.join(profile,'icon','icon.png')
 media_ext=['aif','iff','m3u','m3u8','m4a','mid','mp3','mpa','ra','wav','wma','3g2','3gp','asf','asx','avi','flv','mov','mp4','mpg','mkv','m4v','rm','swf','vob','wmv','bin','cue','dmg','iso','mdf','toast','vcd','ts','flac','m2ts','dtshd','nrg']
-color={'fshare':'[COLOR gold]','vaphim':'[COLOR gold]','phimfshare':'[COLOR khaki]','4share':'[COLOR blue]','tenlua':'[COLOR fuchsia]','fptplay':'[COLOR orange]','trangtiep':'[COLOR lime]','search':'[COLOR lime]','ifile':'[COLOR blue]','hdvietnam':'[COLOR red]','hdviet':'[COLOR darkorange]','xshare':'[COLOR blue]','subscene':'[COLOR green]','chiasenhac':'[COLOR orange]','phimmoi':'[COLOR ghostwhite]','megabox':'[COLOR orangered]','dangcaphd':'[COLOR yellow]','hayhaytv':'[COLOR tomato]','kenh88':'[COLOR cyan]','phimdata':'[COLOR FFDB4BDA]','phim47':'[COLOR springgreen]','phimsot':'[COLOR orangered]','hdonline':'[COLOR turquoise]','phim3s':'[COLOR lightgray]','kphim':'[COLOR lightgreen]','phimnhanh':'[COLOR chartreuse]','bilutv':'[COLOR hotpink]','pubvn':'[COLOR deepskyblue]','anime47':'[COLOR deepskyblue]','phim14':'[COLOR chartreuse]','taifile':'[COLOR cyan]','phim':'[COLOR orange]','tvhay':'[COLOR gold]','nhacdj':'[COLOR fuchsia]','phimbathu':'[COLOR lightgray]','taiphimhd':'[COLOR blue]','hdsieunhanh':'[COLOR orangered]','vuahd':'[COLOR tomato]','nhaccuatui':'[COLOR turquoise]','imovies':'[COLOR orange]','vietsubhd':'[COLOR cyan]','imax':'[COLOR chartreuse]','mphim':'[COLOR deepskyblue]','vtvgo':'[COLOR green]','youtube':'[COLOR red]','fcine':'[COLOR gold]','taiphimhdnet':'[COLOR teal]','vungtv':'[COLOR FF228B22]','biphim':'[COLOR FFBA55D3]','banhtv':'[COLOR FFF08080]','fsharefilm':'[COLOR FFF08080]','kenhphimbo':'[COLOR yellow]','anivn':'[COLOR FF8FAE22]','animetvn':'[COLOR FFD0C101]','htvonline':'[COLOR FF59B951]'}
+color={'fshare':'[COLOR gold]','vaphim':'[COLOR gold]','phimfshare':'[COLOR khaki]','4share':'[COLOR blue]','tenlua':'[COLOR fuchsia]','fptplay':'[COLOR orange]','trangtiep':'[COLOR lime]','search':'[COLOR lime]','ifile':'[COLOR blue]','hdvietnam':'[COLOR red]','hdviet':'[COLOR darkorange]','xshare':'[COLOR blue]','subscene':'[COLOR green]','chiasenhac':'[COLOR orange]','phimmoi':'[COLOR ghostwhite]','megabox':'[COLOR orangered]','dangcaphd':'[COLOR yellow]','hayhaytv':'[COLOR tomato]','kenh88':'[COLOR cyan]','phimdata':'[COLOR FFDB4BDA]','phim47':'[COLOR springgreen]','phimsot':'[COLOR orangered]','hdonline':'[COLOR turquoise]','phim3s':'[COLOR lightgray]','kphim':'[COLOR lightgreen]','phimnhanh':'[COLOR chartreuse]','bilutv':'[COLOR hotpink]','pubvn':'[COLOR deepskyblue]','anime47':'[COLOR deepskyblue]','phim14':'[COLOR chartreuse]','taifile':'[COLOR cyan]','phim':'[COLOR orange]','tvhay':'[COLOR gold]','nhacdj':'[COLOR fuchsia]','phimbathu':'[COLOR lightgray]','taiphimhd':'[COLOR blue]','hdsieunhanh':'[COLOR orangered]','vuahd':'[COLOR tomato]','nhaccuatui':'[COLOR turquoise]','imovies':'[COLOR orange]','vietsubhd':'[COLOR cyan]','imax':'[COLOR chartreuse]','mphim':'[COLOR deepskyblue]','vtvgo':'[COLOR green]','youtube':'[COLOR red]','fcine':'[COLOR gold]','taiphimhdnet':'[COLOR teal]','vungtv':'[COLOR FF228B22]','biphim':'[COLOR FFBA55D3]','banhtv':'[COLOR FFF08080]','fsharefilm':'[COLOR FFF08080]','kenhphimbo':'[COLOR yellow]','anivn':'[COLOR FF8FAE22]','animetvn':'[COLOR FFD0C101]','htvonline':'[COLOR FF59B951]','gdrive':'[COLOR FF18AB67]'}
 
 #b.getcode();b.headers.get('Set-Cookie');b.geturl();res.info().dict
 #json.loads(urllib.urlopen("http://ip.jsontest.com/").read())
@@ -136,7 +136,7 @@ def ls(l):
 	except:L=l
 	return L
 
-def googleLinks(s):
+def googleLinks(s, file="file", type='label'):
 	def rsl(s):
 		arr = [
 			('HDG',''),
@@ -167,6 +167,14 @@ def googleLinks(s):
 					if items:
 						items = [(i,'1') for i in items]
 	
+	elif isinstance(s,dict):
+		try    : items = [(i.get(file),i.get(type)) for i in s]
+		except :
+			try    : items=[(i.get("file"),i.get("label")) for i in s]
+			except :
+				try     : items=[(i.get("file"),i.get("type")) for i in s]
+				except  : items = []
+		
 	elif isinstance(s,list):
 		items = s
 	
@@ -176,34 +184,133 @@ def googleLinks(s):
 	items   = [(i[0].replace('\\/','/'),rsl(i[1])) for i in items]
 	reverse = True if get_setting('resolut') == 'Max' else False
 	items   = sorted(items, key=lambda k: int(k[1]),reverse=reverse)
+	#xbmc.log(str(items))
 	
 	link=''
 	for href,label in items:
-		resp = xget(href)#;xbmc.log(href)
-		if resp and xget(resp.geturl()).getcode() == 200:
-			link = resp.geturl()
-			break
+		try:
+			link = xget(href).geturl()#;xbmc.log(href)
+			if link:
+				break
+		except:
+			pass
 	
 	return link
+#url='https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=vi&prettyPrint=false&source=gcsc&gss=.com&cx=009789051051551375973:rw4tz3oypqq&googlehost=www.google.com&callback=google.search.Search.apiary19044&q=Sword'
+def googleDrive(url):
+	def spreadsheets(url, id=""):
+		if url.startswith('http:') or url.startswith('https:'):
+			id  = xsearch('([\w|-]{28,})',url)
+			gid = xsearch('gid=(\d+)',url)
+			if gid:
+				b      = ""
+				sheets = [gid]
+				label  = "|Google Spreadsheets"
+				
+			else:
+				b = xread('https://docs.google.com/spreadsheets/d/'+id)
+				label  = xsearch('<title>(.+?)</title>',b)+"|Google Spreadsheets"
+				sheets = list(set(re.findall('"(\d+)"',xsearch('(\{structure.+?\}\});',b))))
 
-def googleDrive(id):
-	url = 'https://drive.google.com/'
-	res = xget('%suc?id=%s'%(url,id), data = 'X-Json-Requested=true')
-	if res:
-		label = "Label In dict"
-		try:
-			j = json.loads(xsearch('(\{.+?\})',res.read()))
-		except:
-			j = {}
-	else:
-		b     = xread('%sopen?id=%s'%(url,id))
-		label = xsearch('<title>(.+?)</title>',b)
-		try:
-			s = json.loads(xsearch("'(\[\[\[.+?)'",b).decode('string_escape'))[0]
-			j = [(i[0],i[2],i[3],i[13]) for i in s]
-		except:
+		else:
+			b      = url
+			label  = xsearch('<title>(.+?)</title>',b)+"|Google Spreadsheets"
+			sheets = list(set(re.findall('"(\d+)"',xsearch('(\{structure.+?\}\});',b))))
+		
+		#xbmc.log(str(sheets))
+		if not sheets:
+			label = ""
+			j     = []
+		elif len(sheets) > 1:
+			sheetsName = re.findall('sheet-tab-caption">([^<]+?)</div>',b)
+			try:
+				j = {"ids":[(sheets[i],u2s(sheetsName[i])) for i in range(len(sheets))]}
+			except:
+				j = {"ids":[(sheets[i],sheets[i]) for i in range(len(sheets))]}
+		else:
+			url = "https://docs.google.com/spreadsheets/d/%s/gviz/tq?gid=%s&headers=1&tq=%s"
+			url = url % (id, sheets[0], "select%20A%2CB%2CC")
+			b   = xread(url)
+			try:
+				rows = json.loads(xsearch('\((\{.+?\})\);',b)).get("table",{}).get("rows",[])
+			except:
+				rows = []
+			
 			j = []
-	return label, j
+			for row in rows:
+				detail = row.get("c",[])
+				try:
+					title = detail[0].get("v","")
+					link  = detail[1].get("v","")
+					img   = detail[2].get("v","")
+					if title and link:
+						j.append((title, link, img))
+				except : pass
+
+		return label, j
+	
+	if "goo.gl" in url or len(url) < 10:
+		s = xget('http://goo.gl/' + xsearch('(\w{6,10})',url))
+		if s:
+			url = s.geturl()
+		
+	id = xsearch('([\w|-]{28,})',url)
+	if not url.startswith('http:') and not url.startswith('https:') or "spreadsheets" not in url:
+		href = 'https://drive.google.com/'
+		res = xget('%suc?id=%s'%(href,id), data = 'X-Json-Requested=true')
+		if res:
+			cookie=res.headers.get('Set-Cookie')
+			label = "Label In dict"
+			try:
+				j = json.loads(xsearch('(\{.+?\})',res.read()))
+			except:
+				j = {}
+		else:
+			b     = xread('%sopen?id=%s'%(href,id))
+			label = xsearch('<title>(.+?)</title>',b)
+			cookie = ""
+			try:
+				s = json.loads(xsearch("'(\[\[\[.+?)'",b).decode('string_escape'))[0]
+				j = [(i[0],i[2],i[3],i[13]) for i in s]
+				label += "|Google Drive"
+			except:
+				j = []
+		
+		if not j and "drive." not in url:
+			label, j = spreadsheets(b, id)
+	
+	else:#"spreadsheets/" in url
+		label, j = spreadsheets(url)
+		cookie = ""
+	return label, j, cookie
+
+def googleDriveLink(id):
+	link   = 'https://docs.google.com/get_video_info?docid='+id
+	b      = xget(link)#;xbmc.log(link+' '+b.cookiestring)
+	res={'36': 240, '38': 3072, '17': 144, '22': 720, '46': 1080, '18': 360, '44': 480, '45': 720, '37': 1080, '43': 360, '35': 480, '34': 360, '5': 240, '6': 270}
+	try:
+		cookie = b.headers.get('Set-Cookie')
+		s       = dict(urllib2.urlparse.parse_qsl(b.read())).get('fmt_stream_map')
+		items   = [(i.split('|')[1],i.split('|')[0]) for i in s.split(',')]
+		items   = [(i[0],res.get(i[1],0)) for i in items]
+		reverse = True if get_setting('resolut')=='Max' else False
+		items   = sorted(items, key=lambda k: int(k[1]) if k[1] else 0,reverse=reverse)
+	except:
+		items   = []
+	
+	link = ""
+	if items:
+		xbmc.log(str(items))
+		hd_={'User-Agent':'Mozilla/5.0','Cookie':cookie}
+		for href,label in items:
+			resp = xget(href,hd_)#;xbmc.log(str(label)+' '+href)
+			if resp:
+				link = resp.geturl()
+				break
+		if link:
+			import urllib
+			link += '|User-Agent=Mozilla/5.0&Cookie='+urllib.quote(cookie)
+	return link
 
 def xrw(fn,s='',a='w'):
 	if len(fn) < 20:fn=os.path.join(xsharefolder,fn)

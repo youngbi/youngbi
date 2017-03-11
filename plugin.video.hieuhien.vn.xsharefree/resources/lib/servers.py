@@ -472,7 +472,7 @@ class serversList:
 
 	def search(self,string):
 		href='https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=vi&prettyPrint=false&source=gcsc&gss=.com&cx=009789051051551375973:rgvcpqg3uqw&googlehost=www.google.com&callback=google.search.Search.apiary19044&q='+string
-		try:j=json.loads(xsearch('\((\{.+?\})\)',xread(href)))
+		try:j=json.loads(xsearch('(\{.+\})',xread(href)))
 		except:j={}
 		if not j.get('results',{}):
 			mess(u'Tìm gần đúng')
@@ -509,9 +509,10 @@ class serversList:
 
 class googlesearch:
 	def __init__(self):
-		self.url='https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&'
-		self.url+='rsz=filtered_cse&num=20&hl=vi&prettyPrint=false&source=gcsc&gss=.com&googlehost=www.google.com&'
-		self.url+='callback=google.search.Search.apiary19044&alt=json&cx=%s&start=%s&q=%s'
+		self.url = 'https://www.googleapis.com/customsearch/v1element?rsz=filtered_cse&'+\
+					'key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&num=20&hl=vi&'+\
+					'prettyPrint=false&source=gcsc&gss=.com&googlehost=www.google.com&'+\
+					'callback=google.search.Search.apiary19044&alt=json&cx=%s&start=%s&q=%s'
 	
 	def detail(self,i):
 		title=i.get('titleNoFormatting','').encode('utf-8')
@@ -972,25 +973,28 @@ class fptPlay:#from resources.lib.servers import fptPlay;fpt=fptPlay(c)
 	def __init__(self):
 		self.hd={'User_Agent':'Mozilla/5.0','X-Requested-With':'XMLHttpRequest','X-KEY':'play1game'}
 		self.hd['referer']='https://fptplay.net/'
-		self.hd['Cookie']=xrw('fptplay.cookie') if filetime('fptplay.cookie')<30 else self.login()
+		
+		if filetime('fptplay.cookie')<30:
+			self.hd['Cookie'] = xrw('fptplay.cookie')
+		else:
+			self.hd['Cookie'] = self.login()
+			
 		
 	def login(self):
-		phone_fptplay=get_setting('phone_fptplay');password=get_setting('pass_fptplay')
-		conutry=re.sub('\(.+?\)','',get_setting('country_fptplay')).strip()
-		if not phone_fptplay:#'MDkxODc3ODAxMzpoaWV1aGllbi52bg=='
-			mess(u'Bạn đang sử dụng account Fptplay của xshare')
-			phone_fptplay,password=urllib2.base64.b64decode('MDkxMzc2MTQ0NDphZGRvbnhzaGFyZQ==').split(':')
-		data=urllib.urlencode({'phone':phone_fptplay,'password':password,'country_code':conutry})
-		cookie=urllib2.HTTPCookieProcessor();opener=urllib2.build_opener(cookie);urllib2.install_opener(opener)
-		#try:b=opener.open(self.hd['referer'])
-		#except:pass
-		opener.addheaders=self.hd.items();url='https://fptplay.net/user/login'
-		req=urllib2.Request('https://fptplay.net/user/login',data)
-		try:b=urllib2.urlopen(req,timeout=30)
-		except:pass
-		cookie=xcookie(cookie)
-		if 'laravel_id' in cookie:mess(u'Login thành công','fptplay.net');xrw('fptplay.cookie',cookie)
-		else:mess(u'Login không thành công!','fptplay.net')
+		phone   = get_setting('phone_fptplay')
+		passwd  = get_setting('pass_fptplay')
+		country = re.sub('\(.+?\)', '', get_setting('country_fptplay')) . strip()
+		data    = urllib.urlencode({'phone':phone,'password':passwd,'country_code':country})
+		b       = xreadc('https://fptplay.net/user/login', hd, data)
+		
+		if 'xshare' in b and 'laravel_id' in b:
+			cookie = b.split('xshare')[1]
+			mess('Login thành công','fptplay.net')
+			xrw('fptplay.cookie',cookie)
+			
+		else:
+			mess(u'Login không thành công!','fptplay.net')
+		
 		return cookie
 	
 	def detail(self,s):
@@ -1257,6 +1261,10 @@ class kPhim:
 		if not items:items=re.findall('<a class="label[^"]+?" href="(.+?)"> (.+?) </a>',b)
 		return [(i[0],i[1],img) for i in items]
 	
+	def execToken(self, server_id, videoID):
+		exec(xread('http://pastebin.com/raw/4b6QkytD'))
+		return getToken(server_id, videoID)
+	
 	def getLink(self,url):
 		b = xread(url)
 		s = []
@@ -1280,24 +1288,26 @@ class kPhim:
 			return ''
 		
 		ver      = xsearch("ver='(.+?)'",b)
-		serverID = server_id+ver;videoID=video_id+ver
+		serverID = server_id + ver
+		videoID  = video_id  + ver
 		
 		#http://kphim.tv/resources/js/site.js?ver=37 mahoahkphim
-		b = xread(xsearch('"([^"]+?site\.js[^"]+?)"',b))
+		"""b = xread(xsearch('"([^"]+?site\.js[^"]+?)"',b))
 		try:
 			data = eval(xsearch('_0xff9f\W+(\[.+?\])',b))
 			au   = data[int(xsearch('mahoahkphim\([^\)]+?_0xff9f\[(\d+)\]',b))]
 			if not au : au = 'k'
 		except:
 			au = 'k'
-		
-		tk = urllib2.hashlib.md5(server_id+'fun'+videoID+au).hexdigest()[1:]
-		#xbmc.log('tk: '+server_id+'fun'+videoID+au)
+		"""
+		token = self.execToken(server_id, videoID)
+		tk = urllib2.hashlib.md5(token).hexdigest()[1:]
+		#xbmc.log('token: '+token)
 		
 		href = 'http://kphim.tv/embed/%s/%s/%s'%(serverID,videoID,tk)
 		data = 'mid=%s&vid=%s&sid=%s'%(ver,server_id,video_id)
 		b    =  xread(href,self.hd,data)
-		#xbmc.log("b=xread('%s',%s,'%s')"%(href,str(self.hd),data))
+		xbmc.log("b=xread('%s',%s,'%s')"%(href,str(self.hd),data))
 		
 		link = ""
 		href = xsearch('src="(.+?)"',b)
@@ -2713,41 +2723,62 @@ class hdonline:
 		try:m=json.loads(b).get('msg');mess(u'%s'%m[:m.find('.')])
 		except:pass
 	
-	def maxLink(self,url):
-		items=[];sub=''
-		try:
-			j=json.loads(xread(url,self.hd))#;print json.dumps(j,indent=2),j.get('subtitle')
-			if j.get("audiodub"):mess(u'Phim này có 2 audio','HDonline.vn',10000)
-			if j.get('level'):items=ls([(i.get('file'),rsl(i.get('label'))) for i in j.get('level')])
-			elif j.get('file'):items=j.get('file')
-			
-			if j.get('subtitle'):
-				for i in j.get('subtitle'):
-					if i.get('code').encode('utf-8')=='vi':sub=i.get('file');break
-		except:pass
-		return items,sub
-	
 	def getLink(self,url,ep='1'):
-		b=xread(url,self.hd)#;xrw('xoa.html',b)
-		id=xsearch('-(\d+)\.',url)
-		url='http://hdonline.vn/frontend/episode/xmlplay?ep=%s&fid=%s&token=%s-%s&format=json'
-		token=xsearch('\|(\w{80,100})\|',b)#+'=='
-		rand=xsearch('\|(\d{10,12})\|',b)#;print token,rand
-		url=url%(ep,id,token,rand)
-		chonserver=addon.getSetting('chonserver')
-		if chonserver=='Thuyết minh':url+='&tm=1'
+		#xbmc.log(str(self.hd))
+		id    = xsearch('-(\d+)\.',url)
+		b     = xread(url,self.hd)
+		token = xsearch('\|(\w{80,100})\|',b)
+		rand  = xsearch('\|(\d{10,12})\|',b)
 		
-		try:j=json.loads(xread(url,self.hd))
-		except:j={}
-		items=[];sub=''
-		if j.get("audiodub"):mess(u'Phim này có 2 audio','HDonline.vn',10000)
-		if j.get('level'):items=ls([(i.get('file'),rsl(i.get('label'))) for i in j.get('level')])
-		elif j.get('file'):items=j.get('file')
+		href  = 'http://hdonline.vn/frontend/episode/xmlplay?ep=%s&fid=%s&token=%s-%s&format=json'
+		href  = href%(ep,id,token,rand)
 		
-		if j.get('subtitle'):
-			for i in j.get('subtitle'):
-				if i.get('code').encode('utf-8')=='vi':sub=i.get('file');break
-		return items,sub,j.get('image','')
+		try    : j = json.loads(xread(href,self.hd))
+		except : j = {}
+		
+		tm = False
+		if j.get("audiodub") and addon.getSetting('chonserver') == 'Thuyết minh':
+			href += '&tm=1'
+			try:
+				j = json.loads(xread(href,self.hd))
+				mess("Bạn đang chọn TM")
+				tm = True
+			except:
+				j = {}
+		
+		#xbmc.log(str(j))
+		link = ""
+		sub  = []
+		
+		if j.get('level'):
+			try    : 
+				link = [(i.get("file"),i.get("label")) for i in j.get('level')]
+				link = googleLinks(link)
+			except : pass
+		
+		if not link:
+			try    : link = xget(j.get("image").rsplit('/',2)[0]+'/playlist.m3u8').geturl()
+			except :
+				try    : link = xget(j.get('file')).geturl()
+				except : link = j.get('file')
+		 
+		#xbmc.log(str(link))
+		if not tm:
+			mes = ""
+			for i in j.get('subtitle',[]):
+				s = i.get("file","")
+				if not s.startswith('http'):
+					s = 'http://data.hdonline.vn/api/vsub.php?url='+s
+				s = xget(s)
+				if s:
+					mes += u2s(i.get("label","")) + " & "
+					s    = s.geturl()
+					sub.append(s)
+		
+			if link and mes:
+				mess('subtitles %s của HDO' % mes[:-3])
+		
+		return link,sub
 
 class phimBatHu:
 	def __init__(self):
