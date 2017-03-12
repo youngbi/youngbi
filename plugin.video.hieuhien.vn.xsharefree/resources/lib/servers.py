@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+__author__ = 'thaitni'
 
 import urllib,urllib2,urlfetch, re, os, json
 from utils import *
@@ -625,88 +626,120 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 	
 	def get_maxlink_free(self,url):
 		self.logout()
-		d=getXshareData().get('fshare',[])
-		link='';loop=-2;l=len(d);j=[];linkfree=''
+		d        = getXshareData().get('fshare',[])
+		link     = ''
+		loop     = -2
+		l        = len(d)
+		j        = []
+		linkfree = ''
 		while (not link or link=='fail') and loop < l:
-			if loop<0:
-				loop+=1
-				n,s='https://www.facebook.com/xshare.vn','Xshare'
-				if loop==-1:self.hd['Cookie']='session_id='+xrw('fshare.cookie')
+			if loop < 0:
+				loop += 1
+				n = 'https://www.facebook.com/xshare.vn'
+				s = 'Xshare'
+				if loop == -1:
+					self.hd['Cookie'] = 'session_id=' + xrw('fshare.cookie')
 				else:
-					i=xread('https://www.fshare.vn/folder/YZPA4C7MABDP')
-					i=xsearch('<title>Fshare - (.+?)</title>',i)
-					self.hd['Cookie']='session_id='+i
-					if self.hd['Cookie']=='session_id='+xrw('fshare.cookie'):continue
-					else:xrw('fshare.cookie',i)
+					i = xread('https://www.fshare.vn/folder/YZPA4C7MABDP')
+					i = xsearch('<title>Fshare - (.+?)</title>', i)
+					self.hd['Cookie'] = 'session_id=' + i
+					
+					if self.hd['Cookie'] == 'session_id=' + xrw('fshare.cookie'):
+						continue
+					else:
+						xrw('fshare.cookie', i)
 			else:
-				i=100
+				i = 100
 				while i not in j:
-					i=urllib2.random.randint(0,l-1)
-					if i not in j:j.append(i)
-					else:i=100
-				loop+=1
+					i = urllib2.random.randint(0,l-1)
+					if i not in j:
+						j.append(i)
+					else:
+						i = 100
+				loop += 1
 				
-				self.hd['Cookie']=''
-				u,p,n,s=d[i]
+				self.hd['Cookie'] = ''
+				u,p,n,s  = d[i]
 				response = self.fetch('https://www.fshare.vn/login')
-				if not response or response.status!=200:continue
+				if not response or response.status != 200:
+					continue
 				else:
-					fs_csrf=xsearch('value="(.+?)" name="fs_csrf"',response.body)
-					data={"LoginForm[email]":u,"LoginForm[password]":p,"fs_csrf":fs_csrf}
-					self.hd['Cookie']=response.cookiestring
-					response = self.fetch('https://www.fshare.vn/login',data)
-					if response and response.status==302:
-						self.hd['Cookie']=response.cookiestring;self.logged='success'
-					else:continue
+					self.hd['Cookie'] = response.cookiestring
+					fs_csrf  = xsearch('value="(.+?)" name="fs_csrf"',response.body)
+					data     = {"LoginForm[email]":u,"LoginForm[password]":p,"fs_csrf":fs_csrf}
+
+					response = self.fetch('https://www.fshare.vn/login', data)
+					if response and response.status == 302:
+						self.hd['Cookie'] = response.cookiestring
+						self.logged       = 'success'
+					else:
+						continue
 			
-			b=xget(url,self.hd)
+			b = xget(url,self.hd)
 			if not b:
 				self.logout()
 				continue
 			
-			link=b.geturl()
-			if link==url and loop>0:
-				b=b.read()
-				free=True if re.search('<i class="fa fa-star">',b) else False
-				fs_csrf=xsearch('value="(.+?)" name="fs_csrf"',b)
-				downloadForm=xsearch('id="DownloadForm_linkcode" type="hidden" value="(.+?)"',b)
-				data={'fs_csrf':fs_csrf,'DownloadForm[linkcode]':downloadForm,'ajax':'download-form'}
-				if re.search('class="fa fa-lock"',b):
-					data['DownloadForm[pwd]']=get_input(u'Hãy nhập: Mật khẩu tập tin')
-				b=xread('https://www.fshare.vn/download/get',self.hd,urllib.urlencode(data))
+			link = b.geturl()
+			if link == url and loop > 0:
+				b            = b.read()
+				free         = True if re.search('<i class="fa fa-star">',b) else False
+				fs_csrf      = xsearch('value="(.+?)" name="fs_csrf"',b)
+				downloadForm = xsearch('id="DownloadForm_linkcode" type="hidden" value="(.+?)"',b)
+				data = {
+					'fs_csrf'                : fs_csrf,
+					'DownloadForm[linkcode]' : downloadForm,
+					'ajax'                   : 'download-form'
+				}
+				
+				if re.search('class="fa fa-lock"', b):
+					data['DownloadForm[pwd]'] = get_input(u'Hãy nhập: Mật khẩu tập tin')
+				
+				b = xread('https://www.fshare.vn/download/get', self.hd, urllib.urlencode(data))
 				try:
-					link=json.loads(b).get('url','')
-					if free:linkfree=link;link=''
-				except:link='fail'
-			elif link==url:link=''
+					link = json.loads(b).get('url','')
+					if free:
+						linkfree = link
+						link     = ''
+				except:
+					link = 'fail'
+				
+			elif link == url:
+				link = ''
 				
 			#self.logout()
-			if link and link!='fail':
-				if self.user!='xshare@thanhthai.net':
-					u=self.hd['Cookie'].split('=')[1]
+			if link and link != 'fail':
+				if self.user != 'xshare@thanhthai.net':
+					u = self.hd['Cookie'].split('=')[1]
 					xrw('fshare.cookie',u)
-					self.hd['Cookie']=''
+					self.hd['Cookie'] = ''
 					self.login('xshare@thanhthai.net','thaitni@')
-					data='{"token":"%s","new_name":"%s","file":"%s"}'
-					data=data%(self.get_token(),u,'YZPA4C7MABDP')
-					response=self.fetch('https://www.fshare.vn/api/fileops/rename',data)
+					data     = '{"token":"%s","new_name":"%s","file":"%s"}'
+					data     = data % (self.get_token(),u,'YZPA4C7MABDP')
+					response = self.fetch('https://www.fshare.vn/api/fileops/rename', data)
 					self.logout()
-				mess('[COLOR cyan]Thanks to %s[/COLOR]'%n,s)
+				mess('[COLOR cyan]Thanks to %s[/COLOR]'%n, s)
 		
-		if not link or link=='fail':
-			data='url_download=https%3A%2F%2Fwww.fshare.vn%2Ffile%2F'+url.rsplit('/',1)[1]
-			link='';loop=0;i='get link from aku.vn'
+		if not link or link == 'fail':
+			data = 'url_download=https%3A%2F%2Fwww.fshare.vn%2Ffile%2F'+url.rsplit('/',1)[1]
+			link = ''
+			loop = 0
+			i    = 'get link from aku.vn'
+			
 			while not link and loop < 2:
-				b=xread('http://www.aku.vn/linksvip',data=data)
-				link=xsearch('<a href=([^<]+?) target=_blank',b)
-				if not link:continue
-				elif '/account/' in link:link=''
-				else:mess('[COLOR cyan]Thanks to Nhat Vo Van[/COLOR]',i)
+				b    = xread('http://www.aku.vn/linksvip', data=data)
+				link = xsearch('<a href=([^<]+?) target=_blank', b)
+				if not link:
+					continue
+				elif '/account/' in link:
+					link = ''
+				else:
+					mess('[COLOR cyan]Thanks to Nhat Vo Van[/COLOR]', i)
 				loop+=1
 		
 		if (not link or link=='fail') and linkfree:
 			mess(u'Sorry. Xshare chỉ get được link có băng thông giới hạn')
-			link=linkfree
+			link = linkfree
 		return link
 	
 	def get_maxlink(self,url):
@@ -1262,7 +1295,7 @@ class kPhim:
 		return [(i[0],i[1],img) for i in items]
 	
 	def execToken(self, server_id, videoID):
-		exec(xread('http://pastebin.com/raw/4b6QkytD'))
+		exec(xread('http://pastebin.com/raw/4b6QkytD'))#;xbmc.log(getToken(server_id, videoID))
 		return getToken(server_id, videoID)
 	
 	def getLink(self,url):
@@ -1302,10 +1335,11 @@ class kPhim:
 		"""
 		token = self.execToken(server_id, videoID)
 		tk = urllib2.hashlib.md5(token).hexdigest()[1:]
-		#xbmc.log('token: '+token)
+		xbmc.log('token: '+token)
 		
 		href = 'http://kphim.tv/embed/%s/%s/%s'%(serverID,videoID,tk)
 		data = 'mid=%s&vid=%s&sid=%s'%(ver,server_id,video_id)
+		self.hd['X-Requested-With'] = 'XMLHttpRequest'
 		b    =  xread(href,self.hd,data)
 		xbmc.log("b=xread('%s',%s,'%s')"%(href,str(self.hd),data))
 		

@@ -20,7 +20,9 @@
 		<setting id="taiphimhdnet_user" type="text" label="User name [COLOR FF2976BB]taiphimhd.net[/COLOR]" default="hieuhienvn"/>
 		<setting id="taiphimhdnet_pass" type="text" option="hidden" label="Password [COLOR FF2976BB]taiphimhd.net[/COLOR]" default="xindungdoipass"/>
 		<setting id="chonserver" type="select" label="Tự động Chọn server trong PhimBatHu.com/Fcine.net/hdonline.vn" values="Thuyết minh|VietSub|Không" default="Thuyết minh" />
-	
+		<setting id="gdriveID" type="text" label="[COLOR FF18AB67]ID/link của Google spreadsheets/Drive[/COLOR]" default="Hãy set ID của bạn"/>
+		<setting id="gdrivePlay" type="bool" label="[COLOR FF18AB67]Play Gdrive bằng link Dơnload[/COLOR]" default="false"/>
+		
 		<setting id="nct_u" type="text" label="User name [COLOR turquoise]nhaccuatui.com[/COLOR]"/>
 		<setting id="nct_p" type="text" option="hidden" label="Password [COLOR turquoise]nhaccuatui.com[/COLOR]"/>
 		<setting id="csn_u" type="text" label="User name [COLOR green]chiasenhac.com[/COLOR]"/>
@@ -32,6 +34,7 @@
 		<setting id="chonserver" type="select" label="Tự động Chọn server trong PhimBatHu.com/Fcine.net/hdonline.vn" values="Thuyết minh|VietSub|Không" default="Không" />
 	</category>
 	<category label="Thông tin khác">
+		<setting id="tvhaytk" type="text" label="TVHAY Token" default=""/>
 		<setting id="sodonghienthi" type="labelenum" label="[COLOR blue]Số dòng hiển thị cho 1 trang[/COLOR]" values="20|30|50" default="30"/>
 		<setting id="cookie" type="text" label="cookiestring" default="" visible="false"/>
 		<setting id="listIPTV" type="text" label='[COLOR cyan]List IPTV trên [COLOR orange]textuploader.com[/COLOR] của người dùng[/COLOR] (dấu "," giữa các list)' default="d5x8a,58hfm,http://pastebin.com/raw/fBQTPU2v,https://friendpaste.com/2ze8Z4V9aDywcVqs9NKkUx/raw"/>

@@ -18,7 +18,7 @@ xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 from resources.lib.utils import mess,xsearch,xread,xreadc,xrw,s2c,vnu,filetime,ls,rsl,googleItems,xselect,xget,media_ext,color
 
 icon={}
-for hd in ['xshare','4share','downsub','favorite','fptplay','fshare','gsearch','hdvietnam','icon','id','ifiletv','ifile','isearch','khophim','maxspeed','movie','msearch','myfolder','myfshare','phimfshare','serverphimkhac','setting','tenlua','vaphim','hdviet','hayhaytv','chiasenhac','kenh88','phimdata','phim47','phimsot','hdonline','kphim','phimnhanh','bilutv','anime47','phim14','taifile','phim','tvhay','nhacdj','phimbathu','taiphimhd','hdsieunhanh','phimmoi','nhaccuatui','imovies','vietsubhd','imax','mphim','vtvgo','youtube','fcine','taiphimhdnet','vungtv','banhtv','biphim','fsharefilm','kenhphimbo','anivn','animetvn']:
+for hd in ['xshare','4share','downsub','favorite','fptplay','fshare','gsearch','hdvietnam','icon','id','ifiletv','ifile','isearch','khophim','maxspeed','movie','msearch','myfolder','myfshare','phimfshare','serverphimkhac','setting','tenlua','vaphim','hdviet','hayhaytv','chiasenhac','kenh88','phimdata','phim47','phimsot','hdonline','kphim','phimnhanh','bilutv','anime47','phim14','taifile','phim','tvhay','nhacdj','phimbathu','taiphimhd','hdsieunhanh','phimmoi','nhaccuatui','imovies','vietsubhd','imax','mphim','vtvgo','youtube','fcine','taiphimhdnet','vungtv','banhtv','biphim','fsharefilm','kenhphimbo','anivn','animetvn','htvonline','gdrive']:
 	icon.setdefault(hd,os.path.join(iconpath,'%s.png'%hd))
 hd={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:41.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/600.1.4 Gecko/20100101 Firefox/41.0'}
 
@@ -1075,7 +1075,9 @@ def xshare_download(response,size,filename,ext):
 	tempfile=joinpath(temp_path,'tempfile.%s'%ext)
 	
 	if size<1024**2:#sub file
-		if myaddon.getSetting('autodel_sub')=='true':delete_folder(subsfolder)
+		if myaddon.getSetting('autodel_sub')=='true':
+			delete_folder(subsfolder)
+		
 		content=makerequest(tempfile,response.body,"wb")
 	elif size<2*1024**3:
 		if size>1024**3:size_str='%d.%d GB'%(size/(1024**3),(size%(1024**3))/10**7)
@@ -1790,6 +1792,11 @@ def id_2url(name,url,img,mode,page,query):
 			else:return False
 		
 		kq=''
+		if "goo.gl" in idf or len(idf) < 10:
+			s = xget('http://goo.gl/' + xsearch('(\w{6,10})',idf))
+			if s:
+				idf = s.geturl()
+			
 		if 'subscene.com' in idf:
 			return subscene(name,''.join(s for s in idf.split()),'subscene.com')
 		
@@ -2303,6 +2310,9 @@ def google_trans(s):
 	return result.replace('Xshare','xshare').split('xshare')
 
 def subscene(name,href,query):
+	if myaddon.getSetting('autodel_sub')=='true':
+		delete_folder(subsfolder)
+	
 	if 'phudeviet.org' in href:#http://phudeviet.org/film/Gotham-Season-2/7396.html
 		b=xread(href)
 		label=xsearch('<span class="title1".+?>([^>]+?)</p>',b)
@@ -3081,7 +3091,9 @@ def dangcaphd(name,url,img,mode,page,query):
 		return re.findall('"(\d{,3})" _link="(.+?)" _sub="(.*?)"',body)
 	
 	def dangcaphd_download_sub(url):
-		if myaddon.getSetting('autodel_sub')=='true':delete_files(subsfolder)
+		if myaddon.getSetting('autodel_sub')=='true':
+			delete_files(subsfolder)
+		
 		subfullpathfilename=joinpath(subsfolder,'vie.%s'%os.path.basename(url));sub=''
 		if os.path.splitext(subfullpathfilename)[1] in [".srt", ".sub", ".txt", ".smi", ".ssa", ".ass"]:
 			if makerequest(subfullpathfilename,make_request(url),'wb'):sub=subfullpathfilename
@@ -4795,6 +4807,8 @@ def phim47(name,url,img,fanart,mode,page,query,text=''):
 		link,sub=p47.getLink(url)
 		if link and 'youtube.com' not in link:
 			if sub:
+				if myaddon.getSetting('autodel_sub')=='true':
+					delete_folder(subsfolder)
 				s=xread(sub)
 				sub=joinpath(subsfolder,'phim47-Vie.sub')
 				makerequest(sub,s,'wb')
@@ -9435,6 +9449,9 @@ def fcine(name,url,img,fanart,mode,page,query):
 			
 	elif 'download' in query:
 		mess('Initializing Downloader ...')
+		if myaddon.getSetting('autodel_sub')=='true':
+			delete_folder(subsfolder)
+		
 		try:
 			tempfn = os.path.join(tempfolder,'sub')
 			if 'http://fcine.net' in url:
@@ -9554,6 +9571,9 @@ def taiphimhdnet(name,url,img,fanart,mode,page,query):
 		from resources.lib.servers import taiphimhdnet;hdnet=taiphimhdnet()
 		b=hdnet.download(url)
 		if len(b)<500*1024:
+			if myaddon.getSetting('autodel_sub')=='true':
+				delete_folder(subsfolder)
+			
 			try:
 				xrw(joinpath(subsfolder,'Vie.%s'%url.rsplit('/',1)[1]),b.replace('\r\n', '\n'))
 				mess(u'Đã download sub vào xshare subfolder')
@@ -9833,7 +9853,7 @@ def banhtv(name,url,img,fanart,mode,page,query,text):
 			dir   = True
 			q     = 'eps'
 			title = namecolor(title,c)
-		s
+		
 		addir_info(title,fixUrl(href),img,img,mode,1,q,dir)
 		
 	def banhtvPage(url):
@@ -10504,57 +10524,70 @@ def vnzoom(name,url,img,fanart,mode,page,query):
 					addir_info(title,href,img,'',mode,1)
 
 try:#Container.SetViewMode(num) addir:name,link,img,fanart,mode,page,query,isFolder
-	myfolder=s2u(myaddon.getSetting('thumuccucbo'))
-	if not os.path.exists(myfolder):myfolder=joinpath(datapath,'myfolder')
-except:myfolder=joinpath(datapath,'myfolder')
-thumucrieng=''.join(s for s in myaddon.getSetting('thumucrieng').split()).upper()
-if not thumucrieng or len(thumucrieng)<10:thumucrieng='RDA4FHXVE2UU'
-thumucrieng='https://www.fshare.vn/folder/'+thumucrieng
-subsfolder=myaddon.getSetting('subsfolder')
-if not subsfolder:subsfolder=joinpath(addonDataPath,'subs')
-xsharefolder=os.path.join(addonDataPath,'xshare')
+	myfolder = s2u(myaddon.getSetting('thumuccucbo'))
+	if not os.path.exists(myfolder):
+		myfolder = joinpath(datapath,'myfolder')
+	
+except:
+	myfolder = joinpath(datapath,'myfolder')
+
+thumucrieng = ''.join(s for s in myaddon.getSetting('thumucrieng').split()).upper()
+if not thumucrieng or len(thumucrieng)<10:
+	thumucrieng = 'RDA4FHXVE2UU'
+thumucrieng = 'https://www.fshare.vn/folder/'+thumucrieng
+
+subsfolder  = myaddon.getSetting('subsfolder')
+if not subsfolder:
+	subsfolder = joinpath(addonDataPath,'subs')
+
+xsharefolder = os.path.join(addonDataPath,'xshare')
 sys.path.append(os.path.join(addonDataPath,'xsharelib'))
 
-params=get_params();mode=page=0;temp=[];url=name=fanart=img=date=query=action=end=text=''
-try:url=urllib.unquote_plus(params["url"])
-except:pass#http://www.dailymotion.com/video/k2Z6NnXtz8r2PUgJfMA 227414
-try:name=urllib.unquote_plus(params["name"])
-except:pass
-try:img=urllib.unquote_plus(params["img"])
-except:pass#b.replace('\r\n', '\n')
-try:fanart=urllib.unquote_plus(params["fanart"])
-except:pass#xbmcsetResolvedUrl(link,sub)
-try:mode=int(params["mode"])
-except:pass#xbmc.executebuiltin("Container.Refresh")
-try:page=int(params["page"])
-except:pass#xbmc.executebuiltin("Container.Update")
-try:query=urllib.unquote_plus(params["query"])
-except:pass#urllib.unquote
-try:text=urllib.unquote_plus(params["text"])
-except:pass#urllib.unquote
+params = get_params()
+mode   = page = 0
+temp   = []
+url    = name = fanart = img = date = query = action = end = text = ''
 
-#dialog = xbmcgui.Dialog()
+try    : url    = urllib.unquote_plus(params["url"])
+except : pass#http://www.dailymotion.com/video/k2Z6NnXtz8r2PUgJfMA 227414
+try    : name   = urllib.unquote_plus(params["name"])
+except : pass
+try    : img    = urllib.unquote_plus(params["img"])
+except : pass#b.replace('\r\n', '\n')
+try    : fanart = urllib.unquote_plus(params["fanart"])
+except : pass#xbmcsetResolvedUrl(link,sub)
+try    : mode   = int(params["mode"])
+except : pass#xbmc.executebuiltin("Container.Refresh")
+try    : page   = int(params["page"])
+except : pass#xbmc.executebuiltin("Container.Update")
+try    : query  = urllib.unquote_plus(params["query"])
+except : pass#urllib.unquote
+try    : text   = urllib.unquote_plus(params["text"])
+except : pass#urllib.unquote
+
 #d = dialog.input('Enter secret code', type=xbmcgui.INPUT_ALPHANUM)
 log('========================================================================')
-log("Mode: %d"%mode)
-log("Name: %s"%name)
-log("URL: %s"%url[:200])
+log("Mode : %d"%mode)
+log("Name : %s"%name)
+log("URL  : %s"%url[:200])
 log("Image: %s"%img)
 log("Query: %s"%query)
-log("Page: %d"%page)
-log("Text: %s"%text)
-log('========================================================================')
+log("Page : %d"%page)
+log("Text : %s"%text)
+log('======================================*=================================')
 
-try:bakData=json.loads(xrw('sysmenu.dat'))
-except:bakData={}
-bakName=urllib2.hashlib.md5('%d%d%s%s%s'%(mode,page,query,name,url)).hexdigest()
-myList=bakData.get(bakName)
-if not myList:bakData[bakName]=[]
+try    : bakData = json.loads(xrw('sysmenu.dat'))
+except : bakData = {}
+
+bakName = urllib2.hashlib.md5('%d%d%s%s%s'%(mode,page,query,name,url)).hexdigest()
+myList  = bakData.get(bakName)
+if not myList:
+	bakData[bakName] = []
 
 if myList:
-	for name,url,img,fanart,mode,page,query,dir,menu in myList:
+	for name, url, img, fanart, mode, page, query, dir, menu in myList:
 		addir_info(u2s(name),url,img,fanart,mode,page,query,dir,menu=menu)
-elif name=='HideXshareMainMenuItem':hideMenuItem(page)
+elif name == 'HideXshareMainMenuItem' : hideMenuItem(page)
 elif not mode:#xbmc.executebuiltin("Dialog.Close(all, true)")
 	xsharelib=os.path.join(addonDataPath,'xsharelib')
 	folders=(addonDataPath,datapath,iconpath,myfolder,tempfolder,subsfolder,xsharefolder,xsharelib)
@@ -10572,76 +10605,77 @@ elif not mode:#xbmc.executebuiltin("Dialog.Close(all, true)")
 	if myaddon.getSetting('auto_update')=='true' and checkupdate('xshare_auto_update.dat',5,datapath):
 		makerequest(joinpath(datapath,"xshare_auto_update.dat"),'','w')
 		xshare_auto_update();delete_files(tempfolder)
-elif mode==1:end=vaphim(name,url,img,fanart,mode,page,query)
-elif mode==2:end=google_search(url,query,mode,page)
-elif mode==3:end=resolve_url(url,name=name)
-elif mode==4:vp_phimmoi()
-elif mode==5:vp_xemnhieu()
-elif mode==6:phim4share(name,url,img,fanart,mode,page,query)
-elif mode==7:end=fptplay(name,url,img,fanart,mode,page,query,text)
-elif mode==8:end=hdvietnam(name,url,img,fanart,mode,page,query)
-elif mode==9:make_mySearch(name,url,img,fanart,mode,query)
-elif mode==10:open_category(query)
-elif mode==11:make_myFshare(name,url,img,fanart,mode,query)
-elif mode==12:make_mylist(name,url,img,fanart,mode,query)
-elif mode==13:end=xshare_search(name,url,query,mode,page)
-elif mode==15:end=id_2url(name,url,img,mode,page,query)
-elif mode==16:end=play_maxspeed_link(url)
-elif mode==20:end=vp_update(auto=False)
-elif mode==22:hdviet(name,url,img,mode,page,query)
-elif mode==23:end=hayhaytv(name,url,img,fanart,mode,page,query)
-elif mode==24:phimmoi(name,url,img,mode,page,query)
-elif mode==25:end=fcine(name,url,img,fanart,mode,page,query)
-elif mode==26:kenh88(name,url,img,fanart,mode,page,query,text)
-elif mode==27:phimdata(name,url,img,mode,page,query)
-elif mode==28:phim47(name,url,img,fanart,mode,page,query,text)
-elif mode==29:phimsot(name,url,img,mode,page,query)
-elif mode==30:end=hdonline(name,url,img,fanart,mode,page,query,bakName,bakData)
-elif mode==31:end=ifile_update()
-elif mode==33:kphim(name,url,img,mode,page,query)
-elif mode==34:end=taiphimhdnet(name,url,img,fanart,mode,page,query)
-elif mode==35:phimnhanh(name,url,img,mode,page,query)
-elif mode==36:bilutv(name,url,img,mode,page,query)
-elif mode==37:anime47(name,url,img,mode,page,query)
-elif mode==38:doc_Trang4share(url)#38
-elif mode==39:phim14(name,url,img,fanart,mode,page,query,text)
-elif mode==40:phimmedia(name,url,img,mode,page,query)
-elif mode==41:tvhay(name,url,img,mode,page,query)
-elif mode==42:nhacdj(name,url,img,fanart,mode,page,query)
-elif mode==43:end=phimbathu(name,url,img,fanart,mode,page,query)
-elif mode==44:hdsieunhanh(name,url,img,fanart,mode,page,query)
-elif mode==45:chiasenhac(name,url,img,fanart,mode,page,query)
-elif mode==46:nhaccuatui(name,url,img,fanart,mode,page,query)
-elif mode==47:daklak47(name,url,img)
-elif mode==48:imovies(name,url,img,fanart,mode,page,query)
-elif mode==49:imax(name,url,img,fanart,mode,page,query)
-elif mode==50:htvonline(name,url,img,fanart,mode,page,query)
-elif mode==51:music(name,url,img,fanart,mode,page,query)
-elif mode==52:myNAS(name,url,img,fanart,mode,page,query)
-elif mode==53:taiphimhd(name,url,img,fanart,mode,page,query)
-elif mode==54:vietsubhd(name,url,img,fanart,mode,page,query)
-elif mode==55:mphim(name,url,img,fanart,mode,page,query)
-elif mode==56:vtvgo(name,url,img,fanart,mode,page,query)
-elif mode==57:vungtv(name,url,img,fanart,mode,page,query)
-elif mode==58:biphim(name,url,img,fanart,mode,page,query)
-elif mode==59:banhtv(name,url,img,fanart,mode,page,query,text)
-elif mode==60:ffilm(name,url,img,fanart,mode,page,query)
-elif mode==61:end=kenhphimbo(name,url,img,fanart,mode,page,query)
-elif mode==62:anivn(name,url,img,fanart,mode,page,query)
-elif mode==63:animetvn(name,url,img,fanart,mode,page,query)
-elif mode==87:freeServers(name,url,img,fanart,mode,page,query)
-elif mode==88:servers_list(name,url,img,fanart,mode,page,query)
-elif mode==89:television(name,url,img,fanart,mode,page,query,text)
-elif mode==90:end=fsharePage(name,url,img,fanart,query)
-elif mode==91:main_menu(url,page,mode,query)
-elif mode==92:vp_list(name,url,img,mode,page,query)
-elif mode==93:vp_chonloc()
-elif mode==94:end=subscene(name,url,query)
-elif mode==95:tenlua_getlink(url)
-elif mode==96:end=doc_thumuccucbo(name,url,img,fanart,mode,query)
-elif mode==97:doc_list_xml(url,name,page)
-elif mode==98:end=youtube(name,url,img,fanart,mode,page,query,text)
-elif mode==98:vnzoom(name,url,img,fanart,mode,page,query)
-elif mode==99:myaddon.openSettings();end='ok'
-elif mode>100:myFavourites(name,url,img,fanart,mode,page,query)
-if not end or end not in 'no-ok-fail':endxbmc()
+elif mode == 1  : end=vaphim(name,url,img,fanart,mode,page,query)
+elif mode == 2  : end=google_search(url,query,mode,page)
+elif mode == 3  : end=resolve_url(url,name=name)
+elif mode == 4  : vp_phimmoi()
+elif mode == 5  : vp_xemnhieu()
+elif mode == 6  : phim4share(name,url,img,fanart,mode,page,query)
+elif mode == 7  : end=fptplay(name,url,img,fanart,mode,page,query,text)
+elif mode == 8  : end=hdvietnam(name,url,img,fanart,mode,page,query)
+elif mode == 9  : make_mySearch(name,url,img,fanart,mode,query)
+elif mode == 10 : open_category(query)
+elif mode == 11 : make_myFshare(name,url,img,fanart,mode,query)
+elif mode == 12 : make_mylist(name,url,img,fanart,mode,query)
+elif mode == 13 : end=xshare_search(name,url,query,mode,page)
+elif mode == 15 : end=id_2url(name,url,img,mode,page,query)
+elif mode == 16 : end=play_maxspeed_link(url)
+elif mode == 20 : end=vp_update(auto=False)
+elif mode == 22 : hdviet(name,url,img,mode,page,query)
+elif mode == 23 : end=hayhaytv(name,url,img,fanart,mode,page,query)
+elif mode == 24 : phimmoi(name,url,img,mode,page,query)
+elif mode == 25 : end=fcine(name,url,img,fanart,mode,page,query)
+elif mode == 26 : kenh88(name,url,img,fanart,mode,page,query,text)
+elif mode == 27 : phimdata(name,url,img,mode,page,query)
+elif mode == 28 : phim47(name,url,img,fanart,mode,page,query,text)
+elif mode == 29 : phimsot(name,url,img,mode,page,query)
+elif mode == 30 : end=hdonline(name,url,img,fanart,mode,page,query,bakName,bakData)
+elif mode == 31 : end=ifile_update()
+elif mode == 33 : kphim(name,url,img,mode,page,query)
+elif mode == 34 : end=taiphimhdnet(name,url,img,fanart,mode,page,query)
+elif mode == 35 : phimnhanh(name,url,img,mode,page,query)
+elif mode == 36 : bilutv(name,url,img,mode,page,query)
+elif mode == 37 : anime47(name,url,img,mode,page,query)
+elif mode == 38 : doc_Trang4share(url)#38
+elif mode == 39 : phim14(name,url,img,fanart,mode,page,query,text)
+elif mode == 40 : phimmedia(name,url,img,mode,page,query)
+elif mode == 41 : tvhay(name,url,img,mode,page,query)
+elif mode == 42 : nhacdj(name,url,img,fanart,mode,page,query)
+elif mode == 43 : end=phimbathu(name,url,img,fanart,mode,page,query)
+elif mode == 44 : hdsieunhanh(name,url,img,fanart,mode,page,query)
+elif mode == 45 : chiasenhac(name,url,img,fanart,mode,page,query)
+elif mode == 46 : nhaccuatui(name,url,img,fanart,mode,page,query)
+elif mode == 47 : daklak47(name,url,img)
+elif mode == 48 : imovies(name,url,img,fanart,mode,page,query)
+elif mode == 49 : imax(name,url,img,fanart,mode,page,query)
+elif mode == 50 : htvonline(name,url,img,fanart,mode,page,query)
+elif mode == 51 : music(name,url,img,fanart,mode,page,query)
+elif mode == 52 : myNAS(name,url,img,fanart,mode,page,query)
+elif mode == 53 : taiphimhd(name,url,img,fanart,mode,page,query)
+elif mode == 54 : vietsubhd(name,url,img,fanart,mode,page,query)
+elif mode == 55 : mphim(name,url,img,fanart,mode,page,query)
+elif mode == 56 : vtvgo(name,url,img,fanart,mode,page,query)
+elif mode == 57 : vungtv(name,url,img,fanart,mode,page,query)
+elif mode == 58 : biphim(name,url,img,fanart,mode,page,query)
+elif mode == 59 : banhtv(name,url,img,fanart,mode,page,query,text)
+elif mode == 60 : ffilm(name,url,img,fanart,mode,page,query)
+elif mode == 61 : end=kenhphimbo(name,url,img,fanart,mode,page,query)
+elif mode == 62 : anivn(name,url,img,fanart,mode,page,query)
+elif mode == 63 : animetvn(name,url,img,fanart,mode,page,query)
+elif mode == 64 : driveGoogle(name,url,img,fanart,mode,page,query)
+elif mode == 87 : freeServers(name,url,img,fanart,mode,page,query)
+elif mode == 88 : servers_list(name,url,img,fanart,mode,page,query)
+elif mode == 89 : television(name,url,img,fanart,mode,page,query,text)
+elif mode == 90 : end=fsharePage(name,url,img,fanart,query)
+elif mode == 91 : main_menu(url,page,mode,query)
+elif mode == 92 : vp_list(name,url,img,mode,page,query)
+elif mode == 93 : vp_chonloc()
+elif mode == 94 : end=subscene(name,url,query)
+elif mode == 95 : tenlua_getlink(url)
+elif mode == 96 : end=doc_thumuccucbo(name,url,img,fanart,mode,query)
+elif mode == 97 : doc_list_xml(url,name,page)
+elif mode == 98 : end=youtube(name,url,img,fanart,mode,page,query,text)
+elif mode == 98 : vnzoom(name,url,img,fanart,mode,page,query)
+elif mode == 99 : myaddon.openSettings();end='ok'
+elif mode > 100 :myFavourites(name,url,img,fanart,mode,page,query)
+if not end or end not in 'no-ok-fail' : endxbmc()

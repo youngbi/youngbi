@@ -1173,7 +1173,7 @@
 		</extension>
 	</addon>
 
-<addon id="plugin.video.hieuhien.vn.xsharefree" name="[B][COLOR blue]Xshare[/COLOR] [COLOR green]Media [/COLOR][COLOR red]Center[/B][/COLOR]" version="3.5.8.3.2" provider-name="thaitni">
+<addon id="plugin.video.hieuhien.vn.xsharefree" name="Xshare Media Center" version="3.5.8.3.3" provider-name="thaitni">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.video.F4mProxy" optional="true"/>
