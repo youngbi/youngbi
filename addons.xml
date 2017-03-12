@@ -1432,67 +1432,6 @@
   </extension>
 </addon>
 
-<addon id="repository.AznKodi" name="AznKodi" version="1.0.0" provider-name="AznKodi">
-	<extension point="xbmc.addon.repository" name="VietKodi Addon Repository">
-		<info compressed="false">https://github.com/AznKodi/repository.AznKodi/raw/master/addons.xml</info>
-		<checksum>https://github.com/AznKodi/repository.AznKodi/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/AznKodi/repository.AznKodi/raw/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>XBMC-Kodi Repo</summary>
-		<description>Repo for XBMC-Kodi</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.bacha" name="BacHa Repository" version="1.0.0" provider-name="bacha">
-	<extension point="xbmc.addon.repository" name="BacHa Addon Repository">
-		<info compressed="false">https://github.com/bac-ha/repository.bacha/raw/master/addons.xml</info>
-		<checksum>https://github.com/bac-ha/repository.bacha/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/bac-ha/repository.bacha/raw/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Kodi repository</summary>
-		<description>Repository for Kodi</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.BlackBox247" name="BlackBox247 REPO" version="1.0.3" provider-name="BlackBox247">
-	<extension point="xbmc.addon.repository" name="BlackBox247 Addon Repository">
-		<info compressed="false">http://blackbox247.com/BlackBox247_Repo/BlackBox247-Repo.xml</info>
-		<checksum>http://blackbox247.com/BlackBox247_Repo/BlackBox247-Repo.md5</checksum>
-		<datadir zip="true">http://blackbox247.com/BlackBox247_Repo/Zips/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install BlackBox247 REPO</summary>
-		<description>Download and install addons from BlackBox247 REPO: Watch free Movies and TV shows from many different sources</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.bsbsmartrelax"
-		name="BSB Smart Relax Repository 2.0"
-		version="2.0"
-		provider-name="BSB Smart Relax">
-  <requires>
-    <import addon="xbmc.addon" version="12.0.0"/>
-  </requires>
-	<extension point="xbmc.addon.repository"
-		name="BSB Smart Relax Repository">
-		<info compressed="true">http://smartrelax.4all.vn/kodi/addons/android/addons.xml</info>
-		<checksum>http://smartrelax.4all.vn/kodi/addons/android/addons.xml.md5</checksum>
-		<datadir zip="true">http://smartrelax.4all.vn/kodi/addons/android</datadir>
-		<hashes>true</hashes>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">BSB Smart Relax Repository</summary>
-		<description lang="en"></description>
-		<disclaimer lang="en"></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.cantobumedia" name="Cantobu Media Repository" version="1.0.0" provider-name="phuoclv">
 	<extension point="xbmc.addon.repository" name="Official XBMC.org Add-on Repository">
 		<info compressed="true">https://raw.githubusercontent.com/phuoclv/repository.cantobumedia/master/addons.xml</info>
