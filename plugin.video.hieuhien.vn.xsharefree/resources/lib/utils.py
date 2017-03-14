@@ -33,6 +33,46 @@ class myaddon:
 		self.icon_folder	= os.path.join(self.data_path,'icon')
 		self.icon			= os.path.join(self.icon_folder,'icon.png')
 
+def myFshare(url):
+	#url = url.replace('https:','http:')
+	try:
+		cookie  = xrw('newfshare.cookie')
+		session = cookie.split('-')[0]
+		token   = cookie.split('-')[1]
+	except : session = token = ""
+	
+	link = ""
+	if session:
+		hd = {'Cookie' : 'session_id=' + session}
+		data = '{"token" : "%s", "url" : "%s", "password" : "%s"}'
+		data = data % (token, url, "")
+		try:
+			j = json.loads( xread("https://api2.fshare.vn/api/session/download", hd, data) )
+			link = j.get("location", "")
+		except:pass
+		
+
+	if not link:
+		user   = addon.getSetting('usernamef')
+		passwd = addon.getSetting('passwordf')
+		import urllib
+		data = urllib.urlencode({"url":url, "user":user, "passwd":passwd})
+		try:
+			j    = json.loads(xread('http://xshare.esy.es/fshare.php',data=data))
+		except:
+			j = {}
+
+		if j.get("session_id") and j.get("token"):
+			xrw('newfshare.cookie', j.get("session_id") + "-" + j.get("token"))
+		
+		if j.get("msg"):
+			mess(j.get("msg"))
+		elif link and j.get("user", "") == "xshare":
+			mess("https://www.facebook.com/xshare.vn")
+		
+		link = j.get("location", "")
+	return link
+
 def libsChecker(fn,url):#replace('\r\n', '\n')
 	filename=os.path.join(profile,'xsharelib',fn)
 	if filetime('myinfo.json') < 1 and os.path.isfile(filename):return
@@ -70,10 +110,12 @@ def getXshareData(lib=False):
 
 def namecolor(name,c=''):
 	return '[COLOR %s]%s[/COLOR]'%(c,name) if c else re.sub('\[[^\[]+?\]','',name)
+
 def s2u(s):return s.decode('utf-8') if isinstance(s,str) else s
 def u2s(s):return s.encode('utf-8') if isinstance(s,unicode) else s
 def unescape(string):
 	return ' '.join(re.sub('&.+;',xsearch('&(\w).+;',s,1),s) for s in string.split())
+
 def xhref(s,p=''):return xsearch('href="(.+?)"',s,result=xsearch(p,s))
 def xtitle(s,p=''):return ' '.join(xsearch('title="(.+?)"',s,result=xsearch(p,s)).split())
 def ximg(s,p=''):return xsearch('src="(.+?)"',s,result=xsearch(p,s))
@@ -265,7 +307,25 @@ def googleDrive(url):
 				j = json.loads(xsearch('(\{.+?\})',res.read()))
 			except:
 				j = {}
-		else:
+		elif not res:
+			b      = xread('%sopen?id=%s'%(href,id))
+			label  = xsearch('<title>(.+?)</title>',b)
+			cookie = ""
+			key    = "AIzaSyCoi-DctzJWnIcydk89UETNQaf4W7QTUi8"
+			href   = "https://www.googleapis.com/drive/v2/files?q='%s'+in+parents&key=%s"
+			
+			def abc(i):
+				return i.get("id"),i.get("title"),i.get("mimeType"),i.get("fileSize")
+			
+			try:
+				j = json.loads(xread( href % (id, key) ))
+				j = [abc(i) for i in j['items']]
+				j = sorted(j, key=lambda k: k[1])
+				label += "|Google Drive"
+			except:
+				j = []
+			
+		else:#xem lai bo nhanh nay
 			b     = xread('%sopen?id=%s'%(href,id))
 			label = xsearch('<title>(.+?)</title>',b)
 			cookie = ""

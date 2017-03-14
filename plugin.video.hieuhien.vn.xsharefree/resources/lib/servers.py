@@ -407,32 +407,33 @@ class serversList:
 	def __init__(self):
 		self.servers=[
 		('phim.media','40','orange'), 
+		('bilutv.com','36','hotpink'), 
+		('hdonline.vn','30','turquoise'), 
+		('phimmoi.net','24','ghostwhite'), 
+		('hdviet.com','22','darkorange'),
 		('anivn.com','62','FF8FAE22'),
 		('animetvn.com','63','FFD0C101'),
-		('anime47.com','37','deepskyblue'),
 		('banhtv.com','59','FFF08080'),
-		('bilutv.com','36','hotpink'), 
 		('biphim.com','58','FFBA55D3'),
 		('fptplay.net','07','orangered'), 
-		('fcine.net','25','gold'),
-		('hdonline.vn','30','turquoise'),
-		('hdviet.com','22','darkorange'),
+		#('fcine.net','25','gold'),
+		
 		('hayhaytv.vn','23','tomato'), 
 		('hdsieunhanh.com','44','orangered'),  
 		('imovies.vn','48','orange'), 
-		('kenh88.com','26','cyan'),
+		#('kenh88.com','26','cyan'),
 		('kenhphimbo.net','61','yellow'),
-		('kphim.tv','33','lightgreen'), 
+		#('kphim.tv','33','lightgreen'), 
 		('mphim.net','55','deepskyblue'), 
-		('phimmoi.net','24','ghostwhite'), 
+		
 		('phimbathu.com','43','lightgray'), 
 		
 		('phimdata.com','27','FFDB4BDA'),
-		('phimsot.com','29','orangered'), 
-		('phim47.com','28','springgreen'), 
+		#('phimsot.com','29','orangered'), 
+		#('phim47.com','28','springgreen'), 
 		('phim14.net','39','chartreuse'), 
 		('phimnhanh.com','35','chartreuse'), 
-		('tvhay.org','41','gold'), 
+		#('tvhay.org','41','gold'), 
 		('vungtv.com','57','FF00FA9A'), 
 		('vietsubhd.com','54','cyan')]
 			
@@ -675,7 +676,7 @@ class fshare:#https://www.fshare.vn/home/Mục chia sẻ của thaitni/abc?pageI
 					else:
 						continue
 			
-			b = xget(url,self.hd)
+			b = xget(url,self.hd);
 			if not b:
 				self.logout()
 				continue

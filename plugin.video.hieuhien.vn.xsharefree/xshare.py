@@ -18,7 +18,7 @@ xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 from resources.lib.utils import mess,xsearch,xread,xreadc,xrw,s2c,vnu,filetime,ls,rsl,googleItems,xselect,xget,media_ext,color
 
 icon={}
-for hd in ['xshare','4share','downsub','favorite','fptplay','fshare','gsearch','hdvietnam','icon','id','ifiletv','ifile','isearch','khophim','maxspeed','movie','msearch','myfolder','myfshare','phimfshare','serverphimkhac','setting','tenlua','vaphim','hdviet','hayhaytv','chiasenhac','kenh88','phimdata','phim47','phimsot','hdonline','kphim','phimnhanh','bilutv','anime47','phim14','taifile','phim','tvhay','nhacdj','phimbathu','taiphimhd','hdsieunhanh','phimmoi','nhaccuatui','imovies','vietsubhd','imax','mphim','vtvgo','youtube','fcine','taiphimhdnet','vungtv','banhtv','biphim','fsharefilm','kenhphimbo','anivn','animetvn','htvonline','gdrive']:
+for hd in ['xshare','4share','dangcaphd','downsub','favorite','fptplay','fshare','gsearch','hdvietnam','icon','id','ifiletv','ifile','isearch','khophim','maxspeed','megabox','movie','msearch','myfolder','myfshare','phimfshare','serverphimkhac','setting','tenlua','vaphim','hdviet','hayhaytv','chiasenhac','kenh88','phimdata','phim47','phimsot','hdonline','phim3s','kphim','phimnhanh','bilutv','phim14','taifile','phim','tvhay','nhacdj','phimbathu','taiphimhd','hdsieunhanh','phimmoi','vuahd','pubvn','nhaccuatui','imovies','vietsubhd','imax','mphim','vtvgo','youtube','fcine','taiphimhdnet','vungtv','banhtv','biphim','fsharefilm','kenhphimbo','anivn','animetvn','htvonline','gdrive']:
 	icon.setdefault(hd,os.path.join(iconpath,'%s.png'%hd))
 hd={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:41.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/600.1.4 Gecko/20100101 Firefox/41.0'}
 
@@ -912,6 +912,17 @@ def resolve_url(url,xml=False,name=''):
 	return result
 
 def fshare_resolve(url,xml,name=''):
+	from resources.lib.utils import myFshare
+	link = myFshare(url)
+	
+	if not link : pass
+	elif xml      : return link
+	elif name == 'FshareDownload' : fshare_download(link)
+	else:
+		name='Maxlink' if '/www.fshare.vn/' in name else ''
+		return xshare_resolve(link,os.path.splitext(link)[1][1:].lower(),name)
+
+def fshare_resolve1(url,xml,name=''):
 	from resources.lib.servers import fshare
 	fs=fshare(myaddon.getSetting('usernamef'),myaddon.getSetting('passwordf'))
 	sleep=2000
@@ -1766,13 +1777,6 @@ def id_2url(name,url,img,mode,page,query):
 		for href,title in re.findall('<a href="(.+?)">(.+?)</a>',xrw(search_file)):
 			q='ID?xml' if '.xml' in name else 'ID?'+query
 			addirs(title,href,icon['id'],query=q)
-	
-		#<a href="http://google.com/0B07qnz-SyqYmbk0yaHJTd2NHSDQ">Harry Potter and the Half-Blood Prince.mkv</a>
-		#name=re.sub('\(|\)|\[|\]|\{|\}|\?|\,|\+|\*','.',name)
-		#content=re.sub('<a href="%s">.+?</a>\n|<a>%s</a>\n'%(url,name),'',body)
-		#if body!=content:
-		#	makerequest(searchfile,content,'w')
-		#	if img!='schedule':mess(u'Xóa 1 mục thành công');xbmc.executebuiltin("Container.Refresh")
 	
 	elif page == 1:#Nhập ID mới BIDXFYDOZMWF
 		idf = get_input('Hãy nhập chuỗi ID (hoặc fulllink) của Fshare-Fsend-Fcine/4share/tenlua/subscene')
@@ -10534,6 +10538,7 @@ except:
 thumucrieng = ''.join(s for s in myaddon.getSetting('thumucrieng').split()).upper()
 if not thumucrieng or len(thumucrieng)<10:
 	thumucrieng = 'RDA4FHXVE2UU'
+
 thumucrieng = 'https://www.fshare.vn/folder/'+thumucrieng
 
 subsfolder  = myaddon.getSetting('subsfolder')
@@ -10603,8 +10608,9 @@ elif not mode:#xbmc.executebuiltin("Dialog.Close(all, true)")
 	open_category("MMN");endxbmc();xrw('sysmenu.dat',json.dumps({}))
 	if os.path.isfile(joinpath(data_path,'checkdatabase.txt')):database_download()
 	if myaddon.getSetting('auto_update')=='true' and checkupdate('xshare_auto_update.dat',5,datapath):
-		makerequest(joinpath(datapath,"xshare_auto_update.dat"),'','w')
-		xshare_auto_update();delete_files(tempfolder)
+	#	makerequest(joinpath(datapath,"xshare_auto_update.dat"),'','w')
+	#	xshare_auto_update();delete_files(tempfolder)
+		pass
 elif mode == 1  : end=vaphim(name,url,img,fanart,mode,page,query)
 elif mode == 2  : end=google_search(url,query,mode,page)
 elif mode == 3  : end=resolve_url(url,name=name)
@@ -10635,7 +10641,6 @@ elif mode == 33 : kphim(name,url,img,mode,page,query)
 elif mode == 34 : end=taiphimhdnet(name,url,img,fanart,mode,page,query)
 elif mode == 35 : phimnhanh(name,url,img,mode,page,query)
 elif mode == 36 : bilutv(name,url,img,mode,page,query)
-elif mode == 37 : anime47(name,url,img,mode,page,query)
 elif mode == 38 : doc_Trang4share(url)#38
 elif mode == 39 : phim14(name,url,img,fanart,mode,page,query,text)
 elif mode == 40 : phimmedia(name,url,img,mode,page,query)
@@ -10677,5 +10682,5 @@ elif mode == 97 : doc_list_xml(url,name,page)
 elif mode == 98 : end=youtube(name,url,img,fanart,mode,page,query,text)
 elif mode == 98 : vnzoom(name,url,img,fanart,mode,page,query)
 elif mode == 99 : myaddon.openSettings();end='ok'
-elif mode > 100 :myFavourites(name,url,img,fanart,mode,page,query)
+elif mode > 100 : myFavourites(name,url,img,fanart,mode,page,query)
 if not end or end not in 'no-ok-fail' : endxbmc()
