@@ -34,11 +34,11 @@ class myaddon:
 		self.icon			= os.path.join(self.icon_folder,'icon.png')
 
 def myFshare(url):
-	#url = url.replace('https:','http:')
 	try:
 		cookie  = xrw('newfshare.cookie')
 		session = cookie.split('-')[0]
 		token   = cookie.split('-')[1]
+		user    = cookie.split('-')[2]
 	except : session = token = ""
 	
 	link = ""
@@ -58,19 +58,23 @@ def myFshare(url):
 		import urllib
 		data = urllib.urlencode({"url":url, "user":user, "passwd":passwd})
 		try:
-			j    = json.loads(xread('http://xshare.esy.es/fshare.php',data=data))
+			#j    = json.loads(xread('http://xshare.esy.es/fshare.php',data=data))
+			j    = json.loads(xread('http://ycofo.xyz/fshare.php',data=data))
 		except:
 			j = {}
-
+		
+		user = j.get("user","")
 		if j.get("session_id") and j.get("token"):
-			xrw('newfshare.cookie', j.get("session_id") + "-" + j.get("token"))
+			xrw('newfshare.cookie', u2s(j.get("session_id")+"-"+j.get("token")+"-"+user))
 		
 		if j.get("msg"):
 			mess(j.get("msg"))
-		elif link and j.get("user", "") == "xshare":
-			mess("https://www.facebook.com/xshare.vn")
 		
 		link = j.get("location", "")
+	
+	if link and user:
+		mess("Cảm ơn: [COLOR cyan]%s[/COLOR] đã hỗ trợ xem phim này" % u2s(user))
+	
 	return link
 
 def libsChecker(fn,url):#replace('\r\n', '\n')

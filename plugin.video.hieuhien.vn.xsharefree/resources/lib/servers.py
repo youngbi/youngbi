@@ -1336,7 +1336,7 @@ class kPhim:
 		"""
 		token = self.execToken(server_id, videoID)
 		tk = urllib2.hashlib.md5(token).hexdigest()[1:]
-		xbmc.log('token: '+token)
+		#xbmc.log('token: '+token)
 		
 		href = 'http://kphim.tv/embed/%s/%s/%s'%(serverID,videoID,tk)
 		data = 'mid=%s&vid=%s&sid=%s'%(ver,server_id,video_id)

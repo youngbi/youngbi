@@ -1054,6 +1054,17 @@ def tenlua_resolve(url,xml):
 def xshare_resolve(direct_link,ext='',filmlabel=''):
 	def get_detail_maxlink(direct_link):
 		direct_link=direct_link.split('|')[0]
+		b = xget(direct_link)
+		if b:
+			info     = b.info().dict
+			size     = int(info.get("content-length", "0"))
+			filename = xsearch('filename\W+"(.+?)"',info.get("content-disposition"))
+			ext      = filename.rsplit(".",1)[-1].lower()
+		else:b, size, filename, ext = "", 0, "", ""
+		return b,size,filename,ext
+		
+	def get_detail_maxlink1(direct_link):
+		direct_link=direct_link.split('|')[0]
 		response=make_request(direct_link,{'User-Agent':'xshare'},resp='o',maxr=3)
 		if not response:return 'fail'
 		detail=response.headers
@@ -1089,7 +1100,7 @@ def xshare_download(response,size,filename,ext):
 		if myaddon.getSetting('autodel_sub')=='true':
 			delete_folder(subsfolder)
 		
-		content=makerequest(tempfile,response.body,"wb")
+		content=makerequest(tempfile,response.read(),"wb")
 	elif size<2*1024**3:
 		if size>1024**3:size_str='%d.%d GB'%(size/(1024**3),(size%(1024**3))/10**7)
 		else:size_str='%d.%d MB'%(size/(1024**2),(size%(1024**2))/10**4)
