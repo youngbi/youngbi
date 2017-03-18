@@ -1,3 +1,6 @@
+'''Credit Goes To Lambda :) Thanks'''
+
+
 import math
 
 class decrypter:

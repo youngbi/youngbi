@@ -318,23 +318,18 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.hieuhien.vn.footballreplays" name="[COLOR violet][B]Bóng đá xem lại[/B][/COLOR]" version="3.0.2" provider-name="lambda">
+<addon id="plugin.video.hieuhien.vn.footballreplays" name="[COLOR violet]Bóng đá xem lại[/COLOR]" version="3.0.3" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simplejson" optional="true"/>
-		<import addon="script.module.parsedom" optional="true"/>
-		<import addon="plugin.video.youtube" optional="true"/>
+    <import addon="script.module.urlresolver" version="0.0.1"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides></provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Football on demand</summary>
-		<description lang="en">Visit TVADDONS.ag for support</description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum>http://forums.tvaddons.ag/forums/148-lambda-s-xbmc-addons</forum>
-		<source>https://offshoregit.com/lambda81/lambda-addons</source>
-		<website>https://offshoregit.com/lambda81/</website>
+		<summary lang="en">Football Replays</summary>
+		<description lang="en">Football Replays</description>
+		<disclaimer lang="en">By using This Plugin You will receive sometimes an advert which helps funds the developers developing.....we all thank you!!</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
