@@ -16,6 +16,11 @@ color={'fshare':'[COLOR gold]','vaphim':'[COLOR gold]','phimfshare':'[COLOR khak
 #b.getcode();b.headers.get('Set-Cookie');b.geturl();res.info().dict
 #json.loads(urllib.urlopen("http://ip.jsontest.com/").read())
 
+def log(s):
+	if isinstance(s, basestring) : s = u2s(s)
+	else                         : s = str(s)
+	xbmc.log(s)
+
 class myaddon:
     def __init__(self):
 		self.addon			= xbmcaddon.Addon()
@@ -32,50 +37,6 @@ class myaddon:
 		self.data_folder	= os.path.join(self.data_path,'data')
 		self.icon_folder	= os.path.join(self.data_path,'icon')
 		self.icon			= os.path.join(self.icon_folder,'icon.png')
-
-def myFshare(url):
-	try:
-		cookie  = xrw('newfshare.cookie')
-		session = cookie.split('-')[0]
-		token   = cookie.split('-')[1]
-		user    = cookie.split('-')[2]
-	except : session = token = ""
-	
-	link = ""
-	if session:
-		hd = {'Cookie' : 'session_id=' + session}
-		data = '{"token" : "%s", "url" : "%s", "password" : "%s"}'
-		data = data % (token, url, "")
-		try:
-			j = json.loads( xread("https://api2.fshare.vn/api/session/download", hd, data) )
-			link = j.get("location", "")
-		except:pass
-		
-
-	if not link:
-		user   = addon.getSetting('usernamef')
-		passwd = addon.getSetting('passwordf')
-		import urllib
-		data = urllib.urlencode({"url":url, "user":user, "passwd":passwd})
-		try:
-			#j    = json.loads(xread('http://xshare.esy.es/fshare.php',data=data))
-			j    = json.loads(xread('http://ycofo.xyz/fshare.php',data=data))
-		except:
-			j = {}
-		
-		user = j.get("user","")
-		if j.get("session_id") and j.get("token"):
-			xrw('newfshare.cookie', u2s(j.get("session_id")+"-"+j.get("token")+"-"+user))
-		
-		if j.get("msg"):
-			mess(j.get("msg"))
-		
-		link = j.get("location", "")
-	
-	if link and user:
-		mess("Cảm ơn: [COLOR cyan]%s[/COLOR] đã hỗ trợ xem phim này" % u2s(user))
-	
-	return link
 
 def libsChecker(fn,url):#replace('\r\n', '\n')
 	filename=os.path.join(profile,'xsharelib',fn)

@@ -1275,16 +1275,19 @@ class kPhim:
 			items.append((title,href,img))
 		return items
 	
-	def genre(self,url):
+	def page(self,url):
 		items=[]
-		for s in re.findall('(<li style.+?/li>)',xread(url),re.S):
-			href=xsearch('href="(.+?)"',s)
-			img=xsearch('src="(.+?)"',s)
-			t=xsearch('>(.+?)-\d+?</span>',s)
-			title=t+' - ' if t else ''
-			title+=xsearch('"movie-name-1">(.+?)</h3>',s)+' - '+xsearch('"movie-name-2">(.+?)</h4>',s)
-			t=xsearch('<strong> (.+?)</strong></p>',s)
-			if t:title+= ' (%s)'%t
+		for s in re.findall('(<div class="item">.+?/div>\s</div>)',xread(url),re.S):
+			title = xsearch('title="(.+?)"',s)
+			href  = xsearch('href="(.+?)"',s)
+			
+			if not title or not href:
+				continue
+			
+			img   = xsearch('src="(.+?)"',s)
+			label = ' '.join(re.sub("<.+?>","",i) for i in re.findall('(<span.+?/span>)',s))
+			label = ' '.join(label.split())
+			title = title + ' - ' + label
 			items.append((title,href,img))
 		return items
 	
@@ -1295,14 +1298,11 @@ class kPhim:
 		if not items:items=re.findall('<a class="label[^"]+?" href="(.+?)"> (.+?) </a>',b)
 		return [(i[0],i[1],img) for i in items]
 	
-	def execToken(self, server_id, videoID):
-		exec(xread('http://pastebin.com/raw/4b6QkytD'))#;xbmc.log(getToken(server_id, videoID))
-		return getToken(server_id, videoID)
-	
 	def getLink(self,url):
 		b = xread(url)
 		s = []
-		for i in re.findall('(<li class="kphim-server-item".+?/li>)',b,re.S):
+		#for i in re.findall('(<li class="kphim-server-item".+?/li>)',b,re.S):
+		for i in re.findall('(<div class="list-servers kphim-servers".+?/div>)',b,re.S):
 			j=xsearch('<strong>(.+?)</strong>',i).strip()
 			m  = re.findall('vid="(.+?)" sid="(.+?)".+?>(.+?)<',i)
 			s += ((k[0],k[1],j+' '+k[2].strip()) for k in m)
@@ -1321,28 +1321,16 @@ class kPhim:
 		else:
 			return ''
 		
-		ver      = xsearch("ver='(.+?)'",b)
+		ver      = xsearch("ver\W*'(.+?)'",b)
 		serverID = server_id + ver
 		videoID  = video_id  + ver
 		
-		#http://kphim.tv/resources/js/site.js?ver=37 mahoahkphim
-		"""b = xread(xsearch('"([^"]+?site\.js[^"]+?)"',b))
-		try:
-			data = eval(xsearch('_0xff9f\W+(\[.+?\])',b))
-			au   = data[int(xsearch('mahoahkphim\([^\)]+?_0xff9f\[(\d+)\]',b))]
-			if not au : au = 'k'
-		except:
-			au = 'k'
-		"""
-		token = self.execToken(server_id, videoID)
-		tk = urllib2.hashlib.md5(token).hexdigest()[1:]
-		#xbmc.log('token: '+token)
-		
-		href = 'http://kphim.tv/embed/%s/%s/%s'%(serverID,videoID,tk)
+		from resources.lib.fshare import getToken
+		href = getToken(server_id, videoID)
 		data = 'mid=%s&vid=%s&sid=%s'%(ver,server_id,video_id)
 		self.hd['X-Requested-With'] = 'XMLHttpRequest'
 		b    =  xread(href,self.hd,data)
-		xbmc.log("b=xread('%s',%s,'%s')"%(href,str(self.hd),data))
+		#xbmc.log("b=xread('%s',%s,'%s')"%(href,str(self.hd),data))
 		
 		link = ""
 		href = xsearch('src="(.+?)"',b)
