@@ -1105,15 +1105,18 @@ class fptPlay:#from resources.lib.servers import fptPlay;fpt=fptPlay(c)
 	
 	def playLink(self,url):
 		def stream(href,id,epi='1'):
-			ec   = urllib.urlencode;HD='|User-Agent=Mozilla/5.0'
-			data = ec({'id':id,'type':'newchannel','quality':'3','episode':epi,'mobile':'web'})
-			try : link = json.loads(xread(href,self.hd,data)).get('stream')+HD
+			data = {"id":id,"type":"newchannel","quality":"3","episode":epi,"mobile":"web"}
+			data = urllib.urlencode( data )
+			hd   = "|" + urllib.urlencode( {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0"} )
+			#log ('b = xread("%s",%s,"%s")' % (href,self.hd,data))
+			try : link = json.loads(xread(href,self.hd,data)).get('stream') + hd
 			except:
 				b    = xread(url)
 				id   = xsearch("var id = '(.+?)'",b)
-				data = ec({'id':id,'type':'newchannel','quality':'3','episode':epi,'mobile':'web'})
+				data = {"id":id,"type":"newchannel","quality":"3","episode":epi,"mobile":"web"}
+				data = urllib.urlencode( data )
 				href = 'https://fptplay.net/show/getlinklivetv'#cac link tv tren muc phim dang phat
-				try    : link = json.loads(xread(href,self.hd,data)).get('stream')+HD
+				try    : link = json.loads(xread(href,self.hd,data)).get('stream') + hd
 				except : link=''
 			
 			return link
@@ -2877,7 +2880,7 @@ class mphim:
 	
 	def maxLink(self,url):
 		b=xread(url.replace('/phim/','/xem-phim/'))
-		s=xsearch('link_url *= *\["(.+?)"',b)
+		s=xsearch('link_url *= *\["(.+?)"',b).replace("\\","")
 		try:
 			j=json.loads(xread(s))
 			link=googleItems(j.get('data',{}).get('sources',[]),'src','label')

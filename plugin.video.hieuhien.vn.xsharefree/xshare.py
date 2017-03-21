@@ -143,7 +143,7 @@ def open_category(query): #category.xml
 			if "18" in name and haidePhim18:continue
 			addir('%s%s[/COLOR]'%(color['vaphim'],name),'vaphim.xml',icon,fanart,92,1,query,True,root=root)
 	#if query=='MMN' and (myaddon.getSetting('my_nas_url')!="http://buffalonas.com/"):
-		#addir('[COLOR lime]My NAS[/COLOR]','',os.path.join(iconpath,'csn.png'),fanart,52,1,'home',True,root=root)
+		addir('[COLOR lime]My NAS[/COLOR]','',os.path.join(iconpath,'csn.png'),fanart,52,1,'home',True,root=root)
 
 def servers_list(name,url,img,fanart,mode,page,query):#88
 	def make_ls(s,context=''):
@@ -862,7 +862,7 @@ def make_request(url,headers=hd,resp='b',maxr=0):
 			link=xsearch('//(.{5,20}\.\w{2,3})',s2u(url))
 			if not link:link=url
 			mess(u'Lỗi kết nối tới: %s!'%xsearch('//(.{5,20}\.\w{2,3})',s2u(url)),'make_request')
-		print 'Lỗi kết nối tới: %s!'%u2s(url);
+		log( 'Lỗi kết nối tới: %s!'%u2s(url))
 	return resp#unicode:body=response.text
 
 def make_post(url,headers=hd,data='',resp='o'):
@@ -5184,7 +5184,7 @@ def phimnhanh(name,url,img,mode,page,query):
 		
 		elif xsearch('link_url.*"(.+?)"',b):
 			try:
-				j=json.loads(xread(xsearch('link_url.*"(.+?)"',b)))
+				j=json.loads(xread(xsearch('link_url.*"(.+?)"',b).replace("\\","")))
 				if not j:link='Link video bị lỗi! phimnhanh.com sẽ fix trong thời gian sớm nhất'
 				else:link=googleItems(j.get('data',{}).get('sources',[]),'file','label')
 			except:pass
@@ -6419,7 +6419,12 @@ def anime47(name,url,img,mode,page,query):
 	c         = 'deepskyblue'
 	gkplugins = 'http://anime47.com/player/gkphp/plugins/gkpluginsphp.php'
 	
-	hd = json.loads(xread("http://pastebin.com/raw/HpnvbZdu"))
+	#hd = json.loads(xread("http://pastebin.com/raw/HpnvbZdu"))
+	hd = {
+		"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
+		"__cfduid"   : "d8113cfc65ff4228520cdfd148766053b1489591183"
+	}
+	
 	if not os.path.isfile(ico):
 		try   : makerequest(ico,xread('http://anime47.com/skin/tatcasau/img/logo.png'),'wb')
 		except: pass
@@ -7242,7 +7247,7 @@ def tvhay(name,url,img,mode,page,query):
 			loop += 1
 		
 		if not link and not ua:
-			b = xread('http://pastebin.com/raw/3YYSSAfT')
+			b = xread(getTextFile("3YYSSAfT"))
 			if b:
 				for ua in b.splitlines():
 					hd['User-Agent'] = ua
@@ -7465,12 +7470,27 @@ def television(name,url,img,fanart,mode,page,query,text):
 			addir_info(namecolor(title,c),'',fptlive_ico,'',mode,1,'fptiptv',True)
 			addir_info(namecolor(title+' BlogCongDong.Com',c),'',fptlive_ico,'',mode,1,'fptiptv0',True)
 		
-		addir_info(namecolor('List IPTV của Thanh Dương - Cộng Đồng KODI Việt Nam','hotpink'),'http://pastebin.com/raw/BcpU9W9T',fptlive_ico,'',mode,1,'thanhduong',True)
-		addir_info(namecolor('List IPTV của Văn Hiếu BMT - Cộng Đồng KODI Việt Nam','chartreuse'),'http://pastebin.com/raw/UbTCq8k7',fptlive_ico,'',mode,1,'thanhduong',True)
-		addir_info(namecolor('List IPTV của ducnt123 - Cộng Đồng KODI Việt Nam','lightgray'),'http://textuploader.com/5euky/raw',fptlive_ico,'',mode,1,'thanhduong',True)
-		addir_info(namecolor('List IPTV của tduc.tk - Cộng Đồng KODI Việt Nam','lightgray'),'http://tduc.tk/tv/',fptlive_ico,'',mode,1,'thanhduong',True)
-		addir_info(namecolor('List IPTV Sports','lightgray'),'http://pastebin.com/raw/5ZZVq1mR',fptlive_ico,'',mode,1,'thanhduong',True)
-		art=os.path.join(iconpath,'iptv.png')
+		title = namecolor('List IPTV của Thanh Dương - Cộng Đồng KODI Việt Nam','hotpink')
+		href  = "http://pastebin.com/raw/BcpU9W9T,http://textuploader.com/dtxzw/raw"
+		addir_info(title, href,fptlive_ico,'',mode,1,'userList',True)
+		
+		title = namecolor('List IPTV của Văn Hiếu BMT - Cộng Đồng KODI Việt Nam','chartreuse')
+		href  = "http://pastebin.com/raw/UbTCq8k7,http://textuploader.com/dtxzy/raw"
+		addir_info(title, href,fptlive_ico,'',mode,1,'userList',True)
+		
+		title = namecolor('List IPTV của ducnt123 - Cộng Đồng KODI Việt Nam','lightgray')
+		href  = "http://textuploader.com/5euky/raw"
+		addir_info(title, href,fptlive_ico,'',mode,1,'userList',True)
+		
+		title = namecolor('List IPTV của tduc.tk - Cộng Đồng KODI Việt Nam','lightgray')
+		href  = "http://tduc.tk/tv/"
+		addir_info(title, href,fptlive_ico,'',mode,1,'userList',True)
+		
+		title = namecolor('List IPTV Sports','lightgray')
+		href  = "http://pastebin.com/raw/5ZZVq1mR,http://textuploader.com/dtxz8/raw"
+		addir_info(title, href,fptlive_ico,'',mode,1,'userList',True)
+		
+		art = os.path.join(iconpath,'iptv.png')
 		if not os.path.isfile(art):
 			makerequest(art,xread('http://www.m3uliste.pw/files/iptv.png'),'wb')
 		if myaddon.getSetting('listIPTV').split(',')[0]:
@@ -7483,11 +7503,6 @@ def television(name,url,img,fanart,mode,page,query,text):
 			makerequest(img,xread('http://www.m3uliste.pw/files/.logo-lw-scaled.jpg.png'),'wb')
 		addir_info(title,'http://www.m3uliste.pw/',img,art,mode,1,'hunters',True)
 		
-	elif query=='thanhduong':
-		py=getHome('iptvlist.py','http://pastebin.com/raw/gpTWvyh7')
-		try:execfile(os.path.join(xsharefolder,'iptvlist.py'))
-		except:pass
-	
 	elif query=='hunters':
 		def makeList(tab,s):
 			s=xsearch('(<div class[^>]+?name="%s".+?</span>)'%tab,s,1,re.S)
@@ -7528,19 +7543,86 @@ def television(name,url,img,fanart,mode,page,query,text):
 		elif 'List ngày ' in name:makeList(url,xrw('hunters.html'))
 		
 	elif query=='userList':
-		py=getHome('iptvlist.py','http://pastebin.com/raw/c2A7ESnB')
-		try:
-			execfile(os.path.join(xsharefolder,'iptvlist.py'))
-		except:pass
+		listIPTV=myaddon.getSetting('listIPTV').split(',')
+		if not url and len(listIPTV)>1:
+			for i in range(len(listIPTV)):
+				title=namecolor('List %02d'%(i+1),'cyan')
+				if listIPTV[i].startswith('http'):href=listIPTV[i]
+				else:href='http://textuploader.com/%s/raw'%listIPTV[i]
+				addir_info(title,href,icon['icon'],'',mode,1,'userList',True)
+		else:
+			if not url:
+				if listIPTV[0].startswith('http'):url=listIPTV[0]
+				else:url='http://textuploader.com/%s/raw'%listIPTV[0]
+			
+			if "," in url:
+				b = getTextFile(url.split(",")[0], url.split(",")[1])
+			else:
+				b = xread(url).replace('\r\n', '\n')
+			
+			if not b:
+				mess("Page not found !")
+			
+			PROTOCOLS = 'udp-https-rtmpe-rtp-rtsp'
+			groups=[];items=[]
+			for s in ['#EXTINF:'+i for i in b.split('#EXTINF:') if '/' in i]:
+				group=xsearch('group-title="(.+?)"',s)
+				if group and group not in groups:
+					groups.append(group.replace('\"', '').strip())
+				else:
+					title=href=img=''
+					for line in [i.strip() for i in s.splitlines()]:
+						begin=line.split(':')[0]
+						if begin == '#EXTINF':
+							title=line.split(',')[-1].strip()
+							img=xsearch('logo="(.+?)"',line)
+						elif '.f4mTester' in line:href=line.strip().replace(' ','%20')
+						elif begin in PROTOCOLS:
+							href=line.strip().replace(' ','%20')
+							if href.rsplit('.',1)[-1]=='ts':
+								href='plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&url='+href
+					
+					if title and href:items.append((title,href,img))
+
+			for group in groups:
+				addir_info(namecolor(group,'orangered'),url,img,'',mode,1,'listGroup',True)
+
+			for title,href,img in items:
+				if 'plugin://plugin.video.f4mTester' in href:q='F4mProxy'
+				else:q='fptiptvPlay'
+				addir_info(namecolor(title,'orange'),href,img,'',mode,1,q)
 	
 	elif query=='listGroup':
-		py=getHome('iptvlistgroup.py','http://pastebin.com/raw/XtNnfwmR')
-		try:execfile(os.path.join(xsharefolder,'iptvlistgroup.py'))
-		except:pass
+		if "," in url:
+			b = getTextFile(url.split(",")[0], url.split(",")[1])
+		else:
+			b = xread(url).replace('\r\n', '\n')
+		
+		s=b.replace('\r\n', '\n').split('#EXTINF:')
+		PROTOCOLS = 'udp-https-rtmpe-rtp-rtsp'
+		name=namecolor(name)
+		for s in ['#EXTINF:'+i for i in s if '/' in i and xsearch('group-title="(.+?)"',i)==name]:
+			title=href=img=''
+			for line in [i.strip() for i in s.splitlines()]:
+				begin=line.split(':')[0]
+				if begin == '#EXTINF':
+					title=line.split(',')[-1].strip()
+					if 'group-title=' in title:title=name
+					img=xsearch('logo="(.+?)"',line)
+				elif '.f4mTester' in line:href=line.strip().replace(' ','%20')
+				elif begin in PROTOCOLS:
+					href=line.strip().replace(' ','%20')
+					if href.rsplit('.',1)[-1]=='ts':
+						href='plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&url='+href
+			
+			if title and href:
+				if 'plugin://plugin.video.f4mTester' in href:q='F4mProxy'
+				else:q='fptiptvPlay'
+				addir_info(namecolor(title,'orange'),href,img,'',mode,1,q)	
 	
 	elif query=='F4mProxy':# http://textuploader.com/5euky/raw
 		if not url:
-			b=xread('http://pastebin.com/raw/vpQQ4mGQ')
+			b=getTextFile('http://pastebin.com/raw/vpQQ4mGQ,http://textuploader.com/dtx75/raw')
 			for s in re.findall('(<item.+?/item>)',b,re.S):
 				title=xsearch('<title>(.+?)</title>',s)
 				href=xsearch('<link>(.+?)</link>',s)
@@ -7559,8 +7641,6 @@ def television(name,url,img,fanart,mode,page,query,text):
 			url=p.get('url','')
 			streamtype=p.get('streamtype','')
 			player.playF4mLink(url,name,streamtype=streamtype,iconImage=img)
-			#xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=False)
-			#player.playF4mLink('http://5.39.70.216/live/louis/louis/1031.ts','K+1 HD',streamtype='TSDOWNLOADER',iconImage='')
 	
 	elif query=='xemtvhd':
 		body=get_home_page('xemtvhd.html',url)
@@ -7606,8 +7686,8 @@ def television(name,url,img,fanart,mode,page,query,text):
 		else:mess('Get channel link fail!') 
 		
 	elif query=='fptiptv0':
-		href='http://pastebin.com/raw/iRJWKyNC'
-		for title,href in re.findall('#EXTINF:0, (.+).\s(.+).',xread(href)):
+		b = getTextFile('http://pastebin.com/raw/iRJWKyNC,http://textuploader.com/dtx71/raw')
+		for title,href in re.findall('#EXTINF:0, (.+).\s(.+).', b):
 			addir_info(namecolor(title,'orange'),href,img,'',mode,1,'fptiptvPlay')
 	
 	elif query=='fptiptv1':
@@ -10544,6 +10624,19 @@ def vnzoom(name,url,img,fanart,mode,page,query):
 				for href,title in items:
 					addir_info(title,href,img,'',mode,1)
 
+def getTextFile(pastebin, textuploader = ""):
+	if pastebin.startswith('http'):
+		b = xread(pastebin)
+	else:
+		b = xread("http://pastebin.com/raw/" + pastebin)
+	
+	if not b and textuploader:
+		if textuploader.startswith('http'):
+			b = xread(textuploader)
+		else:
+			b = xread("http://textuploader.com/%s/raw" % textuploader)
+	return b.replace('\r\n', '\n')
+
 try:#Container.SetViewMode(num) addir:name,link,img,fanart,mode,page,query,isFolder
 	myfolder = s2u(myaddon.getSetting('thumuccucbo'))
 	if not os.path.exists(myfolder):
@@ -10623,7 +10716,8 @@ elif not mode:#xbmc.executebuiltin("Dialog.Close(all, true)")
 	endxbmc()
 	file = os.path.join(home,'resources','lib','fshare.py')
 	if filetime(file) > 1:
-		xrw(file,xread("http://pastebin.com/raw/gS84wyiV"))
+		xrw(file, getTextFile("gS84wyiV", "dtx0z"))
+		
 elif mode == 1  : end=vaphim(name,url,img,fanart,mode,page,query)
 elif mode == 2  : end=google_search(url,query,mode,page)
 elif mode == 3  : end=resolve_url(url,name=name)
@@ -10703,4 +10797,4 @@ elif mode == 98 : vnzoom(name,url,img,fanart,mode,page,query)
 elif mode == 99 : myaddon.openSettings();end='ok'
 elif mode > 100 : myFavourites(name,url,img,fanart,mode,page,query)
 if not end or end not in 'no-ok-fail' : endxbmc()
-#https://movies.fimplus.vn/
+#https://movies.fimplus.vn/, https://aphim.co/
