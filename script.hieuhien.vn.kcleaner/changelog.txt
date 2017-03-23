@@ -1,0 +1,61 @@
+v1.6
+- Option not to delete latest (1-4) package(s)
+
+v1.5
+- Added cleaning of orphaned addon data folders
+
+v1.4
+- Added Spotitube addon
+- Added Retrospect addon
+- Small changes in logic/fixes
+
+v1.3
+- Do not exit from addon when cleaning done; added exit button
+- Various small optimizations
+
+v1.2
+- Scheduler
+- Calculate and display cleaning totals for scheduled run
+- If not scheduled run, always display totals box at the end
+- It is now possible to schedule cleanup of Textures12 database
+
+v1.1
+- Bug fix in settings
+
+v1.0
+- Textures database cleanup
+
+v0.9
+- Removed unnecessary code
+
+v0.8
+- Check which addons are not in a repo (i.e. installed from zip)
+- Scheduler to run selected cleanup(s) on startup every 1, 7, 30 or 90 days
+- Improved logic
+
+v0.7
+- Improved logic
+- Run all at once
+- Settings split by category
+- Debug logging
+- Ignore special://temp/archive_cache for Krypton
+
+v0.6
+- Display cleaning statistics
+
+v0.5
+- Check for unused registries
+- Added script.artwork.downloader/temp cleanup
+- option to ignore /thumbnails/animatedgifs in settings
+
+v0.4
+- Database compacting
+
+v0.3
+- Ignore (do not clean) addons selected in settings
+
+v0.2
+- Initial release
+
+v0.1
+- Alpha release

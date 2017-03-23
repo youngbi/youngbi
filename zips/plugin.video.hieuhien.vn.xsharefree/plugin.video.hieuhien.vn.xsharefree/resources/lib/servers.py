@@ -1105,18 +1105,15 @@ class fptPlay:#from resources.lib.servers import fptPlay;fpt=fptPlay(c)
 	
 	def playLink(self,url):
 		def stream(href,id,epi='1'):
-			data = {"id":id,"type":"newchannel","quality":"3","episode":epi,"mobile":"web"}
-			data = urllib.urlencode( data )
-			hd   = "|" + urllib.urlencode( {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0"} )
-			#log ('b = xread("%s",%s,"%s")' % (href,self.hd,data))
-			try : link = json.loads(xread(href,self.hd,data)).get('stream') + hd
+			ec   = urllib.urlencode;HD='|User-Agent=Mozilla/5.0'
+			data = ec({'id':id,'type':'newchannel','quality':'3','episode':epi,'mobile':'web'})
+			try : link = json.loads(xread(href,self.hd,data)).get('stream')+HD
 			except:
 				b    = xread(url)
 				id   = xsearch("var id = '(.+?)'",b)
-				data = {"id":id,"type":"newchannel","quality":"3","episode":epi,"mobile":"web"}
-				data = urllib.urlencode( data )
+				data = ec({'id':id,'type':'newchannel','quality':'3','episode':epi,'mobile':'web'})
 				href = 'https://fptplay.net/show/getlinklivetv'#cac link tv tren muc phim dang phat
-				try    : link = json.loads(xread(href,self.hd,data)).get('stream') + hd
+				try    : link = json.loads(xread(href,self.hd,data)).get('stream')+HD
 				except : link=''
 			
 			return link
@@ -1278,37 +1275,34 @@ class kPhim:
 			items.append((title,href,img))
 		return items
 	
-	def page(self,url):
+	def genre(self,url):
 		items=[]
-		for s in re.findall('(<div class="item">.+?/div>\s</div>)',xread(url),re.S):
-			title = xsearch('title="(.+?)"',s)
-			href  = xsearch('href="(.+?)"',s)
-			
-			if not title or not href:
-				continue
-			
-			img   = xsearch('src="(.+?)"',s)
-			label = ' '.join(re.sub("<.+?>","",i) for i in re.findall('(<span.+?/span>)',s))
-			label = ' '.join(label.split())
-			title = title + ' - ' + label
+		for s in re.findall('(<li style.+?/li>)',xread(url),re.S):
+			href=xsearch('href="(.+?)"',s)
+			img=xsearch('src="(.+?)"',s)
+			t=xsearch('>(.+?)-\d+?</span>',s)
+			title=t+' - ' if t else ''
+			title+=xsearch('"movie-name-1">(.+?)</h3>',s)+' - '+xsearch('"movie-name-2">(.+?)</h4>',s)
+			t=xsearch('<strong> (.+?)</strong></p>',s)
+			if t:title+= ' (%s)'%t
 			items.append((title,href,img))
 		return items
 	
 	def eps(self,url):
-		b     = xread(url)
-		img   = xsearch('property="og:image" content="(.+?)"',b)
-		items = re.findall('data-id=".*?" href="(.+?)" title="(.+?)"',b)
-		if not items:
-			items = re.findall('<a class="btn btn-default" href="(.+?)"> (.+?) </a>',b)
-			if not items:
-				items=re.findall('<a class="label[^"]+?" href="(.+?)"> (.+?) </a>',b)
+		b=xread(url)
+		img = xsearch('property="og:image" content="(.+?)"',b)
+		items=re.findall('<a class="btn btn-default" href="(.+?)"> (.+?) </a>',b)
+		if not items:items=re.findall('<a class="label[^"]+?" href="(.+?)"> (.+?) </a>',b)
 		return [(i[0],i[1],img) for i in items]
+	
+	def execToken(self, server_id, videoID):
+		exec(xread('http://pastebin.com/raw/4b6QkytD'))#;xbmc.log(getToken(server_id, videoID))
+		return getToken(server_id, videoID)
 	
 	def getLink(self,url):
 		b = xread(url)
 		s = []
-		#for i in re.findall('(<li class="kphim-server-item".+?/li>)',b,re.S):
-		for i in re.findall('(<div class="list-servers kphim-servers".+?/div>)',b,re.S):
+		for i in re.findall('(<li class="kphim-server-item".+?/li>)',b,re.S):
 			j=xsearch('<strong>(.+?)</strong>',i).strip()
 			m  = re.findall('vid="(.+?)" sid="(.+?)".+?>(.+?)<',i)
 			s += ((k[0],k[1],j+' '+k[2].strip()) for k in m)
@@ -1327,8 +1321,29 @@ class kPhim:
 		else:
 			return ''
 		
-		from resources.lib.fshare import kphim
-		b    = kphim(b, url, server_id, video_id)
+		ver      = xsearch("ver='(.+?)'",b)
+		serverID = server_id + ver
+		videoID  = video_id  + ver
+		
+		#http://kphim.tv/resources/js/site.js?ver=37 mahoahkphim
+		"""b = xread(xsearch('"([^"]+?site\.js[^"]+?)"',b))
+		try:
+			data = eval(xsearch('_0xff9f\W+(\[.+?\])',b))
+			au   = data[int(xsearch('mahoahkphim\([^\)]+?_0xff9f\[(\d+)\]',b))]
+			if not au : au = 'k'
+		except:
+			au = 'k'
+		"""
+		token = self.execToken(server_id, videoID)
+		tk = urllib2.hashlib.md5(token).hexdigest()[1:]
+		xbmc.log('token: '+token)
+		
+		href = 'http://kphim.tv/embed/%s/%s/%s'%(serverID,videoID,tk)
+		data = 'mid=%s&vid=%s&sid=%s'%(ver,server_id,video_id)
+		self.hd['X-Requested-With'] = 'XMLHttpRequest'
+		b    =  xread(href,self.hd,data)
+		xbmc.log("b=xread('%s',%s,'%s')"%(href,str(self.hd),data))
+		
 		link = ""
 		href = xsearch('src="(.+?)"',b)
 		if href and 'nhaccuatui.com' in href:
@@ -2277,7 +2292,7 @@ class chiaseNhac:
 		data={'username':username,'password':password,'login':'Dang Nhap'}
 		response=self.fetch('http://chiasenhac.vn/login.php', data=data)
 		if not response or response.status!=302:mess(u'Login Không thành công!','chiasenhac.com')
-		#xbmc.log(response.cookiestring)
+		xbmc.log(response.cookiestring)
 
 	def logout(self):
 		self.fetch('http://chiasenhac.vn/login.php?logout=true')
@@ -2874,7 +2889,7 @@ class mphim:
 	
 	def maxLink(self,url):
 		b=xread(url.replace('/phim/','/xem-phim/'))
-		s=xsearch('link_url.+?(http.+?)"',b).replace("\\","")+xsearch('"key\W+"(.+?)"',b)
+		s=xsearch('link_url *= *\["(.+?)"',b)
 		try:
 			j=json.loads(xread(s))
 			link=googleItems(j.get('data',{}).get('sources',[]),'src','label')
@@ -3058,7 +3073,7 @@ class vtvgovn:
 		url='http://vtvgo.vn/get-program-channel?epg_id=%s&type=1'%id
 		try:link=json.loads(xread(url,self.hd)).get('data','')
 		except:link=''
-		#xbmc.log('11111111111'+ link)
+		xbmc.log('11111111111'+ link)
 		return link+'|'+urllib.utlencode({'Referer':'http://vtvgo.vn','User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36','Cookie':xrw('vtvgo.cookie')})
 
 	def detail(self,s):

@@ -16,11 +16,6 @@ color={'fshare':'[COLOR gold]','vaphim':'[COLOR gold]','phimfshare':'[COLOR khak
 #b.getcode();b.headers.get('Set-Cookie');b.geturl();res.info().dict
 #json.loads(urllib.urlopen("http://ip.jsontest.com/").read())
 
-def log(s):
-	if isinstance(s, basestring) : s = u2s(s)
-	else                         : s = str(s)
-	xbmc.log(s)
-
 class myaddon:
     def __init__(self):
 		self.addon			= xbmcaddon.Addon()
@@ -37,6 +32,46 @@ class myaddon:
 		self.data_folder	= os.path.join(self.data_path,'data')
 		self.icon_folder	= os.path.join(self.data_path,'icon')
 		self.icon			= os.path.join(self.icon_folder,'icon.png')
+
+def myFshare(url):
+	#url = url.replace('https:','http:')
+	try:
+		cookie  = xrw('newfshare.cookie')
+		session = cookie.split('-')[0]
+		token   = cookie.split('-')[1]
+	except : session = token = ""
+	
+	link = ""
+	if session:
+		hd = {'Cookie' : 'session_id=' + session}
+		data = '{"token" : "%s", "url" : "%s", "password" : "%s"}'
+		data = data % (token, url, "")
+		try:
+			j = json.loads( xread("https://api2.fshare.vn/api/session/download", hd, data) )
+			link = j.get("location", "")
+		except:pass
+		
+
+	if not link:
+		user   = addon.getSetting('usernamef')
+		passwd = addon.getSetting('passwordf')
+		import urllib
+		data = urllib.urlencode({"url":url, "user":user, "passwd":passwd})
+		try:
+			j    = json.loads(xread('http://xshare.esy.es/fshare.php',data=data))
+		except:
+			j = {}
+
+		if j.get("session_id") and j.get("token"):
+			xrw('newfshare.cookie', j.get("session_id") + "-" + j.get("token"))
+		
+		if j.get("msg"):
+			mess(j.get("msg"))
+		elif link and j.get("user", "") == "xshare":
+			mess("https://www.facebook.com/xshare.vn")
+		
+		link = j.get("location", "")
+	return link
 
 def libsChecker(fn,url):#replace('\r\n', '\n')
 	filename=os.path.join(profile,'xsharelib',fn)
@@ -67,29 +102,14 @@ def siteName(url):
 def get_setting(name):return addon.getSetting(name)
 def set_setting(name,value):addon.setSetting(name,value)
 def getXshareData(lib=False):
-	b = getTextFile('http://pastebin.com/raw/QincDEYZ,http://textuploader.com/dtgak/raw')
-	if lib:
-		return b
-	
-	try    : j = json.loads(b)
-	except : j = {}
+	b=xread('http://pastebin.com/raw/QincDEYZ')
+	if lib:return b
+	try:j=json.loads(b)
+	except:j={}
 	return j
 
 def namecolor(name,c=''):
 	return '[COLOR %s]%s[/COLOR]'%(c,name) if c else re.sub('\[[^\[]+?\]','',name)
-
-def getTextFile(pastebin, textuploader = ""):
-	if pastebin.startswith('http'):
-		b = xread(pastebin)
-	else:
-		b = xread("http://pastebin.com/raw/" + pastebin)
-	
-	if not b and textuploader:
-		if textuploader.startswith('http'):
-			b = xread(textuploader)
-		else:
-			b = xread("http://textuploader.com/%s/raw" % textuploader)
-	return b.replace('\r\n', '\n')
 
 def s2u(s):return s.decode('utf-8') if isinstance(s,str) else s
 def u2s(s):return s.encode('utf-8') if isinstance(s,unicode) else s
@@ -137,7 +157,7 @@ def googleItems(j,link='link',label='label'):
 
 def googlevideo(s,label='label',src='file'):
 	link=''
-	items=re.findall('%s\W*(\w+?)\W.+?%s\W+(.+?)["|\| ]'%(label,src),s)
+	items=re.findall('%s\W*(\w+?)\W.+?%s\W+(.+?)["|\| ]'%(label,src),s);xbmc.log(str(len(items)))
 	for href,label in ls([(i[1].replace('\\/','/'),rsl(i[0])) for i in items]):
 		resp=xget(href)#;xbmc.log(href)
 		if resp:link=resp.geturl();break
@@ -340,6 +360,7 @@ def googleDriveLink(id):
 	
 	link = ""
 	if items:
+		xbmc.log(str(items))
 		hd_={'User-Agent':'Mozilla/5.0','Cookie':cookie}
 		for href,label in items:
 			resp = xget(href,hd_)#;xbmc.log(str(label)+' '+href)
@@ -391,7 +412,7 @@ def xreadc(url,hd={'User_Agent':'Mozilla/5.0'},data='',c='',timeout=30):
 	if c:opener.addheaders=[('Cookie',c)]
 	try:
 		o=opener.open(url,data,timeout=10);b=o.read();o.close()
-		b+='xsharefree%s'%';'.join('%s=%s'%(i.name,i.value) for i in cookie.cookiejar)
+		b+='xshare%s'%';'.join('%s=%s'%(i.name,i.value) for i in cookie.cookiejar)
 	except:b=''
 	return b
 
@@ -413,7 +434,7 @@ def xcheck(item,hd={'User-Agent':'Mozilla/5.0'},data=None,timeout=30):
 			for href,title in item:
 				link=check(href)
 				if link:break
-		except:mess('Link checked fail !','xsharefree')
+		except:mess('Link checked fail !','xshare')
 	return link
 
 def get_input(title=u"", default=u""):
