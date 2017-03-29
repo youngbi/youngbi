@@ -32,11 +32,14 @@ class fshare:
 	def vip(self, session_id):
 		hd = {'Cookie' : 'session_id=' + session_id}
 		userInf = self.results("https://api2.fshare.vn/api/user/get", hd)
-		try    : vip = int(userInf.get("expire_vip","-1"))
-		except : vip = -1
-		if vip > 0: 
-			from time import time
-			vip = 1 if time() < vip else -1
+		if userInf.get("account_type", "") == "Bundle":
+			vip = 1
+		else:
+			try    : vip = int(userInf.get("expire_vip","-1"))
+			except : vip = -1
+			if vip > 0: 
+				from time import time
+				vip = 1 if time() < vip else -1
 		return  vip >= 0
 	
 	def login(self, user, passwd):
@@ -56,7 +59,6 @@ class fshare:
 				mess( "Acc của bạn hết hạn VIP", "Fshare.vn")
 		else:
 			mess( "Login không thành công!", "Fshare.vn")
-			mess("Đây là bản Hieuhien.vn copy của [COLOR red][B]Xshare[/COLOR] [COLOR green]XBMC[/COLOR] [COLOR blue]HDVideo[/B][/COLOR]")
 
 	def getLink(self, url, passwd = ""):
 		if not self.session_id:
@@ -113,15 +115,8 @@ class fshare:
 		link = j.get("location", "")
 	
 		if link == "Copy":
-			mess("Đây là bản Hieuhien.vn copy của [COLOR red][B]Xshare[/COLOR] [COLOR green]XBMC[/COLOR] [COLOR blue]HDVideo[/B][/COLOR]")
-			self.acc = j.get("user","")
-			if j.get("session_id") and j.get("token"):
-				data = u2s(j.get("session_id")+"-"+j.get("token")+"-"+self.acc+"-"+j.get("key", ""))
-				xrw('newfshare.cookie', data)
-			
-			if self.acc:
-				self.thanks(u2s(self.acc))
-				
+			mess("Đây là bản copy của [COLOR red][B]Xshare[/COLOR] [COLOR green]XBMC[/COLOR] [COLOR blue]HDVideo[/B][/COLOR]")
+			link = ""
 		elif link:
 			self.acc = j.get("user","")
 			if j.get("session_id") and j.get("token"):

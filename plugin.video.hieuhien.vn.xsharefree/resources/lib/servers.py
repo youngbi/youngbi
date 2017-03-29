@@ -1327,10 +1327,17 @@ class kPhim:
 		else:
 			return ''
 		
+		ver  = xsearch("ver\W*'(.+?)'",b)
 		from resources.lib.fshare import kphim
-		b    = kphim(b, url, server_id, video_id)
+		b=kphim(b, url, server_id, video_id)
+		href = xsearch('src="(.+?)"', b)
+		
+		if not href and "googlevideo.com" not in b:
+			data = urllib.urlencode({'url':url,'server_id':server_id,'video_id':video_id,'ver':ver})
+			b=xread('http://xshare.eu5.org/kphim.php', data=data)
+			href = xsearch('src="(.+?)"', b)
+		
 		link = ""
-		href = xsearch('src="(.+?)"',b)
 		if href and 'nhaccuatui.com' in href:
 			id = xsearch('\.(\w+)\.html',href,result = href.rsplit('/',1)[-1])
 			if id:

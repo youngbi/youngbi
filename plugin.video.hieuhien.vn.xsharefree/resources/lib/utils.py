@@ -176,18 +176,24 @@ def googleLinks(s, file="file", type='label'):
 		if not s and not e:
 			s = '0'
 		return e+re.sub('\D','',s)
-
+	
+	
 	if isinstance(s,basestring):
-		items = re.findall('file\W+(\w.+?)["|\'| ].+?label\W+(\w.+?)["|\'| ]',s)#;xbmc.log(s)
-		if not items:
+		items = []
+		if 'file' in s and 'label' in s:
+			items = re.findall('file\W+(\w.+?)["|\'| ].+?label\W+(\w.+?)["|\'| ]',s)#;xbmc.log(s)
+		
+		if (not items or "googlevideo.com" not in str(items)) and 'link' in s and 'label' in s:
 			items = re.findall('link\W+(\w.+?)["|\'| ].+?label\W+(\w.+?)["|\'| ]',s)
-			if not items:
-				items = re.findall('label\W+(\w.+?)["|\'| ].+?src\W+(\w.+?)["|\'| ]',s)
-				items = [(i[1],i[0]) for i in items]
-				if not items:
-					items = re.findall('file\W+(\w.+?)["|\'| ]',s)
-					if items:
-						items = [(i,'1') for i in items]
+		
+		if (not items or "googlevideo.com" not in str(items)) and 'label' in s and 'src' in s:
+			items = re.findall('label\W+(\w.+?)["|\'| ].+?src\W+(\w.+?)["|\'| ]',s)
+			items = [(i[1],i[0]) for i in items]
+		
+		if (not items or "googlevideo.com" not in str(items)) and 'file' in s:
+			items = re.findall('file\W+(\w.+?)["|\'| ]',s)
+			if items and "googlevideo.com" in str(items):
+				items = [(i,'1') for i in items]
 	
 	elif isinstance(s,dict):
 		try    : items = [(i.get(file),i.get(type)) for i in s]
@@ -219,7 +225,7 @@ def googleLinks(s, file="file", type='label'):
 	
 	return link
 #url='https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=20&hl=vi&prettyPrint=false&source=gcsc&gss=.com&cx=009789051051551375973:rw4tz3oypqq&googlehost=www.google.com&callback=google.search.Search.apiary19044&q=Sword'
-def googleDrive(url):
+def googleDrive(url, pageToken=""):
 	def spreadsheets(url, id=""):
 		if url.startswith('http:') or url.startswith('https:'):
 			id  = xsearch('([\w|-]{28,})',url)
@@ -276,10 +282,12 @@ def googleDrive(url):
 		if s:
 			url = s.geturl()
 		
-	id = xsearch('([\w|-]{28,})',url)
+	id     = xsearch('([\w|-]{28,})',url)
+	cookie = ""
 	if not url.startswith('http:') and not url.startswith('https:') or "spreadsheets" not in url:
 		href = 'https://drive.google.com/'
-		res = xget('%suc?id=%s'%(href,id), data = 'X-Json-Requested=true')
+		res  = xget('%suc?id=%s'%(href,id), data = 'X-Json-Requested=true')
+		
 		if res:
 			cookie=res.headers.get('Set-Cookie')
 			label = "Label In dict"
@@ -287,20 +295,25 @@ def googleDrive(url):
 				j = json.loads(xsearch('(\{.+?\})',res.read()))
 			except:
 				j = {}
+		
 		elif not res:
-			b      = xread('%sopen?id=%s'%(href,id))
-			label  = xsearch('<title>(.+?)</title>',b)
-			cookie = ""
-			key    = "AIzaSyCoi-DctzJWnIcydk89UETNQaf4W7QTUi8"
-			href   = "https://www.googleapis.com/drive/v2/files?q='%s'+in+parents&key=%s"
+			b     = xread('%sopen?id=%s'%(href,id))
+			label = xsearch('<title>(.+?)</title>',b)
+			href  = "https://www.googleapis.com/drive/v2/files?maxResults=30&orderBy=title&"
+			href += "q='%s'+in+parents&key=AIzaSyCoi-DctzJWnIcydk89UETNQaf4W7QTUi8&pageToken=%s"
+			href  = href % (id, pageToken)
 			
 			def abc(i):
 				return i.get("id"),i.get("title"),i.get("mimeType"),i.get("fileSize")
 			
 			try:
-				j = json.loads(xread( href % (id, key) ))
-				j = [abc(i) for i in j['items']]
-				j = sorted(j, key=lambda k: k[1])
+				j = json.loads(xread(href))
+				nextPageToken = j.get("nextPageToken")
+				if nextPageToken:
+					j = {"nextPageToken":nextPageToken,"items":[abc(i) for i in j['items']]}
+				else:
+					j = [abc(i) for i in j['items']]
+				
 				label += "|Google Drive"
 			except:
 				j = []
@@ -308,7 +321,6 @@ def googleDrive(url):
 		else:#xem lai bo nhanh nay
 			b     = xread('%sopen?id=%s'%(href,id))
 			label = xsearch('<title>(.+?)</title>',b)
-			cookie = ""
 			try:
 				s = json.loads(xsearch("'(\[\[\[.+?)'",b).decode('string_escape'))[0]
 				j = [(i[0],i[2],i[3],i[13]) for i in s]
@@ -321,7 +333,7 @@ def googleDrive(url):
 	
 	else:#"spreadsheets/" in url
 		label, j = spreadsheets(url)
-		cookie = ""
+	
 	return label, j, cookie
 
 def googleDriveLink(id):
@@ -352,13 +364,24 @@ def googleDriveLink(id):
 	return link
 
 def xrw(fn,s='',a='w'):
-	if len(fn) < 20:fn=os.path.join(xsharefolder,fn)
+	if ":" not in fn:
+		fn = os.path.join(xsharefolder,fn)
+	
 	try:
-		if s and a=='w':s=s.replace('\r\n','\n');f=open(fn,a);f.write(s)
-		elif s:f=open(fn,a);f.write(s)
-		else:f=open(fn);s=f.read().replace('\r\n','\n')
+		if s and a=='w':
+			s = s.replace('\r\n','\n')
+			f = open(fn, a)
+			f.write(s)
+		elif s:
+			f = open(fn,a)
+			f.write(s)
+		else:
+			f = open(fn)
+			s = f.read().replace('\r\n','\n')
 		f.close()
-	except:s=''
+	
+	except:
+		s = ''
 	return s
 
 def xcookie(cookie=None):
@@ -391,7 +414,7 @@ def xreadc(url,hd={'User_Agent':'Mozilla/5.0'},data='',c='',timeout=30):
 	if c:opener.addheaders=[('Cookie',c)]
 	try:
 		o=opener.open(url,data,timeout=10);b=o.read();o.close()
-		b+='xsharefree%s'%';'.join('%s=%s'%(i.name,i.value) for i in cookie.cookiejar)
+		b+='xshare%s'%';'.join('%s=%s'%(i.name,i.value) for i in cookie.cookiejar)
 	except:b=''
 	return b
 
@@ -413,7 +436,7 @@ def xcheck(item,hd={'User-Agent':'Mozilla/5.0'},data=None,timeout=30):
 			for href,title in item:
 				link=check(href)
 				if link:break
-		except:mess('Link checked fail !','xsharefree')
+		except:mess('Link checked fail !','xshare')
 	return link
 
 def get_input(title=u"", default=u""):

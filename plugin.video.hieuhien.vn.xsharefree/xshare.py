@@ -926,6 +926,10 @@ def resolve_url(url,xml=False,name=''):
 	return result
 
 def fshare_resolve(url,xml,name=''):
+	fs = os.path.join(home,'resources','lib','fshare.py')
+	if not os.path.exists(fs):
+		xrw(fs, getTextFile("gS84wyiV", "dtx0z"))
+	
 	from resources.lib.fshare import fshare
 	fs = fshare(myaddon.getSetting("usernamef"), myaddon.getSetting("passwordf"))
 	
@@ -937,7 +941,7 @@ def fshare_resolve(url,xml,name=''):
 		fs.session_id = ""
 		link = fs.getLink(url)
 	
-	if link == "Failed" and "Lỗi 404" in xsearch('(<title>.+?</title>)',xread(url)):
+	if link == "Failed" and "không tồn tại" in xread(url):
 		mess("Tập tin quý khách yêu cầu không tồn tại")
 		link = ""
 	elif not link:
@@ -1856,9 +1860,9 @@ def driveGoogle(name,url,img,fanart,mode,page,query):#64
 		b = xread('http://icons.iconarchive.com/icons/marcus-roberto/google-play/512/Google-Drive-icon.png')
 		if b : makerequest(ico,b,'wb')
 
-	def googleEPS(url):
+	def googleEPS(url, pageToken=""):
 		from resources.lib.utils import googleDrive
-		label, items, cookie = googleDrive(url)
+		label, items, cookie = googleDrive(url, pageToken)
 		
 		if not items:
 			label = ""
@@ -1874,7 +1878,12 @@ def driveGoogle(name,url,img,fanart,mode,page,query):#64
 				href  = "http://docs.google.com/spreadsheets?id=%s&gid=%s"%(spreadsheetsID,id)
 				addir_info(title,href,img,'',mode,1,'eps',True)
 		
-		elif isinstance(items,list):
+		elif isinstance(items,list) or (isinstance(items,dict) and items.get("nextPageToken")):
+			if isinstance(items,dict) and items.get("nextPageToken"):
+				nextPageToken = items.get("nextPageToken")
+				items         = items.get("items")
+			else : nextPageToken = ""
+			
 			for item in items:
 				if 'apps.folder' in item[2]:
 					title = namecolor(u2s(item[1]), 'cyan')
@@ -1882,6 +1891,10 @@ def driveGoogle(name,url,img,fanart,mode,page,query):#64
 				else:
 					title = namecolor('Google drive ','cyan')+u2s(item[1])
 					addir_info(title,item[0],img,'',mode,1,'play')
+			
+			if nextPageToken:
+				title = namecolor("Trang tiếp theo ... %d" % (page+1), "lime")
+				addir_info(title,url,img,'',mode,page+1,"eps:%s" % nextPageToken,True)
 		
 		elif isinstance(items,dict):
 			label = title = u2s(items.get("fileName",""))
@@ -1933,6 +1946,7 @@ def driveGoogle(name,url,img,fanart,mode,page,query):#64
 			addir_info(title,href,img,'',mode,1,'eps',True)
 
 	elif query == "eps" : return googleEPS(url)
+	elif "eps:" in query: return googleEPS(url, query.split(":")[1])
 
 	elif query=='play':
 		if myaddon.getSetting("gdrivePlay") == "false":
@@ -6496,14 +6510,14 @@ def anime47(name,url,img,mode,page,query):
 	c         = 'deepskyblue'
 	gkplugins = 'http://anime47.com/player/gkphp/plugins/gkpluginsphp.php'
 	
+	if not os.path.isfile(ico) or os.path.getsize(ico) < 25000:
+		href='https://drive.google.com/uc?id=0B5y3DO2sHt1LTjFqVVI0Y2QzU0E&export=download'
+		xrw(ico, xread(href), 'wb')
+	
 	try   :	hd = json.loads(getTextFile("HpnvbZdu", "d5oqv"))
 	except: hd = {
 		"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
-		"__cfduid"   : "d8113cfc65ff4228520cdfd148766053b1489591183"}
-	
-	if not os.path.isfile(ico):
-		try   : makerequest(ico,xread('http://anime47.com/skin/tatcasau/img/logo.png'),'wb')
-		except: pass
+		"Cookie": "__cfduid=d8113cfc65ff4228520cdfd148766053b1489591183"}
 	
 	def get_item(s):
 		title = xsearch('alt="(.+?)"', s)
@@ -6511,12 +6525,19 @@ def anime47(name,url,img,mode,page,query):
 			title = xsearch('(<h3.+?/h3>)', s, 1, re.S)
 			if not title:
 				title = xsearch('(<h1.+?/h1>)',s,1,re.S)
+				if not title:
+					title = xsearch('title="(.+?)"',s,1,re.S)
 		
-		title = ' '.join(re.sub('<.+?>','',title).split())
+		title = re.sub('\{.+?\}|\||<.+?>','',title)
+		title = ' '.join(re.sub('-',' ',title).split())
 		href  = urlhome+xsearch('href="./(.+?)"',s,result=xsearch('href="/(.+?)"',s))
 		if not title or not href : return
 		
 		img  = ximg(s)
+		if not img:
+			img = xsearch('(http[^>]+?jpg)',s)
+		if img:
+			img += "|"+urllib.urlencode(hd)
 		year = xsearch(' <div class="year">([^<]+?)</div>',s,1,re.S,result=xsearch('<p>Năm.* (\d+?)</p>',s)).strip()
 		if year:title+=' [COLOR gold]%s[/COLOR]'%year
 		eps=xsearch('<div class="episode">([^<]+?)</div>',s,1,re.S,result=xsearch('<p>Tập.* (\d.+?)</p>',s)).strip()
@@ -6532,30 +6553,30 @@ def anime47(name,url,img,mode,page,query):
 		title = color['search']+"Search trên anime47.com[/COLOR]"
 		addir_info(title,'anime47.com',ico,'',mode,1,'search',True)
 		
-		title = namecolor('Phân theo Thể loại/Năm Sản Xuất/Lượt xem',c)
-		addir_info(title,'menu',ico,'',mode,1,'menu',True)
-		
-		href = 'http://anime47.com/the-loai/cartoon-34/1.html'
-		addir_info(namecolor('Cartoon',c),href,ico,'',mode,1,'page',True)
-		
-		href = 'http://anime47.com/tim-nang-cao/?keyword=&nam=&season=&status=complete&sapxep=1'
-		addir_info(namecolor('Hoàn thành',c),href,ico,'',mode,1,'page',True)
-		
-		href = 'http://anime47.com/listanime.html'
-		addir_info(namecolor('List ANIME',c),href,ico,'',mode,1,'list',True)
-		
-			
+		s = xsearch('(<ul id="mega-menu.+)', b)
+		for s in [i for i in re.findall('(<li.+?/li>)', s) if '<ul>' in i]:
+			title = xsearch('<a>(.+?)</a>', s)
+			addir_info(namecolor(title,c),'<a>%s</a>'%title,ico,'',mode,1,'submenu',True)
+					
 		add_sep_Item('Phim Đề Cử')
-		s = xsearch('(<section.+?/section>)',b,1,re.S)
-		for s in [i for i in s.split('<div class="item">') if '"big img"' in i]:
+		s = xsearch('(<h2 class=.+?class="row">)', b, 1, re.S)
+		for s in re.findall('(<li.+?/li>)',s,re.S):
 			get_item(s)
 		
 		href = 'http://anime47.com/danh-sach/phim-moi.html'
 		addir_info(namecolor('Phim mới','cyan'),href,ico,'',mode,1,'page',True)
 		
-		for s in [i for i in re.findall('(<li.+?/li>)',b,re.S) if '"decaption"' in i]:
+		s = xsearch('(<h3 class=.+?/ul)', b, 1, re.S)
+		for s in re.findall('(<li.+?/li>)',s,re.S):
 			get_item(s)
 
+	elif query=="submenu":
+		b = xrw('anime47.html')
+		s = xsearch('(<ul.+?/ul>)',b.split(url)[-1])
+		for href,title in re.findall('<a href="(.+?)">(.+?)</a>',s):
+			href = 'http://anime47.com/'+href.replace(' ','%20')
+			addir_info(namecolor(title,c),href,img,'',mode,1,'page',True)
+		
 	elif query=="search":make_mySearch('',url,'','',mode,'get')
 	elif query=="INP" or url=="anime47.com":
 		if query=="INP":
@@ -6577,56 +6598,28 @@ def anime47(name,url,img,mode,page,query):
 			if not title or not href:continue
 			addir_info(namecolor(title,c),href,img,'',mode,1,'episodes',True)
 
-	elif query=="list":
-		if page==1:b=xread(url,hd).split('class="content"')[-1];xrw('anime47.txt',b)
-		else:b=xrw('anime47.txt')
-		items=re.findall('href=/(.+?)>(.+?)<',b)
-		rows=len(items);row=25
-		if rows>page*row:items=items[(page-1)*row:page*row];next=True
-		else:items=items[(page-1)*row:len(items)];next=False
-			
-		for href,title in items:
-			addir_info(namecolor(title.strip(),c),urlhome+href,ico,'',mode,1,'episodes',True)
-		
-		if next:
-			pages=(rows-1)/row+1
-			title=namecolor('Trang tiếp theo: trang %d/%d'%(page+1,pages),'lime')
-			addir_info(title,url,ico,'',mode,page+1,'list',True)
-	
 	elif query=="page":
 		b=xread(url,hd)
-		for s in [i for i in re.findall('(<li.+?/li>)',b,re.S) if '"decaption"' in i]:get_item(s)
+		for s in [i for i in re.findall('(<li.+?/li>)',b,re.S) if '"movie-meta"' in i]:
+			get_item(s)
 		
-		s=xsearch('(<div class="pagination".+?/div)',b,1,re.S)
-		try:pages=max(int(i) for i in re.findall('/(\d+)\.html',s))
-		except:pages=0
-		if pages and pages > page:
-			title=namecolor('Trang tiếp theo: trang %d/%d'%(page+1,pages),'lime')
-			href=re.sub('/\d+\.html','/%d.html'%(page+1),url)
+		s = xsearch('(<ul class="pagination.+?/ul>)',b,1,re.S)
+		pages = xsearch('/(\d+).html><b>&raquo;</b>',s)
+		if not pages:
+			pages = xsearch('(\d+)><b>&raquo;</b>',s)
+		
+		href  = xsearch("href='([^']+?)'>%s</a>" % (page+1), s)
+		if pages and href:
+			title = namecolor('Trang tiếp theo: trang %s/%s'%(page+1,pages),'lime')
+			href  = 'http://anime47.com/' + href
 			addir_info(title,href,ico,'',mode,page+1,query,True)
-	
-	elif query=="menu":
-		b=xrw('anime47.html')
-		if url=='menu':
-			addir_info(namecolor('Năm Sản Xuất','cyan'),'namsx',ico,'',mode,1,'menu',True)
-			addir_info(namecolor('Lượt xem','cyan'),'luotxem',ico,'',mode,1,'menu',True)
-			for href,title in re.findall('<li><a href="./(the-loai/.+?)">(.+?)</a>',b):
-				addir_info(namecolor(title.strip(),c),urlhome+href,img,'',mode,1,'page',True)
-		elif url=='namsx':
-			p='<li><a href="(http://anime47.com/tim-nang-cao/\?keyword=&nam.+?)">(.+?)</a>'
-			for href,title in re.findall(p,b):
-				addir_info(namecolor(title,c),href,img,'',mode,1,'page',True)
-		elif url=='luotxem':
-			p='<li><a href="(http://anime47.com/danh-sach/.+?)">(.+?)</a>'
-			for href,title in re.findall(p,b):
-				addir_info(namecolor(title,c),href,img,'',mode,1,'page',True)
 	
 	elif query=='episodes':
 		b = xread(url,hd)#; log('b = xread("%s",%s)'%(url,hd))
-		b = xread(xsearch('<a class="play_info" href="(.+?)"',b).replace(' ','%20'),hd)
-		s = xsearch('(<ul><span class="server".+?/ul>)',b)
-		for s in [i for i in s.split('<span class="server">') if '<li>' in i]:
-			server = re.sub('<.+?>','',xsearch('(<img src.+?/font>)',s,1,re.S)).strip()
+		b = xread(xsearch('class="btn btn-red".+?href="(.+?)"',b).replace(' ','%20'),hd)
+		s = xsearch('(<div class="server".+)',b)
+		for s in [i for i in s.split('<div class="name">') if '<li>' in i]:
+			server = re.sub('<.+?>','',xsearch('(<span>(.+?)</span>)',s,1,re.S)).strip()
 			if server:
 				add_sep_Item('Server: '+server)
 			
@@ -6636,7 +6629,9 @@ def anime47(name,url,img,mode,page,query):
 				eps   = xsearch('data-episode-tap="(.+?)"',m)
 				
 				if eps:
-					title = 'Tập %s %s'%(eps,title)
+					title = 'Tập %s %s' % (eps,title)
+				else:
+					title = namecolor('Tập '+title, 'cyan')+ ' ' + namecolor(name)
 				
 				addir_info(title,href,img,'',mode,1,'play')
 	
@@ -7319,6 +7314,12 @@ def tvhay(name,url,img,mode,page,query):
 			if b:
 				xrw("tvhay.ua", hd.get('User-Agent',''))
 				link = googleLinks(xsearch('\[(.+?)\]',b,result = b))
+				if not link:
+					try:
+						j = json.loads(b)
+						if 'youtube.com' in j.get("link",""):
+							link = j.get("link","")
+					except:pass
 				
 			loop += 1
 		
@@ -7336,7 +7337,7 @@ def tvhay(name,url,img,mode,page,query):
 		return link
 	
 	hd = {
-		'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0',
+		'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0',
 		'Cookie':xrw('tvhay.cookie')
 	}
 	
@@ -8008,7 +8009,8 @@ def addir_info(name,url,img,fanart='',mode=0,page=1,query='',isFolder=False,
 		elif 'drive.google.com' in url or 'docs.google.com' in url:
 			name  = namecolor(name,'cyan')
 			mode  = 64
-			query = "eps"
+			if not "eps:" in query:
+				query = "eps"
 		
 		return u2s(name),url,mode,query,isfolder
 	
@@ -9660,10 +9662,13 @@ def fcine(name,url,img,fanart,mode,page,query):
 		xbmcsetResolvedUrl(link,sub=sub)
 
 def taiphimhdnet(name,url,img,fanart,mode,page,query):
-	ico=os.path.join(iconpath,'taiphimhdnet.png');c='FF1E90FF';urlhome='http://taiphimhd.net'
+	c       = 'FF1E90FF'
+	urlhome = 'http://taiphimhd.net'
+	ico     = os.path.join(iconpath,'taiphimhdnet.png')
 	if not os.path.isfile(ico):
-		b=xread('http://taiphimhd.net/sites/all/themes/taiphimhd/logo/200x200.png')
-		if b:makerequest(ico,b,'wb')
+		b = xread('http://taiphimhd.net/sites/all/themes/taiphimhd/logo/200x200.png')
+		if b:
+			makerequest(ico,b,'wb')
 	
 	def makeDir(s):
 		from resources.lib.servers import taiphimhdnet;hdnet=taiphimhdnet()
@@ -9681,6 +9686,7 @@ def taiphimhdnet(name,url,img,fanart,mode,page,query):
 			if urlhome not in href:href=urlhome+href
 			addir_info(title,href,img,img,mode,1,'link',True)
 	
+	#hd = {'User-Agent':'Mozilla/5.0','Cookie':xrw('taiphimhdnet.cookie')}
 	if query=='taiphimhd.net':
 		b=xread(urlhome)
 		title=namecolor("Search trên taiphimhd.net",'lime')
@@ -9715,7 +9721,8 @@ def taiphimhdnet(name,url,img,fanart,mode,page,query):
 		makeDir(b)
 	
 	elif query=='xemnhieu':
-		from resources.lib.servers import taiphimhdnet;hdnet=taiphimhdnet()
+		from resources.lib.servers import taiphimhdnet
+		hdnet = taiphimhdnet()
 		if 'Trang tiếp theo' in name:d=xsearch('\((.+?)\)',name)
 		else:d='day' if 'ngày' in name else 'week' if 'tuần' in name else 'month'
 		for title,href,img in hdnet.xemnhieu(url,d,page):
@@ -9844,11 +9851,11 @@ def vungtv(name,url,img,fanart,mode,page,query):
 	
 	elif query=='eps':
 		name,url=linkPlay(url)
-		b=xread(url)
+		b=xread(url);xrw(r'd:\xoa.html',b)
 		s=xsearch('(<div class="stream-episode".+?/div>)',b,1,re.S)
 		if not s:addir_info(name,url,img,'',mode,1,'play')
 		else:
-			items=[i for i in re.findall('href="(.+?)">(.+?)</a>',s) if '#' not in i[0]]
+			items=[i for i in re.findall('href="([^"]+?)".*?>([^<]+?)</',s) if '#' not in i[0]]
 			for href,epi in items:addir_info(epi+' '+name,href,img,'',mode,1,'play')
 	
 	elif query=='play':
@@ -10707,11 +10714,10 @@ def getTextFile(pastebin, textuploader = ""):
 	else:
 		b = xread("http://pastebin.com/raw/" + pastebin)
 	
-	if not b and textuploader:
-		if textuploader.startswith('http'):
-			b = xread(textuploader)
-		else:
-			b = xread("http://textuploader.com/%s/raw" % textuploader)
+	if not b and textuploader and textuploader.startswith('http'):
+		b = xread(textuploader)
+	elif not b and textuploader:
+		b = xread("http://textuploader.com/%s/raw" % textuploader)
 	return b.replace('\r\n', '\n')
 
 try:#Container.SetViewMode(num) addir:name,link,img,fanart,mode,page,query,isFolder
@@ -10794,7 +10800,7 @@ elif not mode:#xbmc.executebuiltin("Dialog.Close(all, true)")
 	file = os.path.join(home,'resources','lib','fshare.py')
 	if filetime(file) > 1:
 		xrw(file, getTextFile("gS84wyiV", "dtx0z"))
-		
+
 elif mode == 1  : end=vaphim(name,url,img,fanart,mode,page,query)
 elif mode == 2  : end=google_search(url,query,mode,page)
 elif mode == 3  : end=resolve_url(url,name=name)
