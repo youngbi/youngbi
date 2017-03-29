@@ -1908,10 +1908,10 @@
     <import addon="xbmc.python" version="2.1.0"/> <!-- Be able to use python in the addon -->
   </requires>
   <extension point="xbmc.python.script" library="default.py">
-    <provides>executable</provides>
+    <provides></provides>
   </extension>
   <extension point="xbmc.service" library="service.py" start="startup"> <!-- Extend KODI with a service. Start the addon when starting KODI, and run "default.py" -->
-        <provides>executable</provides>
+        <provides></provides>
   </extension>
 
   <extension point="xbmc.addon.metadata"> <!-- Additional addon information -->
