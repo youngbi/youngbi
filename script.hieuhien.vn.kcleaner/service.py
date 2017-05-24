@@ -1,5 +1,5 @@
 ﻿# ============================================================
-# KCleaner - Version 1.6 by D. Lanik (2017)
+# KCleaner - Version 2.6 by D. Lanik (2017)
 # ------------------------------------------------------------
 # Clean up Kodi
 # ------------------------------------------------------------
@@ -35,12 +35,27 @@ class SettingMonitor(xbmc.Monitor):
 
 def GetSetting():
     global booBackgroundRun
+    global lastrundays
 
     __addon__ = xbmcaddon.Addon(id='script.hieuhien.vn.kcleaner')
-    df = str(__addon__.getSetting("autoclean")).title()
 
-    booBackgroundRun = bool(strtobool(df))
-    xbmc.log('KCLEANER SERVICE >> SETTINGS CHANGED ' + df + " >> " + str(booBackgroundRun))
+    booBackgroundRun = bool(strtobool(str(__addon__.getSetting('autoclean').title())))
+
+    auto_interval = int(__addon__.getSetting('auto_interval'))
+
+    if auto_interval == 0:
+        lastrundays = 1
+    elif auto_interval == 1:
+        lastrundays = 7
+    elif auto_interval == 2:
+        lastrundays = 30
+    elif auto_interval == 3:
+        lastrundays = 90
+    else:
+        lastrundays = 0
+
+    xbmc.log('KCLEANER SERVICE >> SETTINGS CHANGED >> SERVICE RUN: ' + str(booBackgroundRun))
+    xbmc.log('KCLEANER SERVICE >> SETTINGS CHANGED >> RUN EVERY DAYS: ' + str(lastrundays))
 
 # ============================================================
 # Run cleaning according to settings
@@ -63,6 +78,20 @@ def AutoClean():
     auto_compact = bool(strtobool(str(__addon__.getSetting('auto_compact').title())))
     auto_textures = bool(strtobool(str(__addon__.getSetting('auto_textures').title())))
     auto_userdata = bool(strtobool(str(__addon__.getSetting('auto_userdata').title())))
+    auto_notification = int(__addon__.getSetting('auto_notification'))
+
+    if auto_notification == 0:
+        a_progress = 1
+        a_notif = 1
+    elif auto_notification == 1:
+        a_progress = 1
+        a_notif = 0
+    elif auto_notification == 2:
+        a_progress = 2
+        a_notif = 1
+    elif auto_notification == 3:
+        a_progress = 2
+        a_notif = 0
 
     actionToken = []
 
@@ -78,22 +107,24 @@ def AutoClean():
     if os.path.exists('/private/var/mobile/Library/Caches/AppleTV/Video/Other'):
         actionToken.append("atv")
 
-    intC, intMbDel = DeleteFiles(actionToken, 1)
+    intC, intMbDel = DeleteFiles(actionToken, a_progress)
 
     if auto_textures:
-        intC, intMbTxt = CleanTextures(1)
+        intC, intMbTxt = CleanTextures(a_progress)
 
     if auto_compact:
-        intC, intMbCom = CompactDatabases(1)
+        intC, intMbCom = CompactDatabases(a_progress)
 
     if auto_userdata:
-        intC, intMbAdn = deleteAddonData(1)
+        intC, intMbAdn = deleteAddonData(a_progress)
 
     intMbTot = intMbDel + intMbCom + intMbTxt + intMbAdn
     mess = __addon__.getLocalizedString(30112)                             # Mb
     mess2 = " (%0.2f %s)" % (intMbTot, mess,)
     strMess = __addon__.getLocalizedString(30031) + mess2                  # Cleanup [COLOR red]done[/COLOR].
-    xbmc.executebuiltin("XBMC.Notification(%s,%s,5000,%s)" % (__addonname__.encode('utf8'), strMess, __addon__.getAddonInfo('icon')))
+
+    if a_notif == 1:
+        xbmc.executebuiltin("XBMC.Notification(%s,%s,5000,%s)" % (__addonname__.encode('utf8'), strMess, __addon__.getAddonInfo('icon')))
 
 # ============================================================
 # ------------------------------------------------------------
@@ -109,46 +140,56 @@ __addonname__ = __addon__.getAddonInfo('name')
 __version__ = __addon__.getAddonInfo('version')
 
 booBackgroundRun = False
+lastrundays = 0
+
+__addon__.setSetting('lock', 'false')
 
 if __name__ == '__main__':
     xbmc.log("KCLEANER SERVICE >> STARTED VERSION %s" % (__version__))
 
     booBackgroundRun = bool(strtobool(str(__addon__.getSetting('autoclean').title())))
 
+    auto_lastrun = __addon__.getSetting('auto_lastrun')
+    date_now = int(round(time.time()))
+
+    if auto_lastrun != "":
+        date_auto_lastrun = int(auto_lastrun)
+        time_difference = date_now - date_auto_lastrun
+        time_difference_days = int(time_difference) / 86400
+    else:
+        __addon__.setSetting('auto_lastrun', str(int(date_now - 31536000)))
+        date_auto_lastrun = 365
+        time_difference_days = 365
+
+    auto_interval = int(__addon__.getSetting('auto_interval'))
+
+    if auto_interval == 0:
+        lastrundays = 1
+    elif auto_interval == 1:
+        lastrundays = 7
+    elif auto_interval == 2:
+        lastrundays = 30
+    elif auto_interval == 3:
+        lastrundays = 90
+    else:
+        lastrundays = 0
+
+    autostart_delay = int(__addon__.getSetting('autostart_delay'))
+
     if booBackgroundRun:
-        auto_interval = int(__addon__.getSetting('auto_interval'))
+        xbmc.log("KCLEANER SERVICE >> SERVICE INIT >> LAST RUN " + str(time_difference_days) + " DAYS AGO, SET TO RUN EVERY " + str(lastrundays) + " DAYS, WITH DELAY OF " + str(autostart_delay) + " MINUTE(S)")
 
-        if auto_interval == 0:
-            lastrundays = 1
-        elif auto_interval == 1:
-            lastrundays = 7
-        elif auto_interval == 2:
-            lastrundays = 30
-        elif auto_interval == 3:
-            lastrundays = 90
-        else:
-            lastrundays = 0
-
-        auto_lastrun = __addon__.getSetting('auto_lastrun')
-        date_now = int(round(time.time()))
-
-        if auto_lastrun != "":
-            date_auto_lastrun = int(auto_lastrun)
-            time_difference = date_now - date_auto_lastrun
-            time_difference_days = int(time_difference) / 86400
-        else:
-            __addon__.setSetting('auto_lastrun', str(int(date_now - 31536000)))
-            time_difference_days = 365
-
-        autostart_delay = int(__addon__.getSetting('autostart_delay'))
-
-        xbmc.log("KCLEANER SERVICE >> LAST RUN " + str(time_difference_days) + " DAYS AGO, SET TO RUN EVERY " + str(lastrundays) + " DAYS, WITH DELAY OF " + str(autostart_delay) + " MINUTE(S)")
-
-        if time_difference_days > lastrundays:
+        if time_difference_days > lastrundays or lastrundays == 0:
             xbmc.sleep(autostart_delay * 60000)
-            xbmc.log('KCLEANER SERVICE >> RUNNING AUTO...')
-            AutoClean()
-            __addon__.setSetting('auto_lastrun', str(int(round(time.time()))))
+
+            if __addon__.getSetting('lock') != 'true':
+                __addon__.setSetting('lock', 'true')
+                xbmc.log('KCLEANER SERVICE >> RUNNING AUTO...')
+                AutoClean()
+                __addon__.setSetting('auto_lastrun', str(int(round(time.time()))))
+                __addon__.setSetting('lock', 'false')
+    else:
+        xbmc.log("KCLEANER SERVICE >> SERVICE OFF")
 
     monitor = xbmc.Monitor()
     monsettings = SettingMonitor()
@@ -156,7 +197,6 @@ if __name__ == '__main__':
     iCounter = 0
 
     while True:
-        t = time.ctime()
         if monitor.waitForAbort(2):    # Sleep/wait for abort
             xbmc.log('KCLEANER SERVICE >> EXIT')
             break                      # Abort was requested while waiting. Exit the while loop.
@@ -173,11 +213,14 @@ if __name__ == '__main__':
                     xbmc.log("KCLEANER SERVICE >> LAST RUN " + str(time_difference_days) + " DAYS AGO, SET TO RUN EVERY " + str(lastrundays) + " DAYS (NOW: " + str(date_now) + ")")
 
                     if time_difference_days > lastrundays:
-                        xbmc.log('KCLEANER SERVICE >> RUNNING AUTO...')
-                        AutoClean()
-                        date_auto_lastrun = int(round(time.time()))
-                        __addon__.setSetting('auto_lastrun', str(date_auto_lastrun))
-
+                        if __addon__.getSetting('lock') != 'true':
+                            __addon__.setSetting('lock', 'true')
+                            xbmc.log('KCLEANER SERVICE >> RUNNING AUTO...')
+                            AutoClean()
+                            date_auto_lastrun = int(round(time.time()))
+                            __addon__.setSetting('auto_lastrun', str(date_auto_lastrun))
+                            __addon__.setSetting('lock', 'false')
+                            xbmc.log('KCLEANER SERVICE >> END AUTO...')
 
 # ------------------------------------------------------------
 # ------------------------------------------------------------

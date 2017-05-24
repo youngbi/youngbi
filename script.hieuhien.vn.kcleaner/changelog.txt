@@ -1,3 +1,42 @@
+v2.6
+- Bug fix
+
+v2.5
+- Added custom paths to be cleaned
+- Excluded ignored options from being displayed in confirmation dialog
+- Excluded ignored options from being calculated in totals
+
+v2.4
+- Option to clean Database Pre-Wash Scrub addon
+
+v2.3
+- Option to run KCleaner on every Kodi start
+- Option not to display summary or progress bar on scheduled clean
+
+v2.2
+- Indicate in menu if all or only not in DB thumbs are being cleaned
+- Refresh Mb cleaned in menu after settings change
+- Refresh Mc cleaned in menu after cleaning
+
+v2.1
+- Locking app when auto clean running (as not to run twice)
+- Display how much Mb would be cleaned in menu
+
+v2.0
+- Icon change
+
+v1.9
+- Change all occurances of local folder path to special:// in settings files
+
+v1.8
+- Completely rewrote interface
+- Optimizations in service/scheduler
+- Screenshots to reflect changes in interface
+
+v1.7
+- Better debugging
+- Code cleanup
+
 v1.6
 - Option not to delete latest (1-4) package(s)
 
