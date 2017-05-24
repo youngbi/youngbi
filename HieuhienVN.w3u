@@ -2,6 +2,23 @@
     "author": "thanh51 - edit by Hieuhien.vn",
     "url": "http://w3ubin.com/417_l9uNz.w3u",
    "groups": [
+   
+       {
+	
+                 "name": "Xem bóng đá Tây Ban Nha (SPANISH LA LIGA) theo giờ Việt Nam",
+                "image": "https://s1.postimg.org/j0sndgeyn/laliga.jpg",
+               
+                "stations": [
+ 				  {
+
+			"name": "Barcelona v Alaves (02:30 28/05/17) - Sky sport 2",
+          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
+			"url": "acestream://6b2fb9a9e67aaabd63004059147dfdc46e882aba"
+
+    }
+                
+    ]
+    },
                   { 
 
                 "name": "Xem Bóng đá FIFA WORLD CUP U 20 theo giờ Việt Nam",
@@ -79,22 +96,7 @@
     ]
     },
      
-    {
-	
-                 "name": "Xem bóng đá Tây Ban Nha (SPANISH LA LIGA) theo giờ Việt Nam",
-                "image": "https://s1.postimg.org/j0sndgeyn/laliga.jpg",
-               
-                "stations": [
- 				  {
 
-			"name": "Barcelona v Alaves (02:30 28/05/17) - Sky sport 2",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://6b2fb9a9e67aaabd63004059147dfdc46e882aba"
-
-    }
-                
-    ]
-    },
      
     {
                  "name": "Xem chung kết Cúp C2 Châu Âu (Uefa Europa League) theo giờ Việt Nam",
