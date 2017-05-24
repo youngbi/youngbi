@@ -2,23 +2,34 @@
     "author": "thanh51 - edit by Hieuhien.vn",
     "url": "gg.gg/hieuhienvn",
    "groups": [
-   
-       {
-	
-                 "name": "Xem bóng đá Tây Ban Nha (SPANISH LA LIGA) theo giờ Việt Nam",
-                "image": "https://s1.postimg.org/j0sndgeyn/laliga.jpg",
+      
+    {
+                 "name": "Xem chung kết Cúp C2 Châu Âu (Uefa Europa League) theo giờ Việt Nam",
+                "image": "https://s18.postimg.org/ofpwrpleh/cupc2.jpg",
                
                 "stations": [
  				  {
 
-			"name": "Barcelona v Alaves (02:30 28/05/17) - Sky sport 2",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://6b2fb9a9e67aaabd63004059147dfdc46e882aba"
+			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - AV27",
+			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
+			"url": "acestream://dd7b7780bb13ce3757827f301c761ebe17a19015"
+		        },
+		        {
 
-    }
+			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - AV14",
+			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
+			"url": "acestream://974903257b1aea10203b4d14d781b4bf58a31f5c"
+		        },
+		        {
+
+			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - BT sport 2",
+			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
+			"url": "acestream://04b38c71065be18d799edf8c37d63e738030b84d"
+   }
                 
     ]
     },
+     
                   { 
 
                 "name": "Xem Bóng đá FIFA WORLD CUP U 20 theo giờ Việt Nam",
@@ -97,34 +108,7 @@
     },
      
 
-     
-    {
-                 "name": "Xem chung kết Cúp C2 Châu Âu (Uefa Europa League) theo giờ Việt Nam",
-                "image": "https://s18.postimg.org/ofpwrpleh/cupc2.jpg",
-               
-                "stations": [
- 				  {
-
-			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - AV27",
-			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://dd7b7780bb13ce3757827f301c761ebe17a19015"
-		        },
-		        {
-
-			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - AV14",
-			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://974903257b1aea10203b4d14d781b4bf58a31f5c"
-		        },
-		        {
-
-			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - BT sport 2",
-			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://04b38c71065be18d799edf8c37d63e738030b84d"
-   }
-                
-    ]
-    },
-     
+  
     {
                  "name": "Xem chung kết bóng đá vô địch các câu lạc bộ châu Âu (Cup C1) theo giờ Việt Nam",
                 "image": "https://s22.postimg.org/xbdfv8j41/cupc1.jpg",
@@ -140,6 +124,22 @@
     ]
     },
      
+       {
+	
+                 "name": "Xem bóng đá Tây Ban Nha (SPANISH LA LIGA) theo giờ Việt Nam",
+                "image": "https://s1.postimg.org/j0sndgeyn/laliga.jpg",
+               
+                "stations": [
+ 				  {
+
+			"name": "Barcelona v Alaves (02:30 28/05/17) - Sky sport 2",
+          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
+			"url": "acestream://6b2fb9a9e67aaabd63004059147dfdc46e882aba"
+
+    }
+                
+    ]
+    },
     {
                  "name": "ACESTREAM SPORTS CHANNELS",
                 "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
