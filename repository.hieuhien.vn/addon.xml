@@ -3,7 +3,7 @@
 <addon 
 	id="repository.hieuhien.vn" 
 	version="1.0.0" 
-	name="[COLOR lime][B]Hieuhien.vn Repository[/B][/COLOR]" 
+	name="[B][COLOR lime]Hieuhien.vn Repository[/COLOR][/B]" 
 	provider-name="Hieuhien.vn">
 	<requires>
 		<import addon="xbmc.addon" version="12.0.0"/>

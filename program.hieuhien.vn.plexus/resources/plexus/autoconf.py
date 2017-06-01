@@ -29,7 +29,8 @@ from plexusutils.webutils import download_tools,get_page_source
 from plexusutils.utilities import *
 
 """ Platform dependent files downloaded during the addon configuration"""
-trunkfolder = "https://github.com/tvaddonsag/plexus-dependencies/raw/master"
+#trunkfolder = "https://github.com/tvaddonsag/plexus-dependencies/raw/master"
+trunkfolder = "https://raw.githubusercontent.com/bazingashami/plexus_fork/master/resources"
 version_control = trunkfolder + "/Control/versions.info"
 
 #Linux Arm

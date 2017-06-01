@@ -2,7 +2,7 @@
 <addon
   id="plugin.video.HieuHien.vn"
   version="1.0.2"
-  name="[B][COLOR red]Hieuhien.vn[/COLOR] [COLOR lime]Trung tâm giải trí[/COLOR][/B]"
+  name="[B][COLOR lime]Trung tâm giải trí[/COLOR][/B]"
   provider-name="thongld">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

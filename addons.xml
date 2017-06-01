@@ -161,7 +161,7 @@
 <addon
   id="plugin.video.HieuHien.vn"
   version="1.0.2"
-  name="[B][COLOR red]Hieuhien.vn[/COLOR] [COLOR lime]Trung tâm giải trí[/COLOR][/B]"
+  name="[B][COLOR lime]Trung tâm giải trí[/COLOR][/B]"
   provider-name="thongld">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1508,7 +1508,7 @@
 <addon
 	id="repository.hieuhien.vn"
 	version="1.0.0"
-	name="[COLOR lime][B]Hieuhien.vn Repository[/B][/COLOR]"
+	name="[B][COLOR lime]Hieuhien.vn Repository[/COLOR][/B]"
 	provider-name="Hieuhien.vn">
 	<requires>
 		<import addon="xbmc.addon" version="12.0.0"/>
