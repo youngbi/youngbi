@@ -17,7 +17,7 @@ import xbmcaddon
 import os
 
 linkwiki="http://bit.ly/1r5uGQT"
-addon_id = 'program.hieuhien.vn.plexus'
+addon_id = 'program.plexus'
 art = os.path.join('resources','art')
 settings = xbmcaddon.Addon(id=addon_id)
 addonpath = settings.getAddonInfo('path').decode('utf-8')
