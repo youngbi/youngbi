@@ -14,7 +14,11 @@
 "name": "Tom And Jerry - Tập 1 (Lồng Tiếng Việt)","image":"https://i.ytimg.com/vi/5XWaPc69F2k/mqdefault.jpg",
 "url": "https://www.youtube.com/watch?v=5XWaPc69F2k","isHost": false 
 },
-
+{	
+"name": "VTV2 s1",
+"image": "http://i.imgur.com/RwwN9B3.png",
+"url": "http://sv.tivi3g.com/stream-vtv/vtv2.m3u8"
+},
 {
 "name": "Tom And Jerry 161",
 "image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
