@@ -1,19 +1,32 @@
 {"name": "Kênh tổng hợp - Update ngày 5/6/2017 (bấm nút refresh màu hồng để update kênh). Nếu bị lỗi vui lòng báo lại vào email: hotro.hieuhien.vn@gmail.com",
     "author": "thanh51",
-    "url": "http://gg.gg/thanh51",
+    "url": "http://gg.gg/hieuhienvn",
    "groups": [
                   
-		  {
-                 "name": "Người phán xử",
-                "image": "http://phimvtv3.net/images/nguoi-phan-xu-vtv3-hd.jpg",
+    {
+                 "name": "Phim Thiếu Nhi",
+                "image": "https://s31.postimg.org/kx5sh8j23/moviekid.jpg",
                
                 "stations": [
  				  {
 
-"name":"VTV1 HD","image":"https://i.ytimg.com/vi/CtsGE8_FbBU/hqdefault.jpg","url": "http://vtvgovodobj.04477775.sabai.vn/218f9ab67db2950cecbd51d4d978c7e11496667353/vod/20170324/fc1d541c1613f8e6be3f97b6fed15c63-hd.m3u8
-"},
-]
-}
+			"name": "Tom And Jerry",
+          	        "image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
+          	        "url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_mhls_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"
+                        },
+                        {
+"name": "Tom And Jerry - Tập 1 (Lồng Tiếng Việt)","image":"https://i.ytimg.com/vi/5XWaPc69F2k/mqdefault.jpg",
+"url": "https://www.youtube.com/watch?v=5XWaPc69F2k","isHost": false },
+                        {
+                        "name": "Tom And Jerry 161",
+                        "image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
+                        "url": "http://www.beblia.com/videos_/tomandjerry/lq/161.mp4"
+
+    }
+                
+    ]
+    },
+ 
 		  
 		  
 		  { 
