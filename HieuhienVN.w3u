@@ -1,8 +1,22 @@
-{"name": "Kênh tổng hợp - Hieuhien.vn update ngày 5/6/2017 (bấm nút refresh màu hồng để update kênh). Nếu bị lỗi vui lòng báo lại vào email: hotro.hieuhien.vn@gmail.com",
+{"name": "Kênh tổng hợp - Update ngày 5/6/2017 (bấm nút refresh màu hồng để update kênh). Nếu bị lỗi vui lòng báo lại vào email: hotro.hieuhien.vn@gmail.com",
     "author": "thanh51",
     "url": "http://gg.gg/thanh51",
    "groups": [
-                  { 
+                  
+		  {
+                 "name": "Người phán xử",
+                "image": "http://phimvtv3.net/images/nguoi-phan-xu-vtv3-hd.jpg",
+               
+                "stations": [
+ 				  {
+
+"name":"VTV1 HD","image":"https://i.ytimg.com/vi/CtsGE8_FbBU/hqdefault.jpg","url": "http://vtvgovodobj.04477775.sabai.vn/218f9ab67db2950cecbd51d4d978c7e11496667353/vod/20170324/fc1d541c1613f8e6be3f97b6fed15c63-hd.m3u8
+"},
+]
+}
+		  
+		  
+		  { 
                 "name": "Xem Bóng đá FIFA WORLD CUP U 20 theo giờ Việt Nam",
                 "image": "https://s7.postimg.org/gxwfu12dn/u20.jpg",
                
