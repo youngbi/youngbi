@@ -15,14 +15,19 @@
 "url": "http://vtvgovodobj.04477775.sabai.vn/218f9ab67db2950cecbd51d4d978c7e11496667353/vod/20170324/fc1d541c1613f8e6be3f97b6fed15c63-hd.m3u8"
 },
 
-[
 {
-"name": "Người Phán Xử - Tập 1",
-"image": "https://i.ytimg.com/vi/CtsGE8_FbBU/hqdefault.jpg",
-"url": "http://vtvgovodobj.04477775.sabai.vn/218f9ab67db2950cecbd51d4d978c7e11496667353/vod/20170324/fc1d541c1613f8e6be3f97b6fed15c63-hd.m3u8"
+"name": "Tom And Jerry - Tập 1 (Lồng Tiếng Việt)","image":"https://i.ytimg.com/vi/5XWaPc69F2k/mqdefault.jpg",
+"url": "https://www.youtube.com/watch?v=5XWaPc69F2k","isHost": false 
 },
+
+{
+"name": "Tom And Jerry 161",
+"image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
+"url": "http://www.beblia.com/videos_/tomandjerry/lq/161.mp4"
+}
 ]
 },
+ 
  
  
  
