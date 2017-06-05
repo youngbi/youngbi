@@ -3,29 +3,31 @@
     "url": "http://gg.gg/hieuhienvn",
    "groups": [
                   
-    {
-                 "name": "Phim Thiếu Nhi",
-                "image": "https://s31.postimg.org/kx5sh8j23/moviekid.jpg",
+{
+"name": "Phim Thiếu Nhi",
+"image": "https://s31.postimg.org/kx5sh8j23/moviekid.jpg",
                
-                "stations": [
- 				  {
+"stations": 
+[
+{
+"name": "Tom And Jerry",
+"image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
+"url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_mhls_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"
+},
 
-			"name": "Tom And Jerry",
-          	        "image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
-          	        "url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_mhls_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"
-                        },
-                        {
+{
 "name": "Tom And Jerry - Tập 1 (Lồng Tiếng Việt)","image":"https://i.ytimg.com/vi/5XWaPc69F2k/mqdefault.jpg",
-"url": "https://www.youtube.com/watch?v=5XWaPc69F2k","isHost": false },
-                        {
-                        "name": "Tom And Jerry 161",
-                        "image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
-                        "url": "http://www.beblia.com/videos_/tomandjerry/lq/161.mp4"
+"url": "https://www.youtube.com/watch?v=5XWaPc69F2k","isHost": false 
+},
 
-    }
-                
-    ]
-    },
+{
+"name": "Tom And Jerry 161",
+"image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
+"url": "http://www.beblia.com/videos_/tomandjerry/lq/161.mp4"
+}
+]
+},
+ 
  
 		  
 		  
