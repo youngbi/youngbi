@@ -1,160 +1,725 @@
-{"name": "CHƯƠNG TRÌNH TỔNG HỢP - All In One (update 17h00' ngày 23/05/2017). Một số kênh cần app sopcast và app Ace stream media - Hãy nhập lại path khi có update mới. Chúc bạn thưởng thức vui vẻ !",
+{"name": "Kênh tổng hợp - Update ngày 5/6/2017 (bấm nút refresh màu hồng để update kênh). Nếu bị lỗi vui lòng báo lại vào email: hotro.hieuhien.vn@gmail.com",
     "author": "thanh51",
     "url": "http://gg.gg/hieuhienvn",
    "groups": [
-   
-   {
-	
-                 "name": "Xem bóng đá Tây Ban Nha (SPANISH LA LIGA) theo giờ Việt Nam",
-                "image": "https://s1.postimg.org/j0sndgeyn/laliga.jpg",
+  
+  
+{
+"name": "Phim Thiếu Nhi",
+"image": "https://s31.postimg.org/kx5sh8j23/moviekid.jpg",
                
-                "stations": [
- 				  {
-
-			"name": "Barcelona v Alaves (02:30 28/05/17) - Sky sport 2",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://6b2fb9a9e67aaabd63004059147dfdc46e882aba"
-
-    }
-                
-    ]
-    },
-    
-                  { 
-
+"stations": 
+[
+{
+"name": "Tom And Jerry - Tập 1 (Lồng Tiếng Việt)","image":"https://i.ytimg.com/vi/5XWaPc69F2k/mqdefault.jpg",
+"url": "https://www.youtube.com/watch?v=5XWaPc69F2k","isHost": false 
+},
+{	
+"name": "VTV2 s1",
+"image": "http://i.imgur.com/RwwN9B3.png",
+"url": "http://sv.tivi3g.com/stream-vtv/vtv2.m3u8"
+},
+{
+"name": "Tom And Jerry 161",
+"image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
+"url": "http://www.beblia.com/videos_/tomandjerry/lq/161.mp4"
+}
+]
+},
+ 
+ 
+ 
+ 
+ 
+		  
+		  
+		  { 
                 "name": "Xem Bóng đá FIFA WORLD CUP U 20 theo giờ Việt Nam",
                 "image": "https://s7.postimg.org/gxwfu12dn/u20.jpg",
                
                 "stations": [
  				  {
 
-			"name": "MEXICO-GERMANY (18:00 23/05/17) - AV8",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "MEXICO-GERMANY (18:00 23/05/17) - AV9",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "SOUTH AFRICA-ITALY (15:00 24/05/17) - AV7",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://c4fae9f2d3b2299de258e9f2f4fbc45e3fcefda0"
-		        },
-		        {
-			"name": "COSTA RICA-PORTUGAL (18:00 24/05/17) - AV8",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "COSTA RICA-PORTUGAL (18:00 24/05/17) - AV9",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "FRANCE-VIETNAM (15:00 25/05/17) - AV7",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://c4fae9f2d3b2299de258e9f2f4fbc45e3fcefda0"
-		        },
-		        {
-			"name": "GERMANY-VANUATU (15:00 26/05/17) - AV7",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://c4fae9f2d3b2299de258e9f2f4fbc45e3fcefda0"
-		        },
-		        {
-			"name": "ENGLAND-SOUTH KOREA (18:00 26/05/17) - AV8",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "ENGLAND-SOUTH KOREA (18:00 26/05/17) - AV9",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "PORTUGAL-IRAN (15:00 27/05/17) - AV8",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "PORTUGAL-IRAN (15:00 27/05/17) - AV9",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "JAPAN-ITALY (18:00 27/05/17) - AV8",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
-		        },
-		        {
-			"name": "JAPAN-ITALY (18:00 27/05/17) - AV9",
-          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"
 
-   }
-                
-    ]
-    },
-     
-    
-     
-    {
-                 "name": "Xem chung kết Cúp C2 Châu Âu (Uefa Europa League) theo giờ Việt Nam",
-                "image": "https://s18.postimg.org/ofpwrpleh/cupc2.jpg",
-               
-                "stations": [
- 				  {
-
-			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - AV27",
-			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
+		        "name": "(15h00 ngày 05/06/2017) - Tứ kết: Italy vs Zambia", "image": "http://i.imgur.com/keIENsc.png","url": "http://203.162.235.41:17822"},{
+			"name": "(15h00 ngày 05/06/2017) - Tứ kết: Italy vs Zambia",
+          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
 			"url": "acestream://dd7b7780bb13ce3757827f301c761ebe17a19015"
 		        },
 		        {
-
-			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - AV14",
-			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://974903257b1aea10203b4d14d781b4bf58a31f5c"
+			"name": "(15h00 ngày 05/06/2017) - Tứ kết: Italy vs Zambia",
+  		        "image": "http://www.liveonlinetv247.info/images/foxsports1.png","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/625.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"				
 		        },
 		        {
+		        "name": "(18h00 ngày 05/06/2017) - Tứ kết: Mexico vs England", "image": "http://i.imgur.com/keIENsc.png","url": "http://203.162.235.41:17822"},{
+			"name": "(18h00 ngày 05/06/2017) - Tứ kết: Mexico vs England",
+          	        "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
+			"url": "acestream://dd7b7780bb13ce3757827f301c761ebe17a19015"
+		        },
+		        {
+			"name": "(18h00 ngày 05/06/2017) - Tứ kết: Mexico vs England",
+  		        "image": "http://www.liveonlinetv247.info/images/foxsports1.png","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/625.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"				
+		        },
+		        {
+			"name": "(15h00 ngày 08/06/2017) - Bán kết",
+  		        "image": "http://i.imgur.com/keIENsc.png","url": "http://203.162.235.41:17822"
+		        },
+		        {
+			"name": "(15h00 ngày 08/06/2017) - Bán kết",
+  		        "image": "http://www.liveonlinetv247.info/images/foxsports1.png","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/625.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"				
+		        },
+		        {
+			"name": "(18h00 ngày 08/06/2017) - Bán kết",
+  		        "image": "http://i.imgur.com/keIENsc.png","url": "http://203.162.235.41:17822"
+		        },
+		        {
+			"name": "(18h00 ngày 08/06/2017) - Bán kết",
+  		        "image": "http://www.liveonlinetv247.info/images/foxsports1.png","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/625.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"				
+		        },
+		        {
+			"name": "(13h30 ngày 11/06/2017) - Tranh giải ba",
+  		        "image": "http://www.liveonlinetv247.info/images/foxsports1.png","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/625.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"				
 
-			"name": "Ajax Vs Man Utd (01:45 ngày 25/05/2017) - BT sport 2",
-			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://04b38c71065be18d799edf8c37d63e738030b84d"
-   }
+    }
                 
     ]
     },
+
+
      
-    {
-                 "name": "Xem chung kết bóng đá vô địch các câu lạc bộ châu Âu (Cup C1) theo giờ Việt Nam",
-                "image": "https://s22.postimg.org/xbdfv8j41/cupc1.jpg",
+   		 {
+                 "name": "Next TV",
+                "image": "https://s3.postimg.org/anyadngyr/nexttv.jpg",
                
                 "stations": [
  				  {
 
-			"name": "Juventus vs Real Madrid (01:45 ngày 04/06/2017) - BT sport 2",
-			"image": "https://s22.postimg.org/9vk2rbqep/ace.png",
-			"url": "acestream://04b38c71065be18d799edf8c37d63e738030b84d"
+"name":"VTV1 HD","image":"http://i.imgur.com/m8WU8BL.png","url": "http://45.124.94.83/get_vt/154"},{
+"name":"VTV3 HD","image":"http://i.imgur.com/OwtIFz1.png","url": "http://45.124.94.83/get_vt/155"},{
+"name":"VTV4 HD","image":"http://i.imgur.com/QwsdDjH.png","url": "http://45.124.94.83/get_vt/193"},{
+"name":"VTV5 HD","image":"http://i.imgur.com/bdKkIw2.png","url": "http://45.124.94.83/get_vt/194"},{
+"name":"VTV6 HD","image":"http://i.imgur.com/kplGmyh.png","url": "http://45.124.94.83/get_vt/156"},{
+"name":"VTV7 HD","image":"http://xbmc.itvplus.net/LOGO/HDTV/VTV7.png","url": "http://45.124.94.83/get_vt/195"},{
+"name":"VTV8 HD","image":"http://xbmc.itvplus.net/LOGO/HDTV/VTV8.png","url": "http://45.124.94.83/get_vt/196"},{
+"name":"VTV9 HD","image":"http://i.imgur.com/qCWsfhc.png","url": "http://45.124.94.83/get_vt/197"},{
+"name":"TTXVN","image":"http://103.56.158.185/tv_icon/vnews.png","url": "http://45.124.94.83/get_vt/20"},{
+"name":"ANTV HD","image":"http://103.56.158.185/tv_icon/antv.png","url": "http://45.124.94.83/get_vt/18"},{
+"name":"QPVN","image":"http://103.56.158.185/tv_icon/quoc-phong-vn.png","url": "http://45.124.94.83/get_vt/141"},{
+"name":"ANTG","image":"http://i.imgur.com/j7NsBwD.png","url": "http://45.124.94.83/get_vt/51"},{
+"name":"HTV1","image":"http://i.imgur.com/XWtxYdm.png","url": "http://45.124.94.83/get_vt/53"},{
+"name":"HTV2","image":"http://i.imgur.com/s7x0UhN.png","url": "http://45.124.94.83/get_vt/54"},{
+"name":"HTV3","image":"http://i.imgur.com/MMQITB4.png","url": "http://45.124.94.83/get_vt/71"},{
+"name":"HTV7 HD","image":"http://i.imgur.com/m603PX8.png","url": "http://45.124.94.83/get_vt/157"},{
+"name":"HTV9 HD","image":"http://i.imgur.com/DUhJcZK.png","url": "http://45.124.94.83/get_vt/158"},{
+"name":"HTV THE THAO","image":"http://i.imgur.com/bULyZwy.png","url": "http://45.124.94.83/get_vt/37.m3u8"},{
+"name":"HTVC CA NHAC","image":"http://103.56.158.185/tv_icon/htvccanhac.png","url": "http://45.124.94.83/get_vt/58"},{
+"name":"HTVC GIA DINH","image":"https://s3.postimg.org/3q9r5xc37/htvcgiadinh.jpg","url": "http://45.124.94.83/get_vt/59"},{
+"name":"HTVC PHIM","image":"https://s15.postimg.org/tymsndhh7/htvcphim.jpg","url": "http://45.124.94.83/get_vt/31"},{
+"name":"HTVC PHIM HD","image":"https://s4.postimg.org/4ualhig7h/htvcphimhd.jpg","url": "http://45.124.94.83/get_vt/159"},{
+"name":"HTVC PHU NU","image":"https://s11.postimg.org/dku4jqnpf/htvcphunu.png","url": "http://45.124.94.83/get_vt/56"},{
+"name":"HTVC DU LICH","image":"https://s11.postimg.org/y50njcob7/dulich.jpg","url": "http://45.124.94.83/get_vt/60"},{
+"name":"HTVC THUAN VIET HD","image":"https://s22.postimg.org/3uakz73td/thuanviethd.jpg","url": "http://45.124.94.83/get_vt/160"},{
+"name":"HTVC FBNC","image":"http://103.56.158.185/tv_icon/htvc-hd.png","url": "http://45.124.94.83/get_vt/177"},{
+"name":"HTVC CHANNEL B","image":"http://103.56.158.185/tv_icon/htvc-hd.png","url": "http://45.124.94.83/get_vt/25"},{
+"name":"VTC1 HD","image":"http://i.imgur.com/HC5iUuK.png","url": "http://45.124.94.83/get_vt/150"},{
+"name":"VTC2","image":"http://i.imgur.com/2MwvQXo.png","url": "http://45.124.94.83/get_vt/181"},{
+"name":"VTC3 HD","image":"http://i.imgur.com/CsXS6ve.png","url": "http://45.124.94.83/get_vt/145"},{
+"name":"VTC4","image":"http://i.imgur.com/fitz1bW.png","url": "http://45.124.94.83/get_vt/46"},{
+"name":"VTC5","image":"http://i.imgur.com/3QYpmSw.png","url": "http://45.124.94.83/get_vt/28"},{
+"name":"VTC6","image":"http://i.imgur.com/xXeBAok.png","url": "http://45.124.94.83/get_vt/29"},{
+"name":"VTC7","image":"http://i.imgur.com/ZfjtPa2.png","url": "http://45.124.94.83/get_vt/47"},{
+"name":"VTC8","image":"http://i.imgur.com/uPxgmeN.png","url": "http://45.124.94.83/get_vt/14"},{
+"name":"VTC9","image":"http://i.imgur.com/5SoblfV.png","url": "http://45.124.94.83/get_vt/48"},{
+"name":"VTC10","image":"http://i.imgur.com/5GpXF4g.png","url": "http://45.124.94.83/get_vt/15"},{
+"name":"VTC11","image":"http://i.imgur.com/Vg5XFcf.png","url": "http://45.124.94.83/get_vt/72"},{
+"name":"VTC13 HD","image":"http://i.imgur.com/YnunTc5.png","url": "http://45.124.94.83/get_vt/152"},{
+"name":"VTC14","image":"http://i.imgur.com/annOIzX.png","url": "http://45.124.94.83/get_vt/16"},{
+"name":"VTC16","image":"http://i.imgur.com/aJyUj9n.png","url": "http://45.124.94.83/get_vt/17"},{
+"name":"HA NOI 2","image":"http://i.imgur.com/JHYNvNs.png","url": "http://45.124.94.83/get_vt/10"},{
+"name":"MOVHD Hanoicab4","image":"http://i.imgur.com/FD1sjQe.png","url": "http://45.124.94.83/get_vt/30"},{
+"name":"YOUTV Hanoicab2","image":"http://i.imgur.com/7uqtQEM.png","url": "http://45.124.94.83/get_vt/50"},{
+"name":"HITV Hanoicab1","image":"http://i.imgur.com/eIbgrWr.png","url": "http://45.124.94.83/get_vt/52"},{
+"name":"VINH PHUC","image":"http://103.56.158.185/tv_icon/vinh-phuc.png","url": "http://45.124.94.83/get_vt/91"},{
+"name":"YEN BAI","image":"http://103.56.158.185/tv_icon/yen-bai.png","url": "http://45.124.94.83/get_vt/89"},{
+"name":"THVL2","image":"http://vuapp.tranvu.info/upload//thvl2.png","url": "http://45.124.94.83/get_vt/134"},{
+"name":"THVL1","image":"http://vuapp.tranvu.info/upload//thvl1.png","url": "http://45.124.94.83/get_vt/133"},{
+"name":"TUYEN QUANG","image":"http://103.56.158.185/tv_icon/tuyen-quang.png","url": "http://45.124.94.83/get_vt/79"},{
+"name":"TRA VINH","image":"http://103.56.158.185/tv_icon/tra-vinh.png","url": "http://45.124.94.83/get_vt/135"},{
+"name":"TIEN GIANG","image":"http://103.56.158.185/tv_icon/tien-giang.png","url": "http://45.124.94.83/get_vt/130"},{
+"name":"TRT","image":"http://103.56.158.185/tv_icon/thua-thien-hue.png","url": "http://45.124.94.83/get_vt/106"},{
+"name":"THAI NGUYEN","image":"http://i.imgur.com/a4oiL92.png","url": "http://45.124.94.83/get_vt/80"},{
+"name":"LONG AN","image":"http://i.imgur.com/Z5408CY.png","url": "http://45.124.94.83/get_vt/120"},{
+"name":"SON LA","image":"http://i.imgur.com/j8eqRq8.png","url": "http://45.124.94.83/get_vt/87"},{
+"name":"SOC TRANG","image":"https://s12.postimg.org/egpkg3ivh/soctrang.jpg","url": "http://45.124.94.83/get_vt/139"},{
+"name":"QUANG TRI","image":"http://i.imgur.com/lYtL22F.png","url": "http://45.124.94.83/get_vt/105"},{
+"name":"QUANG NINH 3","image":"http://103.56.158.185/tv_icon/quang-ninh-3.png","url": "http://45.124.94.83/get_vt/82"},{
+"name":"QUANG NINH 1","image":"http://103.56.158.185/tv_icon/quang-ninh-1.png","url": "http://45.124.94.83/get_vt/81"},{
+"name":"QUANG NGAI","image":"http://i.imgur.com/LVxKGl4.png","url": "http://45.124.94.83/get_vt/109"},{
+"name":"QUANG NAM","image":"https://s22.postimg.org/4yt2cm741/quangnam.png","url": "http://45.124.94.83/get_vt/108"},{
+"name":"PTP(PHU THO)","image":"http://i.imgur.com/W2d2XLV.png","url": "http://45.124.94.83/get_vt/122"},{
+"name":"PHU YEN","image":"https://s24.postimg.org/t1m5s4gt1/phuyen.jpg","url": "http://45.124.94.83/get_vt/90"},{
+"name":"NINH THUAN","image":"http://i.imgur.com/IGp4PB7.png","url": "http://45.124.94.83/get_vt/117.m3u8"},{
+"name":"NINH BINH","image":"http://103.56.158.185/tv_icon/ninh-binh.png","url": "http://45.124.94.83/get_vt/99"},{
+"name":"HOA BINH","image":"http://i.imgur.com/tMaZaYl.png","url": "http://45.124.94.83/get_vt/100"},{
+"name":"HAU GIANG","image":"http://i.imgur.com/OAwAkbr.png","url": "http://45.124.94.83/get_vt/138"},{
+"name":"HAI PHONG","image":"http://vuapp.tranvu.info/upload//thp.png","url": "http://45.124.94.83/get_vt/94"},{
+"name":"HAI DUONG","image":"http://i.imgur.com/B9gdrjs.png","url": "http://45.124.94.83/get_vt/93"},{
+"name":"HA TINH","image":"http://i.imgur.com/ABygmpS.png","url": "http://45.124.94.83/get_vt/103"},{
+"name":"HA NAM","image":"https://s13.postimg.org/lkxq2eocn/hanam.jpg","url": "http://45.124.94.83/get_vt/97.m3u8"},{
+"name":"HA GIANG","image":"https://s11.postimg.org/y1ijz2a83/hagiang.jpg","url": "http://45.124.94.83/get_vt/76"},{
+"name":"GIA LAI","image":"http://103.56.158.185/tv_icon/gia-lai.png","url": "http://45.124.94.83/get_vt/112"},{
+"name":"DONG THAP","image":"http://103.56.158.185/tv_icon/dong-thap.png","url": "http://45.124.94.83/get_vt/132"},{
+"name":"DONG NAI 1","image":"http://103.56.158.185/tv_icon/dong-nai-1.png","url": "http://45.124.94.83/get_vt/127"},{
+"name":"DIEN BIEN","image":"http://103.56.158.185/tv_icon/dien-bien.png","url": "http://45.124.94.83/get_vt/86"},{
+"name":"PTD","image":"https://s9.postimg.org/l5wgsonin/ptd.png","url": "http://45.124.94.83/get_vt/116"},{
+"name":"DRT (DAKLAK)","image":"http://i.imgur.com/q4TvicY.png","url": "http://45.124.94.83/get_vt/115"},{
+"name":"DA NANG 1","image":"http://103.56.158.185/tv_icon/da-nang-1.png","url": "http://45.124.94.83/get_vt/107"},{
+"name":"CAN THO","image":"http://103.56.158.185/tv_icon/can-tho.png","url": "http://45.124.94.83/get_vt/137"},{
+"name":"CRTV(CAO BANG)","image":"https://static.fptplay.net/static/img/share/channels/icon_channel_ha-giang_145578965891.png","url": "http://45.124.94.83/get_vt/77"},{
+"name":"CA MAU","image":"http://i.imgur.com/YAGwIeW.png","url": "http://45.124.94.83/get_vt/125"},{
+"name":"BINH THUAN","image":"http://103.56.158.185/tv_icon/binh-thuan.png","url": "http://45.124.94.83/get_vt/118"},{
+"name":"BINH PHUOC 1","image":"http://103.56.158.185/tv_icon/binh-phuoc-1.png","url": "http://45.124.94.83/get_vt/121"},{
+"name":"BTV(BINH DINH)","image":"http://103.56.158.185/tv_icon/binh-dinh.png","url": "http://45.124.94.83/get_vt/111"},{
+"name":"BINH DUONG 2","image":"http://103.56.158.185/tv_icon/binh-duong-2.png","url": "http://45.124.94.83/get_vt/124"},{
+"name":"BTV (BAC NINH)","image":"http://103.56.158.185/tv_icon/bac-ninh.png","url": "http://45.124.94.83/get_vt/92"},{
+"name":"BAC KAN","image":"https://s1.postimg.org/jb3hmypsv/baccan.png","url": "http://45.124.94.83/get_vt/78"},{
+"name":"BAC GIANG","image":"http://103.56.158.185/tv_icon/bac-giang.png","url": "http://45.124.94.83/get_vt/84"},{
+"name":"BAC LIEU","image":"http://103.56.158.185/tv_icon/bac-lieu.png","url": "http://45.124.94.83/get_vt/126"},{
+"name":"AN GIANG","image":"http://103.56.158.185/tv_icon/an-giang.png","url": "http://45.124.94.83/get_vt/136"
+
     }
                 
     ]
     },
      
     {
-                 "name": "ACESTREAM SPORTS CHANNELS",
+
+                   "name": "Truyền Hình Việt Nam Tổng Hợp",
+                   "image": "https://s1.postimg.org/uxavk8vgv/viettv.png",
+               
+                   "stations": [
+ 						{
+		   "name": "VTV 1 s1", "image": "http://i.imgur.com/JW8VXef.png","url": "http://113.160.49.39/lives/origin04/v1sd.isml/v1sd.m3u8"},{
+		   "name": "VTV1 s2",
+          	   "image": "http://i.imgur.com/JW8VXef.png",
+          	   "url": "http://203.162.235.41:17820"
+	            },
+		    {
+		   "name": "VTV1 s3",
+          	   "image": "http://i.imgur.com/JW8VXef.png",
+          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv1.m3u8"
+	            },
+		    {
+		   "name": "VTV1 s4",
+          	   "image": "http://i.imgur.com/JW8VXef.png",
+          	   "url": "http://123.30.185.126/hls/vtv1.m3u8"
+	            },
+		    {	
+		   "name": "VTV2 s1",
+          	   "image": "http://i.imgur.com/RwwN9B3.png",
+          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv2.m3u8"
+	            },
+		    {
+		   "name": "VTV2 s2",
+          	   "image": "http://i.imgur.com/RwwN9B3.png",
+          	   "url": "http://123.30.185.126/hls/vtv2.m3u8"
+	            },
+		    {
+		   "name": "VTV3 s1", "image": "http://i.imgur.com/spL8IHO.png","url": "http://113.160.49.39/lives/origin04/v3sd.isml/v3sd.m3u8"},{
+		   "name": "VTV3 s2",
+          	   "image": "http://i.imgur.com/spL8IHO.png",
+          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv3.m3u8"
+	            },
+		    {
+		   "name": "VTV3 s3",
+          	   "image": "http://i.imgur.com/spL8IHO.png",
+          	   "url": "http://123.30.185.126/hls/vtv3.m3u8"
+	            },
+		    {
+		    "name": "VTV6 s1", "image": "http://i.imgur.com/keIENsc.png","url": "http://113.160.49.39/lives/origin04/v6sd.isml/v6sd.m3u8"},{
+		    "name": "VTV6 s2", "image": "http://i.imgur.com/keIENsc.png","url": "http://203.162.235.41:17822"},{
+
+		   "name": "VTV8 s1",
+          	   "image": "http://103.56.158.185/tv_icon/vtv8.png",
+          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv8.m3u8"
+	            },
+		    {
+		   "name": "VTV8 s2",
+          	   "image": "http://103.56.158.185/tv_icon/vtv8.png",
+          	   "url": "http://znzjssjl.cdnviet.com/pnwjyhx/_definst_/livestream/chunklist.m3u8"
+	            },
+		    {
+		   "name": "VTV9",
+          	   "image": "http://103.56.158.185/tv_icon/vtv9.png",
+          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv9.m3u8"
+	            },
+		    {
+		    "name": "NHÂN DÂN HD","image": "https://lh3.googleusercontent.com/-tEhZMDUuz_w/Vb25ogAOOgI/AAAAAAAAAhc/vdfAxRmBoBY/h118/nhandantv-tivi4k.png",
+		    "url": "http://27.118.16.98:1935/live/truyenhinhnhandan720/chunklist_w2006762604.m3u8"},{
+		    "name": "QPVN","image": "http://103.56.158.185/tv_icon/quoc-phong-vn.png",
+		    "url": "rtmp://125.212.132.219/standard/_definst_/mp4:standard_480p"},{
+		    "name": "ANTV","image": "http://103.56.158.185/tv_icon/antv.png",  
+		    "url": "http://123.30.185.126/hls/antv.m3u8"},{
+		    "name": "TTXVN","image": "http://103.56.158.185/tv_icon/ttxvn.png",
+		    "url": "http://live.cdn.mobifonetv.vn/motv2/ttxvn_hls.smil/chunklist_b1200000.m3u8"},{
+		   "name": "VOV","image": "",
+          	   "url": "http://123.30.185.126/hls/vov.m3u8"},{ 	
+ 		    "name": "HTV 7", "image": "https://upload.wikimedia.org/wikipedia/vi/a/ac/HTV7-tphcm.png","url": "http://113.160.49.39/lives/origin04/htv7hd.isml/htv7hd.m3u8"},{
+		    "name": "HTV 9", "image": "https://upload.wikimedia.org/wikipedia/vi/0/0a/HTV9-tphcm.png","url": "http://113.160.49.39/lives/origin04/htv9sd.isml/htv9sd.m3u8"},{
+		   "name": "VTC1",
+          	   "image": "http://i.imgur.com/VJ8DiUW.png",
+          	   "url": "http://123.30.185.126/hls/vtc1.m3u8"
+		    },
+		    { 
+		   "name": "VTC1 HD",
+          	   "image": "http://i.imgur.com/HC5iUuK.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc1.smil/chunklist_b1500000.m3u8"
+		    },
+		    { 
+		   "name": "VTC2",
+          	   "image": "http://i.imgur.com/2MwvQXo.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc2.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		   "name": "VTC3",
+          	   "image": "http://i.imgur.com/0t3ciaM.png",
+          	   "url": "http://123.30.185.126/hls/vtc3.m3u8"			
+		    },
+		    { 
+		   "name": "VTC3 HD",
+          	   "image": "http://i.imgur.com/CsXS6ve.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc3.smil/chunklist_b1500000.m3u8"
+		    },
+		    { 	
+		   "name": "VTC4",
+          	   "image": "http://i.imgur.com/fitz1bW.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc4.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		    "name": "VTC5",
+          	   "image": "http://i.imgur.com/3QYpmSw.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc5.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		    "name": "VTC6",
+          	   "image": "http://i.imgur.com/xXeBAok.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc6.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		    "name": "VTC7","image": "http://i.imgur.com/ZfjtPa2.png",          	   
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc7.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		    "name": "VTC8",
+          	   "image": "http://i.imgur.com/uPxgmeN.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc8.smil/chunklist_b900000.m3u8"
+	            },
+		    {
+		    "name": "VTC9",
+          	   "image": "http://i.imgur.com/5SoblfV.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc9.smil/chunklist_b900000.m3u8"
+	            },
+		    {
+		    "name": "VTC10",
+          	   "image": "http://103.56.158.185/tv_icon/vtc10.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc10.smil/chunklist_b900000.m3u8"
+	            },
+		    { 
+		    "name": "VTC11",
+          	   "image": "http://i.imgur.com/Vg5XFcf.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc11.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		   "name": "VTC12",
+          	   "image": "http://i.imgur.com/aKmAf9Z.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc12.smil/chunklist_b900000.m3u8"
+	            },
+		    {
+		   "name": "VTC13 s1",
+          	   "image": "http://i.imgur.com/ZIRi8xh.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc13.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		    "name": "VTC13 s2",
+          	   "image": "http://i.imgur.com/ZIRi8xh.png",
+          	   "url": "http://censoft.mobi:1935/tvviet/vtc12.stream/playlist.m3u8"
+		    },
+		    { 
+		    "name": "VTC13 HD",
+          	   "image": "https://s21.postimg.org/jwo4w6mfb/itvhd.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc13.smil/chunklist_b1500000.m3u8"
+		    },
+		    { 
+		   "name": "VTC14",
+          	   "image": "http://i.imgur.com/annOIzX.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc14.smil/chunklist_b900000.m3u8"
+		    },
+		    { 
+		   "name": "VTC14 HD",
+          	   "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_vtc14-hd_145872429811.jpg",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc14.smil/chunklist_b1500000.m3u8"
+		    },
+		    { 
+		    "name": "VTC16",
+          	   "image": "http://i.imgur.com/aJyUj9n.png",
+          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc16.smil/chunklist_b900000.m3u8"		
+		    },
+		    { 
+		   "name": "SCTVHD PHIM VIET",
+          	   "image": "https://static-stage.sctv.vn/channel/84/PhimVietHD.png",
+          	   "url": "rtmp://vf10.aditmedia.net/ingestx/ivn_000105"
+                    },
+		    {
+ 	            "name": "SCTV5-SCJ", "image": "http://www.sctv.com.vn/Media/ShortCut/channel/sctv5.png",
+          	   "url": "http://vtsstr4.sctv.vn:1935/testlive/SCTV5_SD.smil/chunklist_w411708802_b2292000.m3u8"},{
+		    "name": "An ninh thế giới",
+          	   "image": "http://i.imgur.com/j7NsBwD.png",
+          	   "url": "http://live.cdn.mobifonetv.vn/motv/antg_hls.smil/chunklist_b1200000.m3u8"
+	            },
+		    {
+		   "name": "NCM BTV10 ",
+          	   "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_ncm_141217724217.png",
+          	   "url": "http://live.cdn.mobifonetv.vn/motv/ncm_hls.smil/chunklist_b1200000.m3u8"
+	            },
+		    {	
+		    "name": "Phimhay HD",
+          	   "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_phim-hay_141217631093.png",
+          	   "url": "http://live.cdn.mobifonetv.vn/motv3/phimhay_hls.smil/chunklist_b1200000.m3u8"
+	            },
+		    {
+		   "name": "Miền tây",
+          	   "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_mien-tay_141217633202.png",
+          	   "url": "http://live.cdn.mobifonetv.vn/motv2/mientay_hls.smil/chunklist_b1200000.m3u8"
+	            },
+		    {
+		    "name": "SAM BTV11 ",
+          	   "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_sam_141217634547.png",
+          	   "url": "http://live.cdn.mobifonetv.vn/motv/sam_hls.smil/chunklist_b1200000.m3u8"
+		    },
+		    {
+		    "name": "KEENG TV", "image": "https://s4.postimg.org/kecndom6l/keengtv.jpg",
+          	    "url": "http://125.235.29.16/livetv/keeng.m3u8#.m3u8&streamType=live&scaleMode=letterbox"},{ 
+		    "name": "NCT", "image": "http://www.vietmobitv.com/vmt/images/nct.png", 
+		    "url": "rtmp://123.30.134.108/live/nctlive"},{           	        
+		   "name": "HN1",
+          	   "image": "http://i.imgur.com/kFSFBHp.png",
+          	   "url": "http://123.30.185.126/hls/hanoi1.m3u8"
+		    },
+		    { 
+		   "name": "HN2",
+          	   "image": "http://i.imgur.com/JHYNvNs.png",
+          	   "url": "http://123.30.185.126/hls/hanoi2.m3u8"
+	            },
+		    {
+		    "name": "SƠN LA", "image": "http://103.56.158.185/tv_icon/son-la.png",
+  		    "url": "http://118.107.76.15:1983/live/smil:SL_live.smil/playlist.m3u8"},{
+		    "name": "CAO BẰNG", "image": "https://s21.postimg.org/75prmzdsn/caobang.jpg", 
+		    "url": "http://118.107.76.15:1983/live/CB_live.smil/playlist.m3u8"},{
+		    "name": "LẠNG SƠN", "image": "http://i.imgur.com/FRl2dMz.png",
+		    "url": "rtmp://123.18.206.40:1935/live/livestream"},{
+		    "name": "THÁI NGUYÊN", "image": "http://i.imgur.com/a4oiL92.png", 
+		    "url": "rtmp://45.124.85.26/oflaDemo/livestream"},{
+		    "name": "HOÀ BÌNH", "image": "http://i.imgur.com/tMaZaYl.png",  
+		    "url": "http://123.30.185.126/hls/hoabinh.m3u8"},{
+		    "name": "PHÚ THỌ", "image": "http://i.imgur.com/W2d2XLV.png", 
+		    "url": "http://118.107.76.15:1983/live/smil:PT_live.smil/playlist.m3u8"},{
+		    "name": "VĨNH PHÚC", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_vinh-phuc_145880931198.jpg", 
+		    "url": "rtmp://117.6.162.63/live/thvp"},{		        
+		    "name": "HAI PHONG", "image": "http://vuapp.tranvu.info/upload//thp.png", 
+		    "url": "http://118.107.76.15:1983/live/smil:HP2.smil/chunklist.m3u8"},{		        
+		    "name": "QUẢNG NINH 1", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_quang-ninh-1_141457746552.png", 
+		    "url": "rtmp://123.29.68.44/hctv/vstv020"},{
+		    "name": "QUANG NINH 3", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_quang-ninh-3_141457749017.png", 
+		    "url": "rtmp://123.29.68.44/hctv/vstv021"},{
+		    "name": "THAI BINH", "image": "http://103.56.158.185/tv_icon/thai-binh.png", 
+		    "url": "rtmp://118.70.118.191/live/thaibinhtv"},{		        
+		    "name": "HÀ NAM", "image": "https://s13.postimg.org/lkxq2eocn/hanam.jpg",  
+		    "url": "rtmp://113.160.198.111:8086/live//hanamtv"},{
+		    "name": "HÀ TĨNH", "image": "http://i.imgur.com/ABygmpS.png",  
+		    "url": "http://hatinhtv.vn/liveevent.m3u8"},{
+		    "name": "QUẢNG TRỊ", "image": "http://i.imgur.com/lYtL22F.png", 
+		    "url": "http://118.107.76.15:1983/live/smil:QT_live.smil/playlist.m3u8"},{
+		    "name": "HUẾ", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_thua-thien-hue_145880926795.jpg", 
+		    "url": "rtmp://118.69.176.149:1935/live/trt"},{
+		    "name": "ĐÀ NẴNG 1", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_da-nang-1.png", 
+		    "url": "http://drtdnglive.e49a7c38.cdnviet.com/livedrt1/chunklist.m3u8"},{
+		    "name": "ĐÀ NẴNG 2", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_da-nang-2.png", 
+		    "url": "http://drtdnglive.e49a7c38.cdnviet.com/livedrt2/chunklist.m3u8"},{
+		    "name": "QUẢNG NAM", "image": "https://s22.postimg.org/4yt2cm741/quangnam.png", 
+		    "url": "rtmp://113.161.6.157:1935/live/livestream"},{
+		    "name": "BÌNH ĐỊNH", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_binh-dinh.png", 
+		    "url": "http://123.30.185.126/hls/binhdinh.m3u8"},{
+		    "name": "KHÁNH HÒA", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_khanh-hoa_141457723074.png",  
+		    "url": "rtmp://118.69.198.109/live/video"},{
+		    "name": "ĐAK NÔNG", "image": "https://s11.postimg.org/g5akk3vrn/dacnong.jpg", 
+		    "url": "rtmp://222.255.158.22/live/truyenhinh"},{
+		    "name": "LÂM ĐỒNG", "image": "http://103.56.158.185/tv_icon/lam-dong.png", 
+		    "url": "http://118.107.76.15:1983/live/smil:LD_live.smil/playlist.m3u8"},{
+		    "name": "BÌNH PHƯỚC 1", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_binh-phuoc_14588060598.jpg", 
+		    "url": "http://118.69.197.145/hls/bptv1.m3u8"},{
+		    "name": "BÌNH PHƯỚC 2", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_binh-phuoc-2_145880693943.jpg", 
+		    "url": "http://118.69.197.145/hls/bptv2.m3u8"},{
+		    "name": "BR-VT", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_ba-ria-vung-tau_141457728259.png",
+		    "url": "rtmp://113.163.216.24:1935/live/livestream"},{
+		    "name": "VĨNH LONG 1", "image": "http://cdn.kplus.vn/content/upload/1/root/logo-thvl1_w150_h150.png", 
+		    "url": "http://113.160.49.39/lives/origin04/vinhlongsd.isml/vinhlongsd.m3u8"},{
+		    "name": "BẾN TRE", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_ben-tre_14588084926.jpg", 
+		    "url": "rtmp://113.163.94.245/livepkgr/thbt"},{
+		    "name": "SÓC TRĂNG", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_tra-vinh_145880827066.jpg", 
+		    "url": "rtmp://115.78.3.164/live/stv1"},{
+		    "name": "TRÀ VINH", "image": "https://s14.postimg.org/aqu8lk3i9/travinh.jpg", 
+		    "url": "http://123.30.185.126/hls/travinh.m3u8"},{
+		    "name": "BẠC LIÊU", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_bac-lieu_145881130802.jpg", 
+		    "url": "rtmp://118.69.205.213/livepkgr/livestream1"},{
+		    "name": "KIEN GIANG", "image": "http://103.56.158.185/tv_icon/kien-giang.png", 
+		    "url": "rtmp://tv.kgtv.vn/livepkgr/kgtv"},{ 
+		    "name": "KIEN GIANG 1", "image": "http://103.56.158.185/tv_icon/kien-giang.png", 
+		    "url": "rtmp://tv.kgtv.vn/livepkgr/kgtv1"},{ 		        
+		    "name": "TIỀN GIANG", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_tien-giang.png", 
+		    "url": "http://123.30.185.126/hls/tiengiang.m3u8"},{
+		    "name": "AN GIANG", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_an-giang.png",
+		    "url": "rtmp://113.161.212.25/live//atv1"},{
+		    "name": "HẬU GIANG", "image": "http://i.imgur.com/OAwAkbr.png", 
+		    "url": "rtmp://123.30.110.170:1939/thhg/thhg"
+		}
+                
+   		 ]
+    		},
+     
+   		 {
+
+
+                 "name": "Truyền hình Hải Ngoại",
+                "image": "https://s12.postimg.org/i65carmwd/tvhaingoai.jpg",
+               
+                "stations": [
+ 				  {
+
+		   "name": "Việtface Cali. 57.2",
+          	   "image":"https://s30.postimg.org/9jankmvsx/VF_PNG.png", 
+          	   "url": "http://schannel.saigon.ns01.us:1935/schannel/myStream/chunklist_w503091201.m3u8"
+                   },
+	           {
+		   "name": "Việt Mỹ TV", 
+          	   "image":"https://s30.postimg.org/s0aco3hzl/VIET_MY.png", 
+          	   "url": "http://68.235.37.11:1935/vietmagazine/vietmagazine/playlist.m3u8"
+                   },
+	           {
+		   "name": "Việt Sóng TV 47.7  Atlanta  2",
+          	   "image":"https://s23.postimg.org/s0fe2u0t7/image.png", 
+          	   "url": "rtmp://uni5rtmp.tulix.tv/playout2multi10/ playpath=playout2multi10.stream live=1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://www.tulix.com/iframe/playout2multi10/index.php"
+                   },
+	           {
+		   "name": "Việt Bay- San Jose",
+          	   "image":"https://s27.postimg.org/dkmv2jpdf/vietbay_television_logo.png",
+          	   "url": "http://64.71.129.2:8080/hls/ius_000131.m3u8"
+                   },
+	           {
+		   "name": "Việt Phố",
+          	   "image":"https://s24.postimg.org/ze5fqmvrp/Vietpho.png",
+          	   "url": "rtmp://63.143.59.125/live playpath=myStream live=1 swfUrl=http://vietpho.com/ext/js/3/mediaplayer.swf pageUrl=http://vietpho.com/online-channels.php"
+                   },
+	           {
+		   "name": "Việt News TV",
+          	   "image":"https://s24.postimg.org/sf24r4qjp/VNTV.png", 
+          	   "url": "http://vietnews.saigon.ns01.us:1935/VietNews/myStream/chunklist_w107230799.m3u8"
+                   },
+	           {
+		   "name": "SBTN -SET channel", 
+          	   "image":"https://s29.postimg.org/x5pf3uayf/SBTN_SET.png",
+          	   "url": "http://settv.saigon.ns01.us:1935/vietset574tvv/myStream/chunklist_w542335559.m3u8"
+                   },
+	           {
+		   "name": "SChannel 54.4", 
+          	   "image":"https://s27.postimg.org/6o0q5ftw3/channel_schannel_4.png",
+          	   "url": "rtmp://vf10.aditmedia.net/origin/ playpath=ius_000114 live=1 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://nguoiviet.tv/s-channel/"
+                   },
+	           {
+		   "name": "SET TV ",
+          	   "image":"https://s27.postimg.org/65e8ozu8z/set.png",
+          	   "url": "http://livestream.vnvn.net/hls-live/livepkgr/_definst_/settv574-3/settv574-3.m3u8"
+                   },
+	           {
+		   "name": "IBC TV 57.8", 
+          	   "image":"https://s23.postimg.org/q8pgw4wgb/IBC.jpg",
+          	   "url": "rtmp://liveplay3.malimarcdn.com:1935/ibcnews playpath=ibcnews.sdp live=1 swfUrl=http://ibcnews.tv/content/scripts/media/strobe/StrobeMediaPlayback.swf pageUrl=http://nguoiviet.tv/ibc-tv/"
+                   },
+	           {
+		   "name": "Quê Hương Media s1",
+          	   "image":"https://s28.postimg.org/nll6ubj9p/quehuong.png",
+          	   "url": "http://64.71.129.2:8080/hls/ius_000130.m3u8"
+                   },
+	           {
+		   "name": "Quê Hương Media s2",
+          	   "image":"https://s28.postimg.org/nll6ubj9p/quehuong.png",
+          	   "url": "rtmp://vf10.aditmedia.net/ingestx/ playpath=ius_000130 live=1 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://nguoiviet.tv/truyen-hinh-que-huong/"
+                   },
+	           {
+		   "name": "VNBC", 
+          	   "image":"https://s27.postimg.org/zd62aenf7/vnbc.png",
+          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w189527979_b1228800.m3u8"
+                   },
+	           {
+		   "name": " ViệtStar 57.11", 
+          	   "image":"https://s27.postimg.org/wnwdqo22b/vstar.png", 
+          	   "url": "http://saigontvtv.saigon.ns01.us:1935/VietStarTV/myStream/chunklist_w36065371.m3u8"
+                   },
+	           {
+		   "name": "Saigon TV", 
+          	   "image":"https://s24.postimg.org/h5hrvpwg5/saigon.png",
+          	   "url": "http://63.143.59.125:1935/live/myStream/chunklist_w225895095.m3u8"
+                   },
+	           {
+		   "name": "Saigon TV Westminster CA 57.5",
+          	   "image":"https://s24.postimg.org/h5hrvpwg5/saigon.png", 
+          	   "url": "http://63.143.59.125:1935/live/myStream/playlist.m3u8"
+                   },
+	           {
+		   "name": "Little Saigon TV 57.7", 
+          	   "image":"https://s30.postimg.org/p2ybmvni9/lstv.png",
+          	   "url": "http://64.71.129.2:8080/hls/ius_000131.m3u8"
+                   },
+	           {
+		   "name": " KVLA TV 56.5",
+          	   "image":"https://s24.postimg.org/umvwrvfrp/KVLA.png", 
+          	   "url": "http://63.143.59.125:1935/live/myStream/chunklist_w322541891.m3u8"
+                   },
+	           {
+		   "name": "VBS- Vietnames Broadcasting Service ",
+          	   "image":"https://s23.postimg.org/99da6ha97/VBS.png",
+          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w189527979_b1228800.m3u8"
+                   },
+	           {
+		   "name": "VBS (WS)",
+          	   "image":"https://s24.postimg.org/7t4su66md/vbs1.png", 
+          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w530158239_b1228800.m3u8"
+                   },
+	           {
+		   "name": "VBS Canada", 
+          	   "image":"https://s23.postimg.org/99da6ha97/VBS.png",
+          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w1847269952_b204800.m3u8"
+                   },
+	           {
+		   "name": "VNA TV ",
+          	   "image":"https://s23.postimg.org/f0ie1s30b/VNA.png",
+          	   "url": "http://livestream.vnvn.net/hls-live/livepkgr/_definst_/vnatv573-1/vnatv573-1.m3u8?time=1482109571065"
+    }
+                
+    ]
+    },
+     
+
+
+	
+    {
+                 "name": "ACESTREAM TV & SPORTS CHANNELS",
                 "image": "https://s22.postimg.org/9vk2rbqep/ace.png",
                
                 "stations": [
  				  {
-"name":"BT Sport 1","image": "http://www.liveonlinetv247.info/images/btsport1.png","url": "acestream://e502c197dde3921551957ef2ec08fc6bbdc663ae"},{
-"name":"BT Sport 2","image": "http://www.liveonlinetv247.info/images/btsport2.png","url": "acestream://04b38c71065be18d799edf8c37d63e738030b84d"},{
-"name":"BT Sport ESPN","image": "http://www.liveonlinetv247.info/images/btsportespn.png","url": "acestream://f4e2ade22f407fe567728923cbbe1ccb5b43a9df"},{
-"name":"Sky Sports 2","image": "http://www.liveonlinetv247.info/images/skysports2.png","url": "acestream://6b2fb9a9e67aaabd63004059147dfdc46e882aba"},{
-"name":"Sky Sports 3","image": "http://www.liveonlinetv247.info/images/skysports3.png","url": "acestream://4dbce55abecd154ff71b3477a332bd63611309e5"},{
-"name":"Sky Sports 4","image": "http://www.liveonlinetv247.info/images/skysports4.png","url": "acestream://969a42388e101e6c6d9574a311e4b387a6ff1413"},{
-"name":"Sport 1 LT","image": "","url": "acestream://0b48bf1261368b82637d8a26eb4457d54c80f3e1"},{
-"name":"Sport 5+ Live HD","image": "","url": "acestream://9e0a489436b0859e20098fc3f81e07abb4c5a612"
+"name": "Arenavision 1",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://a16800843a07936b5abbd394f5265950d416d21e"},
+{"name": "Arenavision 2",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://bdfadd4d0395bccb8721c528cd5560468cccbd89"},
+{"name": "Arenavision 3",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://3f8e4ac1381a1e8d954e72647e77198901cea11e"},
+{"name": "Arenavision 4",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://db6ac226f9f28c5f948a53e3f8e865d727d20281"},
+{"name": "Arenavision 5 - 6",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://9dc0519f9b4fdadef70feef6dd51026cd8e4eaa7"},
+{"name": "Arenavision 7",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://c4fae9f2d3b2299de258e9f2f4fbc45e3fcefda0"},
+{"name": "Arenavision 8 - 9",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://b7489f7ede2606dc225425d1f31b5c7cbb5003e3"},
+{"name": "Arenavision 10 - 11",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://ff270c4d474a57e66b8bf03548f005974753c843"},
+{"name": "Arenavision 12",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://0e7968faddf24d9702c1809d5aea6c80e95779a1"},
+{"name": "Arenavision 13 - 14",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://974903257b1aea10203b4d14d781b4bf58a31f5c"},
+{"name": "Arenavision 15 - 16",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://807379837b9782d752b7530745fc0925b08e205b"},
+{"name": "Arenavision 17 - 18",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://15f72b1fd8e9f90758f3a5a33437abf43863901d"},
+{"name": "Arenavision 19 - 20",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://7e5d84b1d72b717d9f9fafa348be8902f80c7d15"},
+{"name": "Arenavision 21",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://ee832078a13bce64afc79a70a8104a7399c6d84e"},
+{"name": "Arenavision 22",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://7cfa09ccca24f096145dc958b8462737965d1907"},
+{"name": "Arenavision 23",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://20a660ce4d787dd1e32235c8fb0594f21844ac76"},
+{"name": "Arenavision 24",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://0f43f810f4d55b51e206462eb64981bcb0230efb"},
+{"name": "Arenavision 25 - 26",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://be74b381cd347d3c88bebe48ebabca443b233196"},
+{"name": "Arenavision 27 - 28",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://dd7b7780bb13ce3757827f301c761ebe17a19015"},
+{"name": "Arenavision 29",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://90176444c50df6c9a60acdd488a65e1593f9e869"},
+{"name": "Arenavision 30",
+"image": "http://tvron.net/static/canal/arenavision.png",
+"url": "acestream://1775d7b4d9bbb847d0570fa98d9828e195af35fc"},{
+
+"name":"BT Sport 1","url": "acestream://e502c197dde3921551957ef2ec08fc6bbdc663ae"},
+{"name":"BT Sport 2","url": "acestream://04b38c71065be18d799edf8c37d63e738030b84d"},
+{"name":"BT Sport ESPN","url": "acestream://f4e2ade22f407fe567728923cbbe1ccb5b43a9df"},
+{"name":"CBC Sport HD","url": "acestream://21f6cfa67820200d37d046a0905159c9fd8577ae"},
+{"name":"Eurosport 1","url": "acestream://2833d20a958bd4825dd7741697ed1f52a3702afd"},
+{"name":"Eurosport 1 HD","url": "acestream://d9ab2056f62a2bce5d161acc717c6d72987841f5"},
+{"name":"Eurosport 2","url": "acestream://d5084c1860732733fa44fda6ab58fe326d71de26"},
+{"name":"Eurosport 2 HD","url": "acestream://25ea35390f4cf8efebc5306678c7443c5b4cba31"},
+{"name":"Sky Sports 1","url": "acestream://56506f4520084676a361b2f2165a8c315db43e14"},
+{"name":"Sky Sports 2","url": "acestream://6b2fb9a9e67aaabd63004059147dfdc46e882aba"},
+{"name":"Sky Sports 3","url": "acestream://4dbce55abecd154ff71b3477a332bd63611309e5"},
+{"name":"Sky Sports 4","url": "acestream://969a42388e101e6c6d9574a311e4b387a6ff1413"},
+{"name":"Sky Sports F1","url": "acestream://969dbafa76bbd0ca37d73629f392c83fcf9cc295"},
+{"name":"Sport 1 LT","url": "acestream://0b48bf1261368b82637d8a26eb4457d54c80f3e1"},
+{"name":"Sport 5+ Live HD","url": "acestream://9e0a489436b0859e20098fc3f81e07abb4c5a612"},
+{"name":"Super Tennis HD","url": "acestream://203bd6fccfd44ee1f2ffab879b57e612ac779476"},
+{"name":"Матч ТВ","url": "acestream://68bf196b1ca66ffcd5a3699cb8ca3a1148a0503f"},
+{"name":"Матч ТВ HD","url": "acestream://5e10088314635c3d0c1093553d60eb872f29d416"},
+{"name":"Матч! Арена","url": "acestream://2a789f536f4f95192bafd9b7613c521daad480f5"},
+{"name":"Матч! Арена HD","url": "acestream://c810083ff071b03f1252c1d25682247987aa503d"},
+{"name":"Матч! Игра","url": "acestream://086f1ec55f6080823028b0927da9d9daf3fe4aaf"},
+{"name":"Матч! Игра HD","url": "acestream://25ba792ba4de33ec64861057e88fb1bd78e9d20c"},
+{"name":"Матч! Наш Спорт","url": "acestream://e787c8317890bb0f4f29dcec4bcee694642c2d57"},
+{"name":"Матч! Планета","url": "acestream://f7a2e4f0388c5b82a51b64813dd0164f40539678"},
+{"name":"Матч! Футбол 1","url": "acestream://74c55d3e563be9cfc4bd4a4915aa238198b1f52d"},
+{"name":"Матч! Футбол 1 HD","url": "acestream://160680537797136e7b759113d2a9e724d6f4063a"},
+{"name":"Матч! Футбол 1 HD Резерв 1","url": "acestream://03053be7a04dac135ced8c54d66867e79681932a"},
+{"name":"Матч! Футбол 1 HD Резерв 2","url": "acestream://0ee962a9104d05a8b1cdc88d0722dff8610088c7"},
+{"name":"Матч! Футбол 1 HD Резерв 3","url": "acestream://6c007115e3928abea72e235d8ea0da5f3a9555d6"},
+{"name":"Матч! Футбол 1 Резерв 1","url": "acestream://64353a9f1400b232640302e91e9f0eb20385677e"},
+{"name":"Матч! Футбол 1 Резерв 2","url": "acestream://62c416b2dfd5e098e3541ba1e76c7c64f159f576"},
+{"name":"Матч! Футбол 1 Резерв 3","url": "acestream://dd8236b486cd028b4314a4fccd72941c46b24a97"},
+{"name":"Матч! Футбол 2","url": "acestream://45396d16f3a73cf461a07e7d83bbc96ef9ba5c6a"},
+{"name":"Матч! Футбол 2 HD","url": "acestream://dddb7ae7217c369f8cf70a9bb79c1db5f93ca685"},
+{"name":"Матч! Футбол 3","url": "acestream://bb29fc90309d37d763794cea4df955ec3920722d"},
+{"name":"Матч! Футбол 3 HD","url": "acestream://40efc22539689a44abaf767a796cb5bb065c6b67"},
+{"name":"Футбол","url": "acestream://5a51f959d618c5552710fdcd54c2e626e908c901"},
+{"name":"Футбол 1 (Украина)","url": "acestream://a4437d2d443f1666b219afa2b16bfd2d07e112db"},
+{"name":"Футбол 2 (Украина)","url": "acestream://cf197405805b7d8d7034f9fa1afd831d7c1015a0"
 
     }
                 
@@ -297,11 +862,46 @@
      
     {
 
+
                    "name": "Kênh thể thao quốc tế tổng hợp",
                    "image": "https://s29.postimg.org/txckqm8ev/sports.jpg",
                
                    "stations": [
  		   {
+
+		    "name": "FOX SPORT",
+		    "image": "http://www.liveonlinetv247.info/images/foxsports1.png",
+		    "url": "http://203.162.235.41:17823"
+		    },
+		    {
+		    "name": "Thai:Sport s1",
+		    "url": "http://www.lineduball.com/ch1/hls-live/channel1.m3u8"
+		    },
+		    {	
+		    "name": "Thai:Sport s2",
+		    "url": "http://www.lineduball.com/ch2/hls-live/channel2.m3u8"
+		    },
+		    {	
+		    "name": "Thai:Sport s3",
+		    "url": "http://www.lineduball.com/ch3/hls-live/channel3.m3u8"
+		    },
+		    {	
+		    "name": "Thai:Sport s4",
+		    "url": "http://www.lineduball.com/ch4/hls-live/channel4.m3u8"
+		    },
+		    {	
+		    "name": "Thai:Sport s5",
+		    "url": "http://www.lineduball.com/ch5/hls-live/channel5.m3u8"
+		    },
+		    {	
+		    "name": "EUROSPORTS (Eng)", "image":"https://s27.postimg.org/f1g5yfew3/eurosport.png",
+		    "url": "http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8"
+		    },
+		    {	
+		    "name": "EUROSPORTS (France)",  "image":"https://s27.postimg.org/f1g5yfew3/eurosport.png",
+		    "url": "http://esioslive6-i.akamaihd.net/hls/live/202892/AL_P_ESP1_FR_FRA/playlist_1800.m3u8"
+		    },
+		    {	
                    "name": "China:Champions League",
           	   "image": "https://s23.postimg.org/3z1fchvmj/champions.jpg",
           	   "url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_ouguan_1800&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"
@@ -337,16 +937,6 @@
 		   "name": "SUPER SPORT 4",
           	   "image": "https://s17.postimg.org/40k6uwysv/supersports.png",
           	   "url": "http://81.7.13.162/hls/ss4/index.m3u8"
-                },
-		{
-		  "name": "AD SPORT 1 HD",
-          	   "image": "http://i.imgur.com/NSQgKH4.png",
-          	   "url": "http://adtv.ercdn.net/adsport1/adsport1_720p.m3u8"
-          	},
-		{
-		   "name": "AD SPORT 2 HD",
-          	   "image": "http://i.imgur.com/kiRDDPC.png",
-          	   "url": "http://adtv.ercdn.net/adsport1/adsport2_720p.m3u8"
                 },
 		{
 
@@ -385,83 +975,7 @@
           	   "isHost": true
                 },
 		{
-		   "name": "Sky Sport 1",
-          	   "image": "http://www.liveonlinetv247.info/images/skysports1.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysports1.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Sky Sport 2",
-          	   "image": "http://www.liveonlinetv247.info/images/skysports2.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysports2.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Sky Sport 3",
-          	   "image": "http://www.liveonlinetv247.info/images/skysports3.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysports3.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		  "name": "Sky Sport 4",
-          	   "image": "http://www.liveonlinetv247.info/images/skysports4.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysports4.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Sky Sport 5",
-          	   "image": "http://www.liveonlinetv247.info/images/skysports5.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysports5.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Sky Sport F1 HD",
-          	   "image": "http://www.liveonlinetv247.info/images/skysportsf1.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysportsf1.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Sky Sports News",
-          	   "image": "http://www.liveonlinetv247.info/images/skysportsnews.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysportsnews.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "BT Sport 1",
-          	   "image": "http://www.liveonlinetv247.info/images/btsport1.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/btsport1.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "BT Sport 2",
-          	   "image": "http://www.liveonlinetv247.info/images/btsport2.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/btsport2.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		  "name": "BT Sport Euro",
-          	   "image": "http://www.liveonlinetv247.info/images/btsporteurope.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/btsporteurope.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "BT Sport ESPN",
-          	   "image": "http://www.liveonlinetv247.info/images/btsportespn.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/btsportespn.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-                  "name": "ESPN",
-          	   "image": "http://www.liveonlinetv247.info/images/espn.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/espn.php?width=650&height=480",
-          	   "isHost": true
-		
-                },
-		{
+
 		   "name": "CANAL FUTBOL",
           	   "image": "http://4.bp.blogspot.com/-8VNGIODN8j8/UJrJQwL8YuI/AAAAAAAABZA/ULvnj-xo0Uk/s400/CANAL%252B%2BFUTBOL%2BHD.png",
           	   "url": "http://www.liveonlinetv247.info/embed/canal%2Bfutbol.php?width=650&height=480",
@@ -493,194 +1007,6 @@
           	   "isHost": true
                 },
 		{
-		  "name": "Bein Sports News",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsportsnews.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsportsnews.php?width=650&height=480",
-          	   "isHost": true
-                
-          	},
-		{
-		"name": "Bein Sports 1",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports1.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports1.php?width=650&height=480",
-          	   "isHost": true
-                
-          	},
-		{
-		    "name": "Bein Sports 2",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports2.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports2.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{ 
-		   "name": "Bein Sports 3",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports3.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports3.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Bein Sports 4",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports4.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports4.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Bein Sports 5",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports5.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports5.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		  "name": "Bein Sports 6",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports6.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports6.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Bein Sports 7",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports7.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports7.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		    "name": "Bein Sports 8",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports8.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports8.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Bein Sports 9",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports9.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports9.php?width=650&height=480",
-          	   "isHost": true
-                
-                },
-		{
-		   "name": "Bein Sports 10",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports10.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports10.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Bein Sports 11(ENG)",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports11.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports11.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		  "name": "Bein Sports 12(ENG)",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports12.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports12.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Bein Sports 13(ENG)",
-          	   "image": "http://www.liveonlinetv247.info/images/beinsports13.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports13.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		    "name": "Bein Sports 1 France",
-          	   "image": "http://i.imgur.com/0vGYvd9.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports1france.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		  "name": "Bein Sports 2 France",
-          	   "image": "http://i.imgur.com/0UtbhZH.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports2france.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Bein Sports 3 France",
-          	   "image": "http://i.imgur.com/QusZf2J.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/beinsports3france.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		    "name": "Sky Sport 1 Italia",
-          	   "image": "http://www.liveonlinetv247.info/images/skysport1italia.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysport1italia.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		  "name": "Sky Sport 2 Italia",
-          	   "image": "http://www.liveonlinetv247.info/images/skysport2italia.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysport2italia.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Sky Sport 3 Italia",
-          	   "image": "http://www.liveonlinetv247.info/images/skysport3italia.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysport3italia.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		    "name": "Sky Sport 24 Italia",
-          	   "image": "http://www.liveonlinetv247.info/images/skysport24italia.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/skysport24italia.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		  "name": "Setanta sport",
-          	   "image": "http://www.liveonlinetv247.info/images/setantasports.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/setantasports.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Star Sports",
-          	   "image": "http://www.liveonlinetv247.info/images/starsports.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/starsports.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "SPORT TV 1",
-          	   "image": "http://www.thelogodb.com/images/media/logo/ryxprx1436898834.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/sporttv1.php?width=650&height=480",
-          	   "isHost": true
-        	},
-		{ 
-		   "name": "Sport TV 2",
-          	   "image": "https://s29.postimg.org/u0eibx5nb/sporttv2.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/sporttv2.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		  "name": "Sport TV 3",
-          	   "image": "https://s30.postimg.org/gnij95dkh/sporttv3.jpg",
-          	   "url": "http://www.liveonlinetv247.info/embed/sporttv3.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{
-		   "name": "Sport TV 4",
-          	   "image": "https://s30.postimg.org/jjfdqqhap/sporttv4.jpg",
-          	   "url": "http://www.liveonlinetv247.info/embed/sporttv4.php?width=650&height=480",
-          	   "isHost": true
-                },
-		{	
-		     "name": "Sport TV 5",
-          	   "image": "https://s30.postimg.org/3srl6lx6p/sporttv5.png",
-          	   "url": "http://www.liveonlinetv247.info/embed/sporttv5.php?width=650&height=480",
-          	   "isHost": true
-        }
-                
-    ]
-    },
-     
-    {	
-                 "name": "ARABIC SPORTS CHANNELS",
-                "image": "http://4.bp.blogspot.com/-NcYObS6gTL8/WJ2xitA6VaI/AAAAAAAAA_U/YC-IvkjQ23MGt-P-YhFbJnlUYJd0OD-mQCK4B/s1600/logo2.png",
-               
-                "stations": [
- 				  {
- 
 "name": "beIN Sports 1HD","image": "http://www.liveonlinetv247.info/images/beinsports1.png","url": "http://embratoria.com/embed/hls/is.php?s=beinsports1","isHost": true},{   
 "name": "beIN Sports 2HD","image": "http://www.liveonlinetv247.info/images/beinsports2.png","url": "http://embratoria.com/embed/hls/is.php?s=beinsports2","isHost": true},{   
 "name": "beIN Sports 3HD","image": "http://www.liveonlinetv247.info/images/beinsports3.png","url": "http://embratoria.com/embed/hls/is.php?s=beinsports3","isHost": true},{   
@@ -700,11 +1026,16 @@
 "name": "BT Sport 1","image": "http://www.liveonlinetv247.info/images/btsport1.png","url": "http://embratoria.com/embed/hls/is.php?s=btsport1","isHost": true},{   
 "name": "BT Sport 2","image": "http://www.liveonlinetv247.info/images/btsport2.png","url": "http://embratoria.com/embed/hls/is.php?s=btsport2","isHost": true},{   
 "name": "BT Sport 3","image": "http://www.liveonlinetv247.info/images/btsporteurope.png","url": "http://embratoria.com/embed/hls/is.php?s=btsport3","isHost": true},{
+"name": "Sky Sport 1","image": "http://www.liveonlinetv247.info/images/skysports1.png","url": "http://embratoria.com/embed/hls/is.php?s=skysports1","isHost": true},{   
+"name": "Sky Sport 2","image": "http://www.liveonlinetv247.info/images/skysports2.png","url": "http://embratoria.com/embed/hls/is.php?s=skysports2","isHost": true},{   
+"name": "Sky Sport 3","image": "http://www.liveonlinetv247.info/images/skysports3.png","url": "http://embratoria.com/embed/hls/is.php?s=skysports3","isHost": true},{   
+"name": "Sky Sport 4","image": "http://www.liveonlinetv247.info/images/skysports4.png","url": "http://embratoria.com/embed/hls/is.php?s=skysports4","isHost": true},{   
+"name": "Sky Sport 5","image": "http://www.liveonlinetv247.info/images/skysports5.png","url": "http://embratoria.com/embed/hls/is.php?s=skysports5","isHost": true},{   	
 "name": "alkass 1 HD","image": "","url": "http://embratoria.com/embed/hls/alkass.php?s=QVpxMTR0MmZ0L0NYMD0q","isHost": true},{   
 "name": "alkass 2 HD","image": "","url": "http://embratoria.com/embed/hls/alkass.php?s=QVprYXNSRGtuYXZ3dz0q","isHost": true},{   
 "name": "alkass 3 HD","image": "","url": "http://embratoria.com/embed/hls/alkass.php?s=QVpqYUtKbzd0VCtrdz0q","isHost": true},{   
-"name": "alkass 4 HD","image": "","url": "http://embratoria.com/embed/hls/alkass.php?s=QVorMWlXWjk3R2Yxaz0q","isHost": true  	
-           
+"name": "alkass 4 HD","image": "","url": "http://embratoria.com/embed/hls/alkass.php?s=QVorMWlXWjk3R2Yxaz0q","isHost": true 
+            
      }
             ]
         },
@@ -1243,530 +1574,6 @@
                 
    		 ]
     		},
-     
-   		 {
-                 "name": "Next TV",
-                "image": "https://s3.postimg.org/anyadngyr/nexttv.jpg",
-               
-                "stations": [
- 				  {
-
-"name":"VTV1 HD","image":"http://i.imgur.com/m8WU8BL.png","url": "http://45.124.94.83/get_vt/154"},{
-"name":"VTV3 HD","image":"http://i.imgur.com/OwtIFz1.png","url": "http://45.124.94.83/get_vt/155"},{
-"name":"VTV4 HD","image":"http://i.imgur.com/QwsdDjH.png","url": "http://45.124.94.83/get_vt/193"},{
-"name":"VTV5 HD","image":"http://i.imgur.com/bdKkIw2.png","url": "http://45.124.94.83/get_vt/194"},{
-"name":"VTV6 HD","image":"http://i.imgur.com/kplGmyh.png","url": "http://45.124.94.83/get_vt/156"},{
-"name":"VTV7 HD","image":"http://xbmc.itvplus.net/LOGO/HDTV/VTV7.png","url": "http://45.124.94.83/get_vt/195"},{
-"name":"VTV8 HD","image":"http://xbmc.itvplus.net/LOGO/HDTV/VTV8.png","url": "http://45.124.94.83/get_vt/196"},{
-"name":"VTV9 HD","image":"http://i.imgur.com/qCWsfhc.png","url": "http://45.124.94.83/get_vt/197"},{
-"name":"TTXVN","image":"http://103.56.158.185/tv_icon/vnews.png","url": "http://45.124.94.83/get_vt/20"},{
-"name":"ANTV HD","image":"http://103.56.158.185/tv_icon/antv.png","url": "http://45.124.94.83/get_vt/18"},{
-"name":"QPVN","image":"http://103.56.158.185/tv_icon/quoc-phong-vn.png","url": "http://45.124.94.83/get_vt/141"},{
-"name":"ANTG","image":"http://i.imgur.com/j7NsBwD.png","url": "http://45.124.94.83/get_vt/51"},{
-"name":"HTV1","image":"http://i.imgur.com/XWtxYdm.png","url": "http://45.124.94.83/get_vt/53"},{
-"name":"HTV2","image":"http://i.imgur.com/s7x0UhN.png","url": "http://45.124.94.83/get_vt/54"},{
-"name":"HTV3","image":"http://i.imgur.com/MMQITB4.png","url": "http://45.124.94.83/get_vt/71"},{
-"name":"HTV7 HD","image":"http://i.imgur.com/m603PX8.png","url": "http://45.124.94.83/get_vt/157"},{
-"name":"HTV9 HD","image":"http://i.imgur.com/DUhJcZK.png","url": "http://45.124.94.83/get_vt/158"},{
-"name":"HTV THE THAO","image":"http://i.imgur.com/bULyZwy.png","url": "http://45.124.94.83/get_vt/37.m3u8"},{
-"name":"HTVC CA NHAC","image":"http://103.56.158.185/tv_icon/htvccanhac.png","url": "http://45.124.94.83/get_vt/58"},{
-"name":"HTVC GIA DINH","image":"https://s3.postimg.org/3q9r5xc37/htvcgiadinh.jpg","url": "http://45.124.94.83/get_vt/59"},{
-"name":"HTVC PHIM","image":"https://s15.postimg.org/tymsndhh7/htvcphim.jpg","url": "http://45.124.94.83/get_vt/31"},{
-"name":"HTVC PHIM HD","image":"https://s4.postimg.org/4ualhig7h/htvcphimhd.jpg","url": "http://45.124.94.83/get_vt/159"},{
-"name":"HTVC PHU NU","image":"https://s11.postimg.org/dku4jqnpf/htvcphunu.png","url": "http://45.124.94.83/get_vt/56"},{
-"name":"HTVC DU LICH","image":"https://s11.postimg.org/y50njcob7/dulich.jpg","url": "http://45.124.94.83/get_vt/60"},{
-"name":"HTVC THUAN VIET HD","image":"https://s22.postimg.org/3uakz73td/thuanviethd.jpg","url": "http://45.124.94.83/get_vt/160"},{
-"name":"HTVC FBNC","image":"http://103.56.158.185/tv_icon/htvc-hd.png","url": "http://45.124.94.83/get_vt/177"},{
-"name":"HTVC CHANNEL B","image":"http://103.56.158.185/tv_icon/htvc-hd.png","url": "http://45.124.94.83/get_vt/25"},{
-"name":"VTC1 HD","image":"http://i.imgur.com/HC5iUuK.png","url": "http://45.124.94.83/get_vt/150"},{
-"name":"VTC2","image":"http://i.imgur.com/2MwvQXo.png","url": "http://45.124.94.83/get_vt/181"},{
-"name":"VTC3 HD","image":"http://i.imgur.com/CsXS6ve.png","url": "http://45.124.94.83/get_vt/145"},{
-"name":"VTC4","image":"http://i.imgur.com/fitz1bW.png","url": "http://45.124.94.83/get_vt/46"},{
-"name":"VTC5","image":"http://i.imgur.com/3QYpmSw.png","url": "http://45.124.94.83/get_vt/28"},{
-"name":"VTC6","image":"http://i.imgur.com/xXeBAok.png","url": "http://45.124.94.83/get_vt/29"},{
-"name":"VTC7","image":"http://i.imgur.com/ZfjtPa2.png","url": "http://45.124.94.83/get_vt/47"},{
-"name":"VTC8","image":"http://i.imgur.com/uPxgmeN.png","url": "http://45.124.94.83/get_vt/14"},{
-"name":"VTC9","image":"http://i.imgur.com/5SoblfV.png","url": "http://45.124.94.83/get_vt/48"},{
-"name":"VTC10","image":"http://i.imgur.com/5GpXF4g.png","url": "http://45.124.94.83/get_vt/15"},{
-"name":"VTC11","image":"http://i.imgur.com/Vg5XFcf.png","url": "http://45.124.94.83/get_vt/72"},{
-"name":"VTC13 HD","image":"http://i.imgur.com/YnunTc5.png","url": "http://45.124.94.83/get_vt/152"},{
-"name":"VTC14","image":"http://i.imgur.com/annOIzX.png","url": "http://45.124.94.83/get_vt/16"},{
-"name":"VTC16","image":"http://i.imgur.com/aJyUj9n.png","url": "http://45.124.94.83/get_vt/17"},{
-"name":"HA NOI 2","image":"http://i.imgur.com/JHYNvNs.png","url": "http://45.124.94.83/get_vt/10"},{
-"name":"MOVHD Hanoicab4","image":"http://i.imgur.com/FD1sjQe.png","url": "http://45.124.94.83/get_vt/30"},{
-"name":"YOUTV Hanoicab2","image":"http://i.imgur.com/7uqtQEM.png","url": "http://45.124.94.83/get_vt/50"},{
-"name":"HITV Hanoicab1","image":"http://i.imgur.com/eIbgrWr.png","url": "http://45.124.94.83/get_vt/52"},{
-"name":"VINH PHUC","image":"http://103.56.158.185/tv_icon/vinh-phuc.png","url": "http://45.124.94.83/get_vt/91"},{
-"name":"YEN BAI","image":"http://103.56.158.185/tv_icon/yen-bai.png","url": "http://45.124.94.83/get_vt/89"},{
-"name":"THVL2","image":"http://vuapp.tranvu.info/upload//thvl2.png","url": "http://45.124.94.83/get_vt/134"},{
-"name":"THVL1","image":"http://vuapp.tranvu.info/upload//thvl1.png","url": "http://45.124.94.83/get_vt/133"},{
-"name":"TUYEN QUANG","image":"http://103.56.158.185/tv_icon/tuyen-quang.png","url": "http://45.124.94.83/get_vt/79"},{
-"name":"TRA VINH","image":"http://103.56.158.185/tv_icon/tra-vinh.png","url": "http://45.124.94.83/get_vt/135"},{
-"name":"TIEN GIANG","image":"http://103.56.158.185/tv_icon/tien-giang.png","url": "http://45.124.94.83/get_vt/130"},{
-"name":"TRT","image":"http://103.56.158.185/tv_icon/thua-thien-hue.png","url": "http://45.124.94.83/get_vt/106"},{
-"name":"THAI NGUYEN","image":"http://i.imgur.com/a4oiL92.png","url": "http://45.124.94.83/get_vt/80"},{
-"name":"LONG AN","image":"http://i.imgur.com/Z5408CY.png","url": "http://45.124.94.83/get_vt/120"},{
-"name":"SON LA","image":"http://i.imgur.com/j8eqRq8.png","url": "http://45.124.94.83/get_vt/87"},{
-"name":"SOC TRANG","image":"https://s12.postimg.org/egpkg3ivh/soctrang.jpg","url": "http://45.124.94.83/get_vt/139"},{
-"name":"QUANG TRI","image":"http://i.imgur.com/lYtL22F.png","url": "http://45.124.94.83/get_vt/105"},{
-"name":"QUANG NINH 3","image":"http://103.56.158.185/tv_icon/quang-ninh-3.png","url": "http://45.124.94.83/get_vt/82"},{
-"name":"QUANG NINH 1","image":"http://103.56.158.185/tv_icon/quang-ninh-1.png","url": "http://45.124.94.83/get_vt/81"},{
-"name":"QUANG NGAI","image":"http://i.imgur.com/LVxKGl4.png","url": "http://45.124.94.83/get_vt/109"},{
-"name":"QUANG NAM","image":"https://s22.postimg.org/4yt2cm741/quangnam.png","url": "http://45.124.94.83/get_vt/108"},{
-"name":"PTP(PHU THO)","image":"http://i.imgur.com/W2d2XLV.png","url": "http://45.124.94.83/get_vt/122"},{
-"name":"PHU YEN","image":"https://s24.postimg.org/t1m5s4gt1/phuyen.jpg","url": "http://45.124.94.83/get_vt/90"},{
-"name":"NINH THUAN","image":"http://i.imgur.com/IGp4PB7.png","url": "http://45.124.94.83/get_vt/117.m3u8"},{
-"name":"NINH BINH","image":"http://103.56.158.185/tv_icon/ninh-binh.png","url": "http://45.124.94.83/get_vt/99"},{
-"name":"HOA BINH","image":"http://i.imgur.com/tMaZaYl.png","url": "http://45.124.94.83/get_vt/100"},{
-"name":"HAU GIANG","image":"http://i.imgur.com/OAwAkbr.png","url": "http://45.124.94.83/get_vt/138"},{
-"name":"HAI PHONG","image":"http://vuapp.tranvu.info/upload//thp.png","url": "http://45.124.94.83/get_vt/94"},{
-"name":"HAI DUONG","image":"http://i.imgur.com/B9gdrjs.png","url": "http://45.124.94.83/get_vt/93"},{
-"name":"HA TINH","image":"http://i.imgur.com/ABygmpS.png","url": "http://45.124.94.83/get_vt/103"},{
-"name":"HA NAM","image":"https://s13.postimg.org/lkxq2eocn/hanam.jpg","url": "http://45.124.94.83/get_vt/97.m3u8"},{
-"name":"HA GIANG","image":"https://s11.postimg.org/y1ijz2a83/hagiang.jpg","url": "http://45.124.94.83/get_vt/76"},{
-"name":"GIA LAI","image":"http://103.56.158.185/tv_icon/gia-lai.png","url": "http://45.124.94.83/get_vt/112"},{
-"name":"DONG THAP","image":"http://103.56.158.185/tv_icon/dong-thap.png","url": "http://45.124.94.83/get_vt/132"},{
-"name":"DONG NAI 1","image":"http://103.56.158.185/tv_icon/dong-nai-1.png","url": "http://45.124.94.83/get_vt/127"},{
-"name":"DIEN BIEN","image":"http://103.56.158.185/tv_icon/dien-bien.png","url": "http://45.124.94.83/get_vt/86"},{
-"name":"PTD","image":"https://s9.postimg.org/l5wgsonin/ptd.png","url": "http://45.124.94.83/get_vt/116"},{
-"name":"DRT (DAKLAK)","image":"http://i.imgur.com/q4TvicY.png","url": "http://45.124.94.83/get_vt/115"},{
-"name":"DA NANG 1","image":"http://103.56.158.185/tv_icon/da-nang-1.png","url": "http://45.124.94.83/get_vt/107"},{
-"name":"CAN THO","image":"http://103.56.158.185/tv_icon/can-tho.png","url": "http://45.124.94.83/get_vt/137"},{
-"name":"CRTV(CAO BANG)","image":"https://static.fptplay.net/static/img/share/channels/icon_channel_ha-giang_145578965891.png","url": "http://45.124.94.83/get_vt/77"},{
-"name":"CA MAU","image":"http://i.imgur.com/YAGwIeW.png","url": "http://45.124.94.83/get_vt/125"},{
-"name":"BINH THUAN","image":"http://103.56.158.185/tv_icon/binh-thuan.png","url": "http://45.124.94.83/get_vt/118"},{
-"name":"BINH PHUOC 1","image":"http://103.56.158.185/tv_icon/binh-phuoc-1.png","url": "http://45.124.94.83/get_vt/121"},{
-"name":"BTV(BINH DINH)","image":"http://103.56.158.185/tv_icon/binh-dinh.png","url": "http://45.124.94.83/get_vt/111"},{
-"name":"BINH DUONG 2","image":"http://103.56.158.185/tv_icon/binh-duong-2.png","url": "http://45.124.94.83/get_vt/124"},{
-"name":"BTV (BAC NINH)","image":"http://103.56.158.185/tv_icon/bac-ninh.png","url": "http://45.124.94.83/get_vt/92"},{
-"name":"BAC KAN","image":"https://s1.postimg.org/jb3hmypsv/baccan.png","url": "http://45.124.94.83/get_vt/78"},{
-"name":"BAC GIANG","image":"http://103.56.158.185/tv_icon/bac-giang.png","url": "http://45.124.94.83/get_vt/84"},{
-"name":"BAC LIEU","image":"http://103.56.158.185/tv_icon/bac-lieu.png","url": "http://45.124.94.83/get_vt/126"},{
-"name":"AN GIANG","image":"http://103.56.158.185/tv_icon/an-giang.png","url": "http://45.124.94.83/get_vt/136"
-
-    }
-                
-    ]
-    },
-     
-    {
-                   "name": "Truyền Hình Việt Nam Tổng Hợp",
-                   "image": "https://s1.postimg.org/uxavk8vgv/viettv.png",
-               
-                   "stations": [
- 						{
-		   "name": "VTV 1 s1", "image": "http://i.imgur.com/JW8VXef.png","url": "http://113.160.49.39/lives/origin04/v1sd.isml/v1sd.m3u8"},{
-		   "name": "VTV1 s2",
-          	   "image": "http://i.imgur.com/JW8VXef.png",
-          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv1.m3u8"
-	            },
-		    {
-		   "name": "VTV1 s3",
-          	   "image": "http://i.imgur.com/JW8VXef.png",
-          	   "url": "http://123.30.185.126/hls/vtv1.m3u8"
-	            },
-		    {	
-		   "name": "VTV2 s1",
-          	   "image": "http://i.imgur.com/RwwN9B3.png",
-          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv2.m3u8"
-	            },
-		    {
-		   "name": "VTV2 s2",
-          	   "image": "http://i.imgur.com/RwwN9B3.png",
-          	   "url": "http://123.30.185.126/hls/vtv2.m3u8"
-	            },
-		    {
-		   "name": "VTV3 s1", "image": "http://i.imgur.com/spL8IHO.png","url": "http://113.160.49.39/lives/origin04/v3sd.isml/v3sd.m3u8"},{
-		   "name": "VTV3 s2",
-          	   "image": "http://i.imgur.com/spL8IHO.png",
-          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv3.m3u8"
-	            },
-		    {
-		   "name": "VTV3 s3",
-          	   "image": "http://i.imgur.com/spL8IHO.png",
-          	   "url": "http://123.30.185.126/hls/vtv3.m3u8"
-	            },
-		    {
-		    "name": "VTV6", "image": "http://i.imgur.com/keIENsc.png","url": "http://113.160.49.39/lives/origin04/v6sd.isml/v6sd.m3u8"},{
-
-		   "name": "VTV8 s1",
-          	   "image": "http://103.56.158.185/tv_icon/vtv8.png",
-          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv8.m3u8"
-	            },
-		    {
-		   "name": "VTV8 s2",
-          	   "image": "http://103.56.158.185/tv_icon/vtv8.png",
-          	   "url": "http://znzjssjl.cdnviet.com/pnwjyhx/_definst_/livestream/chunklist.m3u8"
-	            },
-		    {
-		   "name": "VTV9",
-          	   "image": "http://103.56.158.185/tv_icon/vtv9.png",
-          	   "url": "http://sv.tivi3g.com/stream-vtv/vtv9.m3u8"
-	            },
-		    {
-		    "name": "NHÂN DÂN HD","image": "https://lh3.googleusercontent.com/-tEhZMDUuz_w/Vb25ogAOOgI/AAAAAAAAAhc/vdfAxRmBoBY/h118/nhandantv-tivi4k.png",
-		    "url": "http://27.118.16.98:1935/live/truyenhinhnhandan720/chunklist_w2006762604.m3u8"},{
-		    "name": "QPVN","image": "http://103.56.158.185/tv_icon/quoc-phong-vn.png",
-		    "url": "rtmp://125.212.132.219/standard/_definst_/mp4:standard_480p"},{
-		    "name": "ANTV","image": "http://103.56.158.185/tv_icon/antv.png",  
-		    "url": "http://123.30.185.126/hls/antv.m3u8"},{
-		    "name": "TTXVN","image": "http://103.56.158.185/tv_icon/ttxvn.png",
-		    "url": "http://live.cdn.mobifonetv.vn/motv2/ttxvn_hls.smil/chunklist_b1200000.m3u8"},{
- 		    "name": "HTV 7", "image": "https://upload.wikimedia.org/wikipedia/vi/a/ac/HTV7-tphcm.png","url": "http://113.160.49.39/lives/origin04/htv7hd.isml/htv7hd.m3u8"},{
-		    "name": "HTV 9", "image": "https://upload.wikimedia.org/wikipedia/vi/0/0a/HTV9-tphcm.png","url": "http://113.160.49.39/lives/origin04/htv9sd.isml/htv9sd.m3u8"},{
-		   "name": "VTC1",
-          	   "image": "http://i.imgur.com/VJ8DiUW.png",
-          	   "url": "http://123.30.185.126/hls/vtc1.m3u8"
-		    },
-		    { 
-		   "name": "VTC1 HD s1", "image": "http://i.imgur.com/HC5iUuK.png","url": "http://118.107.68.10:1935/live/smil:VTC1HD_15032017.smil/playlist.m3u8"},{
-		   "name": "VTC1 HD s2",
-          	   "image": "http://i.imgur.com/HC5iUuK.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc1.smil/chunklist_b1500000.m3u8"
-		    },
-		    { 
-		   "name": "VTC2",
-          	   "image": "http://i.imgur.com/2MwvQXo.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc2.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		   "name": "VTC3",
-          	   "image": "http://i.imgur.com/0t3ciaM.png",
-          	   "url": "http://123.30.185.126/hls/vtc3.m3u8"			
-		    },
-		    { 
-		   "name": "VTC3 HD",
-          	   "image": "http://i.imgur.com/CsXS6ve.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc3.smil/chunklist_b1500000.m3u8"
-		    },
-		    { 	
-		   "name": "VTC4",
-          	   "image": "http://i.imgur.com/fitz1bW.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc4.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		    "name": "VTC5",
-          	   "image": "http://i.imgur.com/3QYpmSw.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc5.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		    "name": "VTC6",
-          	   "image": "http://i.imgur.com/xXeBAok.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc6.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		    "name": "VTC7 s1", "image": "http://i.imgur.com/ZfjtPa2.png","url": "http://113.160.49.39/lives/origin04/vtc7sd.isml/vtc7sd.m3u8"},{
-		    "name": "VTC7 s2",
-          	   "image": "http://i.imgur.com/ZfjtPa2.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc7.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		    "name": "VTC8",
-          	   "image": "http://i.imgur.com/uPxgmeN.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc8.smil/chunklist_b900000.m3u8"
-	            },
-		    {
-		    "name": "VTC9 s1", "image": "http://i.imgur.com/5SoblfV.png","url": "http://113.160.49.39/lives/origin04/vtc9sd.isml/vtc9sd.m3u8"},{
-		    "name": "VTC9 s2",
-          	   "image": "http://i.imgur.com/5SoblfV.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc9.smil/chunklist_b900000.m3u8"
-	            },
-		    {
-		   "name": "VTC10 s1", "image": "http://103.56.158.185/tv_icon/vtc10.png","url": "http://118.107.71.15:1935/live/_definst_/smil:VTC10/VTC10_live.smil/playlist.m3u8"},{
-		    "name": "VTC10 s2",
-          	   "image": "http://103.56.158.185/tv_icon/vtc10.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc10.smil/chunklist_b900000.m3u8"
-	            },
-		    { 
-		    "name": "VTC11",
-          	   "image": "http://i.imgur.com/Vg5XFcf.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc11.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		   "name": "VTC12",
-          	   "image": "http://i.imgur.com/aKmAf9Z.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc12.smil/chunklist_b900000.m3u8"
-	            },
-		    {
-		   "name": "VTC13 s1",
-          	   "image": "http://i.imgur.com/ZIRi8xh.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc13.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		    "name": "VTC13 s2",
-          	   "image": "http://i.imgur.com/ZIRi8xh.png",
-          	   "url": "http://censoft.mobi:1935/tvviet/vtc12.stream/playlist.m3u8"
-		    },
-		    { 
-		    "name": "VTC13 HD",
-          	   "image": "https://s21.postimg.org/jwo4w6mfb/itvhd.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc13.smil/chunklist_b1500000.m3u8"
-		    },
-		    { 
-		   "name": "VTC14",
-          	   "image": "http://i.imgur.com/annOIzX.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc14.smil/chunklist_b900000.m3u8"
-		    },
-		    { 
-		   "name": "VTC14 HD",
-          	   "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_vtc14-hd_145872429811.jpg",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc14.smil/chunklist_b1500000.m3u8"
-		    },
-		    { 
-		    "name": "VTC16",
-          	   "image": "http://i.imgur.com/aJyUj9n.png",
-          	   "url": "http://45.121.26.49:1935/live/_definst_/smil:vtc16.smil/chunklist_b900000.m3u8"		
-		    },
-		    { 
-		   "name": "VTC CA NHAC", "image": "https://s21.postimg.org/9wp59n2ev/vtcplay.jpg","url": "http://118.107.68.10:1935/live/_definst_/VTC_CANHAC2017/playlist.m3u8"},{
-		   "name": "SCTVHD PHIM VIET",
-          	   "image": "https://static-stage.sctv.vn/channel/84/PhimVietHD.png",
-          	   "url": "rtmp://vf10.aditmedia.net/ingestx/ivn_000105"
-                    },
-		    {
- 	            "name": "SCTV5-SCJ", "image": "http://www.sctv.com.vn/Media/ShortCut/channel/sctv5.png",
-          	   "url": "http://vtsstr4.sctv.vn:1935/testlive/SCTV5_SD.smil/chunklist_w411708802_b2292000.m3u8"},{
-		   "name": "Anvien HD",
-          	   "image": "https://s29.postimg.org/b2fgjxxuv/anvienhd.jpg",
-          	   "url": "http://live.cdn.mobifonetv.vn/motv/anvienhd_hls.smil/chunklist_b2500000.m3u8"
-	            },
-		    {
-		    "name": "An ninh thế giới",
-          	   "image": "http://i.imgur.com/j7NsBwD.png",
-          	   "url": "http://live.cdn.mobifonetv.vn/motv/antg_hls.smil/chunklist_b1200000.m3u8"
-	            },
-		    {
-		   "name": "NCM BTV10 ",
-          	   "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_ncm_141217724217.png",
-          	   "url": "http://live.cdn.mobifonetv.vn/motv/ncm_hls.smil/chunklist_b1200000.m3u8"
-	            },
-		    {	
-		    "name": "Phimhay HD",
-          	   "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_phim-hay_141217631093.png",
-          	   "url": "http://live.cdn.mobifonetv.vn/motv3/phimhay_hls.smil/chunklist_b1200000.m3u8"
-	            },
-		    {
-		   "name": "Miền tây",
-          	   "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_mien-tay_141217633202.png",
-          	   "url": "http://live.cdn.mobifonetv.vn/motv2/mientay_hls.smil/chunklist_b1200000.m3u8"
-	            },
-		    {
-		    "name": "SAM BTV11 ",
-          	   "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_sam_141217634547.png",
-          	   "url": "http://live.cdn.mobifonetv.vn/motv/sam_hls.smil/chunklist_b1200000.m3u8"
-		    },
-		    {
-		    "name": "KEENG TV", "image": "https://s4.postimg.org/kecndom6l/keengtv.jpg",
-          	    "url": "http://125.235.29.16/livetv/keeng.m3u8#.m3u8&streamType=live&scaleMode=letterbox"},{ 
-		    "name": "NCT", "image": "http://www.vietmobitv.com/vmt/images/nct.png", 
-		    "url": "rtmp://123.30.134.108/live/nctlive"},{           	        
-		   "name": "HN1",
-          	   "image": "http://i.imgur.com/kFSFBHp.png",
-          	   "url": "http://123.30.185.126/hls/hanoi1.m3u8"
-		    },
-		    { 
-		   "name": "HN2",
-          	   "image": "http://i.imgur.com/JHYNvNs.png",
-          	   "url": "http://123.30.185.126/hls/hanoi2.m3u8"
-	            },
-		    {
-		    "name": "SƠN LA", "image": "http://103.56.158.185/tv_icon/son-la.png",
-  		    "url": "http://118.107.76.15:1983/live/smil:SL_live.smil/playlist.m3u8"},{
-		    "name": "CAO BẰNG", "image": "https://s21.postimg.org/75prmzdsn/caobang.jpg", 
-		    "url": "http://118.107.76.15:1983/live/CB_live.smil/playlist.m3u8"},{
-		    "name": "LẠNG SƠN", "image": "http://i.imgur.com/FRl2dMz.png",
-		    "url": "rtmp://123.18.206.40:1935/live/livestream"},{
-		    "name": "THÁI NGUYÊN", "image": "http://i.imgur.com/a4oiL92.png", 
-		    "url": "rtmp://45.124.85.26/oflaDemo/livestream"},{
-		    "name": "HOÀ BÌNH", "image": "http://i.imgur.com/tMaZaYl.png",  
-		    "url": "http://123.30.185.126/hls/hoabinh.m3u8"},{
-		    "name": "PHÚ THỌ", "image": "http://i.imgur.com/W2d2XLV.png", 
-		    "url": "http://118.107.76.15:1983/live/smil:PT_live.smil/playlist.m3u8"},{
-		    "name": "VĨNH PHÚC", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_vinh-phuc_145880931198.jpg", 
-		    "url": "rtmp://117.6.162.63/live/thvp"},{		        
-		    "name": "HAI PHONG", "image": "http://vuapp.tranvu.info/upload//thp.png", 
-		    "url": "http://118.107.76.15:1983/live/smil:HP2.smil/chunklist.m3u8"},{		        
-		    "name": "QUẢNG NINH 1", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_quang-ninh-1_141457746552.png", 
-		    "url": "rtmp://123.29.68.44/hctv/vstv020"},{
-		    "name": "QUANG NINH 3", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_quang-ninh-3_141457749017.png", 
-		    "url": "rtmp://123.29.68.44/hctv/vstv021"},{
-		    "name": "THAI BINH", "image": "http://103.56.158.185/tv_icon/thai-binh.png", 
-		    "url": "rtmp://118.70.118.191/live/thaibinhtv"},{		        
-		    "name": "HÀ NAM", "image": "https://s13.postimg.org/lkxq2eocn/hanam.jpg",  
-		    "url": "rtmp://113.160.198.111:8086/live//hanamtv"},{
-		    "name": "HÀ TĨNH", "image": "http://i.imgur.com/ABygmpS.png",  
-		    "url": "http://hatinhtv.vn/liveevent.m3u8"},{
-		    "name": "QUẢNG TRỊ", "image": "http://i.imgur.com/lYtL22F.png", 
-		    "url": "http://118.107.76.15:1983/live/smil:QT_live.smil/playlist.m3u8"},{
-		    "name": "HUẾ", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_thua-thien-hue_145880926795.jpg", 
-		    "url": "rtmp://118.69.176.149:1935/live/trt"},{
-		    "name": "ĐÀ NẴNG 1", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_da-nang-1.png", 
-		    "url": "http://drtdnglive.e49a7c38.cdnviet.com/livedrt1/chunklist.m3u8"},{
-		    "name": "ĐÀ NẴNG 2", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_da-nang-2.png", 
-		    "url": "http://drtdnglive.e49a7c38.cdnviet.com/livedrt2/chunklist.m3u8"},{
-		    "name": "QUẢNG NAM", "image": "https://s22.postimg.org/4yt2cm741/quangnam.png", 
-		    "url": "rtmp://113.161.6.157:1935/live/livestream"},{
-		    "name": "BÌNH ĐỊNH", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_binh-dinh.png", 
-		    "url": "http://123.30.185.126/hls/binhdinh.m3u8"},{
-		    "name": "KHÁNH HÒA", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_khanh-hoa_141457723074.png",  
-		    "url": "rtmp://118.69.198.109/live/video"},{
-		    "name": "ĐAK NÔNG", "image": "https://s11.postimg.org/g5akk3vrn/dacnong.jpg", 
-		    "url": "rtmp://222.255.158.22/live/truyenhinh"},{
-		    "name": "LÂM ĐỒNG", "image": "http://103.56.158.185/tv_icon/lam-dong.png", 
-		    "url": "http://118.107.76.15:1983/live/smil:LD_live.smil/playlist.m3u8"},{
-		    "name": "BÌNH PHƯỚC 1", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_binh-phuoc_14588060598.jpg", 
-		    "url": "http://118.69.197.145/hls/bptv1.m3u8"},{
-		    "name": "BÌNH PHƯỚC 2", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_binh-phuoc-2_145880693943.jpg", 
-		    "url": "http://118.69.197.145/hls/bptv2.m3u8"},{
-		    "name": "BR-VT", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_ba-ria-vung-tau_141457728259.png",
-		    "url": "rtmp://113.163.216.24:1935/live/livestream"},{
-		    "name": "VĨNH LONG 1", "image": "http://cdn.kplus.vn/content/upload/1/root/logo-thvl1_w150_h150.png", 
-		    "url": "http://113.160.49.39/lives/origin04/vinhlongsd.isml/vinhlongsd.m3u8"},{
-		    "name": "BẾN TRE", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_ben-tre_14588084926.jpg", 
-		    "url": "rtmp://113.163.94.245/livepkgr/thbt"},{
-		    "name": "SÓC TRĂNG", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_tra-vinh_145880827066.jpg", 
-		    "url": "rtmp://115.78.3.164/live/stv1"},{
-		    "name": "TRÀ VINH", "image": "https://s14.postimg.org/aqu8lk3i9/travinh.jpg", 
-		    "url": "http://123.30.185.126/hls/travinh.m3u8"},{
-		    "name": "BẠC LIÊU", "image": "https://static.fptplay.net/static/img/share/channels/icon_channel_bac-lieu_145881130802.jpg", 
-		    "url": "rtmp://118.69.205.213/livepkgr/livestream1"},{
-		    "name": "KIEN GIANG", "image": "http://103.56.158.185/tv_icon/kien-giang.png", 
-		    "url": "rtmp://tv.kgtv.vn/livepkgr/kgtv"},{ 
-		    "name": "KIEN GIANG 1", "image": "http://103.56.158.185/tv_icon/kien-giang.png", 
-		    "url": "rtmp://tv.kgtv.vn/livepkgr/kgtv1"},{ 		        
-		    "name": "TIỀN GIANG", "image": "http://static1.fptplay.net.vn/static/img/share/channels/icon_channel_tien-giang.png", 
-		    "url": "http://123.30.185.126/hls/tiengiang.m3u8"},{
-		    "name": "AN GIANG", "image": "http://static.fptplay.net.vn/static/img/share/channels/icon_channel_an-giang.png",
-		    "url": "rtmp://113.161.212.25/live//atv1"},{
-		    "name": "HẬU GIANG", "image": "http://i.imgur.com/OAwAkbr.png", 
-		    "url": "rtmp://123.30.110.170:1939/thhg/thhg"
-		}
-                
-   		 ]
-    		},
-     
-   		 {
-
-
-                 "name": "Truyền hình Hải Ngoại",
-                "image": "https://s12.postimg.org/i65carmwd/tvhaingoai.jpg",
-               
-                "stations": [
- 				  {
-
-		   "name": "Việtface Cali. 57.2",
-          	   "image":"https://s30.postimg.org/9jankmvsx/VF_PNG.png", 
-          	   "url": "http://schannel.saigon.ns01.us:1935/schannel/myStream/chunklist_w503091201.m3u8"
-                   },
-	           {
-		   "name": "Việt Mỹ TV", 
-          	   "image":"https://s30.postimg.org/s0aco3hzl/VIET_MY.png", 
-          	   "url": "http://68.235.37.11:1935/vietmagazine/vietmagazine/playlist.m3u8"
-                   },
-	           {
-		   "name": "Việt Sóng TV 47.7  Atlanta  2",
-          	   "image":"https://s23.postimg.org/s0fe2u0t7/image.png", 
-          	   "url": "rtmp://uni5rtmp.tulix.tv/playout2multi10/ playpath=playout2multi10.stream live=1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://www.tulix.com/iframe/playout2multi10/index.php"
-                   },
-	           {
-		   "name": "Việt Bay- San Jose",
-          	   "image":"https://s27.postimg.org/dkmv2jpdf/vietbay_television_logo.png",
-          	   "url": "http://64.71.129.2:8080/hls/ius_000131.m3u8"
-                   },
-	           {
-		   "name": "Việt Phố",
-          	   "image":"https://s24.postimg.org/ze5fqmvrp/Vietpho.png",
-          	   "url": "rtmp://63.143.59.125/live playpath=myStream live=1 swfUrl=http://vietpho.com/ext/js/3/mediaplayer.swf pageUrl=http://vietpho.com/online-channels.php"
-                   },
-	           {
-		   "name": "Việt News TV",
-          	   "image":"https://s24.postimg.org/sf24r4qjp/VNTV.png", 
-          	   "url": "http://vietnews.saigon.ns01.us:1935/VietNews/myStream/chunklist_w107230799.m3u8"
-                   },
-	           {
-		   "name": "SBTN -SET channel", 
-          	   "image":"https://s29.postimg.org/x5pf3uayf/SBTN_SET.png",
-          	   "url": "http://settv.saigon.ns01.us:1935/vietset574tvv/myStream/chunklist_w542335559.m3u8"
-                   },
-	           {
-		   "name": "SChannel 54.4", 
-          	   "image":"https://s27.postimg.org/6o0q5ftw3/channel_schannel_4.png",
-          	   "url": "rtmp://vf10.aditmedia.net/origin/ playpath=ius_000114 live=1 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://nguoiviet.tv/s-channel/"
-                   },
-	           {
-		   "name": "SET TV ",
-          	   "image":"https://s27.postimg.org/65e8ozu8z/set.png",
-          	   "url": "http://livestream.vnvn.net/hls-live/livepkgr/_definst_/settv574-3/settv574-3.m3u8"
-                   },
-	           {
-		   "name": "IBC TV 57.8", 
-          	   "image":"https://s23.postimg.org/q8pgw4wgb/IBC.jpg",
-          	   "url": "rtmp://liveplay3.malimarcdn.com:1935/ibcnews playpath=ibcnews.sdp live=1 swfUrl=http://ibcnews.tv/content/scripts/media/strobe/StrobeMediaPlayback.swf pageUrl=http://nguoiviet.tv/ibc-tv/"
-                   },
-	           {
-		   "name": "Quê Hương Media s1",
-          	   "image":"https://s28.postimg.org/nll6ubj9p/quehuong.png",
-          	   "url": "http://64.71.129.2:8080/hls/ius_000130.m3u8"
-                   },
-	           {
-		   "name": "Quê Hương Media s2",
-          	   "image":"https://s28.postimg.org/nll6ubj9p/quehuong.png",
-          	   "url": "rtmp://vf10.aditmedia.net/ingestx/ playpath=ius_000130 live=1 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://nguoiviet.tv/truyen-hinh-que-huong/"
-                   },
-	           {
-		   "name": "VNBC", 
-          	   "image":"https://s27.postimg.org/zd62aenf7/vnbc.png",
-          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w189527979_b1228800.m3u8"
-                   },
-	           {
-		   "name": " ViệtStar 57.11", 
-          	   "image":"https://s27.postimg.org/wnwdqo22b/vstar.png", 
-          	   "url": "http://saigontvtv.saigon.ns01.us:1935/VietStarTV/myStream/chunklist_w36065371.m3u8"
-                   },
-	           {
-		   "name": "Saigon TV", 
-          	   "image":"https://s24.postimg.org/h5hrvpwg5/saigon.png",
-          	   "url": "http://63.143.59.125:1935/live/myStream/chunklist_w225895095.m3u8"
-                   },
-	           {
-		   "name": "Saigon TV Westminster CA 57.5",
-          	   "image":"https://s24.postimg.org/h5hrvpwg5/saigon.png", 
-          	   "url": "http://63.143.59.125:1935/live/myStream/playlist.m3u8"
-                   },
-	           {
-		   "name": "Little Saigon TV 57.7", 
-          	   "image":"https://s30.postimg.org/p2ybmvni9/lstv.png",
-          	   "url": "http://64.71.129.2:8080/hls/ius_000131.m3u8"
-                   },
-	           {
-		   "name": " KVLA TV 56.5",
-          	   "image":"https://s24.postimg.org/umvwrvfrp/KVLA.png", 
-          	   "url": "http://63.143.59.125:1935/live/myStream/chunklist_w322541891.m3u8"
-                   },
-	           {
-		   "name": "VBS- Vietnames Broadcasting Service ",
-          	   "image":"https://s23.postimg.org/99da6ha97/VBS.png",
-          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w189527979_b1228800.m3u8"
-                   },
-	           {
-		   "name": "VBS (WS)",
-          	   "image":"https://s24.postimg.org/7t4su66md/vbs1.png", 
-          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w530158239_b1228800.m3u8"
-                   },
-	           {
-		   "name": "VBS Canada", 
-          	   "image":"https://s23.postimg.org/99da6ha97/VBS.png",
-          	   "url": "http://uni6rtmp.tulix.tv:1935/vbstv/vbsabr.smil/chunklist_w1847269952_b204800.m3u8"
-                   },
-	           {
-		   "name": "VNA TV ",
-          	   "image":"https://s23.postimg.org/f0ie1s30b/VNA.png",
-          	   "url": "http://livestream.vnvn.net/hls-live/livepkgr/_definst_/vnatv573-1/vnatv573-1.m3u8?time=1482109571065"
-   }
-                
-    ]
-    },
-     
     {
 
                  "name": "USA TV - Theplayersklub",
@@ -1775,106 +1582,106 @@
                 "stations": [
  				  {
 
-"name": "A&E","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/672.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "AnimalPlanet","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/671.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "BBC AMERICA","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/628.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "bet","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/630.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "CartoonNetwork","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/670.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "cbs","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/669.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "cbs news","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/653.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "cinemax","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/644.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "cnn","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/668.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "ComedyCentral","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/667.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "COOKING CHANNEL","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/627.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "cw","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/666.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "Destination America","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/621.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "Discovery","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/652.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "DiscoveryScience","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/651.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "diy","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/650.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "E!","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/655.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "ESPN2","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/616.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "FOOD NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/626.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "fox","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/665.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "FOXNEWS30","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/618.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "FOXSPORT1 ","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/625.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "fx","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/664.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "fxx","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/635.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "fyi","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/643.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "h2","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/633.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "HBO COMEDY","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/624.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "HBO FAMILY","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/623.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "hbo","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/634.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "HBO SIGNATURE","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/642.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "INVESTIGATION DISCOVERY","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/641.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "life time","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/663.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "lifetime movie network","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/649.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "MLB Live 1","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/721.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "MLB Live 2","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/720.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "MLB Network","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/719.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "MSNBC","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/640.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NBA LEAGUE PASS LIVE 1 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/718.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NBA LEAGUE PASS LIVE 2 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/717.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NBA LEAGUE PASS LIVE 3 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/716.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "nba tv","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/639.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "nbc","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/662.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NEWS12CONNECTICUT","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/619.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NEWS12THEBRONX","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/620.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "nfl network","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/632.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NFLNOW","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/622.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "pbs","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/660.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "showtime","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/638.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "spike","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/659.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "STARZ CINEMA","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/636.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "STARZ EAST","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/637.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "syfy","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/658.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "tbs","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/657.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "tnt","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/656.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "trutv","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/648.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "tv land","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/654.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "UnivisionDeportes","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/617.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "Velocity","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/646.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "wwe","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/631.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NHL 1 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/715.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NHL 2 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/714.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NHL 3 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/713.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "BNN","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/806.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "CARTOON NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/805.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "CBC TORONTO","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/804.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "CHCH","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/803.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "CITY VANCOUVER","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/802.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "COMEDY GOLD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/801.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "COTTAGE LIFE","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/800.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "CP24","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/799.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "CTV TORONTO","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/798.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "DEJA VIEW","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/797.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "E!","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/796.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "FYI","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/794.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "G4","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/793.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "GLOBAL TV CALGARY","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/792.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "GLOBAL TV EDMONTON","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/791.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "GOLF CHANNEL","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/790.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "GSN","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/789.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "MOVIE TIME","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/787.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "MTV CANADA","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/786.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "MUCH MUSIC","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/785.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "NICK","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/783.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "OLN","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/782.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "OWN (OPRAH WINFREY NETWORK)","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/781.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "PEACHTREE TV","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/780.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "SILVER SCREEN CLASSICS","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/779.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "SLICE","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/778.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "SPIKE","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/777.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "SPORTSNET WORLD HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/776.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "TELETOON","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/775.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "THE MOVIE NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/774.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "TRAVEL CHANNEL","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/773.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "TREE HOUSE","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/772.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "VRAK TV","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/771.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "W NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/770.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "WORLD FISHING","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/769.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "YTV","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/768.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "TelemundoFREE","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/615.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
-"name": "ESPN Deportes","image":"","url": "http://dns1.theplayersklub.host:2095/live/leetv/leetv1/823.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "A&E","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/672.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "AnimalPlanet","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/671.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "BBC AMERICA","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/628.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "bet","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/630.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "CartoonNetwork","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/670.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "cbs","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/669.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "cbs news","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/653.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "cinemax","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/644.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "cnn","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/668.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "ComedyCentral","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/667.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "COOKING CHANNEL","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/627.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "cw","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/666.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "Destination America","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/621.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "Discovery","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/652.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "DiscoveryScience","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/651.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "diy","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/650.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "E!","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/655.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "ESPN2","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/616.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "FOOD NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/626.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "fox","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/665.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "FOXNEWS30","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/618.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "FOXSPORT1 ","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/625.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "fx","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/664.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "fxx","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/635.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "fyi","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/643.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "h2","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/633.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "HBO COMEDY","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/624.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "HBO FAMILY","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/623.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "hbo","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/634.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "HBO SIGNATURE","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/642.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "INVESTIGATION DISCOVERY","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/641.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "life time","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/663.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "lifetime movie network","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/649.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "MLB Live 1","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/721.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "MLB Live 2","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/720.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "MLB Network","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/719.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "MSNBC","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/640.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NBA LEAGUE PASS LIVE 1 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/718.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NBA LEAGUE PASS LIVE 2 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/717.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NBA LEAGUE PASS LIVE 3 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/716.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "nba tv","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/639.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "nbc","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/662.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NEWS12CONNECTICUT","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/619.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NEWS12THEBRONX","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/620.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "nfl network","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/632.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NFLNOW","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/622.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "pbs","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/660.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "showtime","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/638.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "spike","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/659.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "STARZ CINEMA","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/636.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "STARZ EAST","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/637.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "syfy","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/658.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "tbs","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/657.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "tnt","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/656.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "trutv","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/648.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "tv land","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/654.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "UnivisionDeportes","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/617.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "Velocity","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/646.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "wwe","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/631.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NHL 1 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/715.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NHL 2 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/714.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NHL 3 HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/713.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "BNN","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/806.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "CARTOON NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/805.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "CBC TORONTO","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/804.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "CHCH","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/803.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "CITY VANCOUVER","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/802.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "COMEDY GOLD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/801.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "COTTAGE LIFE","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/800.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "CP24","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/799.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "CTV TORONTO","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/798.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "DEJA VIEW","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/797.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "E!","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/796.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "FYI","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/794.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "G4","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/793.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "GLOBAL TV CALGARY","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/792.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "GLOBAL TV EDMONTON","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/791.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "GOLF CHANNEL","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/790.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "GSN","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/789.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "MOVIE TIME","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/787.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "MTV CANADA","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/786.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "MUCH MUSIC","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/785.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "NICK","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/783.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "OLN","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/782.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "OWN (OPRAH WINFREY NETWORK)","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/781.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "PEACHTREE TV","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/780.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "SILVER SCREEN CLASSICS","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/779.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "SLICE","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/778.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "SPIKE","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/777.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "SPORTSNET WORLD HD","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/776.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "TELETOON","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/775.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "THE MOVIE NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/774.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "TRAVEL CHANNEL","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/773.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "TREE HOUSE","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/772.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "VRAK TV","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/771.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "W NETWORK","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/770.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "WORLD FISHING","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/769.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "YTV","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/768.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "TelemundoFREE","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/615.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
+"name": "ESPN Deportes","image":"","url": "http://dns1.theplayersklub.host:2095/live/simplycaz/simplycaz/823.ts","userAgent": "Mozilla/5.0 (Linux; Android 5.0.1; ALE-L21 Build/HuaweiALE-L21) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.81 Mobile Safari/537.36"},{
 "name": "ABC7 KGO-TV", "image": "","url": "http://64.71.129.2:8080/hls/ius_000132.m3u8"},{
 "name": "NBC11 Bay Area", "image": "","url": "http://64.71.129.2:8080/hls/ius_000133.m3u8"},{
 "name": "PAC12 Bay Area", "image": "","url": "http://xrxs.net/video/live-p12baya-2328.m3u8"
@@ -2058,7 +1865,7 @@
  "name": "US soap opera","image": "","url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_fzmj_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"},{
  "name": "legal medical drama","image": "","url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_lzywmj_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"},{
  "name": "the action drama Blood","image": "","url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_rxdzmj_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"
- 
+
 		}
                 
    		 ]
@@ -2071,24 +1878,49 @@
                
                    "stations": [
  						{
+		   "name": "BBC WORLD NEWS ",
+          	   "image": "https://s24.postimg.org/q8v24y35h/bbcworldnews.png",
+          	   "url": "http://203.162.235.41:17817"
+		   },
+		    {
+		   "name": "CNBC",
+          	   "image": "",
+          	   "url": "http://203.162.235.41:17819"
+		   },
+		    {	
 		   "name": "LONĐON LIVE",
           	   "image": "https://s29.postimg.org/6vuc7i5lz/londonlive.jpg",
           	   "url": "http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8"
 		   },
-		    {	
+		    {		
 		    "name": "BBC AMERICA",
           	   "image": "https://s30.postimg.org/gmr5kuj8x/bbcamerica.png",
           	   "url": "http://208.86.19.13:8080/live/34.stream/index.m3u8"
 		   },
 		    {	
+		    "name": "NHK",
+          	   "image": "http://vuapp.tranvu.info/upload//nhk.jpg",
+          	   "url": "http://203.162.235.41:17802"
+		   },
+		    {
 		    "name": "CHANNEL NEWSASIA",
           	   "image": "http://vuapp.tranvu.info/upload//channel-newsasia.png",
           	   "url": "http://imtcnai-lh.akamaihd.net/i/cnai_main@334572/master.m3u8"
+		   },
+		    {		
+		    "name": "ARIANG",
+          	   "image": "http://vuapp.tranvu.info/upload//arirang.png",
+          	   "url": "http://203.162.235.41:17821"
 		   },
 		    {	
 		    "name": "ARIANG HD",
           	   "image": "http://vuapp.tranvu.info/upload//arirang.png",
           	   "url": "http://amdlive.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8"
+		   },
+		    {	
+		    "name": "CNN",
+          	   "image": "http://103.56.158.185/tv_icon/cnn.png",
+          	   "url": "http://203.162.235.41:17818"
 		   },
 		    {	
 		    "name": "CNN PHILIPIN",
@@ -2101,6 +1933,16 @@
           	   "url": "http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8"
 		   },
 		    {	
+		   "name": "NBC",
+          	   "image": "https://s27.postimg.org/qpp3n3rqr/nbc.jpg",
+          	   "url": "http://64.71.129.2:8080/hls/ius_000133.m3u8"
+    		   },
+                   {	
+		   "name": "ABC",
+          	   "image": "https://s7.postimg.org/fv36zcg0r/abc.jpg",
+          	   "url": "http://64.71.129.2:8080/hls/ius_000132.m3u8"               
+            	    },
+		    {  
 		    "name": "ALJAZEERA",
           	   "image": "https://s30.postimg.org/rbxyagayp/aljazeera.jpg",
           	   "url": "http://aljazeera-eng-apple-live.adaptive.level3.net/apple/aljazeera/english/800.m3u8"
@@ -2154,6 +1996,7 @@
 		"name": "FR:CHASSEE&PECHE",
           	"image": "https://s25.postimg.org/oh4nqz5n3/Chasse_et_P_che.png",
           	"url": "http://live-s101.abweb.com/liveabs101/ngrp:chasseetpeche.stream_bis/chunklist_b1096000.m3u8"
+
 
  }
       ]
@@ -2428,6 +2271,64 @@
           	   "url": "http://www.mediafire.com/watch/2qhhxy4cj9b8gar/Asia-77.D2.mp4"
                    },
 	           {
+"name": "ASIA 40 - TÁC GIẢ, TÁC PHẨM 03","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.40.Tac.Gia.Tac.Pham.03.2003.720p/index.m3u8"},{
+"name": "ASIA 39 - TÌM LẠI MÙA XUÂN","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.39.Tim.Lai.Mua.Xuan.2003.720p/index.m3u8"},{ 
+"name": "ASIA 38 - TẠ ƠN CHA MẸ","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.38.Ta.On.Cha.Me.2002.720p/index.m3u8"},{ 
+"name": "ASIA 37 - SAU BỨC MÀN NHUNG","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.37.Sau.Buc.Man.Nhung.2002.720p/index.m3u8"},{ 
+"name": "ASIA 35 - DẠ VŨ QUỐC TẾ 3","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.35.Da.Vu.Quoc.Te.3.2001.720p/index.m3u8"},{ 
+"name": "ASIA 31 - GIẢI ÂM NHẠC NGHỆ THUẬT ASIA","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.31.Giai.Am.Nhac.Nghe.Thuat.Asia/index.m3u8"},{ 
+"name": "ASIA 30 - DẠ VŨ QUỐC TẾ 2","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.30.Da.Vu.Quoc.Te.2.Nhip.Buoc.Tren.San.Nhay/index.m3u8"},{ 
+"name": "ASIA 29 - CHIẾN TRANH VÀ HÒA BÌNH","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.29.Chien.Tranh.Va.Hoa.Binh/index.m3u8"},{ 
+"name": "ASIA 28 - DẠ HỘI ĐẦU THẾ KỶ","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.28.Da.Hoi.Dau.The.Ky.2000.720p/index.m3u8"},{ 
+"name": "ASIA 27 - CHÀO MỪNG NĂM 2000","url": "http://media.onworldtv.com:1935/vodorigin/_definst_asia/asia/shows/asia.shows/Asia.27.Chao.Mung.Nam.2000.1999.720p/index.m3u8"},{ 
+"name": "ASIA 26 - MƯA","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.26.Mua.1999.720p/index.m3u8"},{ 
+"name": "ASIA 25 - DẠ VŨ TRÊN BIỂN XANH","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.25.Da.Vu.Tren.Bien.Xanh.1999.720p/index.m3u8"},{ 
+"name": "ASIA 24 - IN LASVEGAS","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.24.Asia.In.Las.Vegas.1999.720p/index.m3u8"},{ 
+"name": "ASIA 22 - DẠ VŨ QUỐC TẾ 1","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.22.Da.Vu.Quoc.Te.01.1998.720p/index.m3u8"},{ 
+"name": "ASIA 21 - NHỮNG TÌNH KHÚC THỜI CHINH CHIẾN","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.21.Nhung.Tinh.Khuc.Thoi.Chinh.Chien.1998.720p/index.m3u8"},{ 
+"name": "ASIA 20 - TÌNH CA MÙ THU","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.20.Tinh.Ca.Mua.Thu.1998.720p/index.m3u8"},{ 
+"name": "ASIA 19 - TÁC GIẢ TÁC PHẨM 02","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.19.Tac.Gia.Va.Tac.Pham.02.1998.720p/index.m3u8"},{ 
+"name": "ASIA 18 - NHỚ SÀI GÒN","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.18.Nho.Sai.Gon.1998.720p/index.m3u8"},{ 
+"name": "ASIA 17 - NHỮNG TIẾNG HÁT HÔM NAY","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.17.Nhung.Tieng.Hat.Hom.Nay.1997.720p/index.m3u8"},{ 
+"name": "ASIA 16 - GIÃ TỪ","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.16.Gia.Tu.1997/index.m3u8"},{ 
+"name": "ASIA 15 - TÌNH CA ANH BẰNG","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.15.Tinh.Ca.Anh.Bang/index.m3u8"},{ 
+"name": "ASIA 14 - YÊU","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.14.Yeu/index.m3u8"},{ 
+"name": "ASIA 13 - HOA VÀ NHẠC","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.13.Hoa.Va.Nhac/index.m3u8"},{ 
+"name": "ASIA 12 VIỆT NAM NIỀM NHỚ","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.12.Viet.Nam.Niem.Nho/index.m3u8"},{ 
+"name": "ASIA 11 - THƠ VÀ NHẠC","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.11.Tho.Va.Nhac.1996.720p/index.m3u8"},{ 
+"name": "ASIA 10 - GỬI NGƯỜI MỘT NIỀM VUI","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.10.Gui.Nguoi.Mot.Niem.Vui.1995.720p/index.m3u8"},{ 
+"name": "ASIA 09 - TÌNH CA","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.09.Tinh.Ca.75.95.1995.720p/index.m3u8"},{ 
+"name": "ASIA 08 - ĐÊM NHẠC HỘI","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.08.Dem.Nhac.Hoi.1995.720p/index.m3u8"},{ 
+"name": "ASIA 07 - ĐÊM SÀI GÒN 6:TÁC GIẢ TÁC PHẨM","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.07.Dem.Sai.Gon.6.Tac.Gia.Tac.Pham.1995.720p/index.m3u8"},{ 
+"name": "ASIA 06 - ĐÊM SÀI GÒN 5:GIÁNG SINH ĐẶC BIỆT","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.06.Dem.Sai.Gon.5.Giang.Sinh.Dac.Biet.1994.720p/index.m3u8"},{ 
+"name": "ASIA 05 - ĐÊM SÀI GÒN 4","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.05.Dem.Sai.Gon.04.1994.720p/index.m3u8"},{ 
+"name": "ASIA 04 - ĐÊM SÀI GÒN 3:ĐẠI HỘI HOA HẬU ÁO DÀI LONGBEACH","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.04.Dem.Sai.Gon.03_Dai.Hoi.Hoa.Hau.Ao.Dai.Long.Beach.17.1994.720p/index.m3u8"},{ 
+"name": "ASIA 03 - ĐÊM SÀI GÒN 2","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.03.Dem.Sai.Gon.02.1993.720p/index.m3u8"},{ 
+"name": "ASIA 02 - ANIVERSARY","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.02.10th.Aniversary.1993.720p/index.m3u8"},{ 
+"name": "ASIA 01 - ĐÊM SÀI GÒN 1","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/shows/asia.shows/Asia.01.Dem.Sai.Gon.01.1992.720p/index.m3u8"},{ 
+
+"name": "THƯƠNG VỀ MIỀN TRUNG","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/shows/asia.specials/Live.Show.Dan.Nguyen_Thuong.Ve.Mien.Trung.2015.720p/index.m3u8"},{
+"name": "MỘNG DƯỚI HOA","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.03.Dem.Sai.Gon.02.1993.720p/Mong.Duoi.Hoa_Anh.Quy.720p/index.m3u8"},{ 
+"name": "CHUYỆN TÌNH KHÔNG SUY TƯ","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.03.Dem.Sai.Gon.02.1993.720p/Chuyen.Tinh.Khong.Suy.Tu_Bang.Chau.720p/index.m3u8"},{
+"name": "GẶP NHAU LÀM NGƠ","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.07.Dem.Sai.Gon.6.Tac.Gia.Tac.Pham.1995.720p/Gap.Nhau.Lam.Ngo_Tran.Thien.Thanh_Cong.Thanh_Lynn.720p/index.m3u8"},{ 
+"name": "SẦU ĐÔNG","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.03.Dem.Sai.Gon.02.1993.720p/Sau.Dong_Cong.Thanh_Lynn.720p/index.m3u8"},{ 
+"name": "KỶ NIỆM TRONG TÔI","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.05.Dem.Sai.Gon.04.1994.720p/Ky.Niem.Trong.Toi_Don.Ho.720p/index.m3u8"},{ 
+"name": "THÓI ĐỜI","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.02.10th.Aniversary.1993.720p/Thoi_Don.Ho.720p/index.m3u8"},{ 
+"name": "CHỈ CHỪNG ĐÓ THÔI","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.07.Dem.Sai.Gon.6.Tac.Gia.Tac.Pham.1995.720p/Chi.Chung.Do.Thoi_Pham.Duy_Duy.Quang.720p/index.m3u8"},{ 
+"name": "QUÊ HƯƠNG","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.04.Dem.Sai.Gon.03_Dai.Hoi.Hoa.Hau.Ao.Dai.Long.Beach.17.1994.720p/Ao.Dai.Que.Huong_Duy.Quang.720p/index.m3u8"},{ 
+"name": "LIÊN KHÚC YÊU NGƯỜI, YÊU ĐỜI, TÔI MUỐN","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.01.Dem.Sai.Gon.1992.720p/LK.Yeu.Nguoi.Yeu.Doi_Toi.Muon_Elvis.Phuong.720p/index.m3u8"},{ 
+"name": "MÙA THU CHẾT","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.02.10th.Aniversary.1993.720p/Mua.Thu.Chet_Julie.720p/index.m3u8"},{ 
+"name": "VẾT THÙ TRÊN LƯNG NGỰA","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.03.Dem.Sai.Gon.02.1993.720p/Vet.Thu.Tren.Lung.Ngua.Hoang_Kenny.Thai.720p/index.m3u8"},{ 
+"name": "HẠ TRẮNG","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.03.Dem.Sai.Gon.02.1993.720p/Ha.Trang_Khanh.Ly.720p/index.m3u8"},{ 
+"name": "NẮNG THU","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.07.Dem.Sai.Gon.6.Tac.Gia.Tac.Pham.1995.720p/Nang.Thu_LV_Pham.Duy_Lam.Thuy.Van.720p/index.m3u8"},{ 
+"name": "NẾU MỘT NGÀY","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.04.Dem.Sai.Gon.03_Dai.Hoi.Hoa.Hau.Ao.Dai.Long.Beach.17.1994.720p/Neu.Mot.Ngay_Lam.Thuy.Van.720p/index.m3u8"},{ 
+"name": "KHI CÓ CHÀNG","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.03.Dem.Sai.Gon.02.1993.720p/Khi.Co.Chang_Lam.Thuy.Van.720p/index.m3u8"},{ 
+"name": "HƯỚNG VỀ HÀ NỘI","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.05.Dem.Sai.Gon.04.1994.720p/Huong.Ve.Ha.Noi_Le.Thu.720p/index.m3u8"},{ 
+"name": "BÀI CA KHÔNG TÊN SỐ 7","url": "http://204.9.200.253:1935/vodorigin/_definst_/asia/mvs/Asia.04.Dem.Sai.Gon.03_Dai.Hoi.Hoa.Hau.Ao.Dai.Long.Beach.17.1994.720p/Bai.Khong.Ten.So.7_Le.Thu.720p/index.m3u8"},{ 
+"name": "LK NHẠC TRẺ - MƯA TRÊN BIỂN VẮNG","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.07.Dem.Sai.Gon.6.Tac.Gia.Tac.Pham.1995.720p/Lien.Khuc.Nhac.Tre_Mua.Tren.Bien.Vang_Tinh.Ca.Hong_Dung.Pha.Vo.An.Tinh_Trung.Hanh_Thanh.Lan_Quynh.Huong.720p/index.m3u8"},{ 
+"name": "LK MƯA","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.07.Dem.Sai.Gon.6.Tac.Gia.Tac.Pham.1995.720p/Lien.Khuc.Mua.Nua.Dem_Mua.Dem.Ngoai.O_Tinh.Da.Bay.Xa_Nu.Hon.Duoi.Mua_Anh.Tai_Nhu.Quynh_Manh.Dinh_Lam.Thuy.Van.720p/index.m3u8"},{ 
+"name": "LYNDA TRANG ĐÀI","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.05.Dem.Sai.Gon.04.1994.720p/Oh.Mon.Amour_Lynda.Trang.Dai.720p/index.m3u8"},{ 
+"name": "HAI ĐỨA CÒN CÔ ĐƠN","url": "http://media.onworldtv.com:1935/vodorigin/_definst_/asia/mvs/Asia.05.Dem.Sai.Gon.04.1994.720p/Hai.Dua.Con.Co.Don_Manh.Dinh.720p/index.m3u8"},{ 
 		   "name": "Asia Golden-4 Khuc Nhac Dong Que",
           	   "image": "https://s21.postimg.org/4x2cwf6uv/assia.jpg",
           	   "url": "http://www.mediafire.com/download/a0329bgacesl5pg/blackbox247-asia-golden4.mp4"
@@ -2829,6 +2730,7 @@
     },
      
     {
+
                  "name": "Nghe Nhạc Trữ Tình Từ YouTuBe ",
                 "image": "https://s12.postimg.org/h9tp3pmgt/canhac.jpg",
                
@@ -3065,13 +2967,14 @@
 "url": "https://www.youtube.com/watch?v=_ApFLz4vefw","isHost": false },{
 "name": "Hài Vân Sơn Hoài Linh mới nhất 2017 tại Tây Ninh - Trảng Bàng","image":"https://i.ytimg.com/vi/LhuYDXRdqlg/mqdefault.jpg",
 "url": "https://www.youtube.com/watch?v=LhuYDXRdqlg","isHost": false
+
     }
                 
     ]
     },
      
     {
-              
+
                    "name": "Kênh Giải Trí Tổng Hợp",
                    "image": "https://s24.postimg.org/iyqggssjp/giaitri.jpg",
                
@@ -3785,9 +3688,8 @@
 			"name": "Tom And Jerry",
           	        "image": "https://s9.postimg.org/hj27fgd0v/tomandjerry.jpg",
           	        "url": "http://live.g3proxy.lecloud.com/gslb?stream_id=lb_mhls_1300&tag=live&ext=m3u8&sign=live_tv&platid=10&splatid=1009&format=letv&expect=1"
-	                },
-		        {
-
+                        },
+                        {
 "name": "Tom And Jerry - Tập 1 (Lồng Tiếng Việt)","image":"https://i.ytimg.com/vi/5XWaPc69F2k/mqdefault.jpg",
 "url": "https://www.youtube.com/watch?v=5XWaPc69F2k","isHost": false },{
 "name": "Tom And Jerry - Tập 2 (Lồng Tiếng Việt)","image":"https://i.ytimg.com/vi/mfF56aqfUAM/mqdefault.jpg",
@@ -4778,520 +4680,7 @@
 		    "name": "Hải Ngoại:Radio VNHN/VABC Falls Church",
           	   "image": "",
           	   "url": "http://vpr.serverroom.us:7492/;stream.mp3/playlist.m3u8"
-    }
-                
-    ]
-    },
-     
-    {
-                   "name": "Kênh 18 +",
-                   "image": "http://img-hw.xvideos.com/videos/thumbs/xvideos.gif",
-               
-                   "stations": [
- 						{
-		    "name": "Sx Châu Á 1",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.71/etv2sb/phd10501/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 2",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.71/etv2sb/phd10769/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 3",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.71/etv2sb/phd10062/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 4",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.75/etv2sb/pld10062/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 5",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.71/etv2sb/phd10771/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 6",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.75/etv2sb/pld10772/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 7",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.110/etv1sb/pld10765/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 8",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://120.52.73.65/data1.cache.directory/media/videos/iphone/4012.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Á 9",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.110/etv1sb/pld10766/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 10",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.110/etv1sb/phd10928/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 11",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.110/etv1sb/phd10497/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 12",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.110/etv1sb/phd10927/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á 13",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://123.108.164.71/etv2sb/phd10499/playlist.m3u8"
-		    },
-		    {	
-		    "name": "Sx Châu Á - Video 1",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://69.46.75.107/files/videos/140747456300c03.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Á- Video 2",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://69.46.75.107/files/videos/1408405892924a3.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Á- Video 3",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://69.46.75.107/files/videos/1410962219b8929.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Á- Video 4",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://69.46.75.107/files/videos/141188120614378.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Á- Video 5",
-          	   "image": "https://logopond.com/logos/540adf1cdb3b2b2fff13031e6ac9b4b7.png",
-          	   "url": "http://69.46.75.107/files/videos/141344498070660.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 1",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img3.younggirlstube.com/scj/thumbs/galleries/7/176/0_268.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 2",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img3.younggirlstube.com/scj/thumbs/galleries/7/160/0_945.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 3",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img4.younggirlstube.com/scj/thumbs/galleries/7/042/0_402.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 4",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img3.younggirlstube.com/scj/thumbs/galleries/7/127/0_242.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 5",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img3.younggirlstube.com/scj/thumbs/galleries/7/870/0_631.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 6",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img5.younggirlstube.com/scj/thumbs/galleries/7/162/0_192.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 7",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img5.younggirlstube.com/scj/thumbs/galleries/7/184/0_772.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 8",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img3.younggirlstube.com/scj/thumbs/galleries/7/162/0_192.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 9",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img4.younggirlstube.com/scj/thumbs/galleries/7/019/0_476.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 10",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://s4233.wtfpass.com/tap/flv/0023tapflvjpn.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 11",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.wtfpass.com/hs18/flv/hs180028.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 12",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://img5.younggirlstube.com/scj/thumbs/galleries/7/123/0_833.flv"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 13",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/12/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 14",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/3/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 15",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/18/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 16",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/18/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 17",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/7/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 18",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/11/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 19",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/20/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 20",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/19/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 21",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/14/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 22",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/16/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 23",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/8/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 24",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/4/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 25",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/18/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 26",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/1/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 27",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/12/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 28",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/03/2/Video.mp4"
-		    },
-		    {	
-		    "name": "Sx Châu Âu 29",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://content2.sexforsure.com/2013/07/02/7/Video.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 30 ",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://4.sendvid.com/clrkl3ut.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 31",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://3.sendvid.com/mp1fwgrv.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 32",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://2.sendvid.com/8tbmyh60.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 33",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://3.sendvid.com/5womkhzl.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 34",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://1.sendvid.com/vht3i547.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 35",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://4.sendvid.com/0tq4ll7o.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 36",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://3.sendvid.com/j3b0rfrm.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 37",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://4.sendvid.com/4gtf0c5x.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 38",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://1.sendvid.com/geh6zenb.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 39",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://2.sendvid.com/3ybs547k.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 40",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://3.sendvid.com/69mkqg5d.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 41",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://3.sendvid.com/tjm6yfpm.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 42",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://3.sendvid.com/pmvxbeub.mp4"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 43",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://dgimedia.ddns.net:9898/live/nanouk2018/xpkhtdknhg/64.m3u8"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 44",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://dgimedia.ddns.net:9898/live/nanouk2018/xpkhtdknhg/64.m3u8"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 45",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://s1.edem.tv/iptv/2KEA8RLE4V3RF6/527/index.m3u8"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 1",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/001/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 2",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/002/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 3",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/003/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 4",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/004/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 5",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/005/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 6",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/006/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 7",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/007/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 8",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/008/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 9",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/009/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 10",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/010/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 11",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/011/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 12",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/012/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 13",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/013/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 14",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/014/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 15",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/015/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 16",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/016/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 17",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/017/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 18",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/018/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 19",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/019/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 20",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/020/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 21",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/021/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 22",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/022/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 23",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/023/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 24",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/024/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 25",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/025/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 26",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/026/trailer.f4v"
-		    },
-		    {
-   		    "name": "Sx Châu Âu 3D 27",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/027/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 28",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/028/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 29",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/029/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 30",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/030/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 31",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/031/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 32",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/032/trailer.f4v"
-		    },
-		    {	
-   		    "name": "Sx Châu Âu 3D 33",
-          	   "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg",
-          	   "url": "http://galleries.3Dcatchyfetish.com/tube/033/trailer.f4v"
-		    },
-		    {
-"name": "English: PVN Miami", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://server.sunbeachtv.com/sunbeachtv/sunbeachtv16/playlist.m3u8"},{
- "name": "English: Reality Kings", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://88.198.66.77:1935/hls/palmtube"},{
- "name": "English: Sexy zone", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://tv.ec.cx:1935/redecanais-stream-hot/myStream/chunklist.m3u8"},{
- "name": "English: CANDY", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://media.platinumstream.ru/candy/tracks-v2a1/index-1486694848-now.m3u8"},{
- "name": "Turkish: Laz tv sex", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://edge2.everyon.tv/etv2sb/phd10772"},{
- "name": "English: Girls tv", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://123.108.164.71/etv2sb/phd10501"},{
- "name": "English: Korea", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://main1sb.everyon.tv:1935/etv1sb/_definst_/phd10927"},{
- "name": "English: Hustler", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://edge1.everyon.tv/etv1sb/ playpath=phd10927"},{
- "name": "English: Penthhouse Asia", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://edge1.everyon.tv:1935/etv1sb/phd10927/playlist.m3u8"},{
- "name": "English: Playboy Asia", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://edge1.everyon.tv:1935/etv1sb/phd10497/playlist.m3u8"},{
- "name": "English: Pink TV Korea Live", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://edge2.everyon.tv/etv2sb/phd10062"},{
- "name": "English: Satisfaction HD Live (soft)", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://edge2.everyon.tv/etv2sb/phd10499"},{
- "name": "English: Over 18 - Pink Erotic 1", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://109.236.90.101:8000/live/ZLS0QMxatlrteam/ZLS0QXmtarletam/274.m3u8"},{
- "name": "English: Over 18 - Pink Erotic 4", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://109.236.90.101:8000/live/ZLS0QMxatlrteam/ZLS0QXmtarletam/276.m3u8"},{
- "name": "English: PASSIONXXX", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "rtmp://publish.thewebstream.co:1935/ppv/_definst_/rampanttv_passionxxx swfUrl=https://static.rampant.tv/swf/player.swf"},{
- "name": "English: Playboy Tv - HD +18", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://serv24.vintera.tv:8081/cdn/playboy_08/playlist.m3u8"},{
- "name": "English: Ruskaya noch", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://jabber.divan.tv:81/tv258/4a6jp317lppdg852lc4mjdp1j2/tv1.m3u8"},{
- "name": "English: X-Tube", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://81.89.48.215:1935/xyz555wkz/xy5_360p/playlist.m3u8"},{
- "name": "English: isso é toma no cu", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://www.aquitemelas.com/mobile_src.php?id=1069"},{
- "name": "English: tomando leite de pica", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://www.aquitemelas.com/mobile_src.php?id=877"},{
- "name": "English: xxx hd", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://1ttvauth.top/s/826/1/auto/UkFPdTREdkxBbG1NRno0N3k4TTlQNGk0VVlXVE5pNG5TWTlkSUVNcEdibEY1NjVSU3BYekhYQmZBSE1hNWRZTmZJRFNNRWJaSm5ZU0ZSeGdwamZKYTBLRHhUK3F4b0dqWnpNajBsY3doNnY3WGpJPQ/playlist.m3u8"},{
- "name": "English: Jasmin.Tv", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://109.71.162.112:1935/live/sd.jasminchannel.stream/media.m3u8"},{
- "name": "English: PORNO +18 SEX FONE", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http://sdn-global-live-", "image": "http://incesto.co/wp-content/uploads/2016/01/xxx-incesto.jpg","url": "http-cache.3qsdn.com/2346/_definst_///mp4:Ct6zG7Nrj3v2JxD/manifest.m3u8" 
+
                            }
                         
  
@@ -5302,4 +4691,3 @@
  
                 ]
 }
-
