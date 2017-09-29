@@ -11,8 +11,8 @@ addons_folder = xbmc.translatePath('special://home/addons')
 image         = xbmc.translatePath(os.path.join(path, "icon.png"))
 
 plugin         = Plugin()
-addon          = xbmcaddon.Addon("plugin.video.testplaylist")
-pluginrootpath = "plugin://plugin.video.testplaylist"
+addon          = xbmcaddon.Addon("plugin.video.HieuHien.vn")
+pluginrootpath = "plugin://plugin.video.HieuHien.vn"
 http           = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url      = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers  = {
@@ -168,23 +168,27 @@ def getItems(url_path="0"):
 		else:
 			if "spreadsheets/d/" in item["path"]:
 				# https://docs.google.com/spreadsheets/d/1zL6Kw4ZGoNcIuW9TAlHWZrNIJbDU5xHTtz-o8vpoJss/edit#gid=0
-				match = re.compile('&cache=(.+?)($|&)').findall(item["path"])
+				match_cache = re.search('cache=(.+?)($|&)',item["path"])
+				match_passw = re.search('passw=(.+?)($|&)',item["path"])
+
 				sheet_id = re.compile("/d/(.+?)/").findall(item["path"])[0]
 				try:
 					gid = re.compile("gid=(\d+)").findall(item["path"])[0]
 				except:
 					gid = "0"
 				item["path"] = pluginrootpath + "/section/%s@%s" % (gid,sheet_id)
-				if match:
-					cache_version = match[0][0]
+				if match_cache:
+					cache_version = match_cache.group(1)
 					item["path"] = pluginrootpath + "/cached-section/%s@%s@%s" % (gid,sheet_id,cache_version)
+				elif match_passw:
+					item["path"] = pluginrootpath + "/password-section/%s/%s@%s" % (match_passw.group(1),gid,sheet_id)
 			elif any(service in item["path"] for service in ["fshare.vn/folder"]):
-				# item["path"] = pluginrootpath + "/fshare/" + urllib.quote_plus(item["path"])
-				item["path"] = "plugin://plugin.video.xshare/?mode=90&page=0&url=" + urllib.quote_plus(item["path"])
+				item["path"] = pluginrootpath + "/fshare/" + urllib.quote_plus(item["path"])
+				# item["path"] = "plugin://plugin.video.xshare/?mode=90&page=0&url=" + urllib.quote_plus(item["path"])
 			elif any(service in item["path"] for service in ["4share.vn/d/"]):
 				item["path"] = "plugin://plugin.video.xshare/?mode=38&page=0&url=" + urllib.quote_plus(item["path"])
-			# elif any(service in item["path"] for service in ["4share.vn/f/"]):
-			elif any(service in item["path"] for service in ["4share.vn/f/", "fshare.vn/file"]):
+			elif any(service in item["path"] for service in ["4share.vn/f/"]):
+			# elif any(service in item["path"] for service in ["4share.vn/f/", "fshare.vn/file"]):
 				item["path"] = "plugin://plugin.video.xshare/?mode=3&page=0&url=" + urllib.quote_plus(item["path"])
 				item["is_playable"] = True
 				item["path"] = pluginrootpath + "/play/" + urllib.quote_plus(item["path"])
@@ -192,14 +196,11 @@ def getItems(url_path="0"):
 				# https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ
 				yt_route = "ytcp" if "playlists" in item["path"] else "ytc"
 				yt_cid = re.compile("youtube.com/channel/(.+?)$").findall(item["path"])[0]
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/%s/%s/" % (yt_route, yt_cid)
-				item["path"] = item["path"].replace("/playlists","")
+				item["path"] = "plugin://plugin.video.youtube/channel/%s/" % yt_cid
 			elif "youtube.com/playlist" in item["path"]:
 				# https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI
 				yt_pid = re.compile("list=(.+?)$").findall(item["path"])[0]
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/ytp/%s/" % yt_pid
-			elif any(ext in item["path"] for ext in [".png", ".jpg", ".bmp", ".jpeg"]):
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/showimage/%s/" % urllib.quote_plus(item["path"])
+				item["path"] = "plugin://plugin.video.youtube/playlist/%s/" % yt_pid
 			else:		
 				# Nếu là direct link thì route đến hàm play_url
 				item["is_playable"] = True
@@ -212,7 +213,7 @@ def getItems(url_path="0"):
 			"context_menu": [
 				ClearPlaylists(""),
 			],
-			"label":"[COLOR yellow]*** Thêm Playlist***[/COLOR]",
+			"label":"[COLOR yellow]*** Thêm Playlist ***[/COLOR]",
 			"path": "%s/add-playlist" % (pluginrootpath),
 			"thumbnail": "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
 		}]
@@ -225,11 +226,22 @@ def getItems(url_path="0"):
 						ClearPlaylists(section),
 					]
 				}
-				item["label"] = section
-				item["path"]  = "%s/section/%s" % (
-					pluginrootpath,
-					section.split("] ")[-1]
-				)
+				if "@@" in section:
+					tmp     = section.split("@@")
+					passw   = tmp[-1]
+					section = tmp[0]
+					item["label"] = section
+					item["path"]  = "%s/password-section/%s/%s" % (
+						pluginrootpath,
+						passw,
+						section.split("] ")[-1]
+					)
+				else:
+					item["label"] = section
+					item["path"]  = "%s/section/%s" % (
+						pluginrootpath,
+						section.split("] ")[-1]
+					)
 				item["thumbnail"] = "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
 				items.append(item)
 	return items
@@ -287,6 +299,37 @@ def CachedSection(path = "0", tracking_string = "Home"):
 	)
 	return plugin.finish(getCachedItems(path))
 
+@plugin.route('/password-section/<password>/<path>/<tracking_string>')
+def PasswordSection(password="0000", path = "0", tracking_string = "Home"):
+	'''
+	Liệt kê danh sách các item của một sheet
+	Parameters
+	----------
+	path : string
+		"gid" của sheet
+	tracking_string : string
+		 Tên dễ đọc của view
+	'''
+	GA( # tracking
+		"Password Section - %s" % tracking_string,
+		"/password-section/%s" % path
+	)
+	passwords = plugin.get_storage('passwords')
+	if password in passwords and (time.time() - passwords[password] < 1800):
+		items = AddTracking(getItems(path))
+		return plugin.finish(items)
+	else:
+		passw_string = plugin.keyboard(heading='Nhập password')
+		if passw_string == password:
+			passwords[password] = time.time()
+			items = AddTracking(getItems(path))
+			return plugin.finish(items)
+		else:
+			header  = "Sai mật khẩu!!!"
+			message = "Mật khẩu không khớp. Không tải được nội dung"
+			xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' % (header, message, 10000, ''))
+			return plugin.finish()
+
 @plugin.route('/section/<path>/<tracking_string>')
 def Section(path = "0", tracking_string = "Home"):
 	'''
@@ -312,13 +355,17 @@ def AddPlaylist(tracking_string = "Add Playlist"):
 		try:
 			resp, content = http.request(sheet_url,"HEAD")
 			sid, gid = re.compile("/d/(.+?)/.+?gid=(\d+)").findall(resp["content-location"])[0]
-
+			match_passw = re.search('passw=(.+?)($|&)', resp["content-location"])
 			playlists = plugin.get_storage('playlists')
 			name = plugin.keyboard(heading='Đặt tên cho Playlist')
+
+			item = "[[COLOR yellow]%s[/COLOR]] %s@%s" % (name,gid,sid)
+			if match_passw:
+				item += "@@" + match_passw.group(1)
 			if 'sections' in playlists:
-				playlists["sections"] = ["[[COLOR yellow]%s[/COLOR]] %s@%s" % (name,gid,sid)] + playlists["sections"]
+				playlists["sections"] = [item] + playlists["sections"]
 			else:
-				playlists["sections"] = ["[[COLOR yellow]%s[/COLOR]] %s@%s" % (name,gid,sid)]
+				playlists["sections"] = [item]
 			xbmc.executebuiltin('Container.Refresh')
 		except: 
 			line1 = "Vui lòng nhập URL hợp lệ. Ví dụ dạng đầy đủ:"
@@ -427,12 +474,18 @@ def InstallRepo(path = "0", tracking_string = ""):
 		failed = []
 		for item in items:
 			done = int(100 * i / total)
+			repo_id = item["label2"].split("/")[-1]
+			json_result = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Addons.GetAddons", "params":{"type":"xbmc.addon.repository"}, "id":1}')
+			repo_list = []
+			for addon in json.loads(json_result)["result"]["addons"]:
+				repo_list += [addon["addonid"]]
 			pDialog.update(done,'Đang tải', item["label2"] + '...')
-			try:
-				item["path"] = "http" + item["path"].split("http")[-1]
-				download(urllib.unquote_plus(item["path"]), item["label2"])
-			except:
-				failed += [item["label"].encode("utf-8")]
+			if (item["label2"] == "") or (repo_id not in repo_list):
+				try:
+					item["path"] = "http" + item["path"].split("http")[-1]
+					download(urllib.unquote_plus(item["path"]), item["label2"])
+				except:
+					failed += [item["label"].encode("utf-8")]
 			if pDialog.iscanceled():
 				break
 			i+=1
@@ -493,7 +546,7 @@ def RepoSection(path = "0", tracking_string = ""):
 	items = [install_all_item] + items
 	return plugin.finish(items)
 
-def download(path,repo_path):
+def download(download_path,repo_path):
 	'''
 	Parameters
 	----------
@@ -504,21 +557,11 @@ def download(path,repo_path):
 		Mặc định được gán cho item["label2"].
 		Truyền "" để bỏ qua Kiểm tra đã cài
 	'''
-	if repo_path == "":
-		repo_path = "temp"
-		repo_zip = xbmc.translatePath(os.path.join(tmp,"%s.zip" % repo_path))
-		urllib.urlretrieve(path,repo_zip)
-		with contextlib.closing(zipfile.ZipFile(repo_zip, "r")) as z:
-			z.extractall(addons_folder)
-	else:
-		repo_name = repo_path.split("/")[-1]
-		extract_path = xbmc.translatePath("/".join(repo_path.split("/")[:-1]))
-		local_path = xbmc.translatePath("%s" % repo_path)
-		if not os.path.isdir(local_path):
-			repo_zip = xbmc.translatePath(os.path.join(tmp,"%s.zip" % repo_name))
-			urllib.urlretrieve(path,repo_zip)
-			with contextlib.closing(zipfile.ZipFile(repo_zip, "r")) as z:
-				z.extractall(extract_path)
+	if repo_path == "": repo_path = "temp"
+	zipfile_path = xbmc.translatePath(os.path.join(tmp,"%s.zip" % repo_path.split("/")[-1]))
+	urllib.urlretrieve(download_path,zipfile_path)
+	with contextlib.closing(zipfile.ZipFile(zipfile_path, "r")) as z:
+		z.extractall(addons_folder)
 
 def AddTracking(items):
 	'''
@@ -530,7 +573,7 @@ def AddTracking(items):
 	'''
 
 	for item in items:
-		if "plugin.video.testplaylist" in item["path"]:
+		if "plugin.video.HieuHien.vn" in item["path"]:
 			tmps = item["path"].split("?")
 			if len(tmps) == 1:
 				tail = ""
@@ -565,6 +608,27 @@ def get_playable_url(url):
 		match = re.compile('(youtu\.be\/|youtube-nocookie\.com\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|user)\/))([^\?&"\'>]+)').findall(url)
 		yid   = match[0][len(match[0])-1].replace('v/','')
 		url = 'plugin://plugin.video.youtube/play/?video_id=%s' % yid
+	elif "onecloud.media" in url:
+		ocid = url.split("/")[-1].strip()
+		oc_url = "http://onecloud.media/embed/" + ocid
+		h = {
+			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36',
+			'Accept-Encoding': 'gzip, deflate, sdch',
+			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+			'X-Requested-With': 'XMLHttpRequest',
+			'Cookie': 'TimeOut=999999999'}
+		(resp, content) = http.request(
+			oc_url,
+			"POST", headers = h,
+			body=urllib.urlencode({'type':'directLink', 'ip':''})
+		)
+
+		try: url = json.loads(content)["list"][0]["file"]
+		except: 
+			header  = "Có lỗi xảy ra!"
+			message = "Không lấy được link (link hỏng hoặc bị xóa)"
+			xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' % (header, message, 10000, ''))
+			return ""
 	elif "google.com" in url:
 		url = getGDriveHighestQuality(url)
 	elif "fshare.vn/file" in url:
