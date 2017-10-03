@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.hieuhien.vn.hdonline" name="[B]HDOnline[/B]" version="1.0.5" provider-name="anhlon">
+<addon id="plugin.video.hieuhien.vn.hdonline" name="HDOnline" version="1.0.6" provider-name="anhlon">
 	<requires>
-		<import addon="xbmc.python" version="2.7.0"/>
+		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.framework" version="1.4"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
