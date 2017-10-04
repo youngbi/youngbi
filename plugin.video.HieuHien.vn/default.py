@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os, httplib2, xbmc, xbmcgui, xbmcaddon
 # Dev Channel
-url   = 'https://raw.githubusercontent.com/hieuhienvn/hieuhien.vn/master/HieuHienVNPlaylist.py'
+url   = 'https://raw.githubusercontent.com/thongld/thongld.github.io/Dev/vnplaylist.py'
 #url   = 'http://www.hieuhien.vn/XBMC/HIEUHIENPLAYLIST/hieuhienvn.txt'
 #url   = 'http://textuploader.com/d5pru/raw'
 path  = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path') ).decode("utf-8")
