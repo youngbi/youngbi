@@ -14,8 +14,8 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Hieuhien.vn Media Center cho người Việt</summary>
-    <description>Trung tâm giải trí - tất cả trong 1 cho người Việt - Addon này được chỉnh sửa nội dung từ addon [COLOR yellow]VN Open Playlist[/COLOR] của tác giả [COLOR blue]thongld[/COLOR] - Xin cảm ơn tác giả đã cho phép [COLOR red]HieuHien.vn[/COLOR] chỉnh sửa để sử dụng theo cách riêng của mình!</description>
+    <summary>Media Center cho người Việt</summary>
+    <description>Trung tâm giải trí - tất cả trong 1 cho người Việt - Addon này được chỉnh sửa nội dung từ addon [COLOR yellow]VN Open Playlist[/COLOR] của tác giả [COLOR blue]thongld[/COLOR] - Xin cảm ơn tác giả đã cho phép chỉnh sửa để sử dụng theo cách riêng của mình!</description>
     <platform>all</platform>
   </extension>
 </addon>
