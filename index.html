@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dịch Truyện</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #chapterListContainer {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #424242;
+            border-radius: 5px;
+        }
+        #chapterList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #chapterList li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        #chapterList li:last-child {
+            border-bottom: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dịch Truyện</h1>
+
+        <!-- Phần Tải Lên EPUB -->
+        <div class="upload-section">
+            <h2>Tải Lên EPUB</h2>
+            <form id="uploadForm" enctype="multipart/form-data" method="POST" onsubmit="return false;">
+                <label for="epubUpload" class="upload-label">
+                    <span class="icon">📎</span> Chọn Tệp
+                </label>
+                <input type="file" id="epubUpload" name="epubFile" accept=".epub" hidden>
+                <span id="fileName">Chưa chọn tệp</span>
+                <div class="form-group">
+                    <label for="storyTitle">Tên Truyện (có thể sửa):</label>
+                    <input type="text" id="storyTitle" name="storyTitle" placeholder="Nhập tên truyện (nếu muốn sửa)">
+                </div>
+                <button type="submit" class="btn" id="uploadBtn">Tải Lên EPUB</button>
+                <div class="progress-bar" style="display: none;">
+                    <div id="progress" style="width: 0%;">Đang tải lên: 0%</div>
+                </div>
+                <div id="uploadError" class="error" style="display: none;"></div>
+            </form>
+            <p><strong>Nếu bạn không có tệp EPUB, bạn có thể nhờ cộng đồng giúp (miễn phí hoặc trả phí).</strong> Giá khoảng 20k/truyện. Một số nguồn:</p>
+            <p><strong>📖 Nguồn Tiếng Việt:</strong> Bach Ngoc Sach, Truyen Full, Truyen Chu...</p>
+            <p><strong>📚 Nguồn Tiếng Trung:</strong> zhaoshuyuan, biqubu, qiushubang...</p>
+            <a href="list.php" class="btn" style="margin-top: 20px;">Xem danh sách truyện đã dịch</a>
+            <button class="btn" onclick="window.location.href='logout.php'">Thoát</button>
+        </div>
+
+        <!-- Phần Thông Tin Truyện -->
+        <div class="story-info" id="storyInfo" style="display: none;">
+            <h2>Truyện: <span id="storyTitle">Chưa có</span></h2>
+            <p>Tác giả: <span id="storyAuthor">Chưa biết</span></p>
+            <p>Tổng số chương: <span id="totalChapters">0</span></p>
+            <div id="chapterListContainer">
+                <ul id="chapterList"></ul>
+            </div>
+        </div>
+
+        <!-- Phần Dịch Truyện -->
+        <div class="translate-section" id="translateSection" style="display: none;">
+            <h2>Dịch Truyện</h2>
+            <div class="form-group">
+                <label for="apiKeys">Nhập Khóa API xAI (<a href="https://x.ai/" target="_blank">Lấy Khóa</a>)</label>
+                <textarea id="apiKeys" rows="4" placeholder="Nhập API key, mỗi key trên một dòng" required>xai-qpzA3FJAJUzt9h83Dl1bwk88EcP1scYn2B98frk0wcz1tue0Qa5pcV3W21x0qmMfIIKQ5YqaDRgzgmZG
+xai-JZuD7qHDDAiMaOPvvWJ9MlWEL6hKKbHSQXQEFGCv66xV9cVf4G9GOR5RVbH6wpjfxAwL6snqVRGN62v3
+xai-zeWbrF9P0r7euStZA9AahTjCKMCJEjyLx9armzuT6O5jzdr7utwNjLlZhI4PWrT8InsLKpj7i4ra12dB
+xai-a3p1RePddQ0py6i8Ub10zUfS7HTVs5fZ1qo4PcYJoER0p2pw4E335nNoLcbHij4pHuglVoVysg9Qg4F5
+xai-UPbpu6OhHLQVwFLqowEY6lCY0Jy8JiTrPdNLN1hktjFDZFpalNFEqKCpkdPqAC4PCPn8aGA2DC7nowSu
+xai-TfnRtztdMIV2LJKlIRUe6SwFN0GmXHPbZoIOporI8UXgnnadMf6UVc4uk5lwfBfHMCkg7yVkTK1tQutc
+xai-0KACyxbqWq21AUzBpnE1xC4g5ay3lZyXLhPFqMXHeytxtT6DqdXMIVr5XfXr8Yd8oFwvLq3eiXHWYCvR</textarea>
+            </div>
+            <div class="form-group">
+                <label for="promptInput">Nhập Lệnh Dịch</label>
+                <textarea id="promptInput" rows="5">Bạn là một dịch giả chuyên nghiệp, chuyên dịch các tác phẩm văn học Trung Quốc sang tiếng Việt. Bạn am hiểu sâu sắc về văn hóa, lịch sử và ngôn ngữ Trung Quốc, đặc biệt là văn học cổ đại. Bạn không chỉ dịch chính xác từng câu chữ mà còn có khả năng truyền tải trọn vẹn tinh thần, cảm xúc và bối cảnh của nguyên tác. Bản dịch của bạn không cho phép xuất hiện chữ Trung Quốc nào.
+
+**Yêu cầu:**
+
+1. **Độ chính xác:** Dịch chính xác nghĩa của từ ngữ, câu văn, không dịch thiếu, sót hay sai nghĩa. Chú ý phân biệt các sắc thái nghĩa khác nhau của từ ngữ trong các ngữ cảnh cụ thể.
+
+2. **Ngữ pháp và Văn phong:** Sử dụng ngữ pháp tiếng Việt chuẩn mực, hành văn mượt mà, mạch lạc, giàu cảm xúc.
+
+3. **Bối cảnh cổ đại:**
+
+    *   Sử dụng từ ngữ, cách diễn đạt phù hợp với bối cảnh cổ đại Trung Quốc.
+    *   Đại từ nhân xưng: Sử dụng "ta", "ngươi", "hắn", "nàng", "lão gia", "lão thái thái", "gia", "nương", "huynh", "đệ", "muoi", "nhi tử", "nữ nhi", "hài tử",... và các đại từ nhân xưng phù hợp khác để thể hiện đúng mối quan hệ, địa vị, tuổi tác của các nhân vật. **Tuyệt đối không dùng "con", "cậu", "anh ta",... để xưng hô giữa các nhân vật trong bất kể trường hợp nào mà thay vào đó dùng từ "ngươi", "hắn", "ta",... tùy ngữ cảnh thích hợp.**
+    *   **Ví dụ:** "Ta xin hỏi ngươi, ngươi có biết hắn ở đâu không?". "Ngươi đừng nghĩ muốn trốn thoát, hắn nhất định sẽ tìm ra ngươi.".
+    *   Ưu tiên sử dụng "hắn","nàng","ả",.....thay cho "anh ta", "cô ấy", "chị ấy", "ông ấy", "bà ấy","ông ta", "bà ta",...
+4.  **Từ ngữ Hán Việt:**
+    *   Sử dụng hợp lý các từ ngữ Hán Việt để tạo không khí cổ xưa, trang trọng nhưng vẫn đảm bảo dễ hiểu cho độc giả hiện đại.
+    *   **Ưu tiên:** Các từ Hán Việt quen thuộc hoặc mang tính trang trọng (ví dụ: "thiên tử", "hoàng cung", "mỹ nhân", "tướng quân", "trang viên", "hảo hán"...).
+    *   **Hạn chế:** Các từ Hán Việt ít thông dụng, có thể gây khó hiểu (ví dụ: "thủ túc", "tịch mịch",,... ).
+
+5. **Thành ngữ, tục ngữ:** Vận dụng linh hoạt các thành ngữ, tục ngữ tiếng Việt tương đương(nếu có) để bản dịch sinh động và gần gũi hơn.
+
+6. **Nhân vật:** Thể hiện rõ nét tính cách, cảm xúc của từng nhân vật thông qua lời thoại và hành động.
+
+7. **Giữ nguyên tên riêng và các thuật ngữ đặc biệt:** **Giữ nguyên tên riêng, tên địa danh, tên các loại vật phẩm, chiêu thức, v.v. theo nguyên tác (Tuyệt đối không được để xuất hiện bất kỳ từ Trung nào xuất hiện trong các tên riêng).** **Lưu ý đặc biệt quan trọng về cách dịch tên riêng: Nếu tên riêng đó dịch ra thành Tiếng Anh thì hãy giữ nguyên tên Tiếng Anh đó, không cần Việt hóa thành từ Hán Việt, dịch một cách chính xác ra tiếng Anh (Ví dụ về việc dịch tên riêng chính xác mà Việt hóa sai: Sai: "安格列少爷" -> "Thiếu gia An Cách Liệt" (Sai vì không dịch chính xác theo nguyên tác mà Việt hóa từ đó) Đúng: "安格列少爷" -> "Thiếu gia Anglie" (Đúng vì dịch chính xác theo nguyên tác thành tên riêng tiếng Anh, không Việt hóa), ......). Không thêm dấu chấm vào giữa tên nhân vật.**
+
+**Ví dụ minh họa:**
+
+**Quy tắc xưng hô "ta", "ngươi":**
+
+*   **Sai:** "明天奶带你去镇上裁几尺布料，我们做两身new衣服。” -> "Ngày mai bà dẫn con ra trấn may vài thước vải, chúng ta may hai bộ quần áo mới" (Sai vì dùng "bà" và "con")
+*   **Đúng:** "明天奶 带你去镇上裁几尺布料，我们做两身new衣服。” -> "Ngày mai ta dẫn ngươi ra trấn may vài thước vải, chúng ta may hai bộ quần áo mới" (Đúng vì dùng "ta" và "ngươi")
+*   **Sai:** "宝儿，你歇ing…。" -> "Bảo Nhi, con nghỉ ngơi đi..." (Sai vì dùng từ "con")
+*   **Đúng:** "宝儿，你歇ing…。" -> "Bảo Nhi, ngươi nghỉ ngơi đi..." (Đúng vì dùng từ "ngươi")
+*   **Sai:** “Ba, con thật sự muốn học.” -> “Ba, ta thật sự muốn học.” (Sai vì thay "con" bằng "ta")
+*   **Đúng:** "Cha, ta thật sự muốn học." (Đúng vì giữ nguyên từ "ta")
+*   **Sai:** "Hắn ta không biết bơi" -> "Anh ta không biết bơi" (Sai vì thay "hắn" bằng "anh")
+*   **Đúng:** "Hắn ta không biết bơi" (Đúng vì giữ nguyên từ "hắn")
+
+**Quy tắc không thêm "ta" nếu không có sẵn:**
+
+*   **Sai:** "Đến nỗi tiềm năng điểm này là cái gì đây, có chút không nghĩ ra." -> "Còn tiềm năng điểm này là cái gì nhỉ, ta chưa nghĩ ra." (Sai vì thêm "ta")
+*   **Đúng:** "Đến nỗi tiềm năng điểm này là cái gì đây, có chút không nghĩ ra." -> "Còn tiềm năng điểm này là cái gì nhỉ, có chút không nghĩ ra." (Đúng vì không thêm "ta")
+
+**Quy tắc dịch tên riêng:**
+
+*   **Sai:** "安格列少爷" -> "Thiếu gia An Cách Liệt" (Sai vì Việt Hóa)
+*   **Đúng:** "安格列少爷" -> "Thiếu gia Anglie" (Đúng vì dịch sang tiếng Anh)
+
+**Quy tắc không thêm dấu chấm vào giữa tên:**
+
+*   **Sai:** ""而目前为止，在命运领域有权柄的神灵、天使和“隐秘存在”，包括但不限于“黑夜女神”、“愚者”、“水银之蛇”威尔.昂赛汀、帕列斯.索罗亚斯德、“渎神者”阿蒙和“命运天使”乌洛琉斯。"" -> "Mà đến hiện tại, thần linh, thiên sứ và "tồn tại ẩn mật" có quyền bính trong lĩnh vực vận mệnh, bao gồm nhưng không giới hạn ở "Nữ Thần Đêm Tối", "Kẻ Khờ", "Rắn Bạc" Will.Anseitin, Palles.Zoroaster, "Kẻ Báng Bổ" Amon và "Thiên Sứ Vận Mệnh" Urolius." (Sai vì thêm dấu chấm)
+*   **Đúng:** ""而目前为止，在命运领域有权 柄的神灵、天使和“隐秘存在”，包括但不限于“黑夜女神”、“愚者”、“水银之蛇”威尔昂赛汀、帕列斯索罗亚斯德、“渎神者”阿蒙和“命运天使”乌洛琉斯。"" -> "Mà đến hiện tại, thần linh, thiên sứ và "tồn tại ẩn mật" có quyền bính trong lĩnh vực vận mệnh, bao gồm nhưng không giới hạn ở "Nữ Thần Đêm Tối", "Kẻ Khờ", "Rắn Bạc" Will Anseitin, Palles Zoroaster, "Kẻ Báng Bổ" Amon và "Thiên Sứ Vận Mệnh" Urolius." (Đúng vì không thêm dấu chấm)
+
+**
+Nếu truyện là bản CV, convert dạng Tiếng Việt nhưng câu cú bị ngược khó đọc thì dịch lại để thuận cấu trúc câu trong tiếng Việt
+
+**</textarea>
+            </div>
+            <div class="chapter-selection">
+                <div class="form-group">
+                    <label for="startChapter">Chương Bắt Đầu</label>
+                    <input type="number" id="startChapter" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="endChapter">Chương Kết Thúc</label>
+                    <input type="number" id="endChapter" min="1" required>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn" onclick="translateStory()">Dịch</button>
+                <button class="btn" onclick="downloadEpub()" disabled id="downloadBtn">Tải EPUB</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress" style="width: 0%;"></div>
+            </div>
+            <div id="translateError" class="error" style="display: none;"></div>
+            <!-- Ô log -->
+            <div class="form-group">
+                <label for="logOutput">Tiến Trình Dịch</label>
+                <textarea id="logOutput" rows="10" style="width: 100%; background-color: #4a4a4a; color: white;" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
